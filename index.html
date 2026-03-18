@@ -219,6 +219,7 @@
       font-size: 15px;
     }
 
+    /* Sync bar */
     .sync-bar {
       display: flex;
       align-items: center;
@@ -230,6 +231,7 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
       font-size: 13px;
       color: #888;
+      flex-wrap: wrap;
     }
 
     .btn-sync {
@@ -248,7 +250,65 @@
     .btn-sync.connected { border-color: #52c41a; color: #52c41a; }
     .btn-sync.connected:hover { background: #52c41a; color: white; }
 
-    #sync-status { flex: 1; }
+    #sync-status { flex: 1; min-width: 120px; }
+
+    /* Token 設定 modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      width: 90%;
+      max-width: 440px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+
+    .modal h2 { font-size: 18px; margin-bottom: 8px; color: #1a1a2e; }
+    .modal p { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6; }
+
+    .modal input {
+      width: 100%;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 12px;
+      font-family: monospace;
+    }
+    .modal input:focus { border-color: #4f8ef7; }
+
+    .modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
+
+    .btn-cancel {
+      border: 1.5px solid #ddd;
+      background: white;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-confirm {
+      background: #4f8ef7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn-confirm:hover { background: #3a7de0; }
   </style>
 </head>
 <body>
@@ -270,8 +330,8 @@
     </div>
 
     <div class="sync-bar">
-      <button class="btn-sync" id="sync-btn" onclick="grantVaultAccess()">📁 授權 Vault 資料夾</button>
-      <span id="sync-status">未連結 — 點左邊按鈕授權一次，之後自動同步</span>
+      <button class="btn-sync" id="sync-btn" onclick="openTokenModal()">⚙️ 設定 GitHub Token</button>
+      <span id="sync-status">載入中...</span>
     </div>
 
     <div class="filter-bar">
@@ -283,62 +343,183 @@
     <ul id="todo-list"></ul>
   </div>
 
+  <!-- Token 設定 Modal -->
+  <div class="modal-overlay" id="token-modal">
+    <div class="modal">
+      <h2>設定 GitHub Token</h2>
+      <p>
+        Token 存在你的瀏覽器裡，不會上傳。<br>
+        需要 <strong>repo</strong> 權限，到 GitHub → Settings → Developer settings → Personal access tokens 建立。
+      </p>
+      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxx" />
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeTokenModal()">取消</button>
+        <button class="btn-confirm" onclick="saveToken()">儲存並連線</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const REPO = 'kuangame/todolist';
+    const FILE = 'todos.md';
     const VAULT = 'MyBrain';
-    let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+
+    let todos = [];
     let filter = 'all';
     let dragSrcIdx = null;
+    let fileSha = null; // GitHub 需要 SHA 才能更新檔案
 
-    let vaultDirHandle = null;
+    // ── GitHub Token ──────────────────────────────────────────
+    function getToken() { return localStorage.getItem('gh_token') || ''; }
 
-    async function grantVaultAccess() {
+    function openTokenModal() {
+      document.getElementById('token-input').value = getToken();
+      document.getElementById('token-modal').classList.add('show');
+    }
+
+    function closeTokenModal() {
+      document.getElementById('token-modal').classList.remove('show');
+    }
+
+    async function saveToken() {
+      const token = document.getElementById('token-input').value.trim();
+      if (!token) return;
+      localStorage.setItem('gh_token', token);
+      closeTokenModal();
+      await loadFromGitHub();
+    }
+
+    // ── GitHub API ────────────────────────────────────────────
+    async function loadFromGitHub() {
+      const token = getToken();
+      if (!token) {
+        setSyncStatus('未設定 Token — 點左邊按鈕設定');
+        render();
+        return;
+      }
+
+      setSyncStatus('載入中...');
       try {
-        vaultDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
-        localStorage.setItem('vaultGranted', '1');
-        updateSyncStatus('✅ 已連結 — 每次更動自動同步');
-        document.getElementById('sync-btn').classList.add('connected');
-        document.getElementById('sync-btn').textContent = '✅ 已連結';
-        await syncToVault();
+        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+          headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+        });
+
+        if (res.status === 404) {
+          // 檔案不存在，從 localStorage 載入（或空白）
+          todos = JSON.parse(localStorage.getItem('todos') || '[]');
+          fileSha = null;
+          setSyncStatus('GitHub 上還沒有 todos.md，新增後自動建立');
+          updateSyncBtn(true);
+          render();
+          return;
+        }
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        fileSha = data.sha;
+        const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+        todos = parseTodosMd(content);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        setSyncStatus(`已同步 — ${new Date().toLocaleTimeString()}`);
+        updateSyncBtn(true);
+        render();
       } catch (e) {
-        updateSyncStatus('❌ 取消授權');
+        setSyncStatus('載入失敗：' + e.message);
+        todos = JSON.parse(localStorage.getItem('todos') || '[]');
+        render();
       }
     }
 
-    function updateSyncStatus(msg) {
+    async function syncToGitHub() {
+      const token = getToken();
+      if (!token) return;
+
+      const content = buildTodosMd();
+      const encoded = btoa(unescape(encodeURIComponent(content)));
+
+      const body = {
+        message: `update todos [${new Date().toLocaleString('zh-TW')}]`,
+        content: encoded,
+      };
+      if (fileSha) body.sha = fileSha;
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+          method: 'PUT',
+          headers: {
+            Authorization: `token ${token}`,
+            Accept: 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        fileSha = data.content.sha;
+        setSyncStatus(`已同步 — ${new Date().toLocaleTimeString()}`);
+      } catch (e) {
+        setSyncStatus('同步失敗：' + e.message);
+      }
+    }
+
+    // ── todos.md 解析 / 產生 ──────────────────────────────────
+    function parseTodosMd(md) {
+      const priorityMap = { '🔴 高': 1, '🟠 中': 2, '🟢 低': 3 };
+      const result = [];
+      for (const line of md.split('\n')) {
+        const m = line.match(/^- \[( |x)\] (🔴 高|🟠 中|🟢 低) (.+?)( — \[\[(.+?)\]\])?$/);
+        if (m) {
+          result.push({
+            done: m[1] === 'x',
+            priority: priorityMap[m[2]] || 2,
+            text: m[3].trim(),
+            note: m[5] || null,
+          });
+        }
+      }
+      return result;
+    }
+
+    function buildTodosMd() {
+      const priorityLabel = { 1: '🔴 高', 2: '🟠 中', 3: '🟢 低' };
+      const lines = [
+        '---',
+        `synced: ${new Date().toISOString()}`,
+        '---',
+        '',
+        '# 專案清單',
+        '',
+        ...todos.map(t => {
+          const status = t.done ? '[x]' : '[ ]';
+          const note = t.note ? ` — [[${t.note}]]` : '';
+          return `- ${status} ${priorityLabel[t.priority]} ${t.text}${note}`;
+        }),
+        ''
+      ];
+      return lines.join('\n');
+    }
+
+    // ── UI helpers ────────────────────────────────────────────
+    function setSyncStatus(msg) {
       document.getElementById('sync-status').textContent = msg;
     }
 
-    async function syncToVault() {
-      if (!vaultDirHandle) return;
-      try {
-        const priorityLabel = { 1: '🔴 高', 2: '🟠 中', 3: '🟢 低' };
-        const lines = [
-          '---',
-          `synced: ${new Date().toISOString()}`,
-          '---',
-          '',
-          '# 專案清單',
-          '',
-          ...todos.map(t => {
-            const status = t.done ? '[x]' : '[ ]';
-            const note = t.note ? ` — [[${t.note}]]` : '';
-            return `- ${status} ${priorityLabel[t.priority]} ${t.text}${note}`;
-          }),
-          ''
-        ];
-        const fileHandle = await vaultDirHandle.getFileHandle('todos.md', { create: true });
-        const writable = await fileHandle.createWritable();
-        await writable.write(lines.join('\n'));
-        await writable.close();
-        updateSyncStatus(`✅ 已同步 — ${new Date().toLocaleTimeString()}`);
-      } catch (e) {
-        updateSyncStatus('⚠️ 同步失敗：' + e.message);
+    function updateSyncBtn(connected) {
+      const btn = document.getElementById('sync-btn');
+      if (connected) {
+        btn.textContent = '⚙️ Token 已設定';
+        btn.classList.add('connected');
+      } else {
+        btn.textContent = '⚙️ 設定 GitHub Token';
+        btn.classList.remove('connected');
       }
     }
 
     function save() {
       localStorage.setItem('todos', JSON.stringify(todos));
-      syncToVault();
+      syncToGitHub();
     }
 
     function obsidianUrl(note) {
@@ -414,20 +595,9 @@
       if (e.key === 'Enter') addTodo();
     });
 
-    function toggleDone(idx) {
-      todos[idx].done = !todos[idx].done;
-      save(); render();
-    }
-
-    function deleteTodo(idx) {
-      todos.splice(idx, 1);
-      save(); render();
-    }
-
-    function changePriority(idx, val) {
-      todos[idx].priority = parseInt(val);
-      save(); render();
-    }
+    function toggleDone(idx) { todos[idx].done = !todos[idx].done; save(); render(); }
+    function deleteTodo(idx) { todos.splice(idx, 1); save(); render(); }
+    function changePriority(idx, val) { todos[idx].priority = parseInt(val); save(); render(); }
 
     function setFilter(f, btn) {
       filter = f;
@@ -463,7 +633,8 @@
       });
     }
 
-    render();
+    // 啟動
+    loadFromGitHub();
   </script>
 </body>
 </html>
