@@ -218,6 +218,37 @@
       padding: 40px;
       font-size: 15px;
     }
+
+    .sync-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 10px 14px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      font-size: 13px;
+      color: #888;
+    }
+
+    .btn-sync {
+      border: 1.5px solid #a78bfa;
+      background: white;
+      color: #a78bfa;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-sync:hover { background: #a78bfa; color: white; }
+    .btn-sync.connected { border-color: #52c41a; color: #52c41a; }
+    .btn-sync.connected:hover { background: #52c41a; color: white; }
+
+    #sync-status { flex: 1; }
   </style>
 </head>
 <body>
@@ -238,6 +269,11 @@
       <input type="text" id="new-note" placeholder="連結 Obsidian 筆記（選填，例如：專案/晨報）" />
     </div>
 
+    <div class="sync-bar">
+      <button class="btn-sync" id="sync-btn" onclick="grantVaultAccess()">📁 授權 Vault 資料夾</button>
+      <span id="sync-status">未連結 — 點左邊按鈕授權一次，之後自動同步</span>
+    </div>
+
     <div class="filter-bar">
       <button class="filter-btn active" onclick="setFilter('all', this)">全部</button>
       <button class="filter-btn" onclick="setFilter('active', this)">未完成</button>
@@ -253,8 +289,56 @@
     let filter = 'all';
     let dragSrcIdx = null;
 
+    let vaultDirHandle = null;
+
+    async function grantVaultAccess() {
+      try {
+        vaultDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+        localStorage.setItem('vaultGranted', '1');
+        updateSyncStatus('✅ 已連結 — 每次更動自動同步');
+        document.getElementById('sync-btn').classList.add('connected');
+        document.getElementById('sync-btn').textContent = '✅ 已連結';
+        await syncToVault();
+      } catch (e) {
+        updateSyncStatus('❌ 取消授權');
+      }
+    }
+
+    function updateSyncStatus(msg) {
+      document.getElementById('sync-status').textContent = msg;
+    }
+
+    async function syncToVault() {
+      if (!vaultDirHandle) return;
+      try {
+        const priorityLabel = { 1: '🔴 高', 2: '🟠 中', 3: '🟢 低' };
+        const lines = [
+          '---',
+          `synced: ${new Date().toISOString()}`,
+          '---',
+          '',
+          '# 專案清單',
+          '',
+          ...todos.map(t => {
+            const status = t.done ? '[x]' : '[ ]';
+            const note = t.note ? ` — [[${t.note}]]` : '';
+            return `- ${status} ${priorityLabel[t.priority]} ${t.text}${note}`;
+          }),
+          ''
+        ];
+        const fileHandle = await vaultDirHandle.getFileHandle('todos.md', { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(lines.join('\n'));
+        await writable.close();
+        updateSyncStatus(`✅ 已同步 — ${new Date().toLocaleTimeString()}`);
+      } catch (e) {
+        updateSyncStatus('⚠️ 同步失敗：' + e.message);
+      }
+    }
+
     function save() {
       localStorage.setItem('todos', JSON.stringify(todos));
+      syncToVault();
     }
 
     function obsidianUrl(note) {
