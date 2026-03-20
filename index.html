@@ -302,7 +302,7 @@
 
   <!-- Header -->
   <div class="header">
-    <h1>📊 Dashboard</h1>
+    <h1>📊 Dashboard <span style="font-size:12px;color:#bbb;font-weight:400;">v4</span></h1>
     <button class="btn-token" id="token-btn" onclick="openTokenModal()">⚙️ 設定 Token</button>
   </div>
 
@@ -394,7 +394,7 @@
   <div class="tab-panel" id="tab-report">
     <div id="report-meta" style="font-size:13px;color:#bbb;margin-bottom:16px;text-align:right;"></div>
     <div id="report-market" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;"></div>
-    <div id="report-content" style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);font-size:14px;line-height:1.8;color:#333;"></div>
+<div id="report-content" style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);font-size:14px;line-height:1.8;color:#333;"></div>
   </div>
 
 </div>
@@ -471,8 +471,9 @@
 
   // ── GitHub API 通用 ───────────────────────────────────────
   async function ghGet(file) {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, {
-      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}?t=${Date.now()}`, {
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
+      cache: 'no-store'
     });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -831,7 +832,8 @@
       const report = JSON.parse(raw);
 
       // 日期
-      document.getElementById('report-meta').textContent = `產生時間：${new Date(report.generated_at).toLocaleString('zh-TW')}`;
+      const confsDebug = report.conferences || [];
+      document.getElementById('report-meta').textContent = `產生時間：${new Date(report.generated_at).toLocaleString('zh-TW')} ｜ 法說會 ${confsDebug.length} 間`;
 
       // 市場指數 chips
       const market = report.market || {};
@@ -841,8 +843,17 @@
         return `<div class="market-chip"><div class="chip-name">${name}</div><div class="chip-val ${cls}">${sign}${d.pct}%</div></div>`;
       }).join('');
 
-      // 內文
-      document.getElementById('report-content').innerHTML = mdToHtml(report.content);
+      // 內文 + 法說會
+      const confs = report.conferences || [];
+      let html = mdToHtml(report.content);
+      if (confs.length > 0) {
+        const items = confs.map(c =>
+          `<span style="font-size:13px;color:#333;padding:2px 0;">${c.company}（${c.code}）</span>`
+        ).join('');
+        html += `<h2>📢 今日法說會（共 ${confs.length} 間）</h2>`
+              + `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px 0;margin-top:8px;">${items}</div>`;
+      }
+      document.getElementById('report-content').innerHTML = html;
     } catch(e) {
       document.getElementById('report-content').innerHTML = `<p style="color:#f00">載入失敗：${e.message}</p>`;
     }
