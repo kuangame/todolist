@@ -214,6 +214,19 @@
       flex-shrink: 0;
     }
 
+    .btn-edit {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 0 4px;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-edit:hover { color: #4f8ef7; }
+
     .btn-delete {
       background: none;
       border: none;
@@ -374,6 +387,25 @@
       <div class="modal-btns">
         <button class="btn-cancel" onclick="closeTokenModal()">取消</button>
         <button class="btn-confirm" onclick="saveToken()">儲存並連線</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 編輯 Modal -->
+  <div class="modal-overlay" id="edit-modal">
+    <div class="modal">
+      <h2>編輯項目</h2>
+      <input type="text" id="edit-text" placeholder="專案名稱" style="font-family:inherit;" />
+      <select id="edit-priority" style="width:100%;border:1.5px solid #ddd;border-radius:8px;padding:10px 14px;font-size:14px;outline:none;margin-bottom:12px;background:white;">
+        <option value="1">🔴 高</option>
+        <option value="2">🟠 中</option>
+        <option value="3">🟢 低</option>
+      </select>
+      <input type="text" id="edit-note" placeholder="Obsidian 筆記（選填，例如：專案/晨報）" style="font-family:inherit;" />
+      <textarea id="edit-desc" rows="3" placeholder="描述（選填）" style="width:100%;border:1.5px solid #ddd;border-radius:8px;padding:10px 14px;font-size:14px;outline:none;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeEditModal()">取消</button>
+        <button class="btn-confirm" onclick="saveEdit()">儲存</button>
       </div>
     </div>
   </div>
@@ -594,6 +626,7 @@
               <option value="2" ${t.priority==2?'selected':''}>🟠 中</option>
               <option value="3" ${t.priority==3?'selected':''}>🟢 低</option>
             </select>
+            <button class="btn-edit" onclick="openEditModal(${realIdx})" title="編輯">✎</button>
             <button class="btn-delete" onclick="deleteTodo(${realIdx})">✕</button>
           </li>`;
       }).join('');
@@ -624,6 +657,36 @@
     document.getElementById('new-todo').addEventListener('keydown', e => {
       if (e.key === 'Enter') addTodo();
     });
+
+    let editingIdx = null;
+
+    function openEditModal(idx) {
+      editingIdx = idx;
+      const t = todos[idx];
+      document.getElementById('edit-text').value = t.text;
+      document.getElementById('edit-priority').value = t.priority;
+      document.getElementById('edit-note').value = t.note || '';
+      document.getElementById('edit-desc').value = t.desc || '';
+      document.getElementById('edit-modal').classList.add('show');
+    }
+
+    function closeEditModal() {
+      editingIdx = null;
+      document.getElementById('edit-modal').classList.remove('show');
+    }
+
+    function saveEdit() {
+      if (editingIdx === null) return;
+      const text = document.getElementById('edit-text').value.trim();
+      if (!text) return;
+      todos[editingIdx].text = text;
+      todos[editingIdx].priority = parseInt(document.getElementById('edit-priority').value);
+      todos[editingIdx].note = document.getElementById('edit-note').value.trim() || null;
+      todos[editingIdx].desc = document.getElementById('edit-desc').value.trim() || null;
+      closeEditModal();
+      save();
+      render();
+    }
 
     function toggleExpand(el) {
       el.closest('.todo-item').classList.toggle('expanded');
