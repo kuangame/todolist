@@ -280,6 +280,21 @@
       .num-input { width: 100px; font-size: 13px; }
       .result-cards { grid-template-columns: 1fr; }
     }
+
+    /* 晨報 Markdown 樣式 */
+    #report-content h2 { font-size: 16px; color: #1a1a2e; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 1px solid #f0f0f0; }
+    #report-content h2:first-child { margin-top: 0; }
+    #report-content ul { padding-left: 18px; margin: 6px 0; }
+    #report-content li { margin-bottom: 6px; }
+    #report-content strong { color: #1a1a2e; }
+    #report-content p { margin: 6px 0; }
+
+    .market-chip {
+      background: white; border-radius: 10px; padding: 10px 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07); font-size: 13px; text-align: center; min-width: 90px;
+    }
+    .market-chip .chip-name { color: #999; font-size: 11px; margin-bottom: 3px; }
+    .market-chip .chip-val { font-weight: 700; font-family: 'SF Mono','Menlo',monospace; }
   </style>
 </head>
 <body>
@@ -297,6 +312,7 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('project', this)">📋 Project</button>
     <button class="tab-btn" onclick="switchTab('calc', this)">💰 交割計算機</button>
+    <button class="tab-btn" onclick="switchTab('report', this)">📰 晨報</button>
   </div>
 
   <!-- Project Tab -->
@@ -372,6 +388,13 @@
     </div>
 
     <button class="btn-reset" onclick="calcReset()">清除全部</button>
+  </div>
+
+  <!-- 晨報 Tab -->
+  <div class="tab-panel" id="tab-report">
+    <div id="report-meta" style="font-size:13px;color:#bbb;margin-bottom:16px;text-align:right;"></div>
+    <div id="report-market" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;"></div>
+    <div id="report-content" style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);font-size:14px;line-height:1.8;color:#333;"></div>
   </div>
 
 </div>
@@ -785,6 +808,52 @@
     buildCalcRows();
     calcRecalc();
   }
+
+  // ── 晨報 ──────────────────────────────────────────────────
+  function mdToHtml(md) {
+    return md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
+      .replace(/\n{2,}/g, '</p><p>')
+      .replace(/^(?!<[hup])(.+)$/gm, '$1')
+      .replace(/(<\/ul>|<\/h2>)\s*(<p>|<\/p>)/g, '$1');
+  }
+
+  async function loadReport() {
+    if (!getToken()) return;
+    try {
+      const data = await ghGet('morning_report.json');
+      if (!data) { document.getElementById('report-content').innerHTML = '<p style="color:#bbb;text-align:center;padding:40px;">今日晨報尚未產生</p>'; return; }
+      const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
+      const report = JSON.parse(raw);
+
+      // 日期
+      document.getElementById('report-meta').textContent = `產生時間：${new Date(report.generated_at).toLocaleString('zh-TW')}`;
+
+      // 市場指數 chips
+      const market = report.market || {};
+      document.getElementById('report-market').innerHTML = Object.entries(market).map(([name, d]) => {
+        const cls = d.pct > 0 ? 'pos' : d.pct < 0 ? 'neg' : 'zero';
+        const sign = d.pct > 0 ? '+' : '';
+        return `<div class="market-chip"><div class="chip-name">${name}</div><div class="chip-val ${cls}">${sign}${d.pct}%</div></div>`;
+      }).join('');
+
+      // 內文
+      document.getElementById('report-content').innerHTML = mdToHtml(report.content);
+    } catch(e) {
+      document.getElementById('report-content').innerHTML = `<p style="color:#f00">載入失敗：${e.message}</p>`;
+    }
+  }
+
+  // 切換到晨報 tab 時才載入
+  const _switchTab = switchTab;
+  switchTab = function(name, btn) {
+    _switchTab(name, btn);
+    if (name === 'report') loadReport();
+  };
 
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
