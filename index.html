@@ -183,6 +183,21 @@
 
     .todo-note-link:hover { text-decoration: underline; }
 
+    .todo-desc {
+      font-size: 13px;
+      color: #888;
+      margin-top: 6px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      display: none;
+    }
+
+    .todo-item.expanded .todo-desc { display: block; }
+
+    .todo-text { cursor: pointer; }
+    .todo-text:hover { color: #4f8ef7; }
+
     .todo-item.done .todo-text {
       text-decoration: line-through;
       color: #aaa;
@@ -327,6 +342,10 @@
 
     <div class="note-input-row">
       <input type="text" id="new-note" placeholder="連結 Obsidian 筆記（選填，例如：專案/晨報）" />
+    </div>
+
+    <div class="note-input-row" style="margin-bottom: 12px;">
+      <textarea id="new-desc" rows="2" placeholder="描述（選填，說明這個專案想做什麼）" style="flex:1; border:1.5px solid #ddd; border-radius:8px; padding:8px 12px; font-size:13px; outline:none; color:#555; background:#fafafa; resize:vertical; font-family:inherit;"></textarea>
     </div>
 
     <div class="sync-bar">
@@ -476,7 +495,10 @@
             priority: priorityMap[m[2]] || 2,
             text: m[3].trim(),
             note: m[5] || null,
+            desc: null, // 從下一行讀取
           });
+        } else if (result.length > 0 && line.match(/^  > /)) {
+          result[result.length - 1].desc = line.replace(/^  > /, '');
         }
       }
       return result;
@@ -491,10 +513,12 @@
         '',
         '# 專案清單',
         '',
-        ...todos.map(t => {
+        ...todos.flatMap(t => {
           const status = t.done ? '[x]' : '[ ]';
           const note = t.note ? ` — [[${t.note}]]` : '';
-          return `- ${status} ${priorityLabel[t.priority]} ${t.text}${note}`;
+          const lines = [`- ${status} ${priorityLabel[t.priority]} ${t.text}${note}`];
+          if (t.desc) lines.push(`  > ${t.desc}`);
+          return lines;
         }),
         ''
       ];
@@ -546,6 +570,9 @@
         const noteHtml = noteUrl
           ? `<a class="todo-note-link" href="${noteUrl}" onclick="event.stopPropagation()">📂 ${escHtml(t.note)}</a>`
           : '';
+        const descHtml = t.desc
+          ? `<div class="todo-desc">${escHtml(t.desc)}</div>`
+          : '';
         return `
           <li class="todo-item ${t.done ? 'done' : ''}"
               data-priority="${t.priority}"
@@ -558,8 +585,9 @@
             <input type="checkbox" class="todo-check" ${t.done ? 'checked' : ''}
               onchange="toggleDone(${realIdx})" />
             <div class="todo-main">
-              <span class="todo-text">${escHtml(t.text)}</span>
+              <span class="todo-text" onclick="toggleExpand(this)" title="${t.desc ? '點擊展開描述' : ''}">${escHtml(t.text)}${t.desc ? ' <span style="color:#ccc;font-size:11px;">▾</span>' : ''}</span>
               ${noteHtml}
+              ${descHtml}
             </div>
             <select class="priority-select" onchange="changePriority(${realIdx}, this.value)">
               <option value="1" ${t.priority==1?'selected':''}>🔴 高</option>
@@ -582,18 +610,24 @@
       if (!text) return;
       const priority = parseInt(document.getElementById('new-priority').value);
       const note = document.getElementById('new-note').value.trim();
-      todos.push({ text, priority, done: false, note: note || null });
+      const desc = document.getElementById('new-desc').value.trim();
+      todos.push({ text, priority, done: false, note: note || null, desc: desc || null });
       todos.sort((a, b) => a.priority - b.priority);
       save();
       render();
       input.value = '';
       document.getElementById('new-note').value = '';
+      document.getElementById('new-desc').value = '';
       input.focus();
     }
 
     document.getElementById('new-todo').addEventListener('keydown', e => {
       if (e.key === 'Enter') addTodo();
     });
+
+    function toggleExpand(el) {
+      el.closest('.todo-item').classList.toggle('expanded');
+    }
 
     function toggleDone(idx) { todos[idx].done = !todos[idx].done; save(); render(); }
     function deleteTodo(idx) { todos.splice(idx, 1); save(); render(); }
