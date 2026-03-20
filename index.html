@@ -329,7 +329,7 @@
   <!-- 交割計算機 Tab -->
   <div class="tab-panel" id="tab-calc">
     <div class="calc-cash-row">
-      <label>💵 現金</label>
+      <label>💵 現金 <span id="date-today" style="color:#bbb;font-size:12px;font-weight:400;"></span></label>
       <input class="cash-input" type="number" id="calc-cash" placeholder="0" oninput="calcRecalc()" />
     </div>
 
@@ -338,8 +338,8 @@
         <thead>
           <tr>
             <th>帳戶</th>
-            <th>T+1 交割款</th>
-            <th>T+2 交割款</th>
+            <th>T+1 交割款<br><span id="date-t1" style="font-size:11px;color:#bbb;font-weight:400;"></span></th>
+            <th>T+2 交割款<br><span id="date-t2" style="font-size:11px;color:#bbb;font-weight:400;"></span></th>
           </tr>
         </thead>
         <tbody id="calc-rows"></tbody>
@@ -623,11 +623,56 @@
   function drop(e,i) { e.preventDefault(); if (dragSrcIdx===null||dragSrcIdx===i) return; todos.splice(i,0,todos.splice(dragSrcIdx,1)[0]); saveTodos(); render(); }
   function dragEnd(e) { dragSrcIdx=null; document.querySelectorAll('.todo-item').forEach(el => el.classList.remove('dragging','drag-over')); }
 
+  // ── 工作日計算 ─────────────────────────────────────────────
+  // 2026 台股休市日（週末自動排除，這裡只列國定假日）
+  const TW_HOLIDAYS = new Set([
+    '2026-01-01','2026-01-02',                          // 元旦
+    '2026-02-16','2026-02-17','2026-02-18',             // 春節
+    '2026-02-19','2026-02-20','2026-02-23',             // 春節連假
+    '2026-02-28',                                       // 和平紀念日
+    '2026-04-03','2026-04-04','2026-04-05','2026-04-06',// 兒童節/清明
+    '2026-05-01',                                       // 勞動節
+    '2026-06-19','2026-06-20',                          // 端午節
+    '2026-09-25','2026-09-26',                          // 中秋節
+    '2026-10-09','2026-10-10',                          // 國慶日
+  ]);
+
+  function isWorkDay(d) {
+    const day = d.getDay();
+    if (day === 0 || day === 6) return false;
+    return !TW_HOLIDAYS.has(d.toISOString().slice(0, 10));
+  }
+
+  function addWorkDays(date, n) {
+    let d = new Date(date); d.setHours(0, 0, 0, 0);
+    let count = 0;
+    while (count < n) { d.setDate(d.getDate() + 1); if (isWorkDay(d)) count++; }
+    return d;
+  }
+
+  function countWorkDaysBetween(from, to) {
+    let d = new Date(from); d.setHours(0, 0, 0, 0);
+    const end = new Date(to); end.setHours(0, 0, 0, 0);
+    let count = 0;
+    while (d < end) { d.setDate(d.getDate() + 1); if (isWorkDay(d)) count++; }
+    return count;
+  }
+
+  function fmtDate(d) { return `${d.getMonth() + 1}/${d.getDate()}`; }
+
+  function updateCalcDates() {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    document.getElementById('date-today').textContent = `(${fmtDate(today)})`;
+    document.getElementById('date-t1').textContent = fmtDate(addWorkDays(today, 1));
+    document.getElementById('date-t2').textContent = fmtDate(addWorkDays(today, 2));
+  }
+
   // ── 交割計算機 ─────────────────────────────────────────────
   let calcSha = null;
-  let calcData = { cash: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} } };
+  let calcData = { cash: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
 
   function buildCalcRows() {
+    updateCalcDates();
     document.getElementById('calc-cash').value = calcData.cash || '';
     document.getElementById('calc-rows').innerHTML = ACCOUNTS.map(acc => `
       <tr>
@@ -635,6 +680,31 @@
         ${['t1','t2'].map(f => `<td><input class="num-input" type="number" id="calc-${acc}-${f}"
           value="${calcData.accounts[acc]?.[f] || ''}" placeholder="0" oninput="calcRecalc()" /></td>`).join('')}
       </tr>`).join('');
+  }
+
+  function rollCalcIfNeeded() {
+    if (!calcData.lastDate) return;
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const last = new Date(calcData.lastDate); last.setHours(0, 0, 0, 0);
+    const days = countWorkDaysBetween(last, today);
+    if (days <= 0) return;
+
+    // 每過一個工作日：T+1 入帳到現金，T+2 → T+1，T+2 清空
+    for (let i = 0; i < Math.min(days, 2); i++) {
+      const t1Sum = ACCOUNTS.reduce((sum, acc) => sum + (parseFloat(calcData.accounts[acc].t1) || 0), 0);
+      calcData.cash = String((parseFloat(calcData.cash) || 0) + t1Sum);
+      ACCOUNTS.forEach(acc => {
+        calcData.accounts[acc].t1 = calcData.accounts[acc].t2;
+        calcData.accounts[acc].t2 = '';
+      });
+    }
+    if (days >= 3) {
+      // 超過兩個工作日，T+2 也已結算，清空
+      const t1Sum = ACCOUNTS.reduce((sum, acc) => sum + (parseFloat(calcData.accounts[acc].t1) || 0), 0);
+      calcData.cash = String((parseFloat(calcData.cash) || 0) + t1Sum);
+      ACCOUNTS.forEach(acc => { calcData.accounts[acc].t1 = ''; calcData.accounts[acc].t2 = ''; });
+    }
+    calcData.lastDate = today.toISOString().slice(0, 10);
   }
 
   function calcVal(id) { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? 0 : v; }
@@ -652,6 +722,9 @@
   }
 
   function calcRecalc() {
+    // 記錄今天日期（供下次自動滾動用）
+    const today = new Date(); today.setHours(0,0,0,0);
+    calcData.lastDate = today.toISOString().slice(0, 10);
     // 讀取並更新 calcData
     calcData.cash = document.getElementById('calc-cash').value;
     ACCOUNTS.forEach(acc => {
@@ -675,13 +748,14 @@
   }
 
   async function loadCalc() {
-    if (!getToken()) return;
+    if (!getToken()) { buildCalcRows(); calcRecalc(); return; }
     try {
       const data = await ghGet('calculator.json');
       if (data) {
         calcSha = data.sha;
         const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
         calcData = JSON.parse(raw);
+        rollCalcIfNeeded();
       }
       buildCalcRows();
       calcRecalc();
