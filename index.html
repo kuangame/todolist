@@ -512,8 +512,7 @@
         todosSha = null;
       } else {
         todosSha = data.sha;
-        const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
-        todos = parseTodosMd(content);
+        todos = parseTodosMd(b64decode(data.content));
         localStorage.setItem('todos', JSON.stringify(todos));
       }
       updateTokenBtn(true);
@@ -771,21 +770,26 @@
     saveCalc();
   }
 
+  function b64decode(str) {
+    const binary = atob(str.replace(/\n/g, ''));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+
   async function loadCalc() {
     if (!getToken()) { buildCalcRows(); calcRecalc(); return; }
     try {
       const data = await ghGet('calculator.json');
       if (data) {
         calcSha = data.sha;
-        const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
-        calcData = JSON.parse(raw);
+        calcData = JSON.parse(b64decode(data.content));
         rollCalcIfNeeded();
       }
       buildCalcRows();
       calcRecalc();
     } catch (e) {
-      buildCalcRows();
-      calcRecalc();
+      buildCalcRows(); // 顯示空白，但不呼叫 calcRecalc 避免覆蓋 GitHub 資料
     }
   }
 
@@ -828,8 +832,7 @@
     try {
       const data = await ghGet('morning_report.json');
       if (!data) { document.getElementById('report-content').innerHTML = '<p style="color:#bbb;text-align:center;padding:40px;">今日晨報尚未產生</p>'; return; }
-      const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
-      const report = JSON.parse(raw);
+      const report = JSON.parse(b64decode(data.content));
 
       // 日期
       const confsDebug = report.conferences || [];
