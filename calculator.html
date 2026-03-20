@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>交割計算機</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      padding: 40px 16px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+
+    /* 表格 */
+    .table-wrap {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: #f8f9fb;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #888;
+      font-weight: 600;
+      text-align: right;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    thead th:first-child { text-align: left; }
+
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f5f5f5;
+      text-align: right;
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #444;
+      font-size: 15px;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tfoot td {
+      padding: 14px 16px;
+      text-align: right;
+      background: #f8f9fb;
+      font-weight: 700;
+      font-size: 15px;
+      border-top: 2px solid #eee;
+    }
+
+    tfoot td:first-child {
+      text-align: left;
+      color: #555;
+    }
+
+    /* 輸入框 */
+    .num-input {
+      width: 120px;
+      border: 1.5px solid #eee;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 14px;
+      text-align: right;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      color: #333;
+    }
+
+    .num-input:focus { border-color: #4f8ef7; }
+
+    /* 數字顏色 */
+    .pos { color: #389e0d; font-weight: 600; }
+    .neg { color: #cf1322; font-weight: 600; }
+    .zero { color: #999; }
+
+    /* 結果卡片 */
+    .result-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    .card-label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Menlo', monospace;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 4px;
+    }
+
+    /* 重置按鈕 */
+    .btn-reset {
+      display: block;
+      margin: 0 auto;
+      border: 1.5px solid #ddd;
+      background: white;
+      border-radius: 8px;
+      padding: 8px 24px;
+      font-size: 14px;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover { border-color: #ff4d4f; color: #ff4d4f; }
+
+    @media (max-width: 480px) {
+      .num-input { width: 90px; font-size: 13px; }
+      .result-cards { grid-template-columns: 1fr; }
+      .card-value { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💰 交割計算機</h1>
+    <p class="subtitle">正數 = 入帳 &nbsp;|&nbsp; 負數 = 需付款（紅色）</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>帳戶</th>
+            <th>現金</th>
+            <th>T+1 交割款</th>
+            <th>T+2 交割款</th>
+          </tr>
+        </thead>
+        <tbody id="account-rows">
+          <!-- 由 JS 產生 -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>合計</td>
+            <td id="sum-cash">—</td>
+            <td id="sum-t1">—</td>
+            <td id="sum-t2">—</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="result-cards">
+      <div class="card">
+        <div class="card-label">現金合計</div>
+        <div class="card-value" id="res-cash">—</div>
+        <div class="card-sub">三帳戶現金</div>
+      </div>
+      <div class="card">
+        <div class="card-label">T+1 後餘額</div>
+        <div class="card-value" id="res-t1">—</div>
+        <div class="card-sub">現金 + T+1</div>
+      </div>
+      <div class="card">
+        <div class="card-label">T+2 後餘額</div>
+        <div class="card-value" id="res-t2">—</div>
+        <div class="card-sub">現金 + T+1 + T+2</div>
+      </div>
+    </div>
+
+    <button class="btn-reset" onclick="resetAll()">清除全部</button>
+  </div>
+
+  <script>
+    const ACCOUNTS = ['富邦', '元大', '凱基'];
+    const FIELDS = ['cash', 't1', 't2'];
+    const STORAGE_KEY = 'calculator_data';
+
+    // 讀取儲存的資料
+    function loadData() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveData() {
+      const data = {};
+      ACCOUNTS.forEach(acc => {
+        data[acc] = {};
+        FIELDS.forEach(f => {
+          const el = document.getElementById(`${acc}-${f}`);
+          data[acc][f] = el ? el.value : '';
+        });
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    // 建立 input rows
+    function buildRows() {
+      const saved = loadData();
+      const tbody = document.getElementById('account-rows');
+      tbody.innerHTML = ACCOUNTS.map(acc => {
+        const d = saved[acc] || {};
+        return `
+          <tr>
+            <td>${acc}</td>
+            ${FIELDS.map(f => `
+              <td>
+                <input class="num-input" type="number" id="${acc}-${f}"
+                  value="${d[f] || ''}" placeholder="0"
+                  oninput="recalc()" />
+              </td>`).join('')}
+          </tr>`;
+      }).join('');
+    }
+
+    function val(id) {
+      const v = parseFloat(document.getElementById(id)?.value);
+      return isNaN(v) ? 0 : v;
+    }
+
+    function fmt(n) {
+      if (n === null) return '—';
+      const s = Math.abs(n).toLocaleString('zh-TW', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      return (n < 0 ? '-' : '') + s;
+    }
+
+    function colorClass(n) {
+      if (n > 0) return 'pos';
+      if (n < 0) return 'neg';
+      return 'zero';
+    }
+
+    function setCell(id, n) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = fmt(n);
+      el.className = colorClass(n);
+    }
+
+    function recalc() {
+      saveData();
+
+      let sumCash = 0, sumT1 = 0, sumT2 = 0;
+      ACCOUNTS.forEach(acc => {
+        sumCash += val(`${acc}-cash`);
+        sumT1   += val(`${acc}-t1`);
+        sumT2   += val(`${acc}-t2`);
+      });
+
+      setCell('sum-cash', sumCash);
+      setCell('sum-t1', sumT1);
+      setCell('sum-t2', sumT2);
+
+      setCell('res-cash', sumCash);
+      setCell('res-t1', sumCash + sumT1);
+      setCell('res-t2', sumCash + sumT1 + sumT2);
+    }
+
+    function resetAll() {
+      if (!confirm('確定要清除所有數字？')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      buildRows();
+      recalc();
+    }
+
+    buildRows();
+    recalc();
+  </script>
+</body>
+</html>
