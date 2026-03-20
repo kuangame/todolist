@@ -660,10 +660,19 @@
     '2026-10-09','2026-10-10',                          // 國慶日
   ]);
 
+  function localDateStr(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function parseLocalDate(str) {
+    const [y, m, d] = str.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
   function isWorkDay(d) {
     const day = d.getDay();
     if (day === 0 || day === 6) return false;
-    return !TW_HOLIDAYS.has(d.toISOString().slice(0, 10));
+    return !TW_HOLIDAYS.has(localDateStr(d));
   }
 
   function addWorkDays(date, n) {
@@ -708,7 +717,7 @@
   function rollCalcIfNeeded() {
     if (!calcData.lastDate) return;
     const today = new Date(); today.setHours(0, 0, 0, 0);
-    const last = new Date(calcData.lastDate); last.setHours(0, 0, 0, 0);
+    const last = parseLocalDate(calcData.lastDate);
     const days = countWorkDaysBetween(last, today);
     if (days <= 0) return;
 
@@ -727,7 +736,7 @@
       calcData.cash = String((parseFloat(calcData.cash) || 0) + t1Sum);
       ACCOUNTS.forEach(acc => { calcData.accounts[acc].t1 = ''; calcData.accounts[acc].t2 = ''; });
     }
-    calcData.lastDate = today.toISOString().slice(0, 10);
+    calcData.lastDate = localDateStr(today);
   }
 
   function calcVal(id) { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? 0 : v; }
@@ -747,7 +756,7 @@
   function calcRecalc() {
     // 記錄今天日期（供下次自動滾動用）
     const today = new Date(); today.setHours(0,0,0,0);
-    calcData.lastDate = today.toISOString().slice(0, 10);
+    calcData.lastDate = localDateStr(today);
     // 讀取並更新 calcData
     calcData.cash = document.getElementById('calc-cash').value;
     ACCOUNTS.forEach(acc => {
