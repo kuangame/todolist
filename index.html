@@ -281,6 +281,58 @@
       .result-cards { grid-template-columns: 1fr; }
     }
 
+    /* ── 股票彙集器 ────────────────────────── */
+    .stock-input-card {
+      background: white; border-radius: 14px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px;
+    }
+    .stock-input-card h3 { font-size: 14px; color: #888; margin-bottom: 12px; font-weight: 500; }
+    .stock-code-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .stock-code-row input {
+      width: 120px; border: 1.5px solid #ddd; border-radius: 8px;
+      padding: 10px 14px; font-size: 16px; font-weight: 700;
+      font-family: 'SF Mono','Menlo',monospace; outline: none;
+      transition: border-color 0.2s; text-transform: uppercase;
+    }
+    .stock-code-row input:focus { border-color: #4f8ef7; }
+    .stock-msg-textarea {
+      width: 100%; border: 1.5px solid #ddd; border-radius: 8px;
+      padding: 10px 14px; font-size: 14px; outline: none; resize: vertical;
+      min-height: 80px; font-family: inherit; color: #333;
+      transition: border-color 0.2s; margin-bottom: 10px;
+    }
+    .stock-msg-textarea:focus { border-color: #4f8ef7; }
+    .btn-stock-add {
+      background: #4f8ef7; color: white; border: none;
+      border-radius: 8px; padding: 10px 20px; font-size: 14px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-stock-add:hover { background: #3a7de0; }
+    .btn-stock-add:disabled { background: #bbb; cursor: not-allowed; }
+
+    .stock-list { display: flex; flex-direction: column; gap: 10px; }
+    .stock-card {
+      background: white; border-radius: 12px; padding: 16px 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-left: 4px solid #4f8ef7; cursor: pointer; transition: box-shadow 0.2s;
+    }
+    .stock-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .stock-card-header { display: flex; align-items: center; gap: 10px; }
+    .stock-card-code { font-size: 16px; font-weight: 700; font-family: 'SF Mono','Menlo',monospace; color: #1a1a2e; }
+    .stock-card-meta { font-size: 12px; color: #bbb; margin-left: auto; }
+    .stock-card-notes { margin-top: 12px; display: none; }
+    .stock-card.expanded .stock-card-notes { display: block; }
+    .stock-note-item {
+      border-left: 2px solid #f0f0f0; padding: 6px 12px;
+      margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.6;
+    }
+    .stock-note-date { font-size: 11px; color: #bbb; margin-bottom: 2px; }
+    .stock-synced-badge {
+      display: inline-block; font-size: 10px; background: #f6ffed;
+      color: #52c41a; border: 1px solid #b7eb8f; border-radius: 10px;
+      padding: 1px 8px; margin-left: 6px;
+    }
+
     /* 晨報 Markdown 樣式 */
     #report-content h2 { font-size: 16px; color: #1a1a2e; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 1px solid #f0f0f0; }
     #report-content h2:first-child { margin-top: 0; }
@@ -313,6 +365,7 @@
     <button class="tab-btn active" onclick="switchTab('project', this)">📋 Project</button>
     <button class="tab-btn" onclick="switchTab('calc', this)">💰 交割計算機</button>
     <button class="tab-btn" onclick="switchTab('report', this)">📰 晨報</button>
+    <button class="tab-btn" onclick="switchTab('stocks', this)">📈 股票</button>
   </div>
 
   <!-- Project Tab -->
@@ -388,6 +441,21 @@
     </div>
 
     <button class="btn-reset" onclick="calcReset()">清除全部</button>
+  </div>
+
+  <!-- 股票 Tab -->
+  <div class="tab-panel" id="tab-stocks">
+    <div class="stock-input-card">
+      <h3>新增個股消息</h3>
+      <div class="stock-code-row">
+        <input type="text" id="stock-code-input" placeholder="代號 e.g. 2330" maxlength="6" />
+      </div>
+      <textarea class="stock-msg-textarea" id="stock-msg-input" placeholder="輸入消息、觀察、法說會重點..."></textarea>
+      <button class="btn-stock-add" onclick="addStockNote()">新增</button>
+    </div>
+    <div class="stock-list" id="stock-list">
+      <p style="color:#bbb;text-align:center;padding:20px;">載入中...</p>
+    </div>
   </div>
 
   <!-- 晨報 Tab -->
@@ -871,11 +939,86 @@
     }
   }
 
-  // 切換到晨報 tab 時才載入
+  // ── 股票彙集器 ────────────────────────────────────────────
+  async function loadStocks() {
+    if (!getToken()) return;
+    const listEl = document.getElementById('stock-list');
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/stocks?t=${Date.now()}`, {
+        headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
+        cache: 'no-store'
+      });
+      if (res.status === 404) { listEl.innerHTML = '<p style="color:#bbb;text-align:center;padding:20px;">尚無個股筆記</p>'; return; }
+      const files = await res.json();
+      const jsonFiles = files.filter(f => f.name.endsWith('.json'));
+      if (!jsonFiles.length) { listEl.innerHTML = '<p style="color:#bbb;text-align:center;padding:20px;">尚無個股筆記</p>'; return; }
+
+      const stocks = await Promise.all(jsonFiles.map(async f => {
+        const d = await ghGet(`stocks/${f.name}`);
+        return d ? JSON.parse(b64decode(d.content)) : null;
+      }));
+
+      listEl.innerHTML = stocks.filter(Boolean)
+        .sort((a, b) => (b.notes?.at(-1)?.date || '').localeCompare(a.notes?.at(-1)?.date || ''))
+        .map(s => {
+          const latestDate = s.notes?.at(-1)?.date || '';
+          const synced = s.synced ? `<span class="stock-synced-badge">已同步 Obsidian</span>` : '';
+          const notesHtml = (s.notes || []).slice().reverse().map(n =>
+            `<div class="stock-note-item"><div class="stock-note-date">${n.date}</div>${n.text}</div>`
+          ).join('');
+          return `<div class="stock-card" onclick="this.classList.toggle('expanded')">
+            <div class="stock-card-header">
+              <span class="stock-card-code">${s.code}</span>
+              <span style="font-size:13px;color:#555;">${s.name || ''}</span>
+              ${synced}
+              <span class="stock-card-meta">${latestDate} ｜ ${s.notes?.length || 0} 則</span>
+            </div>
+            <div class="stock-card-notes">${notesHtml}</div>
+          </div>`;
+        }).join('');
+    } catch(e) {
+      listEl.innerHTML = `<p style="color:#f00;text-align:center;padding:20px;">載入失敗：${e.message}</p>`;
+    }
+  }
+
+  async function addStockNote() {
+    const code = document.getElementById('stock-code-input').value.trim().toUpperCase();
+    const text = document.getElementById('stock-msg-input').value.trim();
+    if (!code || !text) return alert('請填入股票代號與消息');
+    if (!getToken()) return alert('請先設定 GitHub Token');
+
+    const btn = document.querySelector('.btn-stock-add');
+    btn.disabled = true; btn.textContent = '儲存中...';
+
+    try {
+      const file = `stocks/${code}.json`;
+      const existing = await ghGet(file);
+      let stockData, sha;
+      if (existing) {
+        stockData = JSON.parse(b64decode(existing.content));
+        sha = existing.sha;
+      } else {
+        stockData = { code, name: '', industry: '', notes: [], synced: false };
+      }
+      stockData.notes.push({ date: localDateStr(new Date()), text });
+      await ghPut(file, JSON.stringify(stockData, null, 2), sha, `add note ${code} [${localDateStr(new Date())}]`);
+
+      document.getElementById('stock-code-input').value = '';
+      document.getElementById('stock-msg-input').value = '';
+      await loadStocks();
+    } catch(e) {
+      alert(`儲存失敗：${e.message}`);
+    } finally {
+      btn.disabled = false; btn.textContent = '新增';
+    }
+  }
+
+  // 切換到晨報/股票 tab 時才載入
   const _switchTab = switchTab;
   switchTab = function(name, btn) {
     _switchTab(name, btn);
     if (name === 'report') loadReport();
+    if (name === 'stocks') loadStocks();
   };
 
   // ── 啟動 ──────────────────────────────────────────────────
