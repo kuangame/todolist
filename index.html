@@ -446,11 +446,8 @@
   <!-- 股票 Tab -->
   <div class="tab-panel" id="tab-stocks">
     <div class="stock-input-card">
-      <h3>新增個股消息</h3>
-      <div class="stock-code-row">
-        <input type="text" id="stock-code-input" placeholder="代號 e.g. 2330" maxlength="6" />
-      </div>
-      <textarea class="stock-msg-textarea" id="stock-msg-input" placeholder="輸入消息、觀察、法說會重點..."></textarea>
+      <h3>新增消息 — 代號由 Claude 自動辨識</h3>
+      <textarea class="stock-msg-textarea" id="stock-msg-input" placeholder="直接輸入消息，例如：台積電今天法說會上調 CoWoS 產能目標，訂單能見度到 2027..."></textarea>
       <button class="btn-stock-add" onclick="addStockNote()">新增</button>
     </div>
     <div class="stock-list" id="stock-list">
@@ -944,23 +941,27 @@
     if (!getToken()) return;
     const listEl = document.getElementById('stock-list');
     try {
+      // 讀待處理佇列
+      const qData = await ghGet('stock_queue.json');
+      const queue = qData ? JSON.parse(b64decode(qData.content)) : [];
+      const pending = queue.filter(n => !n.processed);
+
+      // 讀已整理的個股
       const res = await fetch(`https://api.github.com/repos/${REPO}/contents/stocks?t=${Date.now()}`, {
         headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
         cache: 'no-store'
       });
-      if (res.status === 404) { listEl.innerHTML = '<p style="color:#bbb;text-align:center;padding:20px;">尚無個股筆記</p>'; return; }
-      const files = await res.json();
-      const jsonFiles = files.filter(f => f.name.endsWith('.json'));
-      if (!jsonFiles.length) { listEl.innerHTML = '<p style="color:#bbb;text-align:center;padding:20px;">尚無個股筆記</p>'; return; }
-
-      const stocks = await Promise.all(jsonFiles.map(async f => {
-        const d = await ghGet(`stocks/${f.name}`);
-        return d ? JSON.parse(b64decode(d.content)) : null;
-      }));
-
-      listEl.innerHTML = stocks.filter(Boolean)
-        .sort((a, b) => (b.notes?.at(-1)?.date || '').localeCompare(a.notes?.at(-1)?.date || ''))
-        .map(s => {
+      let stockCards = '';
+      if (res.ok) {
+        const files = await res.json();
+        const jsonFiles = files.filter(f => f.name.endsWith('.json'));
+        const stocks = (await Promise.all(jsonFiles.map(async f => {
+          const d = await ghGet(`stocks/${f.name}`);
+          return d ? JSON.parse(b64decode(d.content)) : null;
+        }))).filter(Boolean).sort((a, b) =>
+          (b.notes?.at(-1)?.date || '').localeCompare(a.notes?.at(-1)?.date || '')
+        );
+        stockCards = stocks.map(s => {
           const latestDate = s.notes?.at(-1)?.date || '';
           const synced = s.synced ? `<span class="stock-synced-badge">已同步 Obsidian</span>` : '';
           const notesHtml = (s.notes || []).slice().reverse().map(n =>
@@ -976,34 +977,47 @@
             <div class="stock-card-notes">${notesHtml}</div>
           </div>`;
         }).join('');
+      }
+
+      // 待處理佇列區塊
+      let pendingHtml = '';
+      if (pending.length) {
+        const items = pending.slice().reverse().map(n =>
+          `<div class="stock-note-item"><div class="stock-note-date">${n.date}</div>${n.text}</div>`
+        ).join('');
+        pendingHtml = `<div class="stock-card" style="border-left-color:#fa8c16;" onclick="this.classList.toggle('expanded')">
+          <div class="stock-card-header">
+            <span style="font-size:13px;color:#fa8c16;font-weight:600;">⏳ 待 Claude 整理（${pending.length} 則）</span>
+          </div>
+          <div class="stock-card-notes">${items}</div>
+        </div>`;
+      }
+
+      listEl.innerHTML = (pendingHtml + stockCards) || '<p style="color:#bbb;text-align:center;padding:20px;">尚無個股筆記</p>';
     } catch(e) {
       listEl.innerHTML = `<p style="color:#f00;text-align:center;padding:20px;">載入失敗：${e.message}</p>`;
     }
   }
 
   async function addStockNote() {
-    const code = document.getElementById('stock-code-input').value.trim().toUpperCase();
     const text = document.getElementById('stock-msg-input').value.trim();
-    if (!code || !text) return alert('請填入股票代號與消息');
+    if (!text) return alert('請輸入消息內容');
     if (!getToken()) return alert('請先設定 GitHub Token');
 
     const btn = document.querySelector('.btn-stock-add');
     btn.disabled = true; btn.textContent = '儲存中...';
 
     try {
-      const file = `stocks/${code}.json`;
-      const existing = await ghGet(file);
-      let stockData, sha;
+      const existing = await ghGet('stock_queue.json');
+      let queue = [], sha;
       if (existing) {
-        stockData = JSON.parse(b64decode(existing.content));
+        queue = JSON.parse(b64decode(existing.content));
         sha = existing.sha;
-      } else {
-        stockData = { code, name: '', industry: '', notes: [], synced: false };
       }
-      stockData.notes.push({ date: localDateStr(new Date()), text });
-      await ghPut(file, JSON.stringify(stockData, null, 2), sha, `add note ${code} [${localDateStr(new Date())}]`);
+      queue.push({ date: localDateStr(new Date()), text, processed: false });
+      await ghPut('stock_queue.json', JSON.stringify(queue, null, 2), sha,
+        `add stock note [${localDateStr(new Date())}]`);
 
-      document.getElementById('stock-code-input').value = '';
       document.getElementById('stock-msg-input').value = '';
       await loadStocks();
     } catch(e) {
