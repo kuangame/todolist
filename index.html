@@ -347,6 +347,44 @@
     }
     .market-chip .chip-name { color: #999; font-size: 11px; margin-bottom: 3px; }
     .market-chip .chip-val { font-weight: 700; font-family: 'SF Mono','Menlo',monospace; }
+
+    /* 搜尋 Tab */
+    .search-input-card {
+      background: white; border-radius: 14px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 16px;
+    }
+    .search-row { display: flex; gap: 8px; }
+    .search-input {
+      flex: 1; border: 1.5px solid #e8e8e8; border-radius: 10px;
+      padding: 10px 14px; font-size: 14px; outline: none; transition: border 0.2s;
+    }
+    .search-input:focus { border-color: #4f8ef7; }
+    .btn-search {
+      background: #4f8ef7; color: white; border: none; border-radius: 10px;
+      padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer;
+    }
+    .btn-search:hover { background: #3a7de0; }
+    .search-hint { font-size: 12px; color: #bbb; margin-top: 8px; }
+    .search-result-card {
+      background: white; border-radius: 14px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 12px;
+    }
+    .src-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+    .src-code { font-size: 18px; font-weight: 700; font-family: 'SF Mono','Menlo',monospace; color: #1a1a2e; }
+    .src-name { font-size: 16px; color: #555; }
+    .src-section { margin-bottom: 14px; }
+    .src-section-title { font-size: 13px; font-weight: 600; color: #4f8ef7; margin-bottom: 8px; }
+    .src-section-body { font-size: 13px; line-height: 1.7; color: #444; }
+    .src-section-body ul { padding-left: 16px; margin: 4px 0; }
+    .src-section-body li { margin-bottom: 4px; }
+    .src-section-body h4 { font-size: 13px; color: #333; margin: 10px 0 4px; }
+    .wiki-link { background: #f0f5ff; color: #4f8ef7; border-radius: 4px; padding: 0 4px; font-size: 12px; }
+    .src-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .src-chip {
+      background: #f0f5ff; color: #4f8ef7; border-radius: 8px; padding: 6px 12px;
+      font-size: 13px; cursor: pointer; transition: all 0.15s;
+    }
+    .src-chip:hover { background: #4f8ef7; color: white; }
   </style>
 </head>
 <body>
@@ -366,6 +404,7 @@
     <button class="tab-btn" onclick="switchTab('calc', this)">💰 交割計算機</button>
     <button class="tab-btn" onclick="switchTab('report', this)">📰 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">📈 股票</button>
+    <button class="tab-btn" onclick="switchTab('search', this)">🔍 搜尋</button>
   </div>
 
   <!-- Project Tab -->
@@ -453,6 +492,20 @@
     <div class="stock-list" id="stock-list">
       <p style="color:#bbb;text-align:center;padding:20px;">載入中...</p>
     </div>
+  </div>
+
+  <!-- 搜尋 Tab -->
+  <div class="tab-panel" id="tab-search">
+    <div class="search-input-card">
+      <div class="search-row">
+        <input type="text" class="search-input" id="search-input"
+          placeholder="股票代號（2330）、公司名（台積電）、或關鍵字（CoWoS、液冷散熱）..."
+          onkeydown="if(event.key==='Enter')doSearch()" />
+        <button class="btn-search" onclick="doSearch()">搜尋</button>
+      </div>
+      <div class="search-hint">輸入 4 碼代號 → 個股供應鏈 ｜ 輸入關鍵字 → 主題概念股</div>
+    </div>
+    <div id="search-results"></div>
   </div>
 
   <!-- 晨報 Tab -->
@@ -1033,6 +1086,7 @@
     _switchTab(name, btn);
     if (name === 'report') loadReport();
     if (name === 'stocks') loadStocks();
+    if (name === 'search') document.getElementById('search-results').innerHTML = '';
   };
 
   // ── 啟動 ──────────────────────────────────────────────────
@@ -1043,6 +1097,136 @@
     setSyncStatus('未設定 Token — 點右上角設定');
     render();
   }
+
+  // ── 搜尋 Tab ───────────────────────────────────────────────
+  const COVERAGE_REPO = 'kuangame/My-TW-Coverage';
+
+  async function ghGetCoverage(path) {
+    const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, {
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!r.ok) return null;
+    return r.json();
+  }
+
+  async function doSearch() {
+    const q = document.getElementById('search-input').value.trim();
+    if (!q) return;
+    const el = document.getElementById('search-results');
+    el.innerHTML = '<p style="color:#bbb;padding:20px;text-align:center;">搜尋中...</p>';
+    if (/^\d{4,6}$/.test(q)) {
+      await searchByCode(q, el);
+    } else {
+      await searchByKeyword(q, el);
+    }
+  }
+
+  async function searchByCode(code, el) {
+    const r = await fetch(
+      `https://api.github.com/search/code?q=${code}+in:path+repo:${COVERAGE_REPO}`,
+      { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    const data = await r.json();
+    const match = (data.items || []).find(i => /\/\d+_/.test(i.path) && i.name.startsWith(code + '_'));
+    if (!match) {
+      el.innerHTML = `<p style="color:#bbb;padding:20px;text-align:center;">找不到 ${code} 的相關資料</p>`;
+      return;
+    }
+    const file = await ghGetCoverage(match.path);
+    if (!file) return;
+    renderStockReport(code, b64decode(file.content), el);
+  }
+
+  async function searchByKeyword(keyword, el) {
+    // 先找 themes/ 資料夾
+    const themes = await ghGetCoverage('themes');
+    if (themes && Array.isArray(themes)) {
+      const match = themes.find(f =>
+        f.name.replace('.md','').toLowerCase().includes(keyword.toLowerCase())
+      );
+      if (match) {
+        const file = await ghGetCoverage(match.path);
+        if (file) { renderTheme(keyword, b64decode(file.content), el); return; }
+      }
+    }
+    // 退而求其次：GitHub Code Search
+    const r = await fetch(
+      `https://api.github.com/search/code?q=${encodeURIComponent(keyword)}+repo:${COVERAGE_REPO}+path:Pilot_Reports`,
+      { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    const data = await r.json();
+    if (!data.items || data.items.length === 0) {
+      el.innerHTML = `<p style="color:#bbb;padding:20px;text-align:center;">找不到「${keyword}」的相關資料</p>`;
+      return;
+    }
+    renderSearchResults(keyword, data.items, el);
+  }
+
+  function mdToHtml(md) {
+    return md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\[\[(.+?)\]\]/g, '<span class="wiki-link">$1</span>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/^#### (.+)$/gm, '<h5 style="font-size:12px;color:#888;margin:8px 0 2px">$1</h5>')
+      .replace(/^### (.+)$/gm, '<h4 style="font-size:13px;font-weight:600;margin:10px 0 4px">$1</h4>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>[\s\S]*?<\/li>)/g, (m) => m)
+      .split('\n').reduce((acc, line) => {
+        if (line.startsWith('<li>')) return acc + line;
+        if (acc.endsWith('</li>') && !line.startsWith('<li>')) return acc + '</ul>' + line;
+        return acc + line + '\n';
+      }, '')
+      .replace(/(<li>(?:(?!<li>)[\s\S])*<\/li>)/g, '<ul>$1</ul>')
+      .replace(/\n{2,}/g, '<br>');
+  }
+
+  function parseSection(content, heading) {
+    const re = new RegExp(`## ${heading}\\n([\\s\\S]*?)(?=\\n## |$)`);
+    const m = content.match(re);
+    return m ? m[1].trim() : '';
+  }
+
+  function renderStockReport(code, content, el) {
+    const titleM = content.match(/^#\s+\d+\s+-\s+\[?\[?(.+?)\]?\]?\s*$/m);
+    const name = titleM ? titleM[1] : code;
+    const biz = parseSection(content, '業務簡介');
+    const supply = parseSection(content, '供應鏈位置');
+    const clients = parseSection(content, '主要客戶及供應商');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header">
+          <span class="src-code">${code}</span>
+          <span class="src-name">${name}</span>
+        </div>
+        ${biz ? `<div class="src-section"><div class="src-section-title">📋 業務簡介</div><div class="src-section-body">${mdToHtml(biz)}</div></div>` : ''}
+        ${supply ? `<div class="src-section"><div class="src-section-title">🔗 供應鏈位置</div><div class="src-section-body">${mdToHtml(supply)}</div></div>` : ''}
+        ${clients ? `<div class="src-section"><div class="src-section-title">👥 主要客戶及供應商</div><div class="src-section-body">${mdToHtml(clients)}</div></div>` : ''}
+      </div>`;
+  }
+
+  function renderTheme(keyword, content, el) {
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">🏷️ ${keyword} 供應鏈</span></div>
+        <div class="src-section-body">${mdToHtml(content)}</div>
+      </div>`;
+  }
+
+  function renderSearchResults(keyword, items, el) {
+    const chips = items.slice(0, 30).map(item => {
+      const m = item.name.match(/^(\d+)_(.+)\.md$/);
+      const code = m ? m[1] : '';
+      const name = m ? m[2] : item.name.replace('.md','');
+      return `<div class="src-chip" onclick="document.getElementById('search-input').value='${code}';doSearch()">${code} ${name}</div>`;
+    }).join('');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">「${keyword}」相關公司（${items.length} 家）</span></div>
+        <div class="src-chips">${chips}</div>
+        <div class="search-hint" style="margin-top:12px">點擊公司卡片查看詳細供應鏈</div>
+      </div>`;
+  }
+
 </script>
 </body>
 </html>
