@@ -1100,6 +1100,156 @@
 
   // ── 搜尋 Tab ───────────────────────────────────────────────
   const COVERAGE_REPO = 'kuangame/My-TW-Coverage';
+  let _coverageTree = null;
+
+  async function ghGetCoverage(path) {
+    const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, {
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!r.ok) return null;
+    return r.json();
+  }
+
+  async function getCoverageTree() {
+    if (_coverageTree) return _coverageTree;
+    const r = await fetch(
+      `https://api.github.com/repos/${COVERAGE_REPO}/git/trees/master?recursive=1`,
+      { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    if (!r.ok) return null;
+    const data = await r.json();
+    _coverageTree = (data.tree || []).filter(f => f.type === 'blob' && f.path.endsWith('.md'));
+    return _coverageTree;
+  }
+
+  async function doSearch() {
+    const q = document.getElementById('search-input').value.trim();
+    if (!q) return;
+    if (!getToken()) { alert('請先設定 GitHub Token'); return; }
+    const el = document.getElementById('search-results');
+    el.innerHTML = '<p style="color:#bbb;padding:20px;text-align:center;">搜尋中...</p>';
+    if (/^\d{4,6}$/.test(q)) {
+      await searchByCode(q, el);
+    } else {
+      await searchByKeyword(q, el);
+    }
+  }
+
+  async function searchByCode(code, el) {
+    el.innerHTML = '<p style="color:#bbb;padding:20px;text-align:center;">載入資料庫索引...</p>';
+    const tree = await getCoverageTree();
+    if (!tree) { el.innerHTML = `<p style="color:#e74c3c;padding:20px;text-align:center;">無法讀取資料庫，請確認 Token</p>`; return; }
+    const match = tree.find(f => {
+      const name = f.path.split('/').pop();
+      return name.startsWith(code + '_');
+    });
+    if (!match) {
+      el.innerHTML = `<p style="color:#bbb;padding:20px;text-align:center;">找不到 ${code} 的相關資料</p>`;
+      return;
+    }
+    el.innerHTML = '<p style="color:#bbb;padding:20px;text-align:center;">讀取報告中...</p>';
+    const file = await ghGetCoverage(match.path);
+    if (!file) return;
+    renderStockReport(code, b64decode(file.content), el);
+  }
+
+  async function searchByKeyword(keyword, el) {
+    // 1. 先找 themes/ 資料夾（精確比對）
+    const themes = await ghGetCoverage('themes');
+    if (themes && Array.isArray(themes)) {
+      const match = themes.find(f =>
+        f.name.replace('.md','').toLowerCase().includes(keyword.toLowerCase())
+      );
+      if (match) {
+        const file = await ghGetCoverage(match.path);
+        if (file) { renderTheme(keyword, b64decode(file.content), el); return; }
+      }
+    }
+    // 2. 搜尋 file tree 裡的公司名稱
+    const tree = await getCoverageTree();
+    if (tree) {
+      const matches = tree.filter(f => {
+        const name = f.path.split('/').pop().replace('.md','');
+        return name.includes(keyword);
+      });
+      if (matches.length > 0) {
+        renderSearchResults(keyword, matches.map(f => ({ name: f.path.split('/').pop(), path: f.path })), el);
+        return;
+      }
+    }
+    el.innerHTML = `<p style="color:#bbb;padding:20px;text-align:center;">找不到「${keyword}」，試試主題關鍵字：CoWoS、HBM、Apple、NVIDIA、低軌衛星</p>`;
+  }
+
+  function mdToHtml(md) {
+    return md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\[\[(.+?)\]\]/g, '<span class="wiki-link">$1</span>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/^#### (.+)$/gm, '<h5 style="font-size:12px;color:#888;margin:8px 0 2px">$1</h5>')
+      .replace(/^### (.+)$/gm, '<h4 style="font-size:13px;font-weight:600;margin:10px 0 4px">$1</h4>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/\n\n/g, '<br><br>').replace(/\n/g, '\n');
+  }
+
+  function parseSection(content, heading) {
+    const re = new RegExp('## ' + heading + '\\n([\\s\\S]*?)(?=\\n## |$)');
+    const m = content.match(re);
+    return m ? m[1].trim() : '';
+  }
+
+  function renderStockReport(code, content, el) {
+    const titleM = content.match(/^#\s+\d+\s+-\s+\[?\[?(.+?)\]?\]?\s*$/m);
+    const name = titleM ? titleM[1] : code;
+    const biz = parseSection(content, '業務簡介');
+    const supply = parseSection(content, '供應鏈位置');
+    const clients = parseSection(content, '主要客戶及供應商');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header">
+          <span class="src-code">${code}</span>
+          <span class="src-name">${name}</span>
+        </div>
+        ${biz ? `<div class="src-section"><div class="src-section-title">📋 業務簡介</div><div class="src-section-body">${mdToHtml(biz)}</div></div>` : ''}
+        ${supply ? `<div class="src-section"><div class="src-section-title">🔗 供應鏈位置</div><div class="src-section-body">${mdToHtml(supply)}</div></div>` : ''}
+        ${clients ? `<div class="src-section"><div class="src-section-title">👥 主要客戶及供應商</div><div class="src-section-body">${mdToHtml(clients)}</div></div>` : ''}
+      </div>`;
+  }
+
+  function renderTheme(keyword, content, el) {
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">🏷️ ${keyword} 供應鏈</span></div>
+        <div class="src-section-body">${mdToHtml(content)}</div>
+      </div>`;
+  }
+
+  function renderSearchResults(keyword, items, el) {
+    const chips = items.slice(0, 30).map(item => {
+      const m = item.name.match(/^(\d+)_(.+)\.md$/);
+      const code = m ? m[1] : '';
+      const name = m ? m[2] : item.name.replace('.md','');
+      return `<div class="src-chip" onclick="document.getElementById('search-input').value='${code}';doSearch()">${code} ${name}</div>`;
+    }).join('');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">「${keyword}」相關公司（${items.length} 家）</span></div>
+        <div class="src-chips">${chips}</div>
+        <div class="search-hint" style="margin-top:12px">點擊公司卡片查看詳細供應鏈</div>
+      </div>`;
+  }
+
+
+  // ── 啟動 ──────────────────────────────────────────────────
+  buildCalcRows();
+  if (getToken()) {
+    Promise.all([loadTodos(), loadCalc()]);
+  } else {
+    setSyncStatus('未設定 Token — 點右上角設定');
+    render();
+  }
+
+  // ── 搜尋 Tab ───────────────────────────────────────────────
+  const COVERAGE_REPO = 'kuangame/My-TW-Coverage';
 
   async function ghGetCoverage(path) {
     const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, {
