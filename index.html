@@ -616,6 +616,75 @@
       letter-spacing: 0.5px;
     }
 
+    /* ── 搜尋 ────────────────────────────────── */
+    .search-input-card {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .search-row { display: flex; gap: 8px; }
+    .search-input {
+      flex: 1;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-family: var(--ui);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-3); }
+    .btn-search {
+      background: var(--accent);
+      color: #060a12;
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      font-family: var(--ui);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-search:hover { opacity: 0.85; }
+    .search-hint { font-family: var(--mono); font-size: 11px; color: var(--text-3); margin-top: 8px; letter-spacing: 0.3px; }
+
+    .search-result-card {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .src-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-dim); }
+    .src-code { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--accent); }
+    .src-name { font-size: 15px; color: var(--text-2); }
+    .src-section { margin-bottom: 14px; }
+    .src-section-title { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .src-section-body { font-size: 13px; line-height: 1.75; color: var(--text-2); }
+    .src-section-body ul { padding-left: 16px; margin: 4px 0; }
+    .src-section-body li { margin-bottom: 4px; }
+    .src-section-body h4 { font-size: 13px; color: var(--text); margin: 10px 0 4px; }
+    .wiki-link { background: var(--accent-dim); color: var(--accent); border-radius: 4px; padding: 0 5px; font-size: 12px; font-family: var(--mono); }
+    .src-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .src-chip {
+      background: var(--surface-2);
+      color: var(--text-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .src-chip:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
+
     /* ── 晨報 ─────────────────────────────────── */
     #report-content {
       background: var(--surface);
@@ -685,6 +754,7 @@
     <button class="tab-btn" onclick="switchTab('calc', this)">▸ 交割</button>
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
+    <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
   </div>
 
   <!-- Project Tab -->
@@ -772,6 +842,20 @@
     <div class="stock-list" id="stock-list">
       <p style="color:var(--text-3);text-align:center;padding:20px;font-family:var(--mono);font-size:13px;">loading...</p>
     </div>
+  </div>
+
+  <!-- 搜尋 Tab -->
+  <div class="tab-panel" id="tab-search">
+    <div class="search-input-card">
+      <div class="search-row">
+        <input type="text" class="search-input" id="search-input"
+          placeholder="股票代號（2330）、公司名（台積電）、或關鍵字（CoWoS、液冷散熱）..."
+          onkeydown="if(event.key==='Enter')doSearch()" />
+        <button class="btn-search" onclick="doSearch()">搜尋</button>
+      </div>
+      <div class="search-hint">4碼代號 → 個股供應鏈 ｜ 關鍵字 → 主題概念股</div>
+    </div>
+    <div id="search-results"></div>
   </div>
 
   <!-- 晨報 Tab -->
@@ -1333,6 +1417,132 @@
     } finally {
       btn.disabled = false; btn.textContent = '新增';
     }
+  }
+
+  // ── 搜尋 ──────────────────────────────────────────────────
+  const COVERAGE_REPO = 'kuangame/My-TW-Coverage';
+  let _coverageTree = null;
+
+  async function ghGetCoverage(path) {
+    const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, {
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!r.ok) return null;
+    return r.json();
+  }
+
+  async function getCoverageTree() {
+    if (_coverageTree) return _coverageTree;
+    const r = await fetch(
+      `https://api.github.com/repos/${COVERAGE_REPO}/git/trees/master?recursive=1`,
+      { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    if (!r.ok) return null;
+    const data = await r.json();
+    _coverageTree = (data.tree || []).filter(f => f.type === 'blob' && f.path.endsWith('.md'));
+    return _coverageTree;
+  }
+
+  async function doSearch() {
+    const q = document.getElementById('search-input').value.trim();
+    if (!q) return;
+    if (!getToken()) { alert('請先設定 GitHub Token'); return; }
+    const el = document.getElementById('search-results');
+    el.innerHTML = '<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);font-size:13px;">searching...</p>';
+    if (/^\d{4,6}$/.test(q)) {
+      await searchByCode(q, el);
+    } else {
+      await searchByKeyword(q, el);
+    }
+  }
+
+  async function searchByCode(code, el) {
+    el.innerHTML = '<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);font-size:13px;">loading index...</p>';
+    const tree = await getCoverageTree();
+    if (!tree) { el.innerHTML = `<p style="color:var(--neg);padding:20px;text-align:center;">無法讀取資料庫，請確認 Token</p>`; return; }
+    const match = tree.find(f => f.path.split('/').pop().startsWith(code + '_'));
+    if (!match) { el.innerHTML = `<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);">no data for ${code}</p>`; return; }
+    el.innerHTML = '<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);font-size:13px;">loading report...</p>';
+    const file = await ghGetCoverage(match.path);
+    if (!file) return;
+    renderStockReport(code, b64decode(file.content), el);
+  }
+
+  async function searchByKeyword(keyword, el) {
+    const themes = await ghGetCoverage('themes');
+    if (themes && Array.isArray(themes)) {
+      const match = themes.find(f => f.name.replace('.md','').toLowerCase().includes(keyword.toLowerCase()));
+      if (match) {
+        const file = await ghGetCoverage(match.path);
+        if (file) { renderTheme(keyword, b64decode(file.content), el); return; }
+      }
+    }
+    const tree = await getCoverageTree();
+    if (tree) {
+      const matches = tree.filter(f => f.path.split('/').pop().replace('.md','').includes(keyword));
+      if (matches.length > 0) {
+        renderSearchResults(keyword, matches.map(f => ({ name: f.path.split('/').pop(), path: f.path })), el);
+        return;
+      }
+    }
+    el.innerHTML = `<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);">no results for「${keyword}」</p>`;
+  }
+
+  function parseSection(content, heading) {
+    const re = new RegExp('## ' + heading + '\\n([\\s\\S]*?)(?=\\n## |$)');
+    const m = content.match(re);
+    return m ? m[1].trim() : '';
+  }
+
+  function mdToSearchHtml(md) {
+    return md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\[\[(.+?)\]\]/g, '<span class="wiki-link">$1</span>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text)">$1</strong>')
+      .replace(/^#### (.+)$/gm, '<h5 style="font-size:12px;color:var(--text-3);margin:8px 0 2px">$1</h5>')
+      .replace(/^### (.+)$/gm, '<h4 style="font-size:13px;font-weight:600;color:var(--text);margin:10px 0 4px">$1</h4>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/\n\n/g, '<br><br>');
+  }
+
+  function renderStockReport(code, content, el) {
+    const titleM = content.match(/^#\s+\d+\s+-\s+\[?\[?(.+?)\]?\]?\s*$/m);
+    const name = titleM ? titleM[1] : code;
+    const biz = parseSection(content, '業務簡介');
+    const supply = parseSection(content, '供應鏈位置');
+    const clients = parseSection(content, '主要客戶及供應商');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header">
+          <span class="src-code">${code}</span>
+          <span class="src-name">${name}</span>
+        </div>
+        ${biz ? `<div class="src-section"><div class="src-section-title">業務簡介</div><div class="src-section-body">${mdToSearchHtml(biz)}</div></div>` : ''}
+        ${supply ? `<div class="src-section"><div class="src-section-title">供應鏈位置</div><div class="src-section-body">${mdToSearchHtml(supply)}</div></div>` : ''}
+        ${clients ? `<div class="src-section"><div class="src-section-title">主要客戶及供應商</div><div class="src-section-body">${mdToSearchHtml(clients)}</div></div>` : ''}
+      </div>`;
+  }
+
+  function renderTheme(keyword, content, el) {
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">🏷 ${keyword} 供應鏈</span></div>
+        <div class="src-section-body">${mdToSearchHtml(content)}</div>
+      </div>`;
+  }
+
+  function renderSearchResults(keyword, items, el) {
+    const chips = items.slice(0, 30).map(item => {
+      const m = item.name.match(/^(\d+)_(.+)\.md$/);
+      const code = m ? m[1] : '';
+      const name = m ? m[2] : item.name.replace('.md','');
+      return `<div class="src-chip" onclick="document.getElementById('search-input').value='${code}';doSearch()">${code} ${name}</div>`;
+    }).join('');
+    el.innerHTML = `
+      <div class="search-result-card">
+        <div class="src-header"><span class="src-name">「${keyword}」— ${items.length} 家</span></div>
+        <div class="src-chips">${chips}</div>
+      </div>`;
   }
 
   const _switchTab = switchTab;
