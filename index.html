@@ -1556,12 +1556,7 @@
 
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
-  if (getToken()) {
-    Promise.all([loadTodos(), loadCalc()]);
-  } else {
-    setSyncStatus('no token — click ⚙ to set');
-    render();
-  }
+  Promise.all([loadTodos(), loadCalc()]);
 </script>
 </body>
 </html>
