@@ -939,11 +939,9 @@
 
   // ── GitHub API 通用 ───────────────────────────────────────
   async function ghGet(file) {
-    const headers = { Accept: 'application/vnd.github.v3+json' };
-    const token = getToken();
-    if (token) headers.Authorization = `token ${token}`;
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}?t=${Date.now()}`, {
-      headers, cache: 'no-store'
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
+      cache: 'no-store'
     });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -973,6 +971,7 @@
   let todosSha = null;
 
   async function loadTodos() {
+    if (!getToken()) { setSyncStatus('no token — click ⚙ to set'); render(); return; }
     setSyncStatus('syncing...');
     try {
       const data = await ghGet('todos.md');
@@ -1251,6 +1250,7 @@
   }
 
   async function loadCalc() {
+    if (!getToken()) { buildCalcRows(); calcRecalc(); return; }
     try {
       const data = await ghGet('calculator.json');
       if (data) {
@@ -1300,6 +1300,7 @@
   }
 
   async function loadReport() {
+    if (!getToken()) return;
     try {
       const data = await ghGet('morning_report.json');
       if (!data) { document.getElementById('report-content').innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— no report yet —</p>'; return; }
@@ -1332,16 +1333,16 @@
 
   // ── 股票彙集器 ────────────────────────────────────────────
   async function loadStocks() {
+    if (!getToken()) return;
     const listEl = document.getElementById('stock-list');
     try {
       const qData = await ghGet('stock_queue.json');
       const queue = qData ? JSON.parse(b64decode(qData.content)) : [];
       const pending = queue.filter(n => !n.processed);
 
-      const stockHeaders = { Accept: 'application/vnd.github.v3+json' };
-      if (getToken()) stockHeaders.Authorization = `token ${getToken()}`;
       const res = await fetch(`https://api.github.com/repos/${REPO}/contents/stocks?t=${Date.now()}`, {
-        headers: stockHeaders, cache: 'no-store'
+        headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
+        cache: 'no-store'
       });
       let stockCards = '';
       if (res.ok) {
@@ -1423,22 +1424,18 @@
   let _coverageTree = null;
 
   async function ghGetCoverage(path) {
-    const headers = { Accept: 'application/vnd.github.v3+json' };
-    const token = getToken();
-    if (token) headers.Authorization = `token ${token}`;
-    const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, { headers });
+    const r = await fetch(`https://api.github.com/repos/${COVERAGE_REPO}/contents/${path}`, {
+      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+    });
     if (!r.ok) return null;
     return r.json();
   }
 
   async function getCoverageTree() {
     if (_coverageTree) return _coverageTree;
-    const headers = { Accept: 'application/vnd.github.v3+json' };
-    const token = getToken();
-    if (token) headers.Authorization = `token ${token}`;
     const r = await fetch(
       `https://api.github.com/repos/${COVERAGE_REPO}/git/trees/master?recursive=1`,
-      { headers }
+      { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } }
     );
     if (!r.ok) return null;
     const data = await r.json();
@@ -1449,6 +1446,7 @@
   async function doSearch() {
     const q = document.getElementById('search-input').value.trim();
     if (!q) return;
+    if (!getToken()) { alert('請先設定 GitHub Token'); return; }
     const el = document.getElementById('search-results');
     el.innerHTML = '<p style="color:var(--text-3);padding:20px;text-align:center;font-family:var(--mono);font-size:13px;">searching...</p>';
     if (/^\d{4,6}$/.test(q)) {
@@ -1556,7 +1554,12 @@
 
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
-  Promise.all([loadTodos(), loadCalc()]);
+  if (getToken()) {
+    Promise.all([loadTodos(), loadCalc()]);
+  } else {
+    setSyncStatus('no token — click ⚙ to set');
+    render();
+  }
 </script>
 </body>
 </html>
