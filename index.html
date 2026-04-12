@@ -1418,13 +1418,16 @@
       const general = items.filter(i => !i.is_revenue);
 
       function renderItems(list) {
-        return list.map(i =>
-          `<li>
+        return list.map(i => {
+          const title = i.link
+            ? `<a href="${i.link}" target="_blank" style="color:var(--text);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">${i.title}</a>`
+            : `<strong>${i.title}</strong>`;
+          return `<li>
             ${i.published ? `<span style="font-family:var(--mono);font-size:10px;color:var(--text-3);margin-right:8px;">${i.published}</span>` : ''}
-            <strong>${i.title}</strong>
+            <strong>${title}</strong>
             ${i.summary ? `<br><span style="font-size:12px;color:var(--text-3);">${i.summary}</span>` : ''}
-          </li>`
-        ).join('');
+          </li>`;
+        }).join('');
       }
 
       let html = `<p style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:right;margin-bottom:12px;">更新：${fetchedAt}</p>`;
