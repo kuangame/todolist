@@ -817,6 +817,8 @@
     <div class="calc-cash-row">
       <label>CASH <span id="date-today" style="color:var(--text-3);font-size:11px;font-family:var(--mono);font-weight:400;"></span></label>
       <input class="cash-input" type="number" id="calc-cash" placeholder="0" oninput="calcRecalc()" />
+      <label style="color:var(--neg);">預收</label>
+      <input class="cash-input" type="number" id="calc-prepaid" placeholder="0" oninput="calcRecalc()" style="border-color:var(--neg);flex:0.6;" />
     </div>
 
     <div class="table-wrap">
@@ -1207,11 +1209,12 @@
 
   // ── 交割計算機 ─────────────────────────────────────────────
   let calcSha = null;
-  let calcData = { cash: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
+  let calcData = { cash: '', prepaid: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
 
   function buildCalcRows() {
     updateCalcDates();
     document.getElementById('calc-cash').value = calcData.cash || '';
+    document.getElementById('calc-prepaid').value = calcData.prepaid || '';
     document.getElementById('calc-rows').innerHTML = ACCOUNTS.map(acc => `
       <tr>
         <td>${acc}</td>
@@ -1261,6 +1264,7 @@
     const today = new Date(); today.setHours(0,0,0,0);
     calcData.lastDate = localDateStr(today);
     calcData.cash = document.getElementById('calc-cash').value;
+    calcData.prepaid = document.getElementById('calc-prepaid').value;
     ACCOUNTS.forEach(acc => {
       if (!calcData.accounts[acc]) calcData.accounts[acc] = {};
       ['t1','t2'].forEach(f => {
@@ -1269,14 +1273,15 @@
     });
 
     const cash = calcVal('calc-cash');
+    const prepaid = calcVal('calc-prepaid');
     let sumT1 = 0, sumT2 = 0;
     ACCOUNTS.forEach(acc => { sumT1 += calcVal(`calc-${acc}-t1`); sumT2 += calcVal(`calc-${acc}-t2`); });
 
     setColored('sum-t1', sumT1);
     setColored('sum-t2', sumT2);
-    setColored('res-cash', cash);
-    setColored('res-t1', cash + sumT1);
-    setColored('res-t2', cash + sumT1 + sumT2);
+    setColored('res-cash', cash - prepaid);
+    setColored('res-t1', cash - prepaid + sumT1);
+    setColored('res-t2', cash - prepaid + sumT1 + sumT2);
 
     saveCalc();
   }
@@ -1319,7 +1324,7 @@
 
   function calcReset() {
     if (!confirm('確定清除所有數字？')) return;
-    calcData = { cash: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} } };
+    calcData = { cash: '', prepaid: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} } };
     calcSha = null;
     buildCalcRows();
     calcRecalc();
