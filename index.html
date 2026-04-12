@@ -686,6 +686,30 @@
     .src-chip:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
 
     /* ── 晨報 ─────────────────────────────────── */
+    .report-subtabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .report-subtab-btn {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius);
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .report-subtab-btn:hover { border-color: var(--border); color: var(--text-2); }
+    .report-subtab-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+    .report-section { display: none; }
+    .report-section.active { display: block; }
+
     #report-content {
       background: var(--surface);
       border: 1px solid var(--border-dim);
@@ -711,6 +735,8 @@
     #report-content li { margin-bottom: 7px; color: var(--text-2); }
     #report-content strong { color: var(--text); font-weight: 700; }
     #report-content p { margin: 6px 0; }
+    .conf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 0; margin-top: 8px; }
+    .conf-item { font-size: 13px; color: var(--text-2); padding: 2px 0; }
 
     .market-chip {
       background: var(--surface);
@@ -862,7 +888,18 @@
   <div class="tab-panel" id="tab-report">
     <div id="report-meta" style="font-family:var(--mono);font-size:11px;color:var(--text-3);margin-bottom:14px;text-align:right;letter-spacing:0.3px;"></div>
     <div id="report-market" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
-    <div id="report-content"></div>
+    <div class="report-subtabs">
+      <button class="report-subtab-btn active" onclick="switchReportSection('international', this)">🌍 國際</button>
+      <button class="report-subtab-btn" onclick="switchReportSection('domestic', this)">📰 國內</button>
+      <button class="report-subtab-btn" onclick="switchReportSection('analysis', this)">📈 分析</button>
+      <button class="report-subtab-btn" onclick="switchReportSection('conferences', this)">📢 法說會</button>
+    </div>
+    <div id="report-content">
+      <div class="report-section active" id="section-international"></div>
+      <div class="report-section" id="section-domestic"></div>
+      <div class="report-section" id="section-analysis"></div>
+      <div class="report-section" id="section-conferences"></div>
+    </div>
   </div>
 
 </div>
@@ -1299,15 +1336,32 @@
       .replace(/(<\/ul>|<\/h2>)\s*(<p>|<\/p>)/g, '$1');
   }
 
+  function switchReportSection(name, btn) {
+    document.querySelectorAll('.report-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.report-subtab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('section-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
   async function loadReport() {
     if (!getToken()) return;
+    const placeholder = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">loading...</p>';
+    ['international','domestic','analysis','conferences'].forEach(k =>
+      document.getElementById('section-' + k).innerHTML = placeholder
+    );
     try {
       const data = await ghGet('morning_report.json');
-      if (!data) { document.getElementById('report-content').innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— no report yet —</p>'; return; }
+      if (!data) {
+        const empty = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— no report yet —</p>';
+        ['international','domestic','analysis','conferences'].forEach(k =>
+          document.getElementById('section-' + k).innerHTML = empty
+        );
+        return;
+      }
       const report = JSON.parse(b64decode(data.content));
 
-      const confsDebug = report.conferences || [];
-      document.getElementById('report-meta').textContent = `generated: ${new Date(report.generated_at).toLocaleString('zh-TW')} ｜ conf: ${confsDebug.length}`;
+      const confs = report.conferences || [];
+      document.getElementById('report-meta').textContent = `generated: ${new Date(report.generated_at).toLocaleString('zh-TW')} ｜ conf: ${confs.length}`;
 
       const market = report.market || {};
       document.getElementById('report-market').innerHTML = Object.entries(market).map(([name, d]) => {
@@ -1316,18 +1370,35 @@
         return `<div class="market-chip"><div class="chip-name">${name}</div><div class="chip-val ${cls}">${sign}${d.pct}%</div></div>`;
       }).join('');
 
-      const confs = report.conferences || [];
-      let html = mdToHtml(report.content);
+      // 新格式：sections 物件；舊格式：content 字串（向下相容）
+      const sections = report.sections || {};
+      const hasNewFormat = sections.international || sections.domestic || sections.analysis;
+
+      if (hasNewFormat) {
+        document.getElementById('section-international').innerHTML = mdToHtml(sections.international || '');
+        document.getElementById('section-domestic').innerHTML = mdToHtml(sections.domestic || '');
+        document.getElementById('section-analysis').innerHTML = mdToHtml(sections.analysis || '');
+      } else {
+        // 舊格式：全部塞進國際分頁
+        document.getElementById('section-international').innerHTML = mdToHtml(report.content || '');
+        ['domestic','analysis'].forEach(k =>
+          document.getElementById('section-' + k).innerHTML = '<p style="color:var(--text-3);padding:20px;font-family:var(--mono);font-size:12px;">（舊格式，請等明日晨報更新）</p>'
+        );
+      }
+
+      // 法說會分頁
       if (confs.length > 0) {
         const items = confs.map(c =>
-          `<span style="font-size:13px;color:var(--text-2);padding:2px 0;">${c.company}（${c.code}）</span>`
+          `<div class="conf-item">${c.company}（${c.code}）${c.time ? ' ' + c.time : ''}</div>`
         ).join('');
-        html += `<h2>📢 今日法說會（共 ${confs.length} 間）</h2>`
-              + `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px 0;margin-top:8px;">${items}</div>`;
+        document.getElementById('section-conferences').innerHTML =
+          `<h2>📢 今日法說會（共 ${confs.length} 間）</h2><div class="conf-grid">${items}</div>`;
+      } else {
+        document.getElementById('section-conferences').innerHTML =
+          '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 今日無法說會 —</p>';
       }
-      document.getElementById('report-content').innerHTML = html;
     } catch(e) {
-      document.getElementById('report-content').innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
+      document.getElementById('section-international').innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
     }
   }
 
