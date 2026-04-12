@@ -1376,14 +1376,11 @@
 
       if (hasNewFormat) {
         document.getElementById('section-international').innerHTML = mdToHtml(sections.international || '');
-        document.getElementById('section-domestic').innerHTML = mdToHtml(sections.domestic || '');
         document.getElementById('section-analysis').innerHTML = mdToHtml(sections.analysis || '');
       } else {
-        // 舊格式：全部塞進國際分頁
         document.getElementById('section-international').innerHTML = mdToHtml(report.content || '');
-        ['domestic','analysis'].forEach(k =>
-          document.getElementById('section-' + k).innerHTML = '<p style="color:var(--text-3);padding:20px;font-family:var(--mono);font-size:12px;">（舊格式，請等明日晨報更新）</p>'
-        );
+        document.getElementById('section-analysis').innerHTML =
+          '<p style="color:var(--text-3);padding:20px;font-family:var(--mono);font-size:12px;">（舊格式，請等明日晨報更新）</p>';
       }
 
       // 法說會分頁
@@ -1397,8 +1394,49 @@
         document.getElementById('section-conferences').innerHTML =
           '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 今日無法說會 —</p>';
       }
+
+      // 國內新聞：讀 domestic_news.json（每小時更新）
+      loadDomesticNews();
     } catch(e) {
       document.getElementById('section-international').innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
+    }
+  }
+
+  async function loadDomesticNews() {
+    const el = document.getElementById('section-domestic');
+    try {
+      const data = await ghGet('domestic_news.json');
+      if (!data) {
+        el.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 尚無資料 —</p>';
+        return;
+      }
+      const news = JSON.parse(b64decode(data.content));
+      const fetchedAt = new Date(news.fetched_at).toLocaleString('zh-TW');
+      const items = news.items || [];
+
+      const revenue = items.filter(i => i.is_revenue);
+      const general = items.filter(i => !i.is_revenue);
+
+      function renderItems(list) {
+        return list.map(i =>
+          `<li>
+            ${i.published ? `<span style="font-family:var(--mono);font-size:10px;color:var(--text-3);margin-right:8px;">${i.published}</span>` : ''}
+            <strong>${i.title}</strong>
+            ${i.summary ? `<br><span style="font-size:12px;color:var(--text-3);">${i.summary}</span>` : ''}
+          </li>`
+        ).join('');
+      }
+
+      let html = `<p style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:right;margin-bottom:12px;">更新：${fetchedAt}</p>`;
+      if (revenue.length > 0) {
+        html += `<h2>💰 營收 / 自結財報</h2><ul>${renderItems(revenue)}</ul>`;
+      }
+      if (general.length > 0) {
+        html += `<h2>📰 國內財經新聞</h2><ul>${renderItems(general)}</ul>`;
+      }
+      el.innerHTML = html;
+    } catch(e) {
+      el.innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
     }
   }
 
