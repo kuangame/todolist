@@ -1280,8 +1280,8 @@
     setColored('sum-t1', sumT1);
     setColored('sum-t2', sumT2);
     setColored('res-cash', cash - prepaid);
-    setColored('res-t1', cash - prepaid + sumT1);
-    setColored('res-t2', cash - prepaid + sumT1 + sumT2);
+    setColored('res-t1', cash + sumT1);
+    setColored('res-t2', cash + sumT1 + sumT2);
 
     saveCalc();
   }
