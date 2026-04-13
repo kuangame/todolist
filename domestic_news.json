@@ -1,6 +1,566 @@
 {
-  "fetched_at": "2026-04-13T22:09:28.081529",
+  "fetched_at": "2026-04-13T22:09:42.615042",
   "items": [
+    {
+      "title": "【6555 榮炭】更正公告本公司董事會決議召開114年股東常會召集相關事宜",
+      "summary": "",
+      "published": "04/13 20:18",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【7902 宇越生醫】本公司董事會決議不發放股利",
+      "summary": "",
+      "published": "04/13 19:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【7902 宇越生醫】公告本公司董事會決議召開115年股東常會相關事宜(新增議案)",
+      "summary": "",
+      "published": "04/13 19:32",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【9103 美德醫療-DR】114年度及113年度財務報告暨會計師複核報告",
+      "summary": "",
+      "published": "04/13 19:21",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【9103 美德醫療-DR】股東常會通知附錄-更新股份購回授權提案-英文版",
+      "summary": "",
+      "published": "04/13 19:20",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【9103 美德醫療-DR】股東常會通知附錄-更新股份購回授權提案-中文版",
+      "summary": "",
+      "published": "04/13 19:20",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【9103 美德醫療-DR】年度股東常會開會通知之公告-英文版",
+      "summary": "",
+      "published": "04/13 19:19",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【9103 美德醫療-DR】年度股東常會開會通知之公告-中文版",
+      "summary": "",
+      "published": "04/13 19:19",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2883 凱基金】公告本公司暨主要子公司115年3月份自結合併盈餘",
+      "summary": "",
+      "published": "04/13 19:10",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【3290 東浦】公告本公司預計通過115年第1季財務報告董事會召開日期",
+      "summary": "",
+      "published": "04/13 19:03",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2371 大同】公告董事會決議本公司民國115年股東常會相關事宜(新增議案)\n-配合電子投票系統，刪除新增字樣",
+      "summary": "",
+      "published": "04/13 18:55",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6618 永虹先進】本公司董事會通過113年度合併財務報告",
+      "summary": "",
+      "published": "04/13 18:54",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2438 翔耀】(更新)115年股東常會\n(股東會紀念品發放事宜補行公告)",
+      "summary": "",
+      "published": "04/13 18:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3630 新鉅科】修正本公司114年度合併/個體財報報告附註之資金貸與他人事項。",
+      "summary": "",
+      "published": "04/13 18:15",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6618 永虹先進】董事會決議不分派股利",
+      "summary": "",
+      "published": "04/13 18:15",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6959 兆捷科技】公告本公司董事會決議召開115年股東常會(新增議案)",
+      "summary": "",
+      "published": "04/13 18:07",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6959 兆捷科技】公告本公司董事會決議不分派股利",
+      "summary": "",
+      "published": "04/13 18:03",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5529 鉅陞】公告本公司115年股東常會重要決議事項",
+      "summary": "",
+      "published": "04/13 18:01",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6959 兆捷科技】公告本公司董事會決議通過114年度個體暨合併財務報告",
+      "summary": "",
+      "published": "04/13 17:55",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1104 環泥】公告本公司115年第1季財務報告提報之董事會召開日期",
+      "summary": "",
+      "published": "04/13 17:42",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6842 瑞宇】公告本公司董事會通過114年度合併財務報告(更正)",
+      "summary": "",
+      "published": "04/13 17:34",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6842 瑞宇】公告本公司董事會決議114年度盈餘轉增資發行新股",
+      "summary": "",
+      "published": "04/13 17:32",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3576 聯合再生】本公司董事會決議召開115年股東常會公告(增列議案)",
+      "summary": "",
+      "published": "04/13 17:31",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2308 台達電】本公司代子公司Delta Electronics Int'l (Singapore)\r\nPte. Ltd.公告現金股利除息基準日",
+      "summary": "",
+      "published": "04/13 17:28",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6842 瑞宇】公告本公司董事會決議114年度股利分派情形",
+      "summary": "",
+      "published": "04/13 17:28",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2308 台達電】本公司代子公司Delta Electronics Int'l (Singapore)\r\nPte. Ltd.公告發放現金股利",
+      "summary": "",
+      "published": "04/13 17:25",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6886 遠東生技】公告本公司董事會決議召開115年股東常會",
+      "summary": "",
+      "published": "04/13 17:25",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5269 祥碩】董事會決議股利分派",
+      "summary": "",
+      "published": "04/13 17:24",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6842 瑞宇】公告本公司董事會決議召開115年股東常會(新增議案)",
+      "summary": "",
+      "published": "04/13 17:20",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1626 艾美特-KY】更正-公告本公司董事會決議2025年股東常會召開案\n(更正召集事由順序)",
+      "summary": "",
+      "published": "04/13 17:19",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2065 世豐】更正本公司115年3月營收公告",
+      "summary": "",
+      "published": "04/13 17:16",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【2465 麗臺】修正本公司董事會決議115年股東常會召集事由",
+      "summary": "",
+      "published": "04/13 17:13",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5269 祥碩】本公司董事會通過增列115年股東常會召集事由",
+      "summary": "",
+      "published": "04/13 17:01",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2885 元大金】元大金控公告115年3月份自結合併損益",
+      "summary": "",
+      "published": "04/13 17:00",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【2328 廣宇】公告董事會決議股利分派",
+      "summary": "",
+      "published": "04/13 17:00",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4916 事欣科】公告本公司董事會決議召開115年股東常會事宜\n(配合電子投票系統修正召集事由)",
+      "summary": "",
+      "published": "04/13 16:59",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4529 淳紳】本公司辦理減資彌補虧損致債權人公告。\r\n協議書之增補協議。",
+      "summary": "",
+      "published": "04/13 16:53",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【7891 博研醫藥】本公司董事會決議召開115年股東常會相關事宜",
+      "summary": "",
+      "published": "04/13 16:52",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2006 東和鋼鐵】代重要子公司東鋼鋼結構股份有限公司公告\r\n115年股東常會解除董事競業之限制",
+      "summary": "",
+      "published": "04/13 16:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2006 東和鋼鐵】代重要子公司東鋼鋼結構股份有限公司公告115年股東常會\r\n董監事改選當選名單",
+      "summary": "",
+      "published": "04/13 16:31",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【7904 任開數位】公告本公司董事會決議股利分派情形",
+      "summary": "",
+      "published": "04/13 16:29",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2006 東和鋼鐵】代重要子公司東鋼鋼結構股份有限公司公告\r\n115年股東常會重要決議事項",
+      "summary": "",
+      "published": "04/13 16:28",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6761 穩得】補充公告本公司董事會通過115年股東常會召開相關事宜\n(增列召集事由)",
+      "summary": "",
+      "published": "04/13 16:26",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【8272 全景軟體】公告本公司董事會決議召開115年度股東常會相關事宜\n(新增/修正討論事項)",
+      "summary": "",
+      "published": "04/13 16:18",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2939 永邑-KY】更正本公司114年合併財報(含iXBRL)部份內容",
+      "summary": "",
+      "published": "04/13 16:15",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3349 寶德】公告本公司董事會決議不分配股利",
+      "summary": "",
+      "published": "04/13 16:13",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2884 玉山金】本公司代子公司玉山證券公告114年度盈餘分配案之現金股利\r\n除息基準日",
+      "summary": "",
+      "published": "04/13 16:10",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5222 全訊】補充說明本公司於民國115年4月8日法說會之內容",
+      "summary": "",
+      "published": "04/13 16:03",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4772 台特化】代重要子公司弘潔科技股份有限公司公告\r\n董事會決議召開115年股東常會相關事宜(新增議案)",
+      "summary": "",
+      "published": "04/13 16:03",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4772 台特化】代重要子公司弘潔科技股份有限公司公告董事會決議股利分派",
+      "summary": "",
+      "published": "04/13 16:03",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4772 台特化】代重要子公司弘潔科技股份有限公司公告董事會決議\r\n辦理盈餘轉增資發行新股案",
+      "summary": "",
+      "published": "04/13 16:02",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1103 嘉泥】(更正)本公司董事會決議召開115年股東常會議程調整",
+      "summary": "",
+      "published": "04/13 15:57",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【8155 博智】本公司114年第4季關係人交易自結數與會計師查核數差異說明",
+      "summary": "",
+      "published": "04/13 15:47",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【5443 均豪】公告本公司115年第1季自結合併損益",
+      "summary": "",
+      "published": "04/13 15:44",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【5438 東友】公告本公司董事會決議召開115年股東常會相關事宜\n(新增召集事由)",
+      "summary": "",
+      "published": "04/13 15:42",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2467 志聖】本公司受邀參加寬量國際主辦之「19th Taiwan CEO Week」，會中就本公司115年第1季之財務報告相關資訊暨營運概況進行說明。",
+      "summary": "",
+      "published": "04/13 15:38",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6863 永道-KY】代子公司永道射頻技術股份有限公司公告2026年度\r\n股東常會之重要決議",
+      "summary": "",
+      "published": "04/13 15:36",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2467 志聖】公告本公司115年Q1累計合併稅後自結損益",
+      "summary": "",
+      "published": "04/13 15:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【6640 均華】公告本公司115年第1季自結合併損益",
+      "summary": "",
+      "published": "04/13 15:31",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【1909 榮成】代重要子公司榮成環科公告一一五年度股東常會重要決議事項",
+      "summary": "",
+      "published": "04/13 15:30",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6838 台新藥】(調整召集事由)\n公告本公司董事會決議召開115年股東常會相關事宜",
+      "summary": "",
+      "published": "04/13 15:11",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2236 百達-KY】代重要子公司 PATEC PTE. LTD. 公告發放股利決議",
+      "summary": "",
+      "published": "04/13 15:10",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3628 盈正】公告本公司董事會決議召開民國115年股東常會\n(補充115/3/11公告)",
+      "summary": "",
+      "published": "04/13 15:02",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3572 宏芯科技】更正本公司董事會決議召開115年股東常會事宜",
+      "summary": "",
+      "published": "04/13 14:59",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3572 宏芯科技】公告本公司董事會決議盈餘轉增資發行新股",
+      "summary": "",
+      "published": "04/13 14:59",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2409 友達】本公司董事會決議召開115年股東常會 \n(召開方式：視訊輔助股東會)(新增討論事項)",
+      "summary": "",
+      "published": "04/13 14:44",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1589 永冠-KY】永冠-KY董事會決議召開2026年股東常會公告",
+      "summary": "",
+      "published": "04/13 14:38",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6204 艾華】代重要孫公司東莞艾華電子有限公司公告董事會決議\r\n發放股利",
+      "summary": "",
+      "published": "04/13 14:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【8358 金居】董事會決議股利分派",
+      "summary": "",
+      "published": "04/13 14:26",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3512 皇龍】公告本公司董事會決議召開一一五年股東常會(新增討論議案)",
+      "summary": "",
+      "published": "04/13 14:23",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
     {
       "title": "漲價在即仍遭出清！三大法人倒貨「2檔晶圓代工」4.8萬張　狠砍聯電提款19.2億元",
       "summary": "[FTNN新聞網]記者陳献朋／綜合報導台股加權指數今（13）日收在35457.29點，漲39.46點或0.11%，成交量達7802億元。根據證交所資料，三大法人賣超50.05億元，觀...",
@@ -8,6 +568,14 @@
       "link": "https://tw.stock.yahoo.com/news/%E6%BC%B2%E5%83%B9%E5%9C%A8%E5%8D%B3%E4%BB%8D%E9%81%AD%E5%87%BA%E6%B8%85-%E4%B8%89%E5%A4%A7%E6%B3%95%E4%BA%BA%E5%80%92%E8%B2%A8-2%E6%AA%94%E6%99%B6%E5%9C%93%E4%BB%A3%E5%B7%A5-4-8%E8%90%AC%E5%BC%B5-133000394.html",
       "is_revenue": false,
       "source": "yahoo"
+    },
+    {
+      "title": "【8358 金居】公告本公司董事會決議召開115年股東常會相關事宜(更正議案)",
+      "summary": "",
+      "published": "04/13 13:19",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
     },
     {
       "title": "轉讓聯合再生　國發基金： 綠能是重點產業",
@@ -96,6 +664,46 @@
       "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E6%93%B4%E7%94%A2%E9%BB%9E%E7%81%AB-%E5%8D%8A%E5%B0%8E%E9%AB%94%E8%A8%AD%E5%82%99%E5%BB%A0-%E7%82%B8%E9%80%A35%E6%BC%B252-3-%E5%AF%AB%E6%96%B0%E5%A4%A9%E5%83%B9-121500947.html",
       "is_revenue": false,
       "source": "yahoo"
+    },
+    {
+      "title": "【5534 長虹】代子公司(虹欣建設)公告其一一五年股東常會重要\r\n決議事項。",
+      "summary": "",
+      "published": "04/13 10:52",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2718 全心投控】修正公告本公司董事會決議114年第四季分派股利(董事會決議日為115/04/10，誤植為114/04/10，故作更正)",
+      "summary": "",
+      "published": "04/13 10:21",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1773 勝一】公告115年第一季財務報告董事會召開日期",
+      "summary": "",
+      "published": "04/13 10:17",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【1210 大成】公告本公司於115年04月14日召開法說會相關內容",
+      "summary": "",
+      "published": "04/13 09:28",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【8083 瑞穎】115年第1季\r\n財務報告董事會預計召開日期為115年04月23日。",
+      "summary": "",
+      "published": "04/13 09:00",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
     }
   ]
 }
