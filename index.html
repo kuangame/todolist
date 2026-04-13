@@ -803,7 +803,7 @@
     }
     .am-tables-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
     .am-section-title {
@@ -1010,6 +1010,10 @@
           <div>
             <div class="am-section-title">投信買超前十</div>
             <div id="am-trust-buy"></div>
+          </div>
+          <div>
+            <div class="am-section-title">投信賣超前十</div>
+            <div id="am-trust-sell"></div>
           </div>
         </div>
       </div>
@@ -1783,12 +1787,13 @@
     document.getElementById('am-foreign-buy').innerHTML = loading;
     document.getElementById('am-foreign-sell').innerHTML = loading;
     document.getElementById('am-trust-buy').innerHTML = loading;
+    document.getElementById('am-trust-sell').innerHTML = loading;
 
     try {
       const raw = await ghGet('after_market.json');
       if (!raw) {
         const empty = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">— 尚無資料，盤後 15:05 自動更新 —</p>';
-        ['am-futures','am-foreign-buy','am-foreign-sell','am-trust-buy'].forEach(id =>
+        ['am-futures','am-foreign-buy','am-foreign-sell','am-trust-buy','am-trust-sell'].forEach(id =>
           document.getElementById(id).innerHTML = empty);
         return;
       }
@@ -1853,6 +1858,7 @@
       document.getElementById('am-foreign-buy').innerHTML  = renderTable(d.foreign_buy,  false);
       document.getElementById('am-foreign-sell').innerHTML = renderTable(d.foreign_sell, true);
       document.getElementById('am-trust-buy').innerHTML    = renderTable(d.trust_buy,    false);
+      document.getElementById('am-trust-sell').innerHTML   = renderTable(d.trust_sell,   true);
 
     } catch(e) {
       document.getElementById('am-futures').innerHTML =
