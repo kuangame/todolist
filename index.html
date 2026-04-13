@@ -874,7 +874,6 @@
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
-    <button class="tab-btn" onclick="switchTab('aftermarket', this)">▸ 盤後</button>
   </div>
 
   <!-- Project Tab -->
@@ -989,31 +988,30 @@
       <button class="report-subtab-btn" onclick="switchReportSection('domestic', this)">📰 國內</button>
       <button class="report-subtab-btn" onclick="switchReportSection('analysis', this)">📈 分析</button>
       <button class="report-subtab-btn" onclick="switchReportSection('conferences', this)">📢 法說會</button>
+      <button class="report-subtab-btn" onclick="switchReportSection('aftermarket', this)">📊 盤後</button>
     </div>
     <div id="report-content">
       <div class="report-section active" id="section-international"></div>
       <div class="report-section" id="section-domestic"></div>
       <div class="report-section" id="section-analysis"></div>
       <div class="report-section" id="section-conferences"></div>
-    </div>
-  </div>
-
-  <!-- 盤後 Tab -->
-  <div class="tab-panel" id="tab-aftermarket">
-    <div id="am-meta" class="am-meta"></div>
-    <div id="am-futures" class="am-futures-wrap"></div>
-    <div class="am-tables-grid">
-      <div>
-        <div class="am-section-title">外資買超前十</div>
-        <div id="am-foreign-buy"></div>
-      </div>
-      <div>
-        <div class="am-section-title">外資賣超前十</div>
-        <div id="am-foreign-sell"></div>
-      </div>
-      <div>
-        <div class="am-section-title">投信買超前十</div>
-        <div id="am-trust-buy"></div>
+      <div class="report-section" id="section-aftermarket">
+        <div id="am-meta" class="am-meta"></div>
+        <div id="am-futures" class="am-futures-wrap"></div>
+        <div class="am-tables-grid">
+          <div>
+            <div class="am-section-title">外資買超前十</div>
+            <div id="am-foreign-buy"></div>
+          </div>
+          <div>
+            <div class="am-section-title">外資賣超前十</div>
+            <div id="am-foreign-sell"></div>
+          </div>
+          <div>
+            <div class="am-section-title">投信買超前十</div>
+            <div id="am-trust-buy"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1460,6 +1458,7 @@
     document.querySelectorAll('.report-subtab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('section-' + name).classList.add('active');
     btn.classList.add('active');
+    if (name === 'aftermarket') loadAfterMarket();
   }
 
   async function loadReport() {
@@ -1866,7 +1865,6 @@
     _switchTab(name, btn);
     if (name === 'report') loadReport();
     if (name === 'stocks') loadStocks();
-    if (name === 'aftermarket') loadAfterMarket();
   };
 
   // ── 啟動 ──────────────────────────────────────────────────
