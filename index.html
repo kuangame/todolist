@@ -1538,8 +1538,8 @@
       const fetchedAt = new Date(news.fetched_at).toLocaleString('zh-TW');
       const items = news.items || [];
 
-      const revenue = items.filter(i => i.is_revenue);
-      const general = items.filter(i => !i.is_revenue);
+      const revenue = items.filter(i => i.source === 'mops');
+      const general = items.filter(i => i.source === 'yahoo');
 
       function renderItems(list) {
         return list.map(i => {
