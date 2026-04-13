@@ -754,6 +754,97 @@
     .market-chip .chip-name { font-size: 10px; color: var(--text-3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
     .market-chip .chip-val { font-family: var(--mono); font-weight: 700; font-size: 13px; }
 
+    /* ── 盤後 ─────────────────────────────────── */
+    .am-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      text-align: right;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+    .am-futures-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .am-futures-card {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      flex: 1;
+      min-width: 200px;
+    }
+    .am-futures-card .afc-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .am-futures-card .afc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .am-futures-card .afc-key {
+      font-size: 12px;
+      color: var(--text-2);
+    }
+    .am-futures-card .afc-val {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .am-tables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .am-section-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .am-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .am-table th {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      text-align: left;
+      padding: 4px 6px;
+      border-bottom: 1px solid var(--border-dim);
+      font-weight: 700;
+    }
+    .am-table td {
+      padding: 6px 6px;
+      border-bottom: 1px solid var(--border-dim);
+      color: var(--text-2);
+    }
+    .am-table td:last-child {
+      font-family: var(--mono);
+      text-align: right;
+      font-size: 11px;
+    }
+    .am-table tr:last-child td { border-bottom: none; }
+    .am-table tr:hover td { background: var(--surface-2); }
+    @media (max-width: 700px) {
+      .am-tables-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 480px) {
       .num-input { width: 100px; font-size: 12px; }
       .result-cards { grid-template-columns: 1fr; }
@@ -783,6 +874,7 @@
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
+    <button class="tab-btn" onclick="switchTab('aftermarket', this)">▸ 盤後</button>
   </div>
 
   <!-- Project Tab -->
@@ -903,6 +995,26 @@
       <div class="report-section" id="section-domestic"></div>
       <div class="report-section" id="section-analysis"></div>
       <div class="report-section" id="section-conferences"></div>
+    </div>
+  </div>
+
+  <!-- 盤後 Tab -->
+  <div class="tab-panel" id="tab-aftermarket">
+    <div id="am-meta" class="am-meta"></div>
+    <div id="am-futures" class="am-futures-wrap"></div>
+    <div class="am-tables-grid">
+      <div>
+        <div class="am-section-title">外資買超前十</div>
+        <div id="am-foreign-buy"></div>
+      </div>
+      <div>
+        <div class="am-section-title">外資賣超前十</div>
+        <div id="am-foreign-sell"></div>
+      </div>
+      <div>
+        <div class="am-section-title">投信買超前十</div>
+        <div id="am-trust-buy"></div>
+      </div>
     </div>
   </div>
 
@@ -1664,11 +1776,97 @@
       </div>`;
   }
 
+  // ── 盤後 ──────────────────────────────────────────────────
+  async function loadAfterMarket() {
+    if (!getToken()) return;
+    const loading = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">loading...</p>';
+    document.getElementById('am-futures').innerHTML = loading;
+    document.getElementById('am-foreign-buy').innerHTML = loading;
+    document.getElementById('am-foreign-sell').innerHTML = loading;
+    document.getElementById('am-trust-buy').innerHTML = loading;
+
+    try {
+      const raw = await ghGet('after_market.json');
+      if (!raw) {
+        const empty = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">— 尚無資料，盤後 15:05 自動更新 —</p>';
+        ['am-futures','am-foreign-buy','am-foreign-sell','am-trust-buy'].forEach(id =>
+          document.getElementById(id).innerHTML = empty);
+        return;
+      }
+
+      const d = JSON.parse(b64decode(raw.content));
+      const fetched = d.fetched_at ? new Date(d.fetched_at).toLocaleString('zh-TW') : '';
+      document.getElementById('am-meta').textContent =
+        `資料日期: ${d.date || d.fetched_at?.slice(0,10) || '—'}  ｜  更新: ${fetched}`;
+
+      // ── 期貨三大法人 ──
+      const fut = d.taiex_futures || {};
+      const fmtNum = (n) => n == null ? '—' : (n > 0 ? '+' : '') + n.toLocaleString();
+      const fmtCls = (n) => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
+
+      const futCards = ['外資', '投信', '自營商'].map(who => {
+        const f = fut[who] || {};
+        const net = f.oi_net ?? null;
+        const trade = f.net_trade ?? null;
+        return `
+          <div class="am-futures-card">
+            <div class="afc-label">臺指期 · ${who}</div>
+            <div class="afc-row">
+              <span class="afc-key">未平倉淨額</span>
+              <span class="afc-val ${fmtCls(net)}">${fmtNum(net)} 口</span>
+            </div>
+            <div class="afc-row">
+              <span class="afc-key">當日增減</span>
+              <span class="afc-val ${fmtCls(trade)}">${fmtNum(trade)} 口</span>
+            </div>
+            <div class="afc-row">
+              <span class="afc-key">多方 / 空方</span>
+              <span class="afc-val" style="color:var(--text-2);font-size:11px;">
+                ${(f.oi_long||0).toLocaleString()} / ${(f.oi_short||0).toLocaleString()}
+              </span>
+            </div>
+          </div>`;
+      }).join('');
+      document.getElementById('am-futures').innerHTML = futCards;
+
+      // ── 外資/投信買賣超表格 ──
+      function renderTable(rows, isNeg) {
+        if (!rows || !rows.length) return '<p style="color:var(--text-3);font-size:12px;padding:10px 0;">無資料</p>';
+        const fmt = (n) => {
+          const abs = Math.abs(n);
+          const s = abs >= 1000000 ? (abs/1000000).toFixed(1)+'M' : abs >= 1000 ? (abs/1000).toFixed(0)+'K' : abs.toString();
+          return (n < 0 ? '-' : '') + s;
+        };
+        const rows_html = rows.map((r, i) => {
+          const cls = isNeg ? 'neg' : 'pos';
+          return `<tr>
+            <td style="color:var(--text-3);font-family:var(--mono);font-size:10px;">${i+1}</td>
+            <td><span style="color:var(--text-3);font-family:var(--mono);font-size:10px;margin-right:4px;">${r.code}</span>${r.name}</td>
+            <td class="${cls}">${fmt(r.shares)}</td>
+          </tr>`;
+        }).join('');
+        return `<table class="am-table">
+          <thead><tr><th>#</th><th>股票</th><th>股數</th></tr></thead>
+          <tbody>${rows_html}</tbody>
+        </table>`;
+      }
+
+      document.getElementById('am-foreign-buy').innerHTML  = renderTable(d.foreign_buy,  false);
+      document.getElementById('am-foreign-sell').innerHTML = renderTable(d.foreign_sell, true);
+      document.getElementById('am-trust-buy').innerHTML    = renderTable(d.trust_buy,    false);
+
+    } catch(e) {
+      document.getElementById('am-futures').innerHTML =
+        `<p style="color:var(--neg);font-family:var(--mono);font-size:12px;">載入失敗: ${e.message}</p>`;
+    }
+  }
+
   const _switchTab = switchTab;
   switchTab = function(name, btn) {
     _switchTab(name, btn);
     if (name === 'report') loadReport();
     if (name === 'stocks') loadStocks();
+    if (name === 'aftermarket') loadAfterMarket();
   };
 
   // ── 啟動 ──────────────────────────────────────────────────
