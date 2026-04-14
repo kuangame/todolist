@@ -876,6 +876,7 @@
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
+    <button class="tab-btn" onclick="switchTab('travel', this)">✈️ 荷比英</button>
   </div>
 
   <!-- Project Tab -->
@@ -1020,6 +1021,267 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Travel Tab -->
+  <div class="tab-panel" id="tab-travel">
+    <style>
+      #tab-travel { font-family: var(--mono); }
+      .travel-countdown { text-align:center; padding:16px; margin-bottom:16px; background:var(--surface-2); border:1px solid var(--accent); border-radius:4px; }
+      .travel-countdown .cd-num { font-size:36px; font-weight:700; color:var(--accent); letter-spacing:2px; }
+      .travel-countdown .cd-label { font-size:11px; color:var(--text-3); margin-top:4px; }
+      .travel-days { display:flex; flex-direction:column; gap:8px; }
+      .travel-day { background:var(--surface-2); border:1px solid var(--border); border-radius:4px; overflow:hidden; cursor:pointer; }
+      .travel-day.today { border-color:var(--accent); }
+      .travel-day.past { opacity:0.45; }
+      .travel-day-header { display:flex; align-items:center; gap:10px; padding:10px 12px; }
+      .travel-day-date { font-size:11px; color:var(--text-3); min-width:90px; }
+      .travel-day-title { flex:1; font-size:13px; color:var(--text-1); }
+      .travel-day-country { font-size:11px; color:var(--accent); background:var(--accent-dim); padding:1px 6px; border-radius:3px; }
+      .travel-day-body { padding:0 12px 12px 12px; display:none; font-size:12px; color:var(--text-2); line-height:1.7; border-top:1px solid var(--border); padding-top:10px; }
+      .travel-day.open .travel-day-body { display:block; }
+      .travel-info-row { display:flex; gap:6px; align-items:flex-start; margin-bottom:4px; }
+      .travel-info-row span:first-child { color:var(--text-3); min-width:55px; }
+      .travel-link { color:var(--accent); text-decoration:none; }
+      .travel-link:hover { text-decoration:underline; }
+      .hotel-badge { background:var(--accent-dim); border:1px solid var(--accent); border-radius:3px; padding:6px 10px; margin-top:8px; font-size:11px; color:var(--text-2); }
+      .hotel-badge strong { color:var(--accent); }
+    </style>
+
+    <div class="travel-countdown" id="travel-countdown"></div>
+
+    <div class="travel-days">
+
+      <!-- 4/26 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">4/26 (六)</div>
+          <div class="travel-day-title">✈️ 出發　台灣 → 阿姆斯特丹</div>
+          <div class="travel-day-country">🇹🇼→🇳🇱</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>班機</span><span><a class="travel-link" href="https://is6065.tw/1cq4" target="_blank">查詢班機資訊</a></span></div>
+          <div class="travel-info-row"><span>備注</span><span>取行李、前往機場</span></div>
+        </div>
+      </div>
+
+      <!-- 4/27 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">4/27 (日)</div>
+          <div class="travel-day-title">🛬 抵達阿姆斯特丹</div>
+          <div class="travel-day-country">🇳🇱 Amsterdam</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>交通</span><span>Schiphol → Tram/NS → Amsterdam Sloterdijk → Metro 50</span></div>
+          <div class="travel-info-row"><span>晚餐</span><span><a class="travel-link" href="https://thefoodsbar.nl" target="_blank">The Seafood Bar</a>｜Van Baerlestraat，需訂位</span></div>
+          <div class="hotel-badge">🏨 <strong>Amsterdam D Aparthotel</strong><br>Keizersgracht 108，Check-in 15:00｜+31 20 820 0056</div>
+        </div>
+      </div>
+
+      <!-- 4/28 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">4/28 (一)</div>
+          <div class="travel-day-title">🌷 庫肯霍夫花園 KKDAY</div>
+          <div class="travel-day-country">🇳🇱 Keukenhof</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>行程</span><span>KKDAY 庫肯霍夫一日遊，花期最盛</span></div>
+          <div class="travel-info-row"><span>回程</span><span>18:45前搭 858 公車離開（每20分一班，園區19:30關）</span></div>
+          <div class="travel-info-row"><span>晚餐</span><span>Casa Rosso 區域、Heineken Experience 附近</span></div>
+        </div>
+      </div>
+
+      <!-- 4/29 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">4/29 (二)</div>
+          <div class="travel-day-title">🚲 阿姆斯特丹市區</div>
+          <div class="travel-day-country">🇳🇱 Amsterdam</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>景點</span><span>Dam廣場、國立博物館（Rijksmuseum）</span></div>
+          <div class="travel-info-row"><span>午餐</span><span>Van Stapele Koekmakerij（荷蘭可頌餅）10:00-20:00</span></div>
+          <div class="travel-info-row"><span>晚餐</span><span>Keizersgracht 106 House of Bob（10:30開）</span></div>
+        </div>
+      </div>
+
+      <!-- 4/30 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">4/30 (三)</div>
+          <div class="travel-day-title">🏗️ 鹿特丹 + 台夫特</div>
+          <div class="travel-day-country">🇳🇱 Rotterdam / Delft</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>鹿特丹</span><span>方塊屋（Kubuswoningen）、Markt Hal、港口</span></div>
+          <div class="travel-info-row"><span>台夫特</span><span>Markt（六日有市集）、Stadhuis、Nieuwe Kerk｜Vermeer故鄉</span></div>
+          <div class="travel-info-row"><span>美術館</span><span>Mauritshuis（真珠耳環少女）09:00-18:00（週四22:00）</span></div>
+        </div>
+      </div>
+
+      <!-- 5/1 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/1 (四)</div>
+          <div class="travel-day-title">🚆 阿姆斯特丹 → 布魯塞爾</div>
+          <div class="travel-day-country">🇧🇪 Brussels</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>火車</span><span>Rotterdam 13:58 → Brussels Midi/Zuid 14:58</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Brussels Town Hall、Grand Place（晚上燈光漂亮）</span></div>
+          <div class="hotel-badge">🏨 <strong>Pull Hotel Brussels Centre Midi</strong><br>Check-in 15:00｜訂單 WRKJCK</div>
+        </div>
+      </div>
+
+      <!-- 5/2 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/2 (五)</div>
+          <div class="travel-day-title">🍫 布魯塞爾市區</div>
+          <div class="travel-day-country">🇧🇪 Brussels</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>景點</span><span>尿尿小童、尿尿小妹、Grand Place、Palais de Bruxelles</span></div>
+          <div class="travel-info-row"><span>景點</span><span>皇家廣場 Place Royale、Mont des Arts Garden</span></div>
+          <div class="travel-info-row"><span>必吃</span><span>比利時鬆餅、巧克力、啤酒</span></div>
+        </div>
+      </div>
+
+      <!-- 5/3 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/3 (六)</div>
+          <div class="travel-day-title">🏰 根特一日遊 KKDAY</div>
+          <div class="travel-day-country">🇧🇪 Ghent</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>景點</span><span>Gravensteen城堡、Sint Baafskathedraal、Graslei河岸</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Sint Michielsbrug橋、Korenlei、Stadhuis市政廳</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Het Belfort van Gent鐘塔</span></div>
+        </div>
+      </div>
+
+      <!-- 5/4 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/4 (日)</div>
+          <div class="travel-day-title">⛵ 布魯日一日遊 KKDAY</div>
+          <div class="travel-day-country">🇧🇪 Bruges</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>景點</span><span>Rozenhoedkaai（必拍）、聖血教堂 Holy Blood</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Market Square市集廣場、Minnewaterpark天鵝湖</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Sint Michielsbrug、Sint Niklaaskerk</span></div>
+          <div class="travel-info-row"><span>推薦</span><span><a class="travel-link" href="https://www.museabrugge.be/en/museum-locations/visit/location/details" target="_blank">布魯日博物館官網</a></span></div>
+        </div>
+      </div>
+
+      <!-- 5/5 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/5 (一)</div>
+          <div class="travel-day-title">🚄 布魯塞爾 → 倫敦 Eurostar</div>
+          <div class="travel-day-country">🇬🇧 London</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>Eurostar</span><span>Brussels 10:56 → London St Pancras 11:57</span></div>
+          <div class="travel-info-row"><span>景點</span><span>西敏寺 Westminster Abbey（入場30-16:30，注意預約 QR code）</span></div>
+          <div class="travel-info-row"><span>景點</span><span>Big Ben、Westminster Quarter、Rosa's Thai Waterloo</span></div>
+          <div class="hotel-badge">🏨 <strong>The Chesterfield Mayfair Hotel</strong><br>35 Charles St, London W1J 5EB｜Check-in 15:00｜+44 171-491-2622</div>
+        </div>
+      </div>
+
+      <!-- 5/6 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/6 (二)</div>
+          <div class="travel-day-title">🏰 Tower of London + Borough Market</div>
+          <div class="travel-day-country">🇬🇧 London</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>Tower</span><span>Tower of London 09:00-17:30（Yeoman Warder 導覽）</span></div>
+          <div class="travel-info-row"><span>市集</span><span><a class="travel-link" href="https://boroughmarket.org.uk" target="_blank">Borough Market</a>｜Wild Mushroom Risotto、生蠔、Bread Ahead</span></div>
+          <div class="travel-info-row"><span>餐廳</span><span>Richard Howard's Oysters、Khanom Krok泰式甜點、Monmouth Cafe</span></div>
+          <div class="travel-info-row"><span>Sky</span><span><a class="travel-link" href="https://skygarden.london/restaurant-bar/" target="_blank">Sky Garden</a>（需提前訂位）</span></div>
+        </div>
+      </div>
+
+      <!-- 5/7 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/7 (三)</div>
+          <div class="travel-day-title">👑 白金漢宮 衛兵交接</div>
+          <div class="travel-day-country">🇬🇧 London</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>衛兵</span><span>Buckingham Palace 11:00-12:00，提早到 Wellington Barracks 11:10-11:20卡位</span></div>
+          <div class="travel-info-row"><span>景點</span><span>St. James's Park、Westminster Quarters</span></div>
+          <div class="travel-info-row"><span>商圈</span><span>SOHO、Carnaby Street，自由逛街</span></div>
+        </div>
+      </div>
+
+      <!-- 5/8 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/8 (四)</div>
+          <div class="travel-day-title">🛍️ 自由採購 → 回台</div>
+          <div class="travel-day-country">🇬🇧→🇹🇼</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>下午</span><span>自由活動（大採購）</span></div>
+          <div class="travel-info-row"><span>17:00</span><span>出發前往倫敦希斯洛機場 Heathrow</span></div>
+          <div class="travel-info-row"><span>班機</span><span>CI 0082｜倫敦 21:10 → 台北(桃園) +1日 17:40</span></div>
+        </div>
+      </div>
+
+      <!-- 5/9 -->
+      <div class="travel-day" onclick="toggleDay(this)">
+        <div class="travel-day-header">
+          <div class="travel-day-date">5/9 (六)</div>
+          <div class="travel-day-title">🏠 抵台</div>
+          <div class="travel-day-country">🇹🇼 台灣</div>
+        </div>
+        <div class="travel-day-body">
+          <div class="travel-info-row"><span>抵達</span><span>台北桃園機場 17:40</span></div>
+          <div class="travel-info-row"><span>接機</span><span>中信羅蝶卡已訂回國接機（和運租車）</span></div>
+        </div>
+      </div>
+
+    </div><!-- .travel-days -->
+
+    <script>
+      function toggleDay(el) { el.classList.toggle('open'); }
+      (function initTravel() {
+        const depart = new Date('2026-04-26T00:00:00');
+        const ret = new Date('2026-05-09T17:40:00+08:00');
+        function updateCountdown() {
+          const now = new Date();
+          const el = document.getElementById('travel-countdown');
+          if (!el) return;
+          if (now < depart) {
+            const days = Math.ceil((depart - now) / 86400000);
+            el.innerHTML = '<div class="cd-num">' + days + '</div><div class="cd-label">天後出發｜荷蘭 比利時 英國　4/26–5/9</div>';
+          } else if (now <= ret) {
+            const day = Math.floor((now - depart) / 86400000) + 1;
+            el.innerHTML = '<div class="cd-num">Day ' + day + '</div><div class="cd-label">旅行中！　返台 ' + Math.ceil((ret - now) / 86400000) + ' 天後</div>';
+            // 自動展開今天的行程
+            const panels = document.querySelectorAll('.travel-day');
+            if (panels[day - 1]) panels[day - 1].classList.add('open', 'today');
+          } else {
+            el.innerHTML = '<div class="cd-num">已返台</div><div class="cd-label">荷比英之旅完美結束 🎉</div>';
+          }
+          // 標記過去的天
+          const dayEls = document.querySelectorAll('.travel-day');
+          const dates = ['2026-04-26','2026-04-27','2026-04-28','2026-04-29','2026-04-30','2026-05-01','2026-05-02','2026-05-03','2026-05-04','2026-05-05','2026-05-06','2026-05-07','2026-05-08','2026-05-09'];
+          dates.forEach((d, i) => {
+            if (new Date(d) < new Date(now.toDateString())) dayEls[i] && dayEls[i].classList.add('past');
+          });
+        }
+        updateCountdown();
+      })();
+    </script>
   </div>
 
 </div>
