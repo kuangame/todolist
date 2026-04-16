@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-16T22:23:38.449444",
+  "fetched_at": "2026-04-16T23:23:44.159921",
   "items": [
     {
       "title": "【3095 及成】公告本公司115年3月份自結合併財務報表之流動比率、速動 比率及負債比率",
@@ -122,6 +122,14 @@
       "source": "mops"
     },
     {
+      "title": "換發CUBE卡！國泰世華銀升級台塑卡友　享天天加油優惠",
+      "summary": "國泰世華與台塑集團宣布策略升級，將十年聯名卡轉型為CUBE卡「台塑家」方案，自6月1日起換發，原聯名卡8月1日停止運作。新方案除延續加油降價優惠，更首創整合台塑生醫等集團通路及7-11、全家、萊爾富三大超商，提供2%小樹點回饋。透過CUBE卡優勢與數據整合，金融服務滲透台塑民生版圖，深化客戶黏著度，預示台灣信用卡市場將走向平台生態整合新紀元。",
+      "published": "04/16 15:11",
+      "link": "https://tw.news.yahoo.com/%E6%8F%9B%E7%99%BCcube%E5%8D%A1-%E5%9C%8B%E6%B3%B0%E4%B8%96%E8%8F%AF%E9%8A%80%E5%8D%87%E7%B4%9A%E5%8F%B0%E5%A1%91%E5%8D%A1%E5%8F%8B-%E4%BA%AB%E5%A4%A9%E5%A4%A9%E5%8A%A0%E6%B2%B9%E5%84%AA%E6%83%A0-151100658.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "【4979 華星光】本公司可轉換公司債華星光三(代號：49793)達公布注 意交易資訊標準，故公告相關訊息，以利投資人區別瞭解。",
       "summary": "",
       "published": "04/16 15:09",
@@ -144,6 +152,30 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": false,
       "source": "mops"
+    },
+    {
+      "title": "觀察／從N2走向A14製程，台積電揭示AI算力狂潮與全球擴產佈局",
+      "summary": "針對台積電剛結束的2026年第一季法說會，可以看到這家全球晶圓代工業者正迎接一段「甜蜜與挑戰並存」的超級擴張期。隨著人工智慧從生成式AI (Generative AI)加速邁向「代理式AI」 (Agentic AI)，龐大的算力需求不僅推升台積電全年營收預估成長逾30%，更使其在全球範圍內大舉擴充3nm製程產能。",
+      "published": "04/16 15:01",
+      "link": "https://tw.news.yahoo.com/observation-from-n2-to-a14-process-tsmc-reveals-the-ai-computing-power-boom-and-global-expansion-strategy-150112587.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "擁2利多飆漲停！國家隊藉機出貨聯電4千張、抱走3億　「台塑四寶2檔」也成狙擊目標",
+      "summary": "[FTNN新聞網]記者江佳蓉／綜合報導台股加權指數今（16）日終場收在37,132.02點，漲409.88點或1.12%，據玩股網統計，八大公股賣超個股前十名，成熟製程晶圓代...",
+      "published": "04/16 14:30",
+      "link": "https://tw.stock.yahoo.com/news/%E6%93%812%E5%88%A9%E5%A4%9A%E9%A3%86%E6%BC%B2%E5%81%9C-%E5%9C%8B%E5%AE%B6%E9%9A%8A%E8%97%89%E6%A9%9F%E5%87%BA%E8%B2%A8%E8%81%AF%E9%9B%BB4%E5%8D%83%E5%BC%B5-%E6%8A%B1%E8%B5%B03%E5%84%84-%E5%8F%B0%E5%A1%91%E5%9B%9B%E5%AF%B62%E6%AA%94-%E4%B9%9F%E6%88%90%E7%8B%99%E6%93%8A%E7%9B%AE%E6%A8%99-143000754.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "越關越大尾！「這檔」遭處置仍噴7%被自營商狂掃1821張登王　南茂、聯電也獲搶進雙雙飆漲停",
+      "summary": "[FTNN新聞網]記者王凱暄／綜合報導台股今（16）日開高走高，加權指數終場收在37132.02點，上漲409.88點，漲幅1.12％，創下收盤新高點，根據證交所資料，自營...",
+      "published": "04/16 14:30",
+      "link": "https://tw.stock.yahoo.com/news/%E8%B6%8A%E9%97%9C%E8%B6%8A%E5%A4%A7%E5%B0%BE-%E9%80%99%E6%AA%94-%E9%81%AD%E8%99%95%E7%BD%AE%E4%BB%8D%E5%99%B47-%E8%A2%AB%E8%87%AA%E7%87%9F%E5%95%86%E7%8B%82%E6%8E%831821%E5%BC%B5%E7%99%BB%E7%8E%8B-%E5%8D%97%E8%8C%82-143000168.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "台積電入列！外媒示警投資人「緊抱這5檔股票」",
@@ -230,38 +262,6 @@
       "summary": "[FTNN新聞網]記者陳思穎／綜合報導光學鏡頭大廠大立光（3008）於今（16）日召開法說會，並公布第一季獲利情況。受惠於高階鏡頭需求回溫及業外匯兌收益挹注，...",
       "published": "04/16 13:15",
       "link": "https://tw.stock.yahoo.com/news/%E6%AF%9B%E5%88%A9%E7%8E%8749-4-%E8%BF%91%E4%B8%89%E5%AD%A3%E9%AB%98-%E5%A4%A7%E7%AB%8B%E5%85%89%E7%AC%AC-%E5%AD%A3eps%E9%81%9446-131500278.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "AI狂飆！台積電Q1 EPS達22.08元 毛利率破66%",
-      "summary": "AI狂飆！台積電Q1 EPS達22.08元 毛利率破66%",
-      "published": "04/16 13:08",
-      "link": "https://tw.news.yahoo.com/ai%E7%8B%82%E9%A3%86-%E5%8F%B0%E7%A9%8D%E9%9B%BBq1-eps%E9%81%9422-08%E5%85%83-%E6%AF%9B%E5%88%A9%E7%8E%87%E7%A0%B466-130800756.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "上市櫃去年對中國投資獲利創次高　海外地區創第4高",
-      "summary": "（中央社記者蘇思云台北16日電）金管會統計顯示，上市櫃公司2025年對中國投資獲利金額新台幣5489億元，創下史上次高；對海外地區投資利益合計9765億元，創歷年第4高。金管會說明，投資中國雖挹注上市櫃公司獲利，但近年赴中投資增加金額已明顯縮減，逐步降低對中國依賴。",
-      "published": "04/16 13:02",
-      "link": "https://tw.news.yahoo.com/%E4%B8%8A%E5%B8%82%E6%AB%83%E5%8E%BB%E5%B9%B4%E5%B0%8D%E4%B8%AD%E5%9C%8B%E6%8A%95%E8%B3%87%E7%8D%B2%E5%88%A9%E5%89%B5%E6%AC%A1%E9%AB%98-%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8D%80%E5%89%B5%E7%AC%AC4%E9%AB%98-130213219.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股衝破37000大關！三大法人連4天掃貨「這面板股」　3檔金融股也獲注意全登買超榜",
-      "summary": "[FTNN新聞網]記者王凱暄／綜合報導台股今（16）日開高走高，加權指數終場收在37132.02點，上漲409.88點，漲幅1.12％，創下收盤新高點，籌碼面方面，根據證交...",
-      "published": "04/16 13:00",
-      "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E8%A1%9D%E7%A0%B437000%E5%A4%A7%E9%97%9C-%E4%B8%89%E5%A4%A7%E6%B3%95%E4%BA%BA%E9%80%A34%E5%A4%A9%E6%8E%83%E8%B2%A8-%E9%80%99%E9%9D%A2%E6%9D%BF%E8%82%A1-3%E6%AA%94%E9%87%91%E8%9E%8D%E8%82%A1%E4%B9%9F%E7%8D%B2%E6%B3%A8%E6%84%8F%E5%85%A8%E7%99%BB%E8%B2%B7%E8%B6%85%E6%A6%9C-130000187.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "魏哲家：AI需求強勁　台積電今年成長續優於產業",
-      "summary": "（中央社記者張建中新竹16日電）晶圓代工廠台積電董事長暨總裁魏哲家在致股東報告書中表示，民國114年對台積電又是強勁成長的一年。115年儘管總體經濟的不確定性持續存在，預期AI相關的需求將持續強勁，預期台積電的表現將持續優於產業的成長。",
-      "published": "04/16 12:53",
-      "link": "https://tw.news.yahoo.com/%E9%AD%8F%E5%93%B2%E5%AE%B6-ai%E9%9C%80%E6%B1%82%E5%BC%B7%E5%8B%81-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%BB%8A%E5%B9%B4%E6%88%90%E9%95%B7%E7%BA%8C%E5%84%AA%E6%96%BC%E7%94%A2%E6%A5%AD-125305606.html",
       "is_revenue": false,
       "source": "yahoo"
     },
