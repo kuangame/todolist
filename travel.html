@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>荷比英旅行 4/26–5/9</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0f18;--surface:#14172280;--border:#252840;--text:#e2e4f0;--muted:#7880a0;--accent:#818cf8;--spot-c:#fcd34d;--hotel-c:#67e8f9;--meal-c:#f9a8d4;--notice-c:#fb923c;--radius:14px}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;font-size:14.5px;line-height:1.75}
+.hero{padding:28px 20px 20px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#1e2244 0%,var(--bg) 70%);border-bottom:1px solid var(--border)}
+.hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;background:linear-gradient(90deg,#818cf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.hero p{color:var(--muted);font-size:0.85rem;letter-spacing:.06em}
+.quick-jump{display:flex;flex-wrap:wrap;gap:5px;padding:12px 14px;background:#10121cdd;backdrop-filter:blur(8px);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);justify-content:center}
+.quick-jump a{text-decoration:none;font-size:.72rem;font-weight:600;color:var(--muted);background:#1c1f30;border:1px solid var(--border);border-radius:20px;padding:3px 10px;transition:all .18s;white-space:nowrap}
+.quick-jump a:hover{color:var(--text);background:#252a42;border-color:var(--accent)}
+.container{max-width:820px;margin:0 auto;padding:16px 12px 60px;display:flex;flex-direction:column;gap:8px}
+details.day-card{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;background:#13162080}
+details.day-card[open]{border-color:#353a5e}
+details summary{list-style:none;cursor:pointer;user-select:none}
+details summary::-webkit-details-marker{display:none}
+.summary-inner{display:flex;align-items:center;gap:12px;padding:12px 16px;transition:opacity .15s}
+.summary-inner:hover{opacity:.9}
+.day-badge{background:rgba(255,255,255,.12);border-radius:6px;padding:2px 8px;font-size:.68rem;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase}
+.summary-text{flex:1}
+.summary-date{display:block;font-size:.78rem;color:rgba(255,255,255,.5)}
+.summary-title{display:block;font-size:.95rem;font-weight:700;color:#fff}
+.flag{font-size:1.2rem}
+.chevron{color:rgba(255,255,255,.4);font-size:1.3rem;transition:transform .25s;line-height:1}
+details[open] .chevron{transform:rotate(90deg)}
+.day-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--border);animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+.item{display:flex;align-items:flex-start;gap:8px;padding:7px 11px;border-radius:8px;font-size:.88rem}
+.tag{white-space:nowrap;font-size:.7rem;font-weight:700;padding:2px 6px;border-radius:5px;margin-top:2px;flex-shrink:0}
+.spot{background:rgba(252,211,77,.07);border-left:3px solid var(--spot-c)}
+.spot .tag{background:rgba(252,211,77,.15);color:var(--spot-c)}
+.hotel{background:rgba(103,232,249,.06);border-left:3px solid var(--hotel-c)}
+.hotel .tag{background:rgba(103,232,249,.12);color:var(--hotel-c)}
+.meal{background:rgba(249,168,212,.06);border-left:3px solid var(--meal-c)}
+.meal .tag{background:rgba(249,168,212,.12);color:var(--meal-c)}
+.notice{background:rgba(251,146,60,.08);border-left:3px solid var(--notice-c)}
+.notice .tag{background:rgba(251,146,60,.15);color:var(--notice-c)}
+.section-title{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:8px;padding:0 2px}
+.body{color:var(--text);font-size:.88rem;padding:1px 2px}
+.bullet{color:var(--muted);font-size:.85rem;padding:1px 2px 1px 12px}
+.numbered{color:var(--muted);font-size:.85rem;padding:1px 2px 1px 8px}
+.link{font-size:.78rem;word-break:break-all}
+.link a{color:var(--accent);text-decoration:none}
+.link a:hover{text-decoration:underline}
+.img-row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.img-row img{height:150px;flex:1 1 160px;max-width:100%;object-fit:cover;border-radius:8px;cursor:zoom-in;transition:transform .2s,opacity .2s;opacity:.9}
+.img-row img:hover{transform:scale(1.025);opacity:1}
+#lb{display:none;position:fixed;inset:0;background:#000000d0;z-index:999;align-items:center;justify-content:center;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:94vw;max-height:94vh;border-radius:10px;object-fit:contain}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>✈️ 荷比英 14 天旅行</h1>
+  <p>2026 年 4 月 26 日 — 5 月 9 日　·　6 人同行</p>
+</div>
+<div class="quick-jump"><a href="#day-4-26">4/26 週日 🇹🇼→🇳🇱</a><a href="#day-4-27">4/27 週一 🇳🇱</a><a href="#day-4-28">4/28 週二 🇳🇱</a><a href="#day-4-29">4/29 週三 🇳🇱</a><a href="#day-4-30">4/30 週四 🇳🇱</a><a href="#day-5-1">5/1 週五 🇳🇱</a><a href="#day-5-2">5/2 週六 🇳🇱</a><a href="#day-5-3">5/3 週日 🇧🇪</a><a href="#day-5-4">5/4 週一 🇧🇪</a><a href="#day-5-5">5/5 週二 🇬🇧</a><a href="#day-5-6">5/6 週三 🇬🇧</a><a href="#day-5-7">5/7 週四 🇬🇧</a><a href="#day-5-8">5/8 週五 🇬🇧</a><a href="#day-5-9">5/9 週六 🇹🇼</a></div>
+<div class="container">
+<details class="day-card" open id="day-4-26">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1e4035 0%,#1e4035aa 100%)">
+      <span class="day-badge">Day 1</span>
+      <div class="summary-text">
+        <span class="summary-date">4/26 週日</span>
+        <span class="summary-title">台灣出發 ✈️ → 阿姆斯特丹</span>
+      </div>
+      <span class="flag">🇹🇼→🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body">【合作金庫 機場接送】預約F15172540，相關資訊請點擊 https://68666.tw/Ycg4 票券驗證碼1090。</div>
+<div class="img-row">
+<img src="travel_images/img_081.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-4-27">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a3a2a 0%,#1a3a2aaa 100%)">
+      <span class="day-badge">Day 2</span>
+      <div class="summary-text">
+        <span class="summary-date">4/27 週一</span>
+        <span class="summary-title">阿姆斯特丹 — 國王節 👑</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item notice"><span class="tag">⚠️ 準備</span><span><strong>準備:每人身上至少一件橘色的配件以融入國王節，</strong><strong style="color:#ff0000">請大家要穿好走的鞋子，會在外面走一天</strong></span></div>
+<div class="body"><strong>行程:</strong>當天有國王及活動，先放好行李換上橘色衣服(看有沒有時間吃早餐)，叫車去到離Vondelpark公園最近的地方開始逛，如果沒時間就直接出門去到海鮮餐廳12:00。</div>
+<div class="img-row">
+<img src="travel_images/img_082.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_083.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">從<strong>Schiphol Airport</strong>機場搭<span style="color:#0a0a0a">NS</span>火車到飯店<strong>Amsterdam Sloterdijk</strong>，須提前用<strong style="color:#ff0000">NS APP需買好六張票</strong>分給大家(不用選時間)，抵達後，請遵循「Trains」或「NS」指示牌，即可到達地下層的Schiphol車站。</div>
+<div class="body"><span style="color:#ff00ff">Intercity (IC)：快車，中途停靠站較少，最推薦。          </span><span style="color:#ff00ff">Sprinter：慢車，停靠每站。(要搭這抬到飯店)</span></div>
+<div class="link">🔗 <a href="https://starscreek.pixnet.net/blog/posts/5057878013" target="_blank">https://starscreek.pixnet.net/blog/posts/5057878013</a></div>
+<div class="body"><strong style="color:#9900ff">在沒有設立閘門的小站，如果要使用信用卡支付車資，一定要記得過卡！</strong></div>
+<div class="img-row">
+<img src="travel_images/img_047.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_045.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_050.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_049.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_061.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">離sloterdijk車站很近,順著9,10月台指標走,過馬路會先到美居（Mercure）飯店,隔壁就ID</div>
+<div class="img-row">
+<img src="travel_images/img_059.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item hotel"><span class="tag">🏨 住宿</span><span><strong style="color:#9900ff">住宿:Amsterdam ID Aparthotel 4/27-5/1(4晚 Trip訂單已付款)四人房無早餐(Y自己訂) 15:00入住 11:00退房</strong></span></div>
+<div class="body"><strong style="color:#9900ff">Naritaweg 51, 1043 BP Amsterdam  +31 20 820 0066</strong></div>
+<div class="img-row">
+<img src="travel_images/img_063.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>午餐</strong><strong style="color:#9900ff">12:00</strong><strong> Van Baerlestraat | The Seafood Bar</strong>(已信用卡預定，已刷訂金60歐元到時候會從帳單扣除)</span></div>
+<div class="body">Van Baerlestraat 5 Amsterdam    +31 20-6708355    hello@theseafoodbar.nl</div>
+<div class="img-row">
+<img src="travel_images/img_062.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>梵谷博物館(已預訂) 15:30 有借耳機導覽(六張門票已印出來)</span></div>
+<div class="body">梵谷博物館必看畫作:   博物館也有提供免費的智物櫃可以使用</div>
+<div class="body"><strong>去超市買完東西(兩天食物)就先回飯店</strong></div></div>
+</details>
+<details class="day-card"  id="day-4-28">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a3a2a 0%,#1a3a2aaa 100%)">
+      <span class="day-badge">Day 3</span>
+      <div class="summary-text">
+        <span class="summary-date">4/28 週二</span>
+        <span class="summary-title">阿姆斯特丹 — 羊角村包車</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body">09:00~19:30 -走去找餐廳(午餐)→超市買酒→租船→在小逛一下(喝咖啡)</div>
+<div class="img-row">
+<img src="travel_images/img_064.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_024.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet">-有租船也很推薦先到村裡唯一一家超市PLUS補貨，帶點零食、麵包、飲料上船野餐</div>
+<div class="bullet">-從公車站出發，沿著主河道走到底會看到右邊博物館，左邊門諾教堂，這時前面會有2條路：往右、往左，如果時間不夠只能選一條的話，我覺得右邊能看到更多小橋流水，也可以找一間咖啡廳坐下來好好享受</div>
+<div class="body"><strong>包車完請司機載我們到市區(吃晚餐)</strong></div>
+<div class="section-title"><strong>注意事項</strong></div>
+<div class="numbered">1. 自備現金，大部分的大麻店不接受刷卡。</div>
+<div class="numbered">2. 價格低於 €5 的大麻煙，一般混合菸草和大麻，純大麻菸的價格約落在 €8 至 €10。</div>
+<div class="numbered">3. 大多數大麻店不販售水煙槍（bong）或煙斗（pipe），可至阿姆斯特丹街上商店買，特別是靠近紅燈區的地段。</div>
+<div class="numbered">4. 大麻店可能會要求出示身分證明，以確認客人的年齡。</div>
+<div class="numbered">5. 大麻店內不販售任何酒精飲料。</div></div>
+</details>
+<details class="day-card"  id="day-4-29">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a3a2a 0%,#1a3a2aaa 100%)">
+      <span class="day-badge">Day 4</span>
+      <div class="summary-text">
+        <span class="summary-date">4/29 週三</span>
+        <span class="summary-title">阿姆斯特丹 — 庫肯霍夫花園 🌷</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item spot"><span class="tag">📍 景點</span><span>庫肯霍夫花園 提早叫車UBER 09:15出發(KKDAY門票10:00已印)</span></div>
+<div class="body">花園逛完再回市區吃午餐</div>
+<div class="link">🔗 <a href="https://underdutchsky.com/%E9%98%BF%E5%A7%86%E6%96%AF%E7%89%B9%E4%B8%B9%E9%81%8B%E6%B2%B3%E9%81%8A%E8%88%B9%E6%8E%A8%E8%96%A6/" target="_blank">https://underdutchsky.com/%E9%98%BF%E5%A7%86%E6%96%AF%E7%89%B9%E4%B8%B…</a></div>
+<div class="img-row">
+<img src="travel_images/img_026.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_025.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_027.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_033.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>艾伯特傳統市集(吃小吃和午餐)</span></div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>午餐:附近的拉麵或袁記串串香</strong></span></div>
+<div class="item spot"><span class="tag">📍 景點</span><span>海尼根體驗館10:30-18:45 (KKDAY17:00已列印)  16:45報到 海尼根體驗館門票+2小杯啤酒或軟性飲料</span></div>
+<div class="body">建議參觀前先上廁所｜導覽都英文</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>House of Bols 琴酒博物館 13:00–18:30</span></div>
+<div class="link">🔗 <a href="https://tickets.houseofbols.com/en/tickets" target="_blank">https://tickets.houseofbols.com/en/tickets</a></div>
+<div class="body"><strong>(也可隔天去)</strong><strong>景點:紅燈阿姆斯特丹紅燈區注意事項(如果喝醉可改4/30去)</strong></div>
+<div class="numbered"><span style="color:#ff0000">1.不可以拍照錄影</span></div>
+<div class="numbered"><span style="color:#ff0000">2.多數區域不可以喝酒，禁酒區會有告示（像是下面這張照片）</span></div>
+<div class="numbered"><span style="color:#ff0000">3.不可以騷擾性工作者</span></div>
+<div class="numbered"><span style="color:#ff0000">4.不可以駐留在櫥窗前又不消費區</span></div>
+<div class="body"><strong>Casa Rosso成人秀 65歐含一杯飲料（真人性愛秀）外面可以拍照裡面不行❌ 每日晚7點至凌晨2點</strong></div>
+<div class="body">官網連結：   <strong>僅現場買票</strong></div>
+<div class="body">整晚不停輪播演出，一場有8個演出，約60分鐘，中間不會停一直重複，觀眾可以待在裡面整晚也可以自由離席，還可以點飲料，服務人員會在表演的中間端一大堆飲料來送</div>
+<div class="body"><strong>買票地點：</strong>Casa Rossso正對面的一個小酒吧（需要過橋），酒吧外面會貼跟Casa Rossso一樣的大象標誌，買好票後，再拿著票回去劇院門口排隊入場。</div>
+<div class="img-row">
+<img src="travel_images/img_035.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-4-30">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a3a2a 0%,#1a3a2aaa 100%)">
+      <span class="day-badge">Day 5</span>
+      <div class="summary-text">
+        <span class="summary-date">4/30 週四</span>
+        <span class="summary-title">阿姆斯特丹 — 皇宮 & 運河遊船 🚢</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body">09:30出門從中央車站開始沿路拍照地圖上有設好點，老教堂外面逛逛</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>水壩廣場(拍照)</span></div>
+<div class="img-row">
+<img src="travel_images/img_037.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_016.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>10:00阿姆斯特丹皇宮 (09:00-17:00) 隨時可以訂票 KLOOK沒規定時間，租借中文導覽免費</span></div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>午餐:Il Vicolo義大利麵(不接受訂位)12:00-21:15  </strong><strong style="color:#ff0000">12:00前就要先去排隊 </strong><strong>OR 川菜</strong></span></div>
+<div class="body">吃完有時間可以先去餅乾專賣店Van Stapele Koekmakerij</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>第九街</span></div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>小吃:Heertje Friet 超脆薯條(11:00-20:00)</strong></span></div>
+<div class="body">推薦truffle mayonnaise sauce and parmesan cheese松露美乃滋(大份)+荷蘭肉丸</div>
+<div class="img-row">
+<img src="travel_images/img_015.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_018.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>運河游船(私人包船)17:00-18:30 含酒水喝到飽(大喝特喝)並設有廁所 已刷卡付費完成</span></div>
+<div class="img-row">
+<img src="travel_images/img_017.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_019.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">請到運河邊的木製碼頭與我們會面，碼頭就在 Keizersgracht 106 號旁。這裡也是行程的終點。（我們的辦公室位於 Keizersgracht 92h 號）<strong> </strong></div>
+<div class="img-row">
+<img src="travel_images/img_021.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-5-1">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a2e3d 0%,#1a2e3daa 100%)">
+      <span class="day-badge">Day 6</span>
+      <div class="summary-text">
+        <span class="summary-date">5/1 週五</span>
+        <span class="summary-title">阿姆斯特丹 → 鹿特丹</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item hotel"><span class="tag">🏨 住宿</span><span><strong style="color:#9900ff">住宿:PREMIER SUITES PLUS Rotterdam 5/1-5/3(2晚 Trip訂單4筆已付款)2人房無早餐 15:00入住 11:00退房</strong></span></div></div>
+</details>
+<details class="day-card"  id="day-5-2">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1a2e3d 0%,#1a2e3daa 100%)">
+      <span class="day-badge">Day 7</span>
+      <div class="summary-text">
+        <span class="summary-date">5/2 週六</span>
+        <span class="summary-title">鹿特丹 → 海牙 & 台夫特</span>
+      </div>
+      <span class="flag">🇳🇱</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item spot"><span class="tag">📍 景點</span><span>方塊屋，鉛筆屋</span></div>
+<div class="img-row">
+<img src="travel_images/img_020.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_023.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>Markthal市場</span></div>
+<div class="img-row">
+<img src="travel_images/img_022.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>小孩堤防 09:00-17:00 (買好零食和水，可以去看夕陽)</span></div>
+<div class="body"><strong>計程車 OR   </strong><strong> 直達小孩堤防的水上巴士，可船上直接信用卡買票</strong></div>
+<div class="link">🔗 <a href="https://watershuttle.nl/wp-content/uploads/2026/03/Watershuttle-summer-schedule-2026.pdf" target="_blank">https://watershuttle.nl/wp-content/uploads/2026/03/Watershuttle-summer…</a></div>
+<div class="body">參觀小孩堤防如果沒有要進入到風車，基本上都是免費參觀的，可以在戶外區自由參觀風車群。但如果想更了解風車的歷史、內部的構造、或者登上風車上面的觀景台，就蠻推薦大家可以購票進場。票券分為單一場館的入場票及所有場館的聯票，可直接買聯票每一場館都進去看看。(到現場再看要不要買票參觀)</div>
+<div class="img-row">
+<img src="travel_images/img_000.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span>晚餐:廚神大賽，一人準備一道料理</span></div>
+<div class="body">海牙（The Hague / Den Haag）是荷蘭的政治中心，也是荷蘭的第三大城，僅次於阿姆斯特丹與鹿特丹。這座城市不僅有荷蘭王室的居所豪斯登堡，還坐擁聯合國國際法庭及各國大使館，是個「皇家之城」。</div>
+<div class="img-row">
+<img src="travel_images/img_001.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>莫瑞泰斯皇家美術館(Mauritshuis)10:00–18:00(KKDAY+官網買票10:15已印)</span></div>
+<div class="body">莫瑞泰斯皇家美術館收藏有林布蘭、維梅爾等17世紀荷蘭黃金時代繪畫知名畫家的畫作，必看收藏當然是15號展間維梅爾《戴著珍珠耳環的少女 Girl with a Pearl Earring》、《台夫特風景 View of Delft》、9號展間林布蘭的《杜爾博士的解剖課 Anatomy Lesson of Dr. Tulp》</div>
+<div class="link">🔗 <a href="https://www.leo-travel.idv.tw/16232/holland-den-haag-mauritshuis" target="_blank">https://www.leo-travel.idv.tw/16232/holland-den-haag-mauritshuis</a></div>
+<div class="body">莫里斯宮皇家美術館(Mauritshuis)主要分為2層樓，一個樓層有8個展間，林布蘭(Rembrandt van Rijn)和維梅爾(Johannes Vermeer)的畫作都在2樓，分別為9號展間與15號展間，若時間不多的人可以直攻這兩個展間即可。</div>
+<div class="img-row">
+<img src="travel_images/img_003.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_002.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_010.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>午餐:海牙中餐館</strong></span></div>
+<div class="body"><strong style="color:#0000ff">台夫特</strong></div>
+<div class="item spot"><span class="tag">📍 景點</span><span>新教堂、市政廳中間的「市集廣場（Markt）」，週六前來，廣場上會舉辦市集，約莫150個店家聚集於此，售賣了新鮮食材、家常服飾、雜貨等。</span></div>
+<div class="img-row">
+<img src="travel_images/img_009.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>台夫特市政廳(Stadhuis Delft)</span></div>
+<div class="img-row">
+<img src="travel_images/img_011.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>台夫特新教堂（Nieuwe Kerk Delft）可登頂看風景</span></div>
+<div class="img-row">
+<img src="travel_images/img_111.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_110.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>台夫特舊教堂（Oude Kerk Delft）17世紀名畫家–維梅爾（Johannes Vermeer）長眠於此</span></div>
+<div class="img-row">
+<img src="travel_images/img_113.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong>費用：舊教堂與新教堂聯票成人€8 備註：教堂裡設有廁所，記得票根不要丟，可以持票根進出教堂上廁所</strong></div>
+<div class="body"><strong>來到老教堂，可以好好看著鐘樓，跟威尼斯彩色島的教堂一樣，在歐洲感覺真的很容易看到斜塔建築，而台夫特的鐘樓也是因為地基不穩而傾斜。</strong></div></div>
+</details>
+<details class="day-card"  id="day-5-3">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#2e1f3d 0%,#2e1f3daa 100%)">
+      <span class="day-badge">Day 8</span>
+      <div class="summary-text">
+        <span class="summary-date">5/3 週日</span>
+        <span class="summary-title">鹿特丹 → 布魯塞爾 🚄</span>
+      </div>
+      <span class="flag">🇧🇪</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item hotel"><span class="tag">🏨 住宿</span><span><strong style="color:#9900ff">住宿:Hotel Pullman Brussels Centre Midi 5/3-5/5(2晚 Hotels.com2筆已付款)2人房無早餐 15:00入住 12:00退房</strong></span></div>
+<div class="body"><strong style="color:#9900ff">訂單編號：73376700848897、73376701677496</strong></div>
+<div class="body">飯店位於布魯塞爾南站 (Brussels-Midi/Zuid) 站內，甚至不需走出車站大樓，步行約 1-3 分鐘即可到達，飯店入口在車站內的 Häagen-Dazs 旁</div>
+<div class="img-row">
+<img src="travel_images/img_112.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_115.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong>歐洲之星12:58 Booking reference: 4RMWRD (歐洲之星官網)</strong><strong style="color:#ff0000">到EMAIL把憑證寄給大家</strong></div>
+<div class="img-row">
+<img src="travel_images/img_114.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="link">🔗 <a href="https://tsnio.com/brussels-attractions/" target="_blank">https://tsnio.com/brussels-attractions/</a></div>
+<div class="item spot"><span class="tag">📍 景點</span><span>布魯塞爾市政廳（Brussels Town Hall）</span></div>
+<div class="img-row">
+<img src="travel_images/img_116.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>尿尿小童、尿尿小妹</span></div>
+<div class="img-row">
+<img src="travel_images/img_118.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_117.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>布魯塞爾大廣場 Grand Place</span></div>
+<div class="img-row">
+<img src="travel_images/img_108.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>布魯塞爾王宮 Palais de Bruxelles</span></div>
+<div class="img-row">
+<img src="travel_images/img_103.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>皇家廣場 Place Royale</span></div>
+<div class="img-row">
+<img src="travel_images/img_102.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>藝術之丘 Mont des Arts Garden</span></div>
+<div class="img-row">
+<img src="travel_images/img_104.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>晚餐吃完回飯店可以買一些中餐外賣回去吃消夜配酒</strong></span></div></div>
+</details>
+<details class="day-card"  id="day-5-4">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#2e1f3d 0%,#2e1f3daa 100%)">
+      <span class="day-badge">Day 9</span>
+      <div class="summary-text">
+        <span class="summary-date">5/4 週一</span>
+        <span class="summary-title">布魯塞爾 — 布魯日 & 根特包車</span>
+      </div>
+      <span class="flag">🇧🇪</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body"><strong style="color:#0000ff">布魯日</strong></div>
+<div class="item spot"><span class="tag">📍 景點</span><span>玫瑰碼頭 Rozenhoedkaai(買票搭船) 搭船的地方請看地圖</span></div>
+<div class="img-row">
+<img src="travel_images/img_105.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>布魯日鐘樓 Belfort https://www.museabrugge.be/bezoek/locaties/belfort</span></div>
+<div class="body">廁所要錢：廁所在一樓庭院的地方，上一次我記得是1歐，裡面沒人賣水，建議裝滿你的水再來爬山哈哈哈元，滿乾淨的，鐘樓本身沒廁所</div>
+<div class="img-row">
+<img src="travel_images/img_107.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖血聖殿 Holy Blood                                                 景點:市集廣場Market Square</span></div>
+<div class="img-row">
+<img src="travel_images/img_106.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_109.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖母教堂 Onze Lieve Vrouwekerk                       景點:愛之湖公園 Minnewaterpark</span></div>
+<div class="img-row">
+<img src="travel_images/img_093.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_092.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>貝居安修道院 Beguinage</span></div>
+<div class="img-row">
+<img src="travel_images/img_085.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong style="color:#0000ff">根特</strong></div>
+<div class="body">根特特產：Cuberdon 鼻子糖</div>
+<div class="body">外皮硬硬的，咬下去內餡的糖漿軟軟黏黏，外皮硬硬的，咬下去內餡的糖漿軟軟黏黏</div>
+<div class="img-row">
+<img src="travel_images/img_087.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖米歇爾橋 Sint Michielsbrug                          景點:穀物河岸 Korenlei、香草河岸 Graslei 根特遊船之旅</span></div>
+<div class="img-row">
+<img src="travel_images/img_086.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_089.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong>拍照點                                                                           景點:聖米歇爾教堂 Sint Michielskerk</strong></div>
+<div class="img-row">
+<img src="travel_images/img_088.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_091.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>根特舊郵局 前方是根特最熱鬧的區域穀物廣場Koren Markt</span></div>
+<div class="img-row">
+<img src="travel_images/img_090.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_075.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖尼可拉斯老教堂 Sint Niklaaskerk(內部免費參觀)</span></div>
+<div class="img-row">
+<img src="travel_images/img_077.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_076.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>根特鐘樓 Het Belfort van Gent                         景點:根特市政廳 Stadhuis</span></div>
+<div class="img-row">
+<img src="travel_images/img_069.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_068.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖巴夫主教座堂 Sint Baafskathedraal                    景點:伯爵城堡 Gravensteen</span></div>
+<div class="img-row">
+<img src="travel_images/img_071.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_070.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-5-5">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1c2535 0%,#1c2535aa 100%)">
+      <span class="day-badge">Day 10</span>
+      <div class="summary-text">
+        <span class="summary-date">5/5 週二</span>
+        <span class="summary-title">布魯塞爾 → 倫敦 🚄</span>
+      </div>
+      <span class="flag">🇬🇧</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body"><strong>歐洲之星10:56 Booking reference: WWDJCK  (KLOOK)</strong><strong style="color:#ff0000">到EMAIL把憑證寄給大家</strong></div>
+<div class="img-row">
+<img src="travel_images/img_073.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item hotel"><span class="tag">🏨 住宿</span><span><strong style="color:#9900ff">住宿:The Chesterfield Mayfair Hotel 5/5-5/8 行程編號：73271891426082</strong></span></div>
+<div class="body"><strong style="color:#9900ff">(3晚 Hotels.com訂單已付款)2人房*2無早餐(Y自己訂) 15:00入住 12:00退房</strong></div>
+<div class="body"><strong style="color:#9900ff">地址： 35 Charles St, London W1J 5EB英國     電話號碼： +44 20 7491 2622</strong></div>
+<div class="img-row">
+<img src="travel_images/img_072.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong>去逛SOHO，喝下午茶，唐人街吃晚餐</strong></div></div>
+</details>
+<details class="day-card"  id="day-5-6">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1c2535 0%,#1c2535aa 100%)">
+      <span class="day-badge">Day 11</span>
+      <div class="summary-text">
+        <span class="summary-date">5/6 週三</span>
+        <span class="summary-title">倫敦 — 西敏寺、大笨鐘、倫敦眼</span>
+      </div>
+      <span class="flag">🇬🇧</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item spot"><span class="tag">📍 景點</span><span>西敏寺 (Westminster Abbey)9:30-15:30(官網約09:30已印出來)提供免費中文語音導覽</span></div>
+<div class="img-row">
+<img src="travel_images/img_074.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong>西敏寺是英國君主的登基和皇室加冕的地方，黛安娜王妃的葬禮、威廉王子和凱特王妃的婚禮也都是在這裡舉行的</strong></div>
+<div class="body">西敏寺區域的入口在西立面，一定要出示購票證明才能入場，進入西敏寺後，會被引導到教堂北立面排隊，然後才是入場領取導覽機（含中文）、跟著動線參觀。 </div>
+<div class="img-row">
+<img src="travel_images/img_051.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-詩人角 (Poets&#x27; Corner)：安葬或紀念莎士比亞、狄更斯、喬叟等文學巨擘的區域。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_053.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_052.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-加冕椅 (St Edward&#x27;s Chair)：自 1308 年以來，歷代英國君主加冕時使用的座椅。愛德華一世於1296年委託製造，寶座下方放了他從蘇格蘭帶回來的戰利品。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_042.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-皇家墓葬 (Royal Tombs)：聖愛德華禮拜堂內有亨利五世、伊莉莎白一世等著名君主的陵墓。</strong></div>
+<div class="bullet"><strong>-無名戰士之墓 (Tomb of the Unknown Warrior)：位教堂中殿前方。西敏寺唯一不可進入走動的地方，紀念第一次世界大戰，在歐洲戰場陣亡、英國武裝部隊身份不明的成員。1920 年其屍體從法國運來埋葬，於西敏寺舉行國葬。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_041.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-聖母禮拜堂 (Lady Chapel)：以精緻的扇形拱頂和彩繪玻璃聞名，極為華麗。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_044.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-迴廊 (The Cloisters)：中世紀遺留的寧靜空間，適合漫步。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_043.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-名人之墓:西敏寺還安葬了 3,300 多人，有名的達爾文、狄更斯、牛頓、邱吉爾等貴族詩人、科學家、政治家、將軍、音樂家都安葬於此，2018 年離世的英國物理學家霍金（Stephen Hawking），骨灰也被安置於此。</strong></div>
+<div class="body"><strong>牛頓與達爾文</strong></div>
+<div class="img-row">
+<img src="travel_images/img_048.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_046.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet"><strong>-主祭壇（The High Altar):教堂最重要區域，後方屏風畫是最後的晚餐，馬賽克地板由近八萬片的班岩、瑪瑙與玻璃鑲嵌而成的「科斯馬蒂工藝地磚」。2011年凱特王妃和威廉王子婚禮、2023年查爾斯三世登基典禮，都在此舉辦。</strong></div>
+<div class="img-row">
+<img src="travel_images/img_014.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>大笨鐘 (Big Ben)自2023年起，大笨鐘重新開放參觀，路線可進入鐘面與內部機械層，全程約90分鐘。不過目前僅限英國居民、11歲以上人士報名。  https://missslow.com/big-ben/</span></div>
+<div class="body">1｜真正的「Big Ben」其實不是塔！</div>
+<div class="body">大多數人以為「Big Ben」指的是整座鐘塔，其實這只是塔內那顆主鐘的暱稱。鐘塔本名原為 Clock Tower，2012年為慶祝伊莉莎白二世登基60週年而更名為「The Elizabeth Tower」。</div>
+<div class="body">2｜世界上最準的時鐘之一</div>
+<div class="body">大笨鐘的誤差僅約一週兩秒，準確度驚人。鐘芯仍採用維多利亞時期的機械機制，靠調整擺錘上銅幣重量微調時間，每週都有專人上油與清潔。</div>
+<div class="body">3｜熟悉的旋律：台灣下課鐘聲！</div>
+<div class="body">大笨鐘的旋律名為《Westminster Quarters》，由四個音符組成，每15分鐘敲響一次。這首旋律後來被世界各地學校沿用為下課鐘聲。</div>
+<div class="img-row">
+<img src="travel_images/img_013.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_012.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_006.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_005.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_004.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">大笨鐘拍照地圖: </div>
+<div class="img-row">
+<img src="travel_images/img_008.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>西敏橋(拍照)</span></div>
+<div class="item meal"><span class="tag">🍽️ 餐飲</span><span><strong>午餐:Rosa&#x27;s Thai Waterloo(泰式餐廳)</strong></span></div>
+<div class="item spot"><span class="tag">📍 景點</span><span>倫敦眼16:15報到 (KKDAY17:00已列印)</span></div>
+<div class="body"><strong>直接至快速通道出示票據QR code即可馬上登上倫敦眼（快速通關票），不需要再到櫃台報到</strong></div>
+<div class="img-row">
+<img src="travel_images/img_007.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_060.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">通過安檢後，就能進入那個像膠囊一樣的座艙。</div>
+<div class="bullet">-空間感：每個膠囊大概可以塞25人。運氣好的話人少可以到處走動；運氣不好遇到一整團興奮的校外教學學生，那30分鐘會變得很漫長，整路都是尖叫聲。</div>
+<div class="bullet">-拍攝技巧：玻璃窗其實反光很嚴重！如果你想拍人像，記得鏡頭要貼緊玻璃，或是穿深色衣服減少反光。</div>
+<div class="bullet">-最佳視角：當座艙升到頂端時，往西看是國會大廈和大笨鐘（經典角度），往東看是碎片塔和聖保羅大教堂。</div></div>
+</details>
+<details class="day-card"  id="day-5-7">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1c2535 0%,#1c2535aa 100%)">
+      <span class="day-badge">Day 12</span>
+      <div class="summary-text">
+        <span class="summary-date">5/7 週四</span>
+        <span class="summary-title">倫敦 — 倫敦塔、Borough Market</span>
+      </div>
+      <span class="flag">🇬🇧</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item spot"><span class="tag">📍 景點</span><span>倫敦塔  (KLOOK10:00已列印)  掃QRCODE即可入場</span></div>
+<div class="body"><strong>出發前請看一下影片 </strong></div>
+<div class="bullet">-對歷史控來說這裡是聖地；對於愛聽八卦的人，這裡是寶庫。倫敦塔集結英國王室最輝煌與最黑暗的歷史，可看到價值連城的「非洲之星」大鑽石，也能看到各種讓人頭皮發麻的刑具。雖很多人是衝著鬼故事來的，但現場其實沒什麼陰森感，反而是滿滿觀光客和興奮的小學生。這裡是了解英國歷史最快、最直接（也最血腥）的地方。</div>
+<div class="img-row">
+<img src="travel_images/img_067.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet">-KLOO預約倫敦塔門票，訂購完成後會收到電子憑證，抵達現場需要先到一旁的售票亭兌換實體票券，即可門票入場，導覽機： 租借費用約 £5，有中文語音。但我自己租了覺得有點雞肋，因為現場的動線很難完全配合語音的節奏，常常聽完故事還找不到對應的展品，最後還是靠自己看解說牌，搭配Gemini AI介紹還比較快。</div>
+<div class="img-row">
+<img src="travel_images/img_066.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_065.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet">-比起花錢租導覽機，我更推薦參加免費的 Yeoman Warder（皇家衛士，俗稱 Beefeater） 導覽團。他們就是那些穿著紅黑制服、看起來很威嚴的大叔。</div>
+<div class="body">亮點： 導覽不用預約，每30分鐘一場（起點在入口處的護城河橋邊）。他們的解說超級生動，充滿英式幽默和各種血腥的歷史八卦，完全就是這座塔的靈魂人物。</div>
+<div class="body">小缺點： 全程英文，而且人超級多，如果英文聽力不好或是站太後面，體驗會打折。</div>
+<div class="bullet">-叛徒之門（TRAITOR’S GATE），從塔外到倫敦塔的罪犯都是搭著船通過叛徒之門進來。</div>
+<div class="img-row">
+<img src="travel_images/img_057.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet">-在白塔旁邊的綠色草坪（Tower Green），立著一個玻璃紀念枕，這裡是亨利八世的第二任皇后—安妮博林（Anne Boleyn）被斬首的地方</div>
+<div class="img-row">
+<img src="travel_images/img_056.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><span style="color:#ff0000">(第一景點先去這，不能拍照)</span>寶石塔 (Crown Jewels):裡面展示女王加冕用的皇冠和權杖。而且為了不讓人潮堵塞，重要寶物前設有「像機場一樣的電動步道」，你只能被迫快速滑過去看那顆 530克拉的「非洲之星」、伊莉莎白二世女王在加冕時戴的鑲嵌著2,800多顆寶石的皇冠、權杖、皇球</div>
+<div class="img-row">
+<img src="travel_images/img_055.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_054.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_058.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="bullet">-渡鴉The Ravens:傳說「如果烏鴉飛離倫敦塔，白塔將會倒塌，英國王室將會崩解」，所以在十七世紀查理二世國王便頒佈了「倫敦塔內必須保持至少六隻烏鴉，以保證英國國運昌隆」的法律，至今塔內還有專責照顧烏鴉的職務，甚至還被剪了一點點飛羽防止牠們飛太遠。</div>
+<div class="img-row">
+<img src="travel_images/img_034.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_032.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">白塔:最搶眼的主要塔樓，在1240年被亨利三世國王漆成白色，才會被稱為白塔。</div>
+<div class="img-row">
+<img src="travel_images/img_040.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_039.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">血腥塔 (Bloody Tower):在叛徒之門正對面的塔樓叫做血腥塔（BLOODY TOWER），曾有兩個小王子在這塔中被殺害，傳說兇手是他們的叔叔理查三世，為了防止他們取得王位。伊莉莎白女王在登基前，也曾被關到血腥塔中。</div>
+<div class="img-row">
+<img src="travel_images/img_038.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">Yeoman Warders 自耕農守衛住的地方</div>
+<div class="img-row">
+<img src="travel_images/img_036.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_031.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>倫敦塔橋</span></div>
+<div class="body"><strong>拍照點</strong></div>
+<div class="img-row">
+<img src="travel_images/img_030.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_029.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_028.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_097.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>Borough Market(可以去吃點東西，如果人太多直接找餐廳吃午餐) https://missslow.com/borough-market/</span></div>
+<div class="img-row">
+<img src="travel_images/img_096.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_101.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_100.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_099.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="img-row">
+<img src="travel_images/img_098.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>Sky Garden (預約17:00官網已列印)  https://skygarden.london/restaurant-bars/</span></div>
+<div class="img-row">
+<img src="travel_images/img_095.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="item spot"><span class="tag">📍 景點</span><span>聖保羅大教堂</span></div>
+<div class="img-row">
+<img src="travel_images/img_094.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-5-8">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1c2535 0%,#1c2535aa 100%)">
+      <span class="day-badge">Day 13</span>
+      <div class="summary-text">
+        <span class="summary-date">5/8 週五</span>
+        <span class="summary-title">倫敦 — 白金漢宮衛兵交接 💂</span>
+      </div>
+      <span class="flag">🇬🇧</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="item spot"><span class="tag">📍 景點</span><span>白金漢宮（Buckingham Palace）最知名的就是衛兵交接儀式11:00（Changing of the Guard），可以看到穿戴整齊的大頭兵、騎兵和樂隊串起整個儀式，全程約45分鐘，白金漢宮平時並不對外開放</span></div>
+<div class="img-row">
+<img src="travel_images/img_080.jpg" loading="lazy" onclick="openLb(this)" />
+<img src="travel_images/img_079.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body">樂隊表演的位置就在白金漢宮正門廣場，虛線是大頭兵＆樂隊離開時的行進路線。(周一三五上午11:00)建議提早 至少 30～45 分鐘卡位</div>
+<div class="body">A（白金漢宮欄杆正後方）：可以最清楚欣賞到交接儀式和全程演奏，但無法看到衛兵離開時的畫面。</div>
+<div class="body">B（人行道欄杆處）：可以清楚欣賞到衛兵出入白金漢宮的畫面，但是無法欣賞到交接儀式和全程演奏。</div>
+<div class="body">C（維多利亞女王紀念碑前）：微微制高點，正對衛兵離開的隊伍，所以可以清楚欣賞到衛兵出入宮殿的畫面，但同樣無法欣賞到交接儀式和全程演奏，且遊行入場時只能看衛兵背後。</div>
+<div class="body">想兩邊都看，建議一開始先在Ａ點卡位，整個樂隊表演大概要20分鐘（演奏約10段曲目，蠻長的），大概看到6~7段之後就換位置到Ｂ點，此時所有人都會往Ａ點柵欄邊擠看演奏，反而Ｂ點的方向比較悠閒，就算有人已經在這裡等，也不會說很擠，然後就等演奏結束，隊伍會帥氣的從白金漢宮正門口分兩路離開，這樣我們就通通都看到了。</div>
+<div class="link">🔗 <a href="https://www.householddivision.org.uk/changing-the-guard-calendar (如遇下雨會取消)" target="_blank">https://www.householddivision.org.uk/changing-the-guard-calendar (如遇下雨…</a></div>
+<div class="body">10:43舊衛兵離開聖詹姆士宮（St James’s Palace）</div>
+<div class="body">10:57新衛隊離開威靈頓軍營（Wellington Barracks）</div>
+<div class="body">11:00衛兵交接儀式正式開始</div>
+<div class="body">11:10~11:25交接衛兵相繼離開聖詹姆士宮和白金漢宮進行交接</div>
+<div class="body">11:40舊衛兵和聖詹姆士宮衛兵離開白金漢宮，結束換崗儀式</div>
+<div class="img-row">
+<img src="travel_images/img_078.jpg" loading="lazy" onclick="openLb(this)" />
+</div>
+<div class="body"><strong style="color:#ff0000">下午自由活動</strong><strong style="color:#ff0000">(大採購)</strong></div>
+<div class="body"><strong>17:00出發去機場</strong></div>
+<div class="img-row">
+<img src="travel_images/img_084.jpg" loading="lazy" onclick="openLb(this)" />
+</div></div>
+</details>
+<details class="day-card"  id="day-5-9">
+  <summary>
+    <div class="summary-inner" style="background:linear-gradient(120deg,#1e4035 0%,#1e4035aa 100%)">
+      <span class="day-badge">Day 14</span>
+      <div class="summary-text">
+        <span class="summary-date">5/9 週六</span>
+        <span class="summary-title">倫敦 → 返回台灣 🏠</span>
+      </div>
+      <span class="flag">🇹🇼</span>
+      <span class="chevron">›</span>
+    </div>
+  </summary>
+  <div class="day-body"><div class="body">中信璀璨卡已訂好回國接機(和運租車)看簡訊</div></div>
+</details></div>
+<div id="lb" onclick="this.classList.remove('on')"><img id="lb-img" src=""/></div>
+<script>
+function openLb(img){document.getElementById('lb-img').src=img.src;document.getElementById('lb').classList.add('on');}
+document.querySelectorAll('.quick-jump a').forEach(a=>{
+  a.addEventListener('click',()=>{const t=document.querySelector(a.getAttribute('href'));if(t)t.open=true;});
+});
+</script>
+</body>
+</html>
