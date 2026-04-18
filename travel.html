@@ -699,8 +699,22 @@ details[open] .chevron{transform:rotate(90deg)}
 <div id="lb" onclick="this.classList.remove('on')"><img id="lb-img" src=""/></div>
 <script>
 function openLb(img){document.getElementById('lb-img').src=img.src;document.getElementById('lb').classList.add('on');}
-document.querySelectorAll('.quick-jump a').forEach(a=>{
-  a.addEventListener('click',()=>{const t=document.querySelector(a.getAttribute('href'));if(t)t.open=true;});
+
+// One-at-a-time accordion
+function openOnly(target) {
+  document.querySelectorAll('details.day-card').forEach(d => { d.open = d === target; });
+}
+document.querySelectorAll('details.day-card').forEach(d => {
+  d.addEventListener('click', e => {
+    if (e.target.closest('#lb')) return;
+    if (!d.open) { e.preventDefault(); openOnly(d); }
+  });
+});
+document.querySelectorAll('.quick-jump a').forEach(a => {
+  a.addEventListener('click', () => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { openOnly(t); setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),50); }
+  });
 });
 </script>
 </body>
