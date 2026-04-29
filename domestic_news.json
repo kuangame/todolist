@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-30T01:52:57.533775",
+  "fetched_at": "2026-04-30T02:53:02.697547",
   "items": [
     {
       "title": "【1340 勝悅-KY】更正本公司115年3月營收公告數",
@@ -8,6 +8,14 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "富邦00405A「SBM選股術」 搶攻台股新主流",
+      "summary": "【記者柯安聰台北報導】隨著ETF市場邁入快速成長期，投資人需求正從單純追蹤指數，轉向追求超額報酬與精準選股。主動式ETF因同時具備主動基金的選股能力與ETF的交易便利性，正成為市場新焦點。根據...",
+      "published": "04/29 17:59",
+      "link": "https://tw.news.yahoo.com/%E5%AF%8C%E9%82%A600405a-sbm%E9%81%B8%E8%82%A1%E8%A1%93-%E6%90%B6%E6%94%BB%E5%8F%B0%E8%82%A1%E6%96%B0%E4%B8%BB%E6%B5%81-175920269.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "【6548 長科】公告本公司115年第一季合併自結損益(每股面額0.4元)",
@@ -168,30 +176,6 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": false,
       "source": "mops"
-    },
-    {
-      "title": "威剛、十銓「EPS夠猛」股價卻淪重災區？專家揭關鍵：不是比誰會賺",
-      "summary": "記憶體模組雙雄威剛（3260）、十銓（4967）首季財報皆寫下歷史新高，每股盈餘（EPS） 分別飆破30.05元和27元。不過今（29日）雙雄股價卻重挫逾6%，對此，投資達人認為，兩者看起來目前都很強，但關鍵不是誰比較會賺，而是誰的低價庫存，還剩多少。",
-      "published": "04/29 14:52",
-      "link": "https://tw.news.yahoo.com/%E5%A8%81%E5%89%9B-%E5%8D%81%E9%8A%93-eps%E5%A4%A0%E7%8C%9B-%E8%82%A1%E5%83%B9%E5%8D%BB%E6%B7%AA%E9%87%8D%E7%81%BD%E5%8D%80-%E5%B0%88%E5%AE%B6%E6%8F%AD%E9%97%9C%E9%8D%B5-145200605.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "卡位ABF＋先進封裝發酵！自營商加碼「這檔」6千萬元　3月營收創15個月高",
-      "summary": "[FTNN新聞網]記者黃詩雯／綜合報導台股加權指數今（29）日終場跌218.23點，以39,303.50點作收，跌幅0.55%，成交金額8766.44億元，籌碼面方面，據證交所統計，...",
-      "published": "04/29 14:50",
-      "link": "https://tw.stock.yahoo.com/news/%E5%8D%A1%E4%BD%8Dabf-%E5%85%88%E9%80%B2%E5%B0%81%E8%A3%9D%E7%99%BC%E9%85%B5-%E8%87%AA%E7%87%9F%E5%95%86%E5%8A%A0%E7%A2%BC-%E9%80%99%E6%AA%94-6%E5%8D%83%E8%90%AC%E5%85%83-145000692.html",
-      "is_revenue": true,
-      "source": "yahoo"
-    },
-    {
-      "title": "財報前夕不敢動！觀望氣氛升溫　美股4大指數走勢疲乏",
-      "summary": "[FTNN新聞網]記者周雅琦／綜合報導市場觀望氣氛升溫，投資人聚焦「美股七巨頭」（MagnificentSeven）財報公布，同時關注美國聯準會（Fed）主席鮑爾（JeromePo...",
-      "published": "04/29 14:40",
-      "link": "https://tw.stock.yahoo.com/news/%E8%B2%A1%E5%A0%B1%E5%89%8D%E5%A4%95%E4%B8%8D%E6%95%A2%E5%8B%95-%E8%A7%80%E6%9C%9B%E6%B0%A3%E6%B0%9B%E5%8D%87%E6%BA%AB-%E7%BE%8E%E8%82%A14%E5%A4%A7%E6%8C%87%E6%95%B8%E8%B5%B0%E5%8B%A2%E7%96%B2%E4%B9%8F-144000189.html",
-      "is_revenue": false,
-      "source": "yahoo"
     },
     {
       "title": "【1590 亞德客-KY】公告本公司2026年第1季自結合併財務報表",
