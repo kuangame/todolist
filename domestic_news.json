@@ -1,6 +1,14 @@
 {
-  "fetched_at": "2026-05-12T02:47:02.783788",
+  "fetched_at": "2026-05-12T03:47:09.169287",
   "items": [
+    {
+      "title": "熱門股／記憶體之神回來了！　台股18強點將",
+      "summary": "AI推論需求爆發帶動NAND Flash用量攀升，美光與SanDisk股價強勢表態，美光市值更躍居全美第12大。法人指出，HBM大量占用產能導致記憶體供需缺口擴大，加上三星工會醞釀罷工恐衝擊供給，推升產業景氣持續升溫。台灣記憶體族群如群聯、南亞科、華邦電等受惠於企業級SSD與邊緣AI需求轉強。在AI伺服器與高速運算帶動下，傳統DRAM與NAND供給吃緊，相關供應鏈後市看俏。",
+      "published": "05/11 19:05",
+      "link": "https://tw.news.yahoo.com/%E7%86%B1%E9%96%80%E8%82%A1-%E8%A8%98%E6%86%B6%E9%AB%94%E4%B9%8B%E7%A5%9E%E5%9B%9E%E4%BE%86%E4%BA%86-%E5%8F%B0%E8%82%A118%E5%BC%B7%E9%BB%9E%E5%B0%87-190500138.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
     {
       "title": "【6504 南六】本公司配合115年第一季合併財務報告之會計師調整數， 更正本公司原115年2、3、4月營收公告數。",
       "summary": "",
@@ -223,14 +231,6 @@
       "published": "05/11 16:16",
       "link": "https://tw.news.yahoo.com/%E5%8C%97%E5%9F%BA1q-0-18%E5%85%83-4%E6%9C%88%E5%94%AE%E5%9C%B0%E7%87%9F%E6%94%B6%E5%B9%B4%E5%A2%9E5%E6%88%90-161619354.html",
       "is_revenue": true,
-      "source": "yahoo"
-    },
-    {
-      "title": "安聯00402A強棒出擊 5/11 LINE Bank唯一搶先全台預購",
-      "summary": "【記者柯安聰台北報導】主動式ETF規模狂飆成為市場新寵，但相較一般ETF可透過券商App交易，新募集ETF申購流程繁瑣，往往成為投資人進場的最大門檻。對此，LINE Bank強調讓投資人只要一支手機和...",
-      "published": "05/11 16:13",
-      "link": "https://tw.news.yahoo.com/%E5%AE%89%E8%81%AF00402a%E5%BC%B7%E6%A3%92%E5%87%BA%E6%93%8A-5-11-line-bank%E5%94%AF-161323093.html",
-      "is_revenue": false,
       "source": "yahoo"
     },
     {
