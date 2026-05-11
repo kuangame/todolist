@@ -6,79 +6,57 @@
 <title>產業地圖</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d0f18;--surface:#14172280;--border:#252840;
-  --text:#e2e4f0;--muted:#7880a0;--radius:12px;
-}
+:root{--bg:#0d0f18;--surface:#14172280;--border:#252840;--text:#e2e4f0;--muted:#7880a0;}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;display:flex;flex-direction:column;}
 
-/* Header */
-.header{padding:10px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.header-title{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
-.header-updated{font-size:.72rem;color:var(--muted);}
+.header{padding:9px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.header-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.header-updated{font-size:.7rem;color:var(--muted);}
 
-/* Main layout */
-.main{flex:1;display:flex;overflow:hidden;transition:all .3s ease;}
-
-/* Map area */
-#map-area{flex:1;min-width:0;position:relative;transition:flex .35s cubic-bezier(.4,0,.2,1);overflow:hidden;}
+.main{flex:1;display:flex;overflow:hidden;}
+#map-area{flex:1;min-width:0;position:relative;transition:flex .35s cubic-bezier(.4,0,.2,1);}
 #map-area.shrink{flex:0 0 58%;}
 #map-svg{width:100%;height:100%;cursor:default;}
 
-/* Side panel */
 #side-panel{width:0;overflow:hidden;transition:width .35s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--border);background:#0f121c;}
 #side-panel.open{width:42%;}
-.panel-scroll{width:340px;height:100%;overflow-y:auto;padding:20px 18px 24px;}
+.panel-scroll{width:340px;height:100%;overflow-y:auto;padding:20px 18px 28px;}
+.panel-scroll::-webkit-scrollbar{width:4px;}
+.panel-scroll::-webkit-scrollbar-thumb{background:#252840;border-radius:2px;}
 
-/* Panel sections */
 .panel-header{margin-bottom:16px;position:relative;padding-right:28px;}
-.panel-breadcrumb{font-size:.7rem;color:var(--muted);margin-bottom:5px;}
-.panel-name{font-size:1.25rem;font-weight:800;margin-bottom:3px;}
-.panel-summary{font-size:.8rem;color:var(--muted);line-height:1.5;}
-.close-btn{position:absolute;top:0;right:0;background:#252840;border:none;color:var(--muted);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .15s;}
-.close-btn:hover{background:#353a5e;color:var(--text);}
+.breadcrumb{font-size:.68rem;color:var(--muted);margin-bottom:4px;}
+.panel-name{font-size:1.2rem;font-weight:800;margin-bottom:3px;}
+.panel-summary{font-size:.78rem;color:var(--muted);line-height:1.5;}
+.close-btn{position:absolute;top:0;right:0;background:#1e2244;border:1px solid var(--border);color:var(--muted);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.close-btn:hover{color:var(--text);}
 
-.section{margin-bottom:16px;}
-.section-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:7px;}
-
-.desc{font-size:.82rem;color:#b0b8d0;line-height:1.75;}
-
+.section{margin-bottom:15px;}
+.sec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;}
+.desc{font-size:.81rem;color:#b0b8d0;line-height:1.75;}
 .tag-row{display:flex;flex-wrap:wrap;gap:5px;}
-.tag{padding:3px 9px;border-radius:10px;font-size:.72rem;font-weight:600;border:1px solid;cursor:default;}
-
-.stocks{font-size:.82rem;color:var(--text);line-height:1.9;}
-
-.related-row{display:flex;flex-wrap:wrap;gap:6px;}
-.related-link{font-size:.78rem;padding:3px 10px;border-radius:8px;border:1px solid var(--border);color:#818cf8;cursor:pointer;transition:all .15s;background:#818cf810;}
+.tag{padding:3px 9px;border-radius:10px;font-size:.7rem;font-weight:600;border:1px solid;}
+.stocks{font-size:.81rem;color:var(--text);line-height:1.9;}
+.related-row{display:flex;flex-wrap:wrap;gap:5px;}
+.related-link{font-size:.75rem;padding:2px 9px;border-radius:8px;border:1px solid var(--border);color:#818cf8;cursor:pointer;background:#818cf810;}
 .related-link:hover{background:#818cf830;border-color:#818cf8;}
 
-/* Node tooltip */
 .node-group{cursor:pointer;}
-.node-group circle{transition:r .15s,opacity .15s;}
-.node-group:hover circle.main-circle{opacity:.9;}
-.node-label-sub{pointer-events:none;}
-
-/* Pulse ring for selected node */
-@keyframes pulse{0%{r:0;opacity:.6}100%{r:38;opacity:0}}
-.pulse-ring{animation:pulse 1.4s ease-out infinite;pointer-events:none;}
-
-/* Scrollbar */
-.panel-scroll::-webkit-scrollbar{width:4px;}
-.panel-scroll::-webkit-scrollbar-track{background:transparent;}
-.panel-scroll::-webkit-scrollbar-thumb{background:#252840;border-radius:2px;}
+@keyframes pulse{0%{r:0;opacity:.5}100%{r:40;opacity:0}}
+.pulse-ring{animation:pulse 1.6s ease-out infinite;pointer-events:none;}
 </style>
 </head>
 <body>
 
 <div class="header">
   <span class="header-title">🗺 產業地圖</span>
-  <span class="header-updated" id="header-updated"></span>
+  <span class="header-updated" id="hdr-updated"></span>
 </div>
 
 <div class="main">
   <div id="map-area">
-    <svg id="map-svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet"></svg>
+    <svg id="map-svg" viewBox="0 0 600 540" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
   <div id="side-panel">
     <div class="panel-scroll" id="panel-content"></div>
@@ -86,133 +64,161 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang 
 </div>
 
 <script>
-const DATA_URL = 'industry_map.json';
-let nodes = [];
+const CX = 300, CY = 290;   // centre of map
+const R1 = 155;              // centre → industry
+const R2 = 108;              // industry → child node
+
+let allNodes = [];           // flat list: {node, x, y, angle, parentId|null}
 let selectedId = null;
 
-// ── Fetch & render ─────────────────────────────────────────────
-fetch(DATA_URL + '?t=' + Date.now())
+fetch('industry_map.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
-    nodes = data.nodes;
-    document.getElementById('header-updated').textContent = '更新：' + (data.updated || '');
+    document.getElementById('hdr-updated').textContent = '更新：' + (data.updated || '');
+    buildPositions(data.nodes);
     renderMap();
   })
   .catch(() => {
     document.getElementById('map-svg').innerHTML =
-      '<text x="300" y="250" text-anchor="middle" fill="#7880a0" font-size="14">無法載入資料</text>';
+      '<text x="300" y="270" text-anchor="middle" fill="#7880a0" font-size="14">無法載入資料</text>';
   });
 
-// ── Radial layout ──────────────────────────────────────────────
-function renderMap() {
-  const svg = document.getElementById('map-svg');
-  svg.innerHTML = '';
-  const cx = 300, cy = 250, r = 165;
+// ── Layout ────────────────────────────────────────────────────
+function buildPositions(nodes) {
+  allNodes = [];
   const n = nodes.length;
-
-  // Draw connection lines first (behind nodes)
-  const linesG = makeSVG('g', {id:'lines'});
   nodes.forEach((node, i) => {
     const angle = (2 * Math.PI * i / n) - Math.PI / 2;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
-    const line = makeSVG('line', {
-      x1: cx, y1: cy, x2: x, y2: y,
-      stroke: node.color, 'stroke-width': '1.5', opacity: '0.35'
-    });
-    linesG.appendChild(line);
-  });
-  svg.appendChild(linesG);
+    const x = CX + R1 * Math.cos(angle);
+    const y = CY + R1 * Math.sin(angle);
+    allNodes.push({ node, x, y, angle, parentId: null });
 
-  // Center node
-  const centerG = makeSVG('g');
-  centerG.appendChild(makeSVG('circle', {cx, cy, r: 32, fill: '#818cf815', stroke: '#818cf8', 'stroke-width': '2'}));
-  const ct1 = makeSVG('text', {x: cx, y: cy - 5, 'text-anchor':'middle', fill:'#818cf8', 'font-size':'11', 'font-weight':'700'});
-  ct1.textContent = '產業';
-  const ct2 = makeSVG('text', {x: cx, y: cy + 9, 'text-anchor':'middle', fill:'#818cf8', 'font-size':'11', 'font-weight':'700'});
-  ct2.textContent = '地圖';
-  centerG.appendChild(ct1);
-  centerG.appendChild(ct2);
-  svg.appendChild(centerG);
-
-  // Industry nodes
-  nodes.forEach((node, i) => {
-    const angle = (2 * Math.PI * i / n) - Math.PI / 2;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
-    renderNode(svg, node, x, y);
+    // children
+    if (node.children && node.children.length) {
+      const kids = node.children;
+      const k = kids.length;
+      const spread = k === 1 ? 0 : Math.min(Math.PI * 0.65, (k - 1) * 0.55);
+      kids.forEach((child, j) => {
+        const offset = k === 1 ? 0 : spread * (j / (k - 1) - 0.5);
+        const ca = angle + offset;
+        allNodes.push({
+          node: child,
+          x: x + R2 * Math.cos(ca),
+          y: y + R2 * Math.sin(ca),
+          angle: ca,
+          parentId: node.id
+        });
+      });
+    }
   });
 }
 
-function renderNode(svg, node, x, y) {
-  const isSelected = node.id === selectedId;
-  const g = makeSVG('g', {'class': 'node-group', id: 'node-' + node.id});
+// ── Render ────────────────────────────────────────────────────
+function renderMap() {
+  const svg = document.getElementById('map-svg');
+  svg.innerHTML = '';
 
-  // Pulse ring for selected
+  // Lines (bottom layer)
+  const lg = mkSVG('g');
+  allNodes.forEach(pos => {
+    if (pos.parentId === null) {
+      // centre → industry
+      lg.appendChild(mkSVG('line', {
+        x1: CX, y1: CY, x2: pos.x, y2: pos.y,
+        stroke: pos.node.color, 'stroke-width': '1.8', opacity: '.3'
+      }));
+    } else {
+      // find parent pos
+      const pp = allNodes.find(p => p.node.id === pos.parentId);
+      if (pp) {
+        lg.appendChild(mkSVG('line', {
+          x1: pp.x, y1: pp.y, x2: pos.x, y2: pos.y,
+          stroke: pos.node.color, 'stroke-width': '1.5', opacity: '.35',
+          'stroke-dasharray': '4,3'
+        }));
+      }
+    }
+  });
+  svg.appendChild(lg);
+
+  // Centre node
+  const cg = mkSVG('g');
+  cg.appendChild(mkSVG('circle', { cx: CX, cy: CY, r: 30, fill: '#818cf812', stroke: '#818cf8', 'stroke-width': '1.5' }));
+  ['產業', '地圖'].forEach((t, i) => {
+    const tx = mkSVG('text', { x: CX, y: CY - 4 + i * 14, 'text-anchor': 'middle', fill: '#818cf8', 'font-size': '10', 'font-weight': '700' });
+    tx.textContent = t;
+    cg.appendChild(tx);
+  });
+  svg.appendChild(cg);
+
+  // Industry & child nodes
+  allNodes.forEach(pos => drawNode(svg, pos));
+}
+
+function drawNode(svg, pos) {
+  const { node, x, y } = pos;
+  const isChild = pos.parentId !== null;
+  const r = isChild ? 22 : 27;
+  const isSelected = node.id === selectedId;
+  const g = mkSVG('g', { class: 'node-group', id: 'nd-' + node.id });
+
   if (isSelected) {
-    const pulse = makeSVG('circle', {
+    g.appendChild(mkSVG('circle', {
       cx: x, cy: y, r: 0, fill: 'none',
-      stroke: node.color, 'stroke-width': '1.5',
-      'class': 'pulse-ring'
-    });
-    g.appendChild(pulse);
-    // static glow ring
-    g.appendChild(makeSVG('circle', {
-      cx: x, cy: y, r: 32, fill: 'none',
-      stroke: node.color, 'stroke-width': '1', 'stroke-dasharray': '4,3', opacity: '0.5'
+      stroke: node.color, 'stroke-width': '1.5', class: 'pulse-ring'
+    }));
+    g.appendChild(mkSVG('circle', {
+      cx: x, cy: y, r: r + 7, fill: 'none',
+      stroke: node.color, 'stroke-width': '1', 'stroke-dasharray': '4,3', opacity: '.5'
     }));
   }
 
-  // Main circle
-  const fill = isSelected ? node.color + '40' : node.color + '18';
-  const strokeW = isSelected ? '2.5' : '1.5';
-  g.appendChild(makeSVG('circle', {
-    cx: x, cy: y, r: 26,
-    fill, stroke: node.color, 'stroke-width': strokeW,
-    'class': 'main-circle'
+  g.appendChild(mkSVG('circle', {
+    cx: x, cy: y, r,
+    fill: isSelected ? node.color + '40' : node.color + '18',
+    stroke: node.color,
+    'stroke-width': isSelected ? '2.5' : (isChild ? '1.5' : '2')
   }));
 
-  // Label
-  const label = makeSVG('text', {
-    x, y: y + 4, 'text-anchor': 'middle',
-    fill: node.color, 'font-size': '10', 'font-weight': '700',
-    'pointer-events': 'none'
-  });
-  label.textContent = node.name;
-  g.appendChild(label);
-
-  // Sub-label (summary first tag)
-  if (node.sub && node.sub.length) {
-    const sub = makeSVG('text', {
-      x, y: y + 40, 'text-anchor': 'middle',
-      fill: node.color, 'font-size': '8', opacity: '0.6',
-      'class': 'node-label-sub', 'pointer-events': 'none'
+  // Name (may need 2 lines for long names)
+  const name = node.name;
+  const lines = name.length > 5 ? [name.slice(0, 5), name.slice(5)] : [name];
+  lines.forEach((line, i) => {
+    const dy = lines.length === 1 ? 4 : -3 + i * 13;
+    const t = mkSVG('text', {
+      x, y: y + dy, 'text-anchor': 'middle',
+      fill: node.color, 'font-size': isChild ? '9' : '10', 'font-weight': '700',
+      'pointer-events': 'none'
     });
-    sub.textContent = node.sub.slice(0, 2).join(' · ');
-    g.appendChild(sub);
+    t.textContent = line;
+    g.appendChild(t);
+  });
+
+  // Summary hint below node
+  if (node.summary && !isChild) {
+    const hint = mkSVG('text', {
+      x, y: y + r + 13, 'text-anchor': 'middle',
+      fill: node.color, 'font-size': '7.5', opacity: '.55',
+      'pointer-events': 'none'
+    });
+    hint.textContent = node.sub ? node.sub.slice(0, 2).join(' · ') : '';
+    g.appendChild(hint);
   }
 
   g.addEventListener('click', () => selectNode(node.id));
   svg.appendChild(g);
 }
 
-// ── Select node ────────────────────────────────────────────────
+// ── Selection ─────────────────────────────────────────────────
 function selectNode(id) {
-  if (selectedId === id) {
-    closePanel();
-    return;
-  }
+  if (selectedId === id) { closePanel(); return; }
   selectedId = id;
-  const node = nodes.find(n => n.id === id);
-  if (!node) return;
-
-  // Re-render map (update selected state)
   renderMap();
-
-  // Open panel
+  const pos = allNodes.find(p => p.node.id === id);
+  if (!pos) return;
   document.getElementById('map-area').classList.add('shrink');
   document.getElementById('side-panel').classList.add('open');
-  renderPanel(node);
+  renderPanel(pos);
 }
 
 function closePanel() {
@@ -222,46 +228,46 @@ function closePanel() {
   renderMap();
 }
 
-// ── Panel content ──────────────────────────────────────────────
-function renderPanel(node) {
-  const el = document.getElementById('panel-content');
-  el.innerHTML = `
+function renderPanel(pos) {
+  const { node, parentId } = pos;
+  const parent = parentId ? allNodes.find(p => p.node.id === parentId) : null;
+  const crumb = parent ? `產業地圖 › ${parent.node.name} › ${node.name}` : `產業地圖 › ${node.name}`;
+
+  document.getElementById('panel-content').innerHTML = `
     <div class="panel-header">
-      <div class="panel-breadcrumb">產業地圖 › ${node.name}</div>
+      <div class="breadcrumb">${crumb}</div>
       <div class="panel-name" style="color:${node.color}">${node.name}</div>
       <div class="panel-summary">${node.summary || ''}</div>
       <button class="close-btn" onclick="closePanel()">✕</button>
     </div>
 
+    ${node.description ? `
     <div class="section">
-      <div class="section-label">產業說明</div>
-      <div class="desc">${node.description || '暫無說明'}</div>
-    </div>
+      <div class="sec-label">說明</div>
+      <div class="desc">${node.description}</div>
+    </div>` : ''}
 
     ${node.sub && node.sub.length ? `
     <div class="section">
-      <div class="section-label">子產業</div>
+      <div class="sec-label">子產業 / 技術</div>
       <div class="tag-row">
-        ${node.sub.map(s => `
-          <span class="tag" style="color:${node.color};border-color:${node.color}40;background:${node.color}12">${s}</span>
-        `).join('')}
+        ${node.sub.map(s => `<span class="tag" style="color:${node.color};border-color:${node.color}40;background:${node.color}10">${s}</span>`).join('')}
       </div>
     </div>` : ''}
 
     ${node.stocks && node.stocks.length ? `
     <div class="section">
-      <div class="section-label">代表個股</div>
+      <div class="sec-label">代表個股</div>
       <div class="stocks">${node.stocks.join('　')}</div>
     </div>` : ''}
 
     ${node.related && node.related.length ? `
     <div class="section">
-      <div class="section-label">相關產業</div>
+      <div class="sec-label">相關</div>
       <div class="related-row">
         ${node.related.map(rid => {
-          const rn = nodes.find(n => n.id === rid || n.name === rid);
-          const label = rn ? rn.name : rid;
-          return `<span class="related-link" onclick="selectNode('${rn ? rn.id : rid}')">→ ${label}</span>`;
+          const rp = allNodes.find(p => p.node.id === rid || p.node.name === rid);
+          return `<span class="related-link" onclick="selectNode('${rp ? rp.node.id : rid}')">→ ${rp ? rp.node.name : rid}</span>`;
         }).join('')}
       </div>
     </div>` : ''}
@@ -269,7 +275,7 @@ function renderPanel(node) {
 }
 
 // ── SVG helper ─────────────────────────────────────────────────
-function makeSVG(tag, attrs = {}) {
+function mkSVG(tag, attrs = {}) {
   const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
   for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
   return el;
