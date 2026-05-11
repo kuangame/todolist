@@ -871,15 +871,15 @@
 
   <!-- Tabs -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('project', this)">▸ Project</button>
-    <button class="tab-btn" onclick="switchTab('calc', this)">▸ 交割</button>
+    <button class="tab-btn active" onclick="switchTab('calc', this)">▸ 交割</button>
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
+    <button class="tab-btn" onclick="switchTab('project', this)">▸ Project</button>
   </div>
 
   <!-- Project Tab -->
-  <div class="tab-panel active" id="tab-project">
+  <div class="tab-panel" id="tab-project">
     <div class="add-area">
       <input type="text" id="new-todo" placeholder="新增專案..." />
       <select id="new-priority">
@@ -906,7 +906,7 @@
   </div>
 
   <!-- 交割計算機 Tab -->
-  <div class="tab-panel" id="tab-calc">
+  <div class="tab-panel active" id="tab-calc">
     <div class="calc-cash-row">
       <label>CASH <span id="date-today" style="color:var(--text-3);font-size:11px;font-family:var(--mono);font-weight:400;"></span></label>
       <input class="cash-input" type="number" id="calc-cash" placeholder="0" oninput="calcRecalc()" />
