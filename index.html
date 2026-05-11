@@ -871,8 +871,7 @@
 
   <!-- Tabs -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('travel', this)">✈️ 荷比英</button>
-    <button class="tab-btn" onclick="switchTab('project', this)">▸ Project</button>
+    <button class="tab-btn active" onclick="switchTab('project', this)">▸ Project</button>
     <button class="tab-btn" onclick="switchTab('calc', this)">▸ 交割</button>
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
@@ -880,7 +879,7 @@
   </div>
 
   <!-- Project Tab -->
-  <div class="tab-panel" id="tab-project">
+  <div class="tab-panel active" id="tab-project">
     <div class="add-area">
       <input type="text" id="new-todo" placeholder="新增專案..." />
       <select id="new-priority">
@@ -1023,14 +1022,6 @@
     </div>
   </div>
 
-  <!-- Travel Tab -->
-  <div class="tab-panel active" id="tab-travel">
-    <style>
-      #tab-travel { padding: 0; }
-      #travel-iframe { width:100%; height:calc(100vh - 120px); border:none; border-radius:8px; }
-    </style>
-    <iframe id="travel-iframe" src="travel.html" loading="lazy"></iframe>
-  </div>
 
 </div>
 
