@@ -64,12 +64,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang 
 </div>
 
 <script>
-const CX = 300, CY = 290;   // centre of map
-const R1 = 155;              // centre → industry
-const R2 = 108;              // industry → child node
+const CY = 280;              // vertical centre
+const R1 = 150;              // centre → industry
+const R2 = 110;              // industry → child node
 
-let allNodes = [];           // flat list: {node, x, y, angle, parentId|null}
+let allNodes = [];
 let selectedId = null;
+let effectiveCX = 300;       // shifts left in single-industry mode
 
 fetch('industry_map.json?t=' + Date.now())
   .then(r => r.json())
@@ -87,20 +88,25 @@ fetch('industry_map.json?t=' + Date.now())
 function buildPositions(nodes) {
   allNodes = [];
   const n = nodes.length;
+  // Single-industry mode: shift centre left, industry points right
+  const singleMode = n === 1;
+  effectiveCX = singleMode ? 155 : 300;
+
   nodes.forEach((node, i) => {
-    const angle = (2 * Math.PI * i / n) - Math.PI / 2;
-    const x = CX + R1 * Math.cos(angle);
+    const angle = singleMode ? 0 : (2 * Math.PI * i / n) - Math.PI / 2;
+    const x = effectiveCX + R1 * Math.cos(angle);
     const y = CY + R1 * Math.sin(angle);
     allNodes.push({ node, x, y, angle, parentId: null });
 
-    // children
     if (node.children && node.children.length) {
       const kids = node.children;
       const k = kids.length;
-      const spread = k === 1 ? 0 : Math.min(Math.PI * 0.65, (k - 1) * 0.55);
+      const totalSpread = Math.min(Math.PI * 0.75, k * 0.6);
       kids.forEach((child, j) => {
-        const offset = k === 1 ? 0 : spread * (j / (k - 1) - 0.5);
-        const ca = angle + offset;
+        // Spread children in arc; single child goes slightly above axis
+        const ca = k === 1
+          ? angle - 0.35
+          : angle - totalSpread / 2 + totalSpread * j / (k - 1);
         allNodes.push({
           node: child,
           x: x + R2 * Math.cos(ca),
@@ -124,7 +130,7 @@ function renderMap() {
     if (pos.parentId === null) {
       // centre → industry
       lg.appendChild(mkSVG('line', {
-        x1: CX, y1: CY, x2: pos.x, y2: pos.y,
+        x1: effectiveCX, y1: CY, x2: pos.x, y2: pos.y,
         stroke: pos.node.color, 'stroke-width': '1.8', opacity: '.3'
       }));
     } else {
@@ -143,9 +149,9 @@ function renderMap() {
 
   // Centre node
   const cg = mkSVG('g');
-  cg.appendChild(mkSVG('circle', { cx: CX, cy: CY, r: 30, fill: '#818cf812', stroke: '#818cf8', 'stroke-width': '1.5' }));
+  cg.appendChild(mkSVG('circle', { cx: effectiveCX, cy: CY, r: 30, fill: '#818cf812', stroke: '#818cf8', 'stroke-width': '1.5' }));
   ['產業', '地圖'].forEach((t, i) => {
-    const tx = mkSVG('text', { x: CX, y: CY - 4 + i * 14, 'text-anchor': 'middle', fill: '#818cf8', 'font-size': '10', 'font-weight': '700' });
+    const tx = mkSVG('text', { x: effectiveCX, y: CY - 4 + i * 14, 'text-anchor': 'middle', fill: '#818cf8', 'font-size': '10', 'font-weight': '700' });
     tx.textContent = t;
     cg.appendChild(tx);
   });
