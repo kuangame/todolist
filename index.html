@@ -875,6 +875,7 @@
     <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
+    <button class="tab-btn" onclick="switchTab('industry', this)">🗺 產業地圖</button>
     <button class="tab-btn" onclick="switchTab('project', this)">▸ Project</button>
   </div>
 
@@ -1022,6 +1023,14 @@
     </div>
   </div>
 
+  <!-- Industry Map Tab -->
+  <div class="tab-panel" id="tab-industry">
+    <style>
+      #tab-industry { padding: 0; }
+      #industry-iframe { width:100%; height:calc(100vh - 120px); border:none; border-radius:8px; }
+    </style>
+    <iframe id="industry-iframe" src="industry_map.html" loading="lazy"></iframe>
+  </div>
 
 </div>
 
