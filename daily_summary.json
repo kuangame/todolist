@@ -1,0 +1,10 @@
+{
+  "date": "2026-06-01",
+  "items": [
+    "LINE Bot 管理後台完成 關鍵字規則 CRUD 和圖片上傳到 GitHub",
+    "診斷出 Zeabur SSL 憑證問題 回歸 Railway 部署穩定運作",
+    "新增 5 秒 message buffer、human takeover、rate limiting 等功能",
+    "config.json 存版本控制 每次儲存建 commit 方便回溯",
+    "ADMIN_USER_ID 待設定 後台實際操作測試待進行"
+  ]
+}
