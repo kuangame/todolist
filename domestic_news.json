@@ -1,6 +1,38 @@
 {
-  "fetched_at": "2026-06-01T23:42:43.298559",
+  "fetched_at": "2026-06-02T00:43:14.539877",
   "items": [
+    {
+      "title": "還缺人嗎？這家科技廠平均年薪628萬！台積電薪資只排第7",
+      "summary": "台灣證券交易所1日公布2025年台灣上市公司全體員工薪酬資訊，去年上市公司全體員工平均薪資福利為新台幣169萬元，相較2024年同期成長6.3%。其中以日月光投控每人平均薪資高達628萬2000元奪冠，較去年度大幅增加40%，晶片大廠祥碩則以565萬7000元居次，年增38%。988家台灣上市公司中，約6成公司去年平均薪資成長。員工薪資前段班幾乎由半導體及I......",
+      "published": "06/01 16:35",
+      "link": "https://tw.news.yahoo.com/%E9%82%84%E7%BC%BA%E4%BA%BA%E5%97%8E-%E9%80%99%E5%AE%B6%E7%A7%91%E6%8A%80%E5%BB%A0%E5%B9%B3%E5%9D%87%E5%B9%B4%E8%96%AA628%E8%90%AC-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E8%96%AA%E8%B3%87%E5%8F%AA%E6%8E%92%E7%AC%AC7-163531566.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股漲「你沒受益嗎」 她打臉民進黨：好公司被搞到虧損",
+      "summary": "台股飆破4萬點，民進黨祕書長徐國勇表示有年輕人抱怨「都別人在賺」，竟嗆「你難道沒有受益嗎？」被質疑有如「何不食肉糜」。藍委王鴻薇直言，AI浪潮爆發，國民黨執政栽培半導體產業出成績，是前人種樹後人乘涼，民進黨、徐國勇不要這麼囂張。",
+      "published": "06/01 16:06",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E6%BC%B2-%E4%BD%A0%E6%B2%92%E5%8F%97%E7%9B%8A%E5%97%8E-%E5%A5%B9%E6%89%93%E8%87%89%E6%B0%91%E9%80%B2%E9%BB%A8-%E5%A5%BD%E5%85%AC%E5%8F%B8%E8%A2%AB%E6%90%9E%E5%88%B0%E8%99%A7%E6%90%8D-160631829.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股狂飆！工程師急問「600萬如何變2000萬？」 少年股神給答案了",
+      "summary": "全球半導體與科技股漲勢欲罷不罷，市場投資情緒集體沸騰。今日有網友在知名論壇PTT股板發文，表示自己年薪150萬元，目前手握300萬美股QQQ與300萬台積電（2330），每年還能定期投入50萬活水。然而看著身邊的人靠槓桿翻倍，讓他心癢難耐，急切詢問若想在5年內將資產衝上2000萬元，是否該動用理財型房貸借出400萬「歐印」三倍飆股SOXL，貼文一出隨即引發熱烈討論。",
+      "published": "06/01 15:50",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E7%8B%82%E9%A3%86-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%80%A5%E5%95%8F-600%E8%90%AC%E5%A6%82%E4%BD%95%E8%AE%8A2000%E8%90%AC-%E5%B0%91%E5%B9%B4%E8%82%A1%E7%A5%9E%E7%B5%A6%E7%AD%94%E6%A1%88%E4%BA%86-155000863.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "獲利、EPS雙雙暴增21608%！「記憶體大廠」4月自結EPS賺1.66元　利多噴發6天狂飆38%",
+      "summary": "[FTNN新聞網]記者王凱暄／綜合報導記憶體雙雄之一華邦電（2344）因股價波動達證交所公布注意交易資訊標準，因此於今日公告4月自結獲利，稅後淨利達74.88億元...",
+      "published": "06/01 15:45",
+      "link": "https://tw.stock.yahoo.com/news/%E7%8D%B2%E5%88%A9-eps%E9%9B%99%E9%9B%99%E6%9A%B4%E5%A2%9E21608-%E8%A8%98%E6%86%B6%E9%AB%94%E5%A4%A7%E5%BB%A0-4%E6%9C%88%E8%87%AA%E7%B5%90eps%E8%B3%BA1-66%E5%85%83-154500777.html",
+      "is_revenue": true,
+      "source": "yahoo"
+    },
     {
       "title": "主權AI商機升溫，鴻海歐洲AI布局連下兩城！攜Bull打造AI工廠、再聯手Thales與Radiall攻先進封裝",
       "summary": "歐洲力拚主權AI與半導體供應鏈自主，鴻海（2317）歐洲布局也加速升級。鴻海今（1）日一連宣布兩項歐洲合作案，一是攜手法國先進運算與人工智慧業者Bull，強化歐洲AI工廠與雲端基礎設施製造能力；另，則與法國互連解決方案製造商Radiall、全球先進科技集團Thales成立Tessalia合資公司，切入歐洲先進半導體封裝，目標2033年前年產超過5,000萬顆......",
@@ -18,6 +50,14 @@
       "source": "yahoo"
     },
     {
+      "title": "個股／鎢鈷配額　聯友金屬漲成小妖股目標價",
+      "summary": "受惠全球關鍵金屬供應趨緊與去中化趨勢，聯友金屬（7610）首季營收突破10億元，年增483.77%，EPS達10.87元表現亮眼。隨著鎢、鈷價格維持高檔，加上7月新產能開出與2027年高值化產品佈局，法人看好其獲利結構持續優化。預估2027年EPS可望挑戰86.22元，目標價上看2500元。在全球戰略金屬缺口下，聯友金屬憑藉回收技術優勢，長期成長動能強勁。",
+      "published": "06/01 15:05",
+      "link": "https://tw.news.yahoo.com/%E5%80%8B%E8%82%A1-%E9%8E%A2%E9%88%B7%E9%85%8D%E9%A1%8D-%E8%81%AF%E5%8F%8B%E9%87%91%E5%B1%AC%E6%BC%B2%E6%88%90%E5%B0%8F%E5%A6%96%E8%82%A1%E7%9B%AE%E6%A8%99%E5%83%B9-150500635.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "單月EPS賺贏整季！記憶體景氣回來了　自營商搶先加碼旺宏1.26億元逾7百張",
       "summary": "[FTNN新聞網]記者黃詩雯／綜合報導台股今（1）日開高走高，加權指數終場大漲604.97點，以45337.91點作收，漲幅1.35％，成交金額1兆4770.85億元。據證交所統計...",
       "published": "06/01 14:45",
@@ -26,10 +66,10 @@
       "source": "yahoo"
     },
     {
-      "title": "【2025上市最薪酸】5家平均1年少領破百萬元！員工均薪資衰退前十大  陽明也入列",
+      "title": "【2025上市薪情】5家平均1年少領破百萬元！員工均薪資衰退前十大 陽明也入列",
       "summary": "證交所今（1）日公布最新上市公司員工平均薪資，除了低薪企業受到關注外，原本領高薪、去年卻面臨「薪酬大洗牌」的企業也備受市場矚目。在這次的統計中，總共有 5 家企業的員工平均薪資，比前一年足足大減了超過百萬元。其中，減薪金額最高的是建材營造業的愛山林（2540），每位員工平均年減了 227.3 萬元；而受到景氣循環影響的航運股陽明（2609），這次也同樣入列在薪資衰退最慘烈的前十大名單中。",
       "published": "06/01 14:42",
-      "link": "https://tw.stock.yahoo.com/news/%E3%80%902025%E4%B8%8A%E5%B8%82%E6%9C%80%E8%96%AA%E9%85%B8%E3%80%915%E5%AE%B6%E5%B9%B3%E5%9D%871%E5%B9%B4%E5%B0%91%E9%A0%98%E7%A0%B4%E7%99%BE%E8%90%AC%E5%85%83%EF%BC%81%E5%93%A1%E5%B7%A5%E5%9D%87%E8%96%AA%E8%B3%87%E8%A1%B0%E9%80%80%E5%89%8D%E5%8D%81%E5%A4%A7-%E9%99%BD%E6%98%8E%E4%B9%9F%E5%85%A5%E5%88%97-144215360.html",
+      "link": "https://tw.stock.yahoo.com/news/%E3%80%902025%E4%B8%8A%E5%B8%82%E8%96%AA%E6%83%85%E3%80%915%E5%AE%B6%E5%B9%B3%E5%9D%871%E5%B9%B4%E5%B0%91%E9%A0%98%E7%A0%B4%E7%99%BE%E8%90%AC%E5%85%83%EF%BC%81%E5%93%A1%E5%B7%A5%E5%9D%87%E8%96%AA%E8%B3%87%E8%A1%B0%E9%80%80%E5%89%8D%E5%8D%81%E5%A4%A7-%E9%99%BD%E6%98%8E%E4%B9%9F%E5%85%A5%E5%88%97-144215265.html",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -72,286 +112,6 @@
       "link": "https://tw.news.yahoo.com/%E9%B4%BB%E6%B5%B7%E5%8A%89%E6%8F%9A%E5%81%89%E9%96%8B%E5%BF%83%E7%A7%80%E5%87%BA%E5%B7%AE-%E4%BE%86%E5%8E%BB%E6%B3%95%E5%9C%8B%E7%82%BA%E5%B0%81%E6%B8%AC%E5%BB%A0%E5%8B%95%E5%9C%9F%E5%B1%95bol%E5%AF%A6%E5%8A%9B-142700670.html",
       "is_revenue": false,
       "source": "yahoo"
-    },
-    {
-      "title": "輝達狂飆近4%！美股早盤走低台積電ADR漲3%",
-      "summary": "[NOWNEWS今日新聞]人工智慧晶片大廠輝達（Nvidia）1日GTCTaipei2026大會開幕，宣布進入PC處理器市場，股價上漲，但美股1日開盤震盪，標普500指數下跌0.2%、那斯達克指數下跌...",
-      "published": "06/01 14:22",
-      "link": "https://tw.news.yahoo.com/%E8%BC%9D%E9%81%94%E7%8B%82%E9%A3%86%E8%BF%914-%E7%BE%8E%E8%82%A1%E6%97%A9%E7%9B%A4%E9%9C%87%E7%9B%AA%E5%8F%B0%E7%A9%8D%E9%9B%BBadr%E6%BC%B23-140817378.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "黃仁勳演講不敵美伊局勢?美股四大指數黑一片　微軟輝達逆勢上漲、台股ADR也勁揚",
-      "summary": "[FTNN新聞網]記者王凱暄／綜合報導美伊局勢仍詭譎，在雙方都稱談判即將談成之際，仍有零星戰火發生，據傳伊朗方又因以色列持續對黎巴嫩採取軍事行動而不滿，...",
-      "published": "06/01 14:22",
-      "link": "https://tw.stock.yahoo.com/news/%E9%BB%83%E4%BB%81%E5%8B%B3%E6%BC%94%E8%AC%9B%E4%B8%8D%E6%95%B5%E7%BE%8E%E4%BC%8A%E5%B1%80%E5%8B%A2-%E7%BE%8E%E8%82%A1%E5%9B%9B%E5%A4%A7%E6%8C%87%E6%95%B8%E9%BB%91-%E7%89%87-%E5%BE%AE%E8%BB%9F%E8%BC%9D%E9%81%94%E9%80%86%E5%8B%A2%E4%B8%8A%E6%BC%B2-%E5%8F%B0%E8%82%A1adr%E4%B9%9F%E5%8B%81%E6%8F%9A-142200377.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "AI全面噴發！「這檔」連3漲24.5%攜廣達、訊芯等10檔漲停　緯創、宜鼎、研華締新猷",
-      "summary": "[FTNN新聞網]記者陳献朋／綜合報導隨著美伊戰爭局勢趨穩，且COMPUTEX快要展開，台股大盤今（1）再次大漲，加權指數最終落在45337.91點，寫最佳紀錄，上漲604....",
-      "published": "06/01 14:15",
-      "link": "https://tw.stock.yahoo.com/news/ai%E5%85%A8%E9%9D%A2%E5%99%B4%E7%99%BC-%E9%80%99%E6%AA%94-%E9%80%A33%E6%BC%B224-5-%E6%94%9C%E5%BB%A3%E9%81%94-141500347.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股衝破4萬5創新高 貿協黃志芳：台灣領銜全球產業轉型",
-      "summary": "COMPUTEX年度科技盛事本週登場助勢下，台股今（1日）衝破4萬5，創歷史新高。COMPUTEX主辦方外貿協會董事長黃志芳表示，台灣領銜著全球產業轉型，COMPUTEX是台灣硬體製造韌性與全球軟體生態深度對接的戰略平台，COMPUTEX最重要的任務是為台灣的AI、半導體跟資通訊產業注入動能，未來帶",
-      "published": "06/01 14:00",
-      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E8%A1%9D%E7%A0%B44%E8%90%AC5%E5%89%B5%E6%96%B0%E9%AB%98-%E8%B2%BF%E5%8D%94%E9%BB%83%E5%BF%97%E8%8A%B3-%E5%8F%B0%E7%81%A3%E9%A0%98%E9%8A%9C%E5%85%A8%E7%90%83%E7%94%A2%E6%A5%AD%E8%BD%89%E5%9E%8B-140040512.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "【5321 美而快】公告本公司115年04月份自結合併財務報表之負債比率、 流動比率及速動比率",
-      "summary": "",
-      "published": "05/29 19:16",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【6734 安盛生】公告本公司115年4月份自結財務報告之負債比率、 流動比率、速動比率、預估未來三個月現金收支情形及銀行 可使用融資額度情形",
-      "summary": "",
-      "published": "05/29 19:14",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【8444 綠河-KY】公告本公司115年4月自結合併財務報告之負債比率、流動比率及 速動比率",
-      "summary": "",
-      "published": "05/29 17:32",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【1530 亞崴】更正-本公司有價證券於集中交易市場達公佈注意交易 資訊標準。(更正最近四季累計)",
-      "summary": "",
-      "published": "05/29 17:31",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【3522 御嵿】公告本公司115年04月自結合併財務報告之負債比率、 流動比率及速動比率。",
-      "summary": "",
-      "published": "05/29 17:23",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【8171 天宇】公告本公司115年4月份自結應收帳款餘額(含已逾期及未逾期) 、占資產及股本比例",
-      "summary": "",
-      "published": "05/29 17:11",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【3710 連展投控】公告115年4月份自結合併財務報告之 負債比率、流動比率及速動比率",
-      "summary": "",
-      "published": "05/29 16:48",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【6432 今展科】本公司可轉換公司債今展科四(代號：64324)達公布注意 交易資訊標準，故公告相關訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 16:36",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【2302 麗正】係因本公司有價證券於集中交易市場達公布注意交易資訊 標準，故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 16:20",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【6806 森崴能源】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 16:05",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【3528 安馳】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:59",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【1530 亞崴】本公司有價證券於集中交易市場達公佈注意交易資訊標準， 故公告相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:59",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【1563 巧新】因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 15:58",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【2438 翔耀】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:54",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【2441 超豐】(更正)係因本公司有價證券於集中交易市場達公布注意交易資訊 標準，故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:40",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【8044 網家】公告本公司115年4月自結財務比率",
-      "summary": "",
-      "published": "05/29 15:35",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【6770 力積電】係因本公司有價證券於集中交易市場達公布注意交易資訊 標準，故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 15:33",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【3064 泰偉】公告本公司115年4月份自結合併財務報表之流動比率、速動 比率及負債比率",
-      "summary": "",
-      "published": "05/29 15:33",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【3521 台鋼建設】公告本公司115年04月份自結合併財務報表 之流動比率、速動比率及負債比率",
-      "summary": "",
-      "published": "05/29 15:25",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【3042 晶技】係因有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 15:23",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【4545 銘鈺】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:22",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【4150 優你康】公告本公司115年4月份自結財務報表之負債比率、流動比率 及速動比率暨銀行可使用融資額度情形及未來三個月現金收支情 形。",
-      "summary": "",
-      "published": "05/29 15:09",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "【2441 超豐】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 15:04",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【3191 雲嘉南】本公司有價證券近期多次達公佈注意交易資訊標準， 故公告相關訊息，以利投資人區別暸解",
-      "summary": "",
-      "published": "05/29 15:00",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【911608 明輝-DR】因本公司有價證券於集中交易市場達公布注意交易資訊標準，故公布原上市地已公開之財務資訊，以利投資人區別瞭解。",
-      "summary": "",
-      "published": "05/29 14:54",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【4768 晶呈科技】本公司有價證券近期多次達公布注意交易資訊標準，故公告 相關訊息，以利投資人區別暸解(更正)",
-      "summary": "",
-      "published": "05/29 14:33",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【6442 光聖】本公司有價證券於集中交易市場達公布注意交易資訊標準 故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 14:29",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【3131 弘塑】因本公司有價證券於櫃買市場達公布 注意交易資訊標準，故公布相關財務業務 資訊，以利投資人區別暸解",
-      "summary": "",
-      "published": "05/29 14:24",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【5386 青雲】本公司有價證券近期多次達公佈注意資訊標準， 故公告相關訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 14:15",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【6290 良維】本公司國內第十次無擔保轉換公司債良維十 (代號:629010)近期達公布注意",
-      "summary": "",
-      "published": "05/29 14:03",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
-    },
-    {
-      "title": "【6821 聯寶】本公司有價證券於集中交易市場達公布注意交易資訊標準 故公布相關財務業務等重大訊息，以利投資人區別瞭解",
-      "summary": "",
-      "published": "05/29 14:01",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
-      "is_revenue": false,
-      "source": "mops"
     }
   ]
 }
