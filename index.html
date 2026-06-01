@@ -852,7 +852,41 @@
       .result-cards { grid-template-columns: 1fr; }
       .tabs { gap: 1px; }
       .tab-btn { font-size: 12px; padding: 8px 4px; }
+      .daily-bar { flex-wrap: wrap; }
     }
+
+    /* ── Daily Summary Bar ────────────────────── */
+    .daily-bar {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 9px 14px;
+      margin-bottom: 14px;
+      display: none;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .daily-bar-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+    .daily-bar-items {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      line-height: 1.6;
+    }
+    .daily-bar-item::before { content: '▸ '; color: var(--accent); }
   </style>
 </head>
 <body>
@@ -868,6 +902,12 @@
   </div>
 
   <div class="sync-status" id="sync-status">initializing...</div>
+
+  <!-- Daily Summary Bar（永遠顯示，不隨分頁切換） -->
+  <div class="daily-bar" id="daily-bar">
+    <span class="daily-bar-label" id="daily-bar-date">昨日</span>
+    <div class="daily-bar-items" id="daily-bar-items"></div>
+  </div>
 
   <!-- Tabs -->
   <div class="tabs">
@@ -1893,6 +1933,24 @@
     setSyncStatus('no token — click ⚙ to set');
     render();
   }
+
+  // ── 昨日工作重點（永遠顯示） ────────────────────────────────
+  async function loadDailySummary() {
+    try {
+      const r = await fetch('https://raw.githubusercontent.com/kuangame/todolist/main/daily_summary.json?_=' + Date.now());
+      if (!r.ok) return;
+      const data = await r.json();
+      const items = data.items || [];
+      if (!items.length) return;
+      document.getElementById('daily-bar-items').innerHTML =
+        items.map(item => `<span class="daily-bar-item">${item}</span>`).join('');
+      if (data.date) {
+        document.getElementById('daily-bar-date').textContent = data.date + ' 重點';
+      }
+      document.getElementById('daily-bar').style.display = 'flex';
+    } catch (e) { /* 靜默失敗 */ }
+  }
+  loadDailySummary();
 </script>
 </body>
 </html>
