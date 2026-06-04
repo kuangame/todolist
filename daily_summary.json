@@ -1,9 +1,10 @@
 {
-  "date": "2026-06-03",
+  "date": "2026-06-04",
   "items": [
-    "檢查 Discord 晨報 Calendar 權限 bug 的 error log",
-    "確認 LINE Bot 後台 config.json 有無異常更新",
-    "晨報系統穩定運作 33 秒完成",
-    "Dashboard 六 tab 正常運轉 國際 國內 分析版塊同步"
+    "Discord 晨報日曆權限 bug 待確認 明天查 error.log",
+    "LINE Bot 後台管理系統穩定運行 config.json GitHub 同步",
+    "Dashboard 六 tab 完整運作 晨報資料每小時更新",
+    "翻譯 App 與晨報系統都用 Anthropic API 穩定 33 秒完成",
+    "歐洲旅遊 2026 規劃中 待補充詳細行程"
   ]
 }
