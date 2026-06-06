@@ -1,10 +1,10 @@
 {
-  "date": "2026-06-05",
+  "date": "2026-06-06",
   "items": [
-    "Discord 晨報 Calendar 權限 bug 待確認，明天查 error.log 看有沒有 AppleScript 報錯",
-    "Dashboard 六 tab 架構完成，晨報子分頁已串接 JSON 資料",
-    "LINE Bot 後台管理功能上線，config.json GitHub 儲存流程建立",
-    "晨報系統穩定在 33 秒，改用 Anthropic API 直接呼叫運作良好",
-    "歐洲行 2026 計畫進行中，待補充景點和時程細節"
+    "檢查 Discord 晨報 Calendar 權限 bug，查看 discord-morning-error.log",
+    "確認 LINE Bot 後台 config.json 同步狀態，MiniMax M2.7 回應過濾正常",
+    "晨報系統運行穩定，Haiku API 33 秒完成，國內外新聞更新正常",
+    "Dashboard 六 tab 功能完整，交割計算機和晨報分頁正常讀取資料",
+    "翻譯 App 和歐洲旅行計畫進行中，待後續開發排期"
   ]
 }
