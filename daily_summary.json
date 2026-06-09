@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-08",
+  "date": "2026-06-09",
   "items": [
-    "Discord 晨報 Calendar 權限 bug 待查 檢查 discord-morning-error.log",
-    "Dashboard 六 tab 正常運作 晨報/交割/待辦清單都能同步",
-    "LINE Bot 客服系統穩定 Railway 部署無異常",
-    "翻譯 App 和早安晨報持續維護中 無重大問題"
+    "檢查 Discord 晨報 Calendar 權限 bug，查看 discord-morning-error.log",
+    "LINE Bot 管理後台持續優化，config.json 同步 GitHub",
+    "Dashboard 六 tab 功能穩定運行，晨報資料正常更新",
+    "翻譯 App 和歐洲旅遊專案準備中，待啟動"
   ]
 }
