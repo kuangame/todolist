@@ -1,6 +1,14 @@
 {
-  "fetched_at": "2026-06-10T23:37:58.278107",
+  "fetched_at": "2026-06-11T00:38:04.790181",
   "items": [
+    {
+      "title": "【4971 IET-KY】本公司有價證券近期多次達公布注意交易資訊標準， 故公告相關訊息，以利投資人區別暸解",
+      "summary": "",
+      "published": "06/10 23:41",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
     {
       "title": "【2897 王道銀行】公告本行2026年度5月份自結損益及每股淨值",
       "summary": "",
@@ -58,6 +66,14 @@
       "source": "mops"
     },
     {
+      "title": "新創科技巨頭將上市 標普500殖利率恐探新低",
+      "summary": "商傳媒｜方承業／綜合外電報導隨著人工智慧（AI）與太空探索等領域的新創公司陸續準備進入公開市場，美國標普500指數的股息殖利率（一年配發股息相對於股價的比率）預計將面臨進一步下探的壓力。目前標普500指數的股息殖利率已來到 1.1%，創下 19 世紀以來的歷史新低，而大型科技新創的加入恐讓情況更加嚴峻。 根據《The Motley Fool》報導，由特斯拉（Tesla）執行長伊隆·馬斯克（Elon Musk）創辦的SpaceX，規劃於本週四（6月12日）進行首次公開募股（IPO），目標籌資 750 億美元，公司估值達到 1.77 兆美元。AI 領域的 Anthropic 已於 6 月 1 日向",
+      "published": "06/10 16:18",
+      "link": "https://tw.stock.yahoo.com/news/%E6%96%B0%E5%89%B5%E7%A7%91%E6%8A%80%E5%B7%A8%E9%A0%AD%E5%B0%87%E4%B8%8A%E5%B8%82-%E6%A8%99%E6%99%AE500%E6%AE%96%E5%88%A9%E7%8E%87%E6%81%90%E6%8E%A2%E6%96%B0%E4%BD%8E-161824985.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "【1337 再生-KY】公告本公司115年05月份自結合併營收",
       "summary": "",
       "published": "06/10 16:17",
@@ -82,12 +98,36 @@
       "source": "mops"
     },
     {
+      "title": "台股跌完又漲戲碼重演？美國CPI開獎「夜盤瞬間翻紅」　專家：就等川普TACO了",
+      "summary": "美國勞工統計局今（10）日公布5月消費者物價指數（CPI），年增率4.2%，創下2023年4月以來最大漲幅，但仍符合市場預期，也讓台股夜盤瞬間翻漲。對此，財經作家狄驤指出，市場先喘口氣，「剩下就是看川普何時TACO，以及市場順利消化AI鬼故事。」美國5月CPI年增4.2%，重返4字頭，年增率超過4月的3.8%，創下逾3年來的新高；另外，剔除食品和能源的核心C......",
+      "published": "06/10 16:12",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E8%B7%8C%E5%AE%8C%E5%8F%88%E6%BC%B2%E6%88%B2%E7%A2%BC%E9%87%8D%E6%BC%94-%E7%BE%8E%E5%9C%8Bcpi%E9%96%8B%E7%8D%8E-%E5%A4%9C%E7%9B%A4%E7%9E%AC%E9%96%93%E7%BF%BB%E7%B4%85-%E5%B0%88%E5%AE%B6-%E5%B0%B1%E7%AD%89%E5%B7%9D%E6%99%AEtaco%E4%BA%86-161205136.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "樺漢公開收購德國子公司Kontron AG　整合全球業務",
+      "summary": "（中央社記者吳家豪台北10日電）工業電腦廠樺漢今天召開董事會，決議以每股23.5歐元（約新台幣859元）的現金價格公開收購德國子公司Kontron AG普通股。",
+      "published": "06/10 16:02",
+      "link": "https://tw.news.yahoo.com/%E6%A8%BA%E6%BC%A2%E5%85%AC%E9%96%8B%E6%94%B6%E8%B3%BC%E5%BE%B7%E5%9C%8B%E5%AD%90%E5%85%AC%E5%8F%B8kontron-ag-%E6%95%B4%E5%90%88%E5%85%A8%E7%90%83%E6%A5%AD%E5%8B%99-160208398.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "【6151 晉倫】公告本公司115年05月份之自結損益狀況",
       "summary": "",
       "published": "06/10 16:02",
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "先進製程根留台灣　台積電南科再擴廠",
+      "summary": "全球瘋搶台積電之際，台灣又替自己留下一張王牌！台積電與台南市政府完成南科特定區A區塊地上權簽約，22筆產業用地作為擴廠基地。隨著2奈米時代來臨，這筆土地開發案，被視為台積電持續加碼南科、先進製程根留台灣的重要訊號。 台積電在南科的版圖，再向…",
+      "published": "06/10 15:55",
+      "link": "https://tw.news.yahoo.com/%E5%85%88%E9%80%B2%E8%A3%BD%E7%A8%8B%E6%A0%B9%E7%95%99%E5%8F%B0%E7%81%A3-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E5%8D%97%E7%A7%91%E5%86%8D%E6%93%B4%E5%BB%A0-155418217.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "【6585 鼎基】本公司有價證券於集中交易市場達公布注意交易資訊 標準，故公布相關財務業務等重大訊息，以利投資人區別瞭解",
@@ -104,6 +144,30 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "台股「殺無赦」主因曝！專家揭週四是關鍵　看好這檔有望重返榮耀",
+      "summary": "台股10日遭遇沉重賣壓襲擊，加權指數終場重挫1478.90點，收在43225.54點，跌幅3.31%，創下史上第6大跌點。市場普遍將下跌原因歸咎於美國將公布消費者物價指數（CPI），然永誠國際投顧分析師李蜀芳直言，10日出現「殺無赦」行情，「不需為下跌找理由」，因CPI將公布是早就知道的事，下跌在於台股近期籌碼面出現問題、資金過度集中與投機，導致多殺多連鎖效應爆發，明（11日）將會是關鍵。",
+      "published": "06/10 15:31",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1-%E6%AE%BA%E7%84%A1%E8%B5%A6-%E4%B8%BB%E5%9B%A0%E6%9B%9D-%E5%B0%88%E5%AE%B6%E6%8F%AD%E9%80%B1%E5%9B%9B%E6%98%AF%E9%97%9C%E9%8D%B5-%E7%9C%8B%E5%A5%BD%E9%80%99%E6%AA%94%E6%9C%89%E6%9C%9B%E9%87%8D%E8%BF%94%E6%A6%AE%E8%80%80-153100751.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "神山變金山?傳銀行倒掛利率搶台積電3兆存款 央行也盯上",
+      "summary": "財經中心／葉為襄、宮仲毅 台北報導護國神山台積電不僅營收獲利高，現在因為滿手現金，光是在銀行存款就有三兆多元，也成為銀行拆款的對象，傳出有銀行向台積電招手，祭出存款利率比放款利率高的「倒掛」現象，讓央行總裁楊金龍都說，很納悶！",
+      "published": "06/10 15:28",
+      "link": "https://tw.stock.yahoo.com/news/%E7%A5%9E%E5%B1%B1%E8%AE%8A%E9%87%91%E5%B1%B1-%E5%82%B3%E9%8A%80%E8%A1%8C%E5%80%92%E6%8E%9B%E5%88%A9%E7%8E%87%E6%90%B6%E5%8F%B0%E7%A9%8D%E9%9B%BB3%E5%85%86%E5%AD%98%E6%AC%BE-%E5%A4%AE%E8%A1%8C%E4%B9%9F%E7%9B%AF%E4%B8%8A-152848491.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "元大看盤室／台股重挫1478點史上第六大！今晚美CPI是救世主還是最後一擊？",
+      "summary": "財經中心／綜合報導台股週三上演大怒神行情，加權指數重挫1478點、跌幅3.31%，收在43225點，創下史上第六大跌點，盤後成交量更衝上1.39兆元，市場恐慌氣氛濃厚。外資再度狂砍935億元，寫下史上第八大賣超紀錄，連五賣不停手；",
+      "published": "06/10 15:28",
+      "link": "https://tw.stock.yahoo.com/news/%E5%85%83%E5%A4%A7%E7%9C%8B%E7%9B%A4%E5%AE%A4-%E5%8F%B0%E8%82%A1%E9%87%8D%E6%8C%AB1478%E9%BB%9E%E5%8F%B2%E4%B8%8A%E7%AC%AC%E5%85%AD%E5%A4%A7-%E4%BB%8A%E6%99%9A%E7%BE%8Ecpi%E6%98%AF%E6%95%91%E4%B8%96%E4%B8%BB%E9%82%84%E6%98%AF%E6%9C%80%E5%BE%8C-%E6%93%8A-152838891.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "Palantir市值衝破3267億美元 高本益比能否撐起AI成長神話？",
@@ -240,22 +304,6 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
-    },
-    {
-      "title": "樺漢發重訊！財務長莊宗憲說明董事會重大決議",
-      "summary": "樺漢發重訊！財務長莊宗憲說明董事會重大決議",
-      "published": "06/10 13:35",
-      "link": "https://tw.news.yahoo.com/%E6%A8%BA%E6%BC%A2%E7%99%BC%E9%87%8D%E8%A8%8A-%E8%B2%A1%E5%8B%99%E9%95%B7%E8%8E%8A%E5%AE%97%E6%86%B2%E8%AA%AA%E6%98%8E%E8%91%A3%E4%BA%8B%E6%9C%83%E9%87%8D%E5%A4%A7%E6%B1%BA%E8%AD%B0-133500583.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "Google砸800億拚AI！「這4檔躺著賺」台積電也上榜",
-      "summary": "生活中心／周孟漢報導全球人工智慧（AI）基礎建設大戰進入白熱化，科技巨頭正瘋狂砸錢擴充運算能力！近日有外媒指出，Google 母公司 Alphabet 已獲得巴菲特旗下波克夏公司，高達 100 億美元的投資，未來將透過股權融資籌集 800 億美元衝刺 AI 設備，在這波資金狂潮下，全球半導體供應鏈將有「4 大贏家」直接受惠，除了穩坐霸主的輝達、博通之外，護國神山台積電以及今年狂飆 250％ 的黑馬大廠邁威爾（Marvell Technology）都將迎來長線大噴發。",
-      "published": "06/10 13:34",
-      "link": "https://tw.stock.yahoo.com/news/google%E7%A0%B8800%E5%84%84%E6%8B%9Aai-%E9%80%994%E6%AA%94%E8%BA%BA%E8%91%97%E8%B3%BA-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%B9%9F%E4%B8%8A%E6%A6%9C-133428924.html",
-      "is_revenue": false,
-      "source": "yahoo"
     }
   ]
 }
