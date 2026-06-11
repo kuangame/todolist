@@ -1,10 +1,8 @@
 {
-  "date": "2026-06-10",
+  "date": "2026-06-11",
   "items": [
-    "檢查 Discord 晨報 Calendar 權限 bug，查 error.log 確認是否有 AppleScript 錯誤",
-    "晨報系統穩定運行 33 秒完成，Anthropic API 運作正常",
-    "LINE Bot 客服後台功能完整，config.json 已上 GitHub",
-    "Dashboard 六個 tab 功能完善，本機改檔需推 GitHub 更新",
-    "歐洲旅行 2026 計畫進行中，記憶檔案待補充"
+    "待補充今日日誌內容",
+    "查看 Discord 晨報 calendar 權限 log",
+    "確認其他專案進度"
   ]
 }
