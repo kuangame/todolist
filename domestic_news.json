@@ -1,6 +1,22 @@
 {
-  "fetched_at": "2026-06-12T03:40:20.956094",
+  "fetched_at": "2026-06-12T04:40:26.224325",
   "items": [
+    {
+      "title": "50富豪排行》AI股盤據、張忠謀首次進前10名　金像電、台玻、致茂、信驊首次上榜",
+      "summary": "台股今年衝上4萬多點，多檔AI股老闆也因此首次進入台灣50富豪排行榜。",
+      "published": "06/11 20:15",
+      "link": "https://tw.news.yahoo.com/50%E5%AF%8C%E8%B1%AA%E6%8E%92%E8%A1%8C-ai%E8%82%A1%E7%9B%A4%E6%93%9A-%E5%BC%B5%E5%BF%A0%E8%AC%80%E9%A6%96%E6%AC%A1%E9%80%B2%E5%89%8D10%E5%90%8D-%E9%87%91%E5%83%8F%E9%9B%BB-%E5%8F%B0%E7%8E%BB-201539589.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "50富豪排行》日月光張虔生、張洪本成台灣首富　陳泰銘躍升第二名",
+      "summary": "今年的《富比士》台灣50大富豪排行榜，日月光張虔生、張洪本兄弟首次成為台灣首富...",
+      "published": "06/11 20:15",
+      "link": "https://tw.news.yahoo.com/50%E5%AF%8C%E8%B1%AA%E6%8E%92%E8%A1%8C-%E6%97%A5%E6%9C%88%E5%85%89%E5%BC%B5%E8%99%94%E7%94%9F-%E5%BC%B5%E6%B4%AA%E6%9C%AC%E6%88%90%E5%8F%B0%E7%81%A3%E9%A6%96%E5%AF%8C-%E9%99%B3%E6%B3%B0%E9%8A%98%E8%BA%8D%E5%8D%87%E7%AC%AC%E4%BA%8C%E5%90%8D-201501351.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
     {
       "title": "【2883 凱基金】公告本公司暨主要子公司115年5月份自結合併盈餘",
       "summary": "",
@@ -8,6 +24,14 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "5月台北股市大爆發　證交稅衝704億高鋒",
+      "summary": "股市交易熱絡，推升5月證交稅收衝破700億元，創歷年單月最高紀錄(圖/pexels)",
+      "published": "06/11 19:36",
+      "link": "https://tw.news.yahoo.com/5%E6%9C%88%E5%8F%B0%E5%8C%97%E8%82%A1%E5%B8%82%E5%A4%A7%E7%88%86%E7%99%BC-%E8%AD%89%E4%BA%A4%E7%A8%85%E8%A1%9D704%E5%84%84%E9%AB%98%E9%8B%92-193645799.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "熱門股／大場面今天來！　SpaceX上市進補22台股",
@@ -122,6 +146,14 @@
       "source": "yahoo"
     },
     {
+      "title": "豪宅市場不冷　傳港資有意布局信義計畫區",
+      "summary": "雖然房市因信用管制措施持續冷清，但台北豪宅市場近期仍陸續出現高總價交易，近期更傳出，有香港富豪看好台灣在AI產業鏈中的關鍵地位，正積極評估布局信義計畫區豪宅，為豪宅市場增添話題。",
+      "published": "06/11 16:18",
+      "link": "https://tw.news.yahoo.com/%E8%B1%AA%E5%AE%85%E5%B8%82%E5%A0%B4%E4%B8%8D%E5%86%B7-%E5%82%B3%E6%B8%AF%E8%B3%87%E6%9C%89%E6%84%8F%E5%B8%83%E5%B1%80%E4%BF%A1%E7%BE%A9%E8%A8%88%E7%95%AB%E5%8D%80-161800196.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "【2867 三商壽】三商美邦人壽公布115年5月自結損益",
       "summary": "",
       "published": "06/11 16:01",
@@ -230,30 +262,6 @@
       "summary": "台積電遭2家愛爾蘭專利授權公司提侵權訴訟，美共和黨議員致函ITC(美國國際貿易委員會)要求嚴格執法，最嚴重可禁止晶片進口。一位半導體分析師直指這就是典型「專利蟑螂」，就是「要錢」，沒有什麼政治陰謀。經濟部智慧財產局認為，面對專利蟑螂，通常除了「花錢了事」，也可提出「專利無效舉發」反制，對台積電有信心。",
       "published": "06/11 14:41",
       "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%BE%B5%E6%AC%8A%E6%A1%88%E7%96%91%E8%A2%AB%E5%B0%88%E5%88%A9%E8%9F%91%E8%9E%82%E5%92%AC%E4%B8%8A-%E6%99%BA%E6%85%A7%E5%B1%80%E8%AA%8D%E5%8F%AF%E6%8F%90%E5%B0%88%E5%88%A9%E7%84%A1%E6%95%88%E5%8F%8D%E5%88%B6-144157528.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "SpaceX上市引爆股價！「面板大廠」今狂漲8%國家隊出手降溫4050張　再調節聯電2.7萬張",
-      "summary": "[FTNN新聞網]記者王凱暄／綜合報導受美股四大指數全面收黑影響，台股加權指數今（11）日開低走低，盤中一度下挫至接近4萬1千點大關，隨後大幅度拉回，最終收4...",
-      "published": "06/11 14:30",
-      "link": "https://tw.stock.yahoo.com/news/spacex%E4%B8%8A%E5%B8%82%E5%BC%95%E7%88%86%E8%82%A1%E5%83%B9-%E9%9D%A2%E6%9D%BF%E5%A4%A7%E5%BB%A0-%E4%BB%8A%E7%8B%82%E6%BC%B28-%E5%9C%8B%E5%AE%B6%E9%9A%8A%E5%87%BA%E6%89%8B%E9%99%8D%E6%BA%AB4050%E5%BC%B5-%E5%86%8D%E8%AA%BF%E7%AF%80%E8%81%AF%E9%9B%BB2-143000827.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "OpenAI申請IPO估值破兆　最強AI上市潮來了",
-      "summary": "[NOWNEWS今日新聞]全球資本市場正在迎來一場前所未有的AI巨頭上市潮，而就在SpaceX將掛牌那斯達克之際，另一枚重磅炸彈也悄悄落下。OpenAI於6月8日正式對外宣布，已向美國證管會（SEC）...",
-      "published": "06/11 14:21",
-      "link": "https://tw.news.yahoo.com/openai%E7%94%B3%E8%AB%8Bipo%E4%BC%B0%E5%80%BC%E7%A0%B4%E5%85%86-%E6%9C%80%E5%BC%B7ai%E4%B8%8A%E5%B8%82%E6%BD%AE%E4%BE%86%E4%BA%86-142124221.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股暴跌後神V轉浮現「第二隻腳」？專家點名12檔AI績優股：趁殺低快上車",
-      "summary": "美伊再度爆發軍事衝突，疊加通膨數據因素，美股三大指數下跌，台股今（11）日開盤就暴跌逾1200點，盤中神V轉再度拉升，高低震盪達1456點，終場僅小跌76點，以43149點作收。對此，摩爾投顧分析師葉俊敏在直播中指出，台股技術面已與8日低點形成「雙腳打底」型態，融資浮額被迫出場，投資人可利用市場拉回，分批布局台積電、聯發科、南亞科 、華邦電、旺宏等12檔績優......",
-      "published": "06/11 14:19",
-      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E6%9A%B4%E8%B7%8C%E5%BE%8C%E7%A5%9Ev%E8%BD%89%E6%B5%AE%E7%8F%BE-%E7%AC%AC%E4%BA%8C%E9%9A%BB%E8%85%B3-%E5%B0%88%E5%AE%B6%E9%BB%9E%E5%90%8D12%E6%AA%94ai%E7%B8%BE%E5%84%AA%E8%82%A1-%E8%B6%81%E6%AE%BA%E4%BD%8E%E5%BF%AB%E4%B8%8A%E8%BB%8A-141905416.html",
       "is_revenue": false,
       "source": "yahoo"
     }
