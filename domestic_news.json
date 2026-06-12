@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-13T00:42:39.667004",
+  "fetched_at": "2026-06-13T01:42:45.583408",
   "items": [
     {
       "title": "【6474 華豫寧】本公司因有重大訊息待公布，經櫃買中心同意 自115年6月15日起暫停交易",
@@ -16,6 +16,14 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": false,
       "source": "mops"
+    },
+    {
+      "title": "1年翻逾2倍！它太猛了3個月報酬62％　法人曝真正主升段才剛開始",
+      "summary": "隨著6月Computex展落幕，輝達執行長黃仁勳、英特爾執行長陳立武、超微董事長蘇姿丰等多位半導體與AI巨頭齊聚台灣，為半導體、AI伺服器及相關零組件注入新一波成長動能。國泰投信台股研究團隊指出，AI需求強勁無虞，Google、META再度調高今年資本支出，支持輝達長期展望，也為台灣科技供應鏈再打強心針，台股投資價值倍增。",
+      "published": "06/12 17:07",
+      "link": "https://tw.news.yahoo.com/1%E5%B9%B4%E7%BF%BB%E9%80%BE2%E5%80%8D-%E5%AE%83%E5%A4%AA%E7%8C%9B%E4%BA%863%E5%80%8B%E6%9C%88%E5%A0%B1%E9%85%AC62-%E6%B3%95%E4%BA%BA%E6%9B%9D%E7%9C%9F%E6%AD%A3%E4%B8%BB%E5%8D%87%E6%AE%B5%E6%89%8D%E5%89%9B%E9%96%8B%E5%A7%8B-170700293.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "【8404 百和興業-KY】公告本公司115年5月份自結合併損益相關資訊",
@@ -40,6 +48,14 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "SpaceX開盤價150美元！一上市就躋身近2兆美元市值巨獸　IPO改寫華爾街紀錄",
+      "summary": "馬斯克的SpaceX正式登陸華爾街。SpaceX美東時間6月12日以股票代號SPCX掛牌上市。盤前首筆交易價每張169美元，正式開盤價則為150美元，不僅高於135美元的IPO發行價，也讓公司市值一舉逼近2兆美元大關，躍升美國市值第六大企業，超越Meta與特斯拉。這場募集750億美元資金的IPO，也正式寫下美國資本市場史上最大規模上市紀錄。",
+      "published": "06/12 16:13",
+      "link": "https://tw.news.yahoo.com/spacex%E9%96%8B%E7%9B%A4%E5%83%B9150%E7%BE%8E%E5%85%83-%E4%B8%8A%E5%B8%82%E5%B0%B1%E8%BA%8B%E8%BA%AB%E8%BF%912%E5%85%86%E7%BE%8E%E5%85%83%E5%B8%82%E5%80%BC%E5%B7%A8%E7%8D%B8-ipo%E6%94%B9%E5%AF%AB%E8%8F%AF%E7%88%BE%E8%A1%97%E7%B4%80%E9%8C%84-161300743.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "去年大賺300億元！凱基金豪發現金股利1元　股東回饋創近5年最佳",
@@ -174,30 +190,6 @@
       "summary": "股市大跌房價反會漲？ 他分析3情況 網看法兩極",
       "published": "06/12 14:40",
       "link": "https://tw.news.yahoo.com/%E8%82%A1%E5%B8%82%E5%A4%A7%E8%B7%8C%E6%88%BF%E5%83%B9%E5%8F%8D%E6%9C%83%E6%BC%B2-%E4%BB%96%E5%88%86%E6%9E%903%E6%83%85%E6%B3%81-%E7%B6%B2%E7%9C%8B%E6%B3%95%E5%85%A9%E6%A5%B5-144000865.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "SpaceX上市首日開盤價上看174美元！　較IPO發行價「大幅溢價 29%」",
-      "summary": "全球商業航天領頭羊 SpaceX（股票代碼：SPCX）於今日（12日）正式在納斯達克交易所掛牌上市，寫下全球資本市場的全新神話。本次 IPO 最終以每股 135 美元 定價，成功募集資金高達 750 億美元（若承銷商行使超額配售權，最高可達 860 億美元），一舉打破 2019 年沙特阿美創下的紀錄，正式加冕為人類歷史上規模最大的 IPO。以發行價計算，SpaceX 的初始上市估值高達 1.77",
-      "published": "06/12 14:31",
-      "link": "https://tw.news.yahoo.com/spacex%E4%B8%8A%E5%B8%82%E9%A6%96%E6%97%A5%E9%96%8B%E7%9B%A4%E5%83%B9%E4%B8%8A%E7%9C%8B174%E7%BE%8E%E5%85%83-%E8%BC%83ipo%E7%99%BC%E8%A1%8C%E5%83%B9-%E5%A4%A7%E5%B9%85%E6%BA%A2%E5%83%B9-29-143100547.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "前5月營收暴增152%！「這檔」搭上AI液冷列車　八大公股卻賣超1.55億元倒貨3.5千張",
-      "summary": "[FTNN新聞網]記者黃詩雯／綜合報導台股今（12）強勢衝高，加權指數收44169.04點，上漲1019.58點，漲幅2.36%，成交量達1.11兆元。觀察八大公股賣超個股方面，...",
-      "published": "06/12 14:30",
-      "link": "https://tw.stock.yahoo.com/news/%E5%89%8D5%E6%9C%88%E7%87%9F%E6%94%B6%E6%9A%B4%E5%A2%9E152-%E9%80%99%E6%AA%94-%E6%90%AD%E4%B8%8Aai%E6%B6%B2%E5%86%B7%E5%88%97%E8%BB%8A-%E5%85%AB%E5%A4%A7%E5%85%AC%E8%82%A1%E5%8D%BB%E8%B3%A3%E8%B6%851-55%E5%84%84%E5%85%83%E5%80%92%E8%B2%A83-143000679.html",
-      "is_revenue": true,
-      "source": "yahoo"
-    },
-    {
-      "title": "梅雨助力全台穩定供水到9月   第三季有變數不可大意",
-      "summary": "梅雨與西南氣流到今天進入第9天，全台主要水庫入帳逾4.6億噸水量。經濟部今(12日)召開水情會議，確認中北部水情更穩，南部也有幫助，即使未來不降雨，全台民生公共用水也可穩定供應到9月。",
-      "published": "06/12 14:27",
-      "link": "https://tw.stock.yahoo.com/news/%E6%A2%85%E9%9B%A8%E5%8A%A9%E5%8A%9B%E5%85%A8%E5%8F%B0%E7%A9%A9%E5%AE%9A%E4%BE%9B%E6%B0%B4%E5%88%B09%E6%9C%88-%E7%AC%AC%E4%B8%89%E5%AD%A3%E6%9C%89%E8%AE%8A%E6%95%B8%E4%B8%8D%E5%8F%AF%E5%A4%A7%E6%84%8F-142707786.html",
       "is_revenue": false,
       "source": "yahoo"
     },
