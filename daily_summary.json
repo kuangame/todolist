@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-12",
+  "date": "2026-06-13",
   "items": [
-    "Discord 晨報行事曆權限 bug 待確認，明天查 log 看有沒有 AppleScript error",
-    "翻譯 App 和 Dashboard 都正常運作中，沒有新需求",
-    "LINE Bot 客服系統穩定，管理後台功能完整",
-    "晨報系統用 Haiku API 穩定 33 秒完成，無異常"
+    "Discord 晨報行事曆權限 bug 待確認，明早檢查 error log",
+    "翻譯 App 和 Dashboard 都在迭代中，晨報系統穩定運作",
+    "LINE Bot 客服和歐洲行計畫進行中",
+    "記憶系統和 Skills 筆記已整理完備"
   ]
 }
