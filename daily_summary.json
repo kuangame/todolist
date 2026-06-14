@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-13",
+  "date": "2026-06-14",
   "items": [
-    "Discord 晨報行事曆權限 bug 待確認，明早檢查 error log",
-    "翻譯 App 和 Dashboard 都在迭代中，晨報系統穩定運作",
-    "LINE Bot 客服和歐洲行計畫進行中",
-    "記憶系統和 Skills 筆記已整理完備"
+    "Discord 晨報行事曆權限 bug 待確認，明早查 error log",
+    "Dashboard 六 tab 運作正常，晨報/交割/國際新聞都在線",
+    "LINE Bot 客服穩定運行，後台管理及 config 同步 GitHub",
+    "翻譯 App 和歐洲旅行計畫持續進行中"
   ]
 }
