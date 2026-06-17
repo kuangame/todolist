@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-16",
+  "date": "2026-06-17",
   "items": [
-    "檢查 Discord 晨報 Calendar 權限 bug，查 discord-morning-error.log 有無 AppleScript 錯誤",
-    "Dashboard 晨報四子分頁確認運作正常，國內新聞時間戳+超連結無誤",
-    "LINE Bot 後台 config.json 存 GitHub，MiniMax M2.7 think 標籤過濾無問題",
-    "翻譯 App 文字+拍照翻譯功能在 Vercel 穩定部署中"
+    "Discord 晨報行事曆權限 bug 待確認，明天檢查 error.log",
+    "翻譯 App 和 Dashboard 持續維護中，本機改檔需推 GitHub",
+    "晨報系統穩定運行，Haiku API 33 秒完成",
+    "LINE Bot 客服和交割計算機正常運作，無待辦事項"
   ]
 }
