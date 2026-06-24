@@ -1208,13 +1208,11 @@
       </div>
       <div class="export-batch">
         <input class="inp-code"  type="text"   id="batch-code"  placeholder="代號" maxlength="6" />
-        <input class="inp-name"  type="text"   id="batch-name"  placeholder="股名(選填)" maxlength="20" />
         <input class="inp-qty"   type="number" id="batch-qty"   placeholder="張數" min="1" />
         <input class="inp-count" type="number" id="batch-count" placeholder="筆數" value="1" min="1" max="99" />
         <button class="btn-export-add" onclick="exportBatchAdd()">＋ 加入</button>
         <div class="export-batch-sep"></div>
-        <button class="btn-export-csv" onclick="exportCSV()">匯出 CSV</button>
-        <button class="btn-export-xml" onclick="exportXML()">匯出 XML</button>
+        <button class="btn-export-csv" onclick="exportAll()">一鍵匯出</button>
       </div>
     </div>
   </div>
@@ -1742,16 +1740,14 @@
   // ── 委託匯出 ──────────────────────────────────────────────
   const EXPORT_FIXED = { acct: '984K-1621539', dir: 'B', ord: 'ROD', type: '普通現股', price: '漲停' };
 
-  function exportAddRow(code, name, qty) {
+  function exportAddRow(code, qty) {
     const container = document.getElementById('export-rows');
     const row = document.createElement('div');
     row.className = 'export-row';
     row.dataset.code = code;
-    row.dataset.name = name;
     row.dataset.qty  = qty;
-    const label = name ? `${name} ${code}` : code;
     row.innerHTML = `
-      <span class="row-info">${label}</span>
+      <span class="row-info">${code}</span>
       <span class="row-qty">${qty}張</span>
       <button class="btn-del" onclick="this.closest('.export-row').remove()">✕</button>`;
     container.appendChild(row);
@@ -1759,11 +1755,10 @@
 
   function exportBatchAdd() {
     const code  = document.getElementById('batch-code').value.trim();
-    const name  = document.getElementById('batch-name').value.trim();
     const qty   = parseInt(document.getElementById('batch-qty').value, 10);
     const count = Math.max(1, parseInt(document.getElementById('batch-count').value, 10) || 1);
     if (!code || !qty || qty < 1) { alert('請填代號和張數'); return; }
-    for (let i = 0; i < count; i++) exportAddRow(code, name, qty);
+    for (let i = 0; i < count; i++) exportAddRow(code, qty);
     document.getElementById('batch-count').value = '1';
     document.getElementById('batch-code').focus();
   }
@@ -1801,12 +1796,10 @@
     const records = [];
     rows.forEach(row => {
       const code   = row.dataset.code;
-      const name   = row.dataset.name;
       const qty    = parseInt(row.dataset.qty, 10);
       const shares = qty * 1000;
       const dtid   = genDateTimeID();
-      const xmlName = name ? `${name}(${code})` : `(${code})`;
-      records.push(`    <Record DateTimeID="${dtid}" IsSelected="True" OrderKind="0" OrderType="0" BS="B" Symbol="${code}" Name="${xmlName}" LastPrice="5 200" OQty="${shares}" OPrc="200" OPrcPoint="9" Cond="R" Keyin="False" KeyinQty="False" SpreadQty="499" />`);
+      records.push(`    <Record DateTimeID="${dtid}" IsSelected="True" OrderKind="0" OrderType="0" BS="B" Symbol="${code}" Name="${code}" LastPrice="5 200" OQty="${shares}" OPrc="200" OPrcPoint="9" Cond="R" Keyin="False" KeyinQty="False" SpreadQty="499" />`);
     });
     const xml = `<OrderTemporary>\n  <OrderRecord_STOCK>\n${records.join('\n')}\n  </OrderRecord_STOCK>\n</OrderTemporary>`;
     const blob = new Blob([xml], { type: 'text/xml;charset=utf-8;' });
@@ -1817,42 +1810,16 @@
     URL.revokeObjectURL(url);
   }
 
-  ['batch-code','batch-name','batch-qty','batch-count'].forEach(id => {
+  ['batch-code','batch-qty','batch-count'].forEach(id => {
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
   });
 
-  // 股名自動帶入
-  let _stockMap = null;
-  async function loadStockMap() {
-    if (_stockMap) return _stockMap;
-    _stockMap = new Map();
-    const [tse, otc] = await Promise.allSettled([
-      fetch('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL').then(r => r.json()),
-      fetch('https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes').then(r => r.json())
-    ]);
-    if (tse.status === 'fulfilled' && Array.isArray(tse.value))
-      tse.value.forEach(s => s.Code && s.Name && _stockMap.set(s.Code, s.Name));
-    if (otc.status === 'fulfilled' && Array.isArray(otc.value))
-      otc.value.forEach(s => {
-        const c = s.SecuritiesCompanyCode || s.Code;
-        const n = s.CompanyName || s.Name;
-        if (c && n) _stockMap.set(c, n);
-      });
-    return _stockMap;
+  function exportAll() {
+    const rows = document.querySelectorAll('#export-rows .export-row');
+    if (!rows.length) { alert('請先加入股票'); return; }
+    exportCSV();
+    exportXML();
   }
-  loadStockMap(); // 預載
-  let _nameTimer = null;
-  document.getElementById('batch-code').addEventListener('input', function() {
-    const code = this.value.trim();
-    clearTimeout(_nameTimer);
-    if (code.length < 4) return;
-    _nameTimer = setTimeout(async () => {
-      const inp = document.getElementById('batch-name');
-      if (inp.value) return;
-      const m = await loadStockMap();
-      if (m.has(code)) inp.value = m.get(code);
-    }, 300);
-  });
 
   // ── 晨報 ──────────────────────────────────────────────────
   function mdToHtml(md) {
