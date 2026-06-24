@@ -435,6 +435,80 @@
     }
     .btn-reset:hover { border-color: var(--neg); color: var(--neg); }
 
+    /* ── 委託匯出 ────────────────────────────── */
+    .export-section {
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .export-section h4 {
+      font-family: var(--ui);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 12px 0;
+    }
+    .export-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .export-row input {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-1);
+      padding: 6px 10px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .export-row input:focus { border-color: var(--accent); }
+    .export-row .inp-code { width: 80px; }
+    .export-row .inp-qty  { width: 64px; }
+    .export-row .btn-del {
+      background: transparent;
+      border: none;
+      color: var(--text-3);
+      cursor: pointer;
+      font-size: 15px;
+      padding: 2px 4px;
+      line-height: 1;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+    .export-row .btn-del:hover { color: var(--neg); }
+    .export-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .btn-export-add, .btn-export-csv {
+      font-family: var(--ui);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-export-add {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .btn-export-add:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-export-csv {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-export-csv:hover { background: var(--accent); color: #000; }
+
     /* ── Modals ──────────────────────────────── */
     .modal-overlay {
       display: none;
@@ -1097,6 +1171,18 @@
     </div>
 
     <button class="btn-reset" onclick="calcReset()">清除全部</button>
+
+    <!-- 委託匯出 -->
+    <div class="export-section">
+      <h4>委託匯出</h4>
+      <div id="export-rows">
+        <!-- 由 JS 動態產生 -->
+      </div>
+      <div class="export-actions">
+        <button class="btn-export-add" onclick="exportAddRow()">＋ 新增</button>
+        <button class="btn-export-csv" onclick="exportCSV()">匯出 CSV</button>
+      </div>
+    </div>
   </div>
 
   <!-- 股票 Tab -->
@@ -1618,6 +1704,48 @@
     buildCalcRows();
     calcRecalc();
   }
+
+  // ── 委託匯出 ──────────────────────────────────────────────
+  const EXPORT_FIXED = { acct: '984K-1621539', dir: 'B', ord: 'ROD', type: '普通現股', price: '漲停' };
+
+  function exportAddRow(code = '', qty = '') {
+    const container = document.getElementById('export-rows');
+    const idx = Date.now();
+    const row = document.createElement('div');
+    row.className = 'export-row';
+    row.dataset.idx = idx;
+    row.innerHTML = `
+      <input class="inp-code" type="text" placeholder="代號" value="${code}" maxlength="6" />
+      <input class="inp-qty"  type="number" placeholder="張數" value="${qty}" min="1" />
+      <button class="btn-del" onclick="this.closest('.export-row').remove()">✕</button>`;
+    container.appendChild(row);
+    row.querySelector('.inp-code').focus();
+  }
+
+  function exportCSV() {
+    const rows = document.querySelectorAll('#export-rows .export-row');
+    if (!rows.length) { alert('請先新增股票'); return; }
+    const lines = [];
+    let hasError = false;
+    rows.forEach(row => {
+      const code = row.querySelector('.inp-code').value.trim();
+      const qty  = parseInt(row.querySelector('.inp-qty').value, 10);
+      if (!code || !qty || qty < 1) { hasError = true; return; }
+      const shares = qty * 1000;
+      lines.push([EXPORT_FIXED.acct, code, EXPORT_FIXED.dir, EXPORT_FIXED.ord, EXPORT_FIXED.type, shares, EXPORT_FIXED.price].join(','));
+    });
+    if (hasError) { alert('部分列缺少代號或張數，請補齊後再匯出'); return; }
+    if (!lines.length) return;
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+    a.href = url; a.download = `委託_${date}.csv`; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // 預設帶一列空白
+  exportAddRow();
 
   // ── 晨報 ──────────────────────────────────────────────────
   function mdToHtml(md) {
