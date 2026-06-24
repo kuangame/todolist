@@ -482,10 +482,19 @@
       transition: color 0.15s;
     }
     .export-row .btn-del:hover { color: var(--neg); }
-    .export-actions {
+    .export-batch {
       display: flex;
       gap: 8px;
+      align-items: center;
       margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .export-batch .inp-count { width: 52px; }
+    .export-batch-sep {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+      margin: 0 4px;
     }
     .btn-export-add, .btn-export-csv {
       font-family: var(--ui);
@@ -1178,8 +1187,12 @@
       <div id="export-rows">
         <!-- 由 JS 動態產生 -->
       </div>
-      <div class="export-actions">
-        <button class="btn-export-add" onclick="exportAddRow()">＋ 新增</button>
+      <div class="export-batch">
+        <input class="inp-code" type="text" id="batch-code" placeholder="代號" maxlength="6" />
+        <input class="inp-qty"  type="number" id="batch-qty"  placeholder="張數" min="1" />
+        <input class="inp-count" type="number" id="batch-count" placeholder="筆數" value="1" min="1" max="99" />
+        <button class="btn-export-add" onclick="exportBatchAdd()">＋ 加入</button>
+        <div class="export-batch-sep"></div>
         <button class="btn-export-csv" onclick="exportCSV()">匯出 CSV</button>
       </div>
     </div>
@@ -1708,18 +1721,25 @@
   // ── 委託匯出 ──────────────────────────────────────────────
   const EXPORT_FIXED = { acct: '984K-1621539', dir: 'B', ord: 'ROD', type: '普通現股', price: '漲停' };
 
-  function exportAddRow(code = '', qty = '') {
+  function exportAddRow(code, qty) {
     const container = document.getElementById('export-rows');
-    const idx = Date.now();
     const row = document.createElement('div');
     row.className = 'export-row';
-    row.dataset.idx = idx;
     row.innerHTML = `
-      <input class="inp-code" type="text" placeholder="代號" value="${code}" maxlength="6" />
-      <input class="inp-qty"  type="number" placeholder="張數" value="${qty}" min="1" />
+      <input class="inp-code" type="text" value="${code}" maxlength="6" readonly style="color:var(--text-2);" />
+      <input class="inp-qty"  type="number" value="${qty}" min="1" readonly style="color:var(--text-2);" />
       <button class="btn-del" onclick="this.closest('.export-row').remove()">✕</button>`;
     container.appendChild(row);
-    row.querySelector('.inp-code').focus();
+  }
+
+  function exportBatchAdd() {
+    const code  = document.getElementById('batch-code').value.trim();
+    const qty   = parseInt(document.getElementById('batch-qty').value, 10);
+    const count = Math.max(1, parseInt(document.getElementById('batch-count').value, 10) || 1);
+    if (!code || !qty || qty < 1) { alert('請填代號和張數'); return; }
+    for (let i = 0; i < count; i++) exportAddRow(code, qty);
+    document.getElementById('batch-count').value = '1';
+    document.getElementById('batch-code').focus();
   }
 
   function exportCSV() {
@@ -1744,8 +1764,9 @@
     URL.revokeObjectURL(url);
   }
 
-  // 預設帶一列空白
-  exportAddRow();
+  document.getElementById('batch-code').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
+  document.getElementById('batch-qty').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
+  document.getElementById('batch-count').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
 
   // ── 晨報 ──────────────────────────────────────────────────
   function mdToHtml(md) {
