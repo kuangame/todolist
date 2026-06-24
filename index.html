@@ -456,7 +456,19 @@
       align-items: center;
       margin-bottom: 8px;
     }
-    .export-row input {
+    .export-row .row-info {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-2);
+      min-width: 100px;
+    }
+    .export-row .row-qty {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-3);
+      min-width: 36px;
+    }
+    .export-batch input {
       font-family: var(--mono);
       font-size: 13px;
       background: var(--surface-2);
@@ -467,9 +479,10 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .export-row input:focus { border-color: var(--accent); }
-    .export-row .inp-code { width: 80px; }
-    .export-row .inp-qty  { width: 64px; }
+    .export-batch input:focus { border-color: var(--accent); }
+    .export-batch .inp-code { width: 72px; }
+    .export-batch .inp-name { width: 88px; }
+    .export-batch .inp-qty  { width: 60px; }
     .export-row .btn-del {
       background: transparent;
       border: none;
@@ -496,7 +509,7 @@
       background: var(--border);
       margin: 0 4px;
     }
-    .btn-export-add, .btn-export-csv {
+    .btn-export-add, .btn-export-csv, .btn-export-xml {
       font-family: var(--ui);
       font-size: 12px;
       font-weight: 600;
@@ -517,6 +530,12 @@
       color: var(--accent);
     }
     .btn-export-csv:hover { background: var(--accent); color: #000; }
+    .btn-export-xml {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .btn-export-xml:hover { border-color: var(--pos, #00c853); color: var(--pos, #00c853); }
 
     /* ── Modals ──────────────────────────────── */
     .modal-overlay {
@@ -1188,12 +1207,14 @@
         <!-- 由 JS 動態產生 -->
       </div>
       <div class="export-batch">
-        <input class="inp-code" type="text" id="batch-code" placeholder="代號" maxlength="6" />
-        <input class="inp-qty"  type="number" id="batch-qty"  placeholder="張數" min="1" />
+        <input class="inp-code"  type="text"   id="batch-code"  placeholder="代號" maxlength="6" />
+        <input class="inp-name"  type="text"   id="batch-name"  placeholder="股名(選填)" maxlength="20" />
+        <input class="inp-qty"   type="number" id="batch-qty"   placeholder="張數" min="1" />
         <input class="inp-count" type="number" id="batch-count" placeholder="筆數" value="1" min="1" max="99" />
         <button class="btn-export-add" onclick="exportBatchAdd()">＋ 加入</button>
         <div class="export-batch-sep"></div>
         <button class="btn-export-csv" onclick="exportCSV()">匯出 CSV</button>
+        <button class="btn-export-xml" onclick="exportXML()">匯出 XML</button>
       </div>
     </div>
   </div>
@@ -1721,40 +1742,42 @@
   // ── 委託匯出 ──────────────────────────────────────────────
   const EXPORT_FIXED = { acct: '984K-1621539', dir: 'B', ord: 'ROD', type: '普通現股', price: '漲停' };
 
-  function exportAddRow(code, qty) {
+  function exportAddRow(code, name, qty) {
     const container = document.getElementById('export-rows');
     const row = document.createElement('div');
     row.className = 'export-row';
+    row.dataset.code = code;
+    row.dataset.name = name;
+    row.dataset.qty  = qty;
+    const label = name ? `${name} ${code}` : code;
     row.innerHTML = `
-      <input class="inp-code" type="text" value="${code}" maxlength="6" readonly style="color:var(--text-2);" />
-      <input class="inp-qty"  type="number" value="${qty}" min="1" readonly style="color:var(--text-2);" />
+      <span class="row-info">${label}</span>
+      <span class="row-qty">${qty}張</span>
       <button class="btn-del" onclick="this.closest('.export-row').remove()">✕</button>`;
     container.appendChild(row);
   }
 
   function exportBatchAdd() {
     const code  = document.getElementById('batch-code').value.trim();
+    const name  = document.getElementById('batch-name').value.trim();
     const qty   = parseInt(document.getElementById('batch-qty').value, 10);
     const count = Math.max(1, parseInt(document.getElementById('batch-count').value, 10) || 1);
     if (!code || !qty || qty < 1) { alert('請填代號和張數'); return; }
-    for (let i = 0; i < count; i++) exportAddRow(code, qty);
+    for (let i = 0; i < count; i++) exportAddRow(code, name, qty);
     document.getElementById('batch-count').value = '1';
     document.getElementById('batch-code').focus();
   }
 
   function exportCSV() {
     const rows = document.querySelectorAll('#export-rows .export-row');
-    if (!rows.length) { alert('請先新增股票'); return; }
+    if (!rows.length) { alert('請先加入股票'); return; }
     const lines = [];
-    let hasError = false;
     rows.forEach(row => {
-      const code = row.querySelector('.inp-code').value.trim();
-      const qty  = parseInt(row.querySelector('.inp-qty').value, 10);
-      if (!code || !qty || qty < 1) { hasError = true; return; }
+      const code = row.dataset.code;
+      const qty  = parseInt(row.dataset.qty, 10);
       const shares = qty * 1000;
       lines.push([EXPORT_FIXED.acct, code, EXPORT_FIXED.dir, EXPORT_FIXED.ord, EXPORT_FIXED.type, shares, EXPORT_FIXED.price].join(','));
     });
-    if (hasError) { alert('部分列缺少代號或張數，請補齊後再匯出'); return; }
     if (!lines.length) return;
     const blob = new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
     const url  = URL.createObjectURL(blob);
@@ -1764,9 +1787,39 @@
     URL.revokeObjectURL(url);
   }
 
-  document.getElementById('batch-code').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
-  document.getElementById('batch-qty').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
-  document.getElementById('batch-count').addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
+  function genDateTimeID() {
+    const n = new Date();
+    const p = (v, l = 2) => String(v).padStart(l, '0');
+    const ts = `${n.getFullYear()}${p(n.getMonth()+1)}${p(n.getDate())}${p(n.getHours())}${p(n.getMinutes())}${p(n.getSeconds())}${p(n.getMilliseconds(), 3)}`;
+    const hash = Math.floor(Math.random() * 0xFFFFF).toString(16).padStart(5, '0');
+    return `${ts}-[${hash}]`;
+  }
+
+  function exportXML() {
+    const rows = document.querySelectorAll('#export-rows .export-row');
+    if (!rows.length) { alert('請先加入股票'); return; }
+    const records = [];
+    rows.forEach(row => {
+      const code   = row.dataset.code;
+      const name   = row.dataset.name;
+      const qty    = parseInt(row.dataset.qty, 10);
+      const shares = qty * 1000;
+      const dtid   = genDateTimeID();
+      const xmlName = name ? `${name}(${code})` : `(${code})`;
+      records.push(`    <Record DateTimeID="${dtid}" IsSelected="True" OrderKind="0" OrderType="0" BS="B" Symbol="${code}" Name="${xmlName}" LastPrice="5 200" OQty="${shares}" OPrc="200" OPrcPoint="9" Cond="R" Keyin="False" KeyinQty="False" SpreadQty="499" />`);
+    });
+    const xml = `<OrderTemporary>\n  <OrderRecord_STOCK>\n${records.join('\n')}\n  </OrderRecord_STOCK>\n</OrderTemporary>`;
+    const blob = new Blob([xml], { type: 'text/xml;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+    a.href = url; a.download = `委託_${date}.xml`; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  ['batch-code','batch-name','batch-qty','batch-count'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
+  });
 
   // ── 晨報 ──────────────────────────────────────────────────
   function mdToHtml(md) {
