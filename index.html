@@ -1821,6 +1821,39 @@
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') exportBatchAdd(); });
   });
 
+  // 股名自動帶入
+  let _stockMap = null;
+  async function loadStockMap() {
+    if (_stockMap) return _stockMap;
+    _stockMap = new Map();
+    const [tse, otc] = await Promise.allSettled([
+      fetch('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL').then(r => r.json()),
+      fetch('https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes').then(r => r.json())
+    ]);
+    if (tse.status === 'fulfilled' && Array.isArray(tse.value))
+      tse.value.forEach(s => s.Code && s.Name && _stockMap.set(s.Code, s.Name));
+    if (otc.status === 'fulfilled' && Array.isArray(otc.value))
+      otc.value.forEach(s => {
+        const c = s.SecuritiesCompanyCode || s.Code;
+        const n = s.CompanyName || s.Name;
+        if (c && n) _stockMap.set(c, n);
+      });
+    return _stockMap;
+  }
+  loadStockMap(); // 預載
+  let _nameTimer = null;
+  document.getElementById('batch-code').addEventListener('input', function() {
+    const code = this.value.trim();
+    clearTimeout(_nameTimer);
+    if (code.length < 4) return;
+    _nameTimer = setTimeout(async () => {
+      const inp = document.getElementById('batch-name');
+      if (inp.value) return;
+      const m = await loadStockMap();
+      if (m.has(code)) inp.value = m.get(code);
+    }, 300);
+  });
+
   // ── 晨報 ──────────────────────────────────────────────────
   function mdToHtml(md) {
     return md
