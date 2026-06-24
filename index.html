@@ -1819,6 +1819,7 @@
     if (!rows.length) { alert('請先加入股票'); return; }
     exportCSV();
     exportXML();
+    document.getElementById('export-rows').innerHTML = '';
   }
 
   // ── 晨報 ──────────────────────────────────────────────────
