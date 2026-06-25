@@ -1,6 +1,9 @@
 {
-  "date": "2026-06-24",
+  "date": "2026-06-25",
   "items": [
-    "2026-06-24 工作摘要生成失敗"
+    "檢查 Discord 晨報 Calendar 權限 bug，查看 discord-morning-error.log",
+    "Dashboard 交割計算機確認三帳戶 T+1/T+2 滾動邏輯正常",
+    "LINE Bot 管理後台 config.json 與 GitHub 同步狀態檢查",
+    "翻譯 App 拍照功能測試，確保 Vercel 部署穩定"
   ]
 }
