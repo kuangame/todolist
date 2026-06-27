@@ -1,9 +1,10 @@
 {
-  "date": "2026-06-26",
+  "date": "2026-06-27",
   "items": [
-    "Discord 晨報 Calendar 權限 bug 待確認，明天檢查 error log",
-    "Dashboard 七 tab 架構完成，晨報/交割/股票/產業地圖功能中",
-    "LINE Bot 客服穩定運作，管理後台 /admin 已上線",
-    "晨報系統改用 Anthropic API Haiku，33 秒內完成"
+    "檢查 Discord 晨報 Calendar 權限 bug，查看 discord-morning-error.log",
+    "Dashboard 交割計算機驗證三帳戶 T+1/T+2 滾動邏輯是否正確",
+    "晨報系統用 Anthropic API 穩定執行中，維持 33 秒完成目標",
+    "LINE Bot 後台 config.json 同步 GitHub，確保管理功能正常",
+    "翻譯 App 和歐洲旅遊規劃持續進行中"
   ]
 }
