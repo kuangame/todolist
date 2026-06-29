@@ -1,10 +1,9 @@
 {
-  "date": "2026-06-28",
+  "date": "2026-06-29",
   "items": [
-    "Discord 晨報 Calendar 權限 bug 待查 ~/scripts/discord-morning-error.log",
-    "Dashboard 七 tab 佈局穩定 交割/晨報/股票/搜尋/產業地圖/操作筆記都就位",
-    "晨報系統用 Anthropic API 改善 33 秒完成穩定運作",
-    "LINE Bot 客服後台 /admin 已實裝 config.json GitHub 同步",
-    "翻譯 App 和歐洲旅遊計畫待啟動"
+    "檢查 Discord 晨報 Calendar 權限 bug，查看 discord-morning-error.log",
+    "確認 LINE Bot 後台管理功能正常，config.json GitHub 同步",
+    "Dashboard 7 tab 運行狀態檢查，特別是交割計算機和晨報模組",
+    "翻譯網頁 App 和產業地圖 iframe 載入情況驗證"
   ]
 }
