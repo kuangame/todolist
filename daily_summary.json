@@ -1,9 +1,10 @@
 {
-  "date": "2026-07-01",
+  "date": "2026-07-02",
   "items": [
-    "Discord 晨報行事曆權限 bug 待確認，明早查 error.log",
-    "Dashboard 七個 tab 功能完整，操作筆記功能正式運作",
-    "LINE Bot 客服穩定運行，後台管理系統已上線",
-    "翻譯 App 與晨報系統各自穩定，暫無新需求"
+    "檢查 Discord 晨報 Calendar 權限 bug，確認 launchd TCC 是否擋掉行事曆存取",
+    "確認晨報系統穩定性，Haiku API 33 秒完成",
+    "Dashboard 七 tab 運作正常，交割機/晨報/股票/搜尋/產業地圖/操作筆記都在線",
+    "LINE Bot 客服系統穩定運作中，Railway 自動部署無異常",
+    "翻譯 App 與 Discord 早安晨報都正常進行中，無待修復項目"
   ]
 }
