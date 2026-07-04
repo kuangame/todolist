@@ -1,9 +1,10 @@
 {
-  "date": "2026-07-03",
+  "date": "2026-07-04",
   "items": [
-    "查看 Discord 晨報 Calendar 權限 debug log，確認 launchd TCC 問題是否已解決",
-    "檢查晨報系統 claude-haiku API 呼叫穩定性，目標 33 秒內完成",
-    "LINE Bot 管理後台 config.json 同步狀態，確保 Railway 部署無誤",
-    "Dashboard 操作筆記功能測試，JSON 存檔 + MD 推 GitHub 流程確認"
+    "Discord 晨報行事曆權限 bug 待確認，明早檢查 error log",
+    "Dashboard 七個 tab 功能完整運作中，交割計算機正常",
+    "晨報系統用 Anthropic API 穩定 33 秒完成，無異常",
+    "LINE Bot 客服部署 Railway 穩定，管理後台正常",
+    "翻譯 App 和歐洲旅遊專案持續進行中"
   ]
 }
