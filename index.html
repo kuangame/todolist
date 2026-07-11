@@ -8,18 +8,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #060a12;
-      --surface: #0c1420;
-      --surface-2: #101c2e;
-      --surface-3: #152234;
-      --border: #243852;
-      --border-dim: #192d44;
-      --accent: #00d4aa;
-      --accent-dim: rgba(0,212,170,0.08);
-      --accent-glow: rgba(0,212,170,0.2);
-      --text: #eaf2fc;
-      --text-2: #a8c0d6;
-      --text-3: #6a8faa;
+      --bg: #05060b;
+      --surface: rgba(140,150,255,0.045);
+      --surface-2: rgba(140,150,255,0.07);
+      --surface-3: rgba(140,150,255,0.12);
+      --border: rgba(255,255,255,0.10);
+      --border-dim: rgba(255,255,255,0.055);
+      --accent: #8b93ff;
+      --accent-dim: rgba(139,147,255,0.10);
+      --accent-glow: rgba(139,147,255,0.30);
+      --text: #eef1fb;
+      --text-2: #b3bdd6;
+      --text-3: #7480a0;
       --pos: #2ee88a;
       --neg: #f55d6b;
       --warn: #f7b731;
@@ -28,8 +28,8 @@
       --pri-3: #2ee88a;
       --mono: 'Fira Code', 'SF Mono', monospace;
       --ui: 'Syne', -apple-system, sans-serif;
-      --radius: 10px;
-      --radius-lg: 14px;
+      --radius: 12px;
+      --radius-lg: 16px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,17 +37,35 @@
     body {
       font-family: var(--ui);
       font-size: 15px;
-      background-color: var(--bg);
-      background-image:
-        linear-gradient(rgba(0,212,170,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,170,0.02) 1px, transparent 1px);
-      background-size: 32px 32px;
+      background: linear-gradient(160deg, #0a0a12 0%, #050509 55%, #020203 100%) fixed;
       color: var(--text);
       min-height: 100vh;
       padding: 28px 16px 60px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1000px; margin: 0 auto; }
+    /* ── 電影感環境光暈 ──────────────────────── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before {
+      width: 480px; height: 480px;
+      background: rgba(99,102,241,0.16);
+      top: -120px; left: -100px;
+    }
+    body::after {
+      width: 420px; height: 420px;
+      background: rgba(139,92,246,0.13);
+      bottom: -80px; right: -90px;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
 
     /* ── Header ─────────────────────────────── */
     .header {
@@ -68,7 +86,7 @@
       color: var(--text);
     }
 
-    .header h1 span.accent { color: var(--accent); }
+    .header h1 span.accent { color: var(--accent); text-shadow: 0 0 14px var(--accent-glow); }
 
     .header-ver {
       font-family: var(--mono);
@@ -149,6 +167,13 @@
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
+    }
+
+    /* ── 霧面玻璃質感（含 Safari 前綴） ────────── */
+    .tabs, .card-base, .add-area {
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      backdrop-filter: blur(18px) saturate(130%);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     }
 
     /* ── PROJECT ─────────────────────────────── */
