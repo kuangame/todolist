@@ -1,77 +1,125 @@
 {
-  "fetched_at": "2026-07-11T15:39:55.682237",
+  "fetched_at": "2026-07-11T16:18:00.367740+08:00",
   "items": [
     {
-      "title": "AI需求帶旺宏碁！第二季營收852.96億元創13年同期新高",
-      "summary": "【記者趙筱文／台北報導】宏碁公布最新營運成績，6月合併營收達278.18億元，月增6.3%；第二季自結合併營收852.96億元，年增28.2%，創下13年來同期新高。累計今年上半年合併營收為1577.27億元，較去年同期成長23.3%，在AI應用、商用產品與非電腦事業帶動下，營運動能持續升溫。",
-      "published": "07/11 07:19",
-      "link": "https://tw.news.yahoo.com/ai%E9%9C%80%E6%B1%82%E5%B8%B6%E6%97%BA%E5%AE%8F%E7%A2%81-%E7%AC%AC%E4%BA%8C%E5%AD%A3%E7%87%9F%E6%94%B6852-96%E5%84%84%E5%85%83%E5%89%B513%E5%B9%B4%E5%90%8C%E6%9C%9F%E6%96%B0%E9%AB%98-071900015.html",
-      "is_revenue": true,
-      "source": "yahoo"
-    },
-    {
-      "title": "美國股市迎風格輪動 小盤成長股 2026 超越七巨頭",
-      "summary": "圖／示意圖商傳媒｜方承業／綜合外電報導2026 年美國股市正經歷顯著的風格輪動，結束了過去幾年由「七巨頭」科技巨擘主導的局面。隨著投資者情緒的轉變，小型成長股在今年至今的表現已大幅超越這些科技領頭羊。 追蹤 Alphabet公司、亞馬遜、蘋果、Meta Platforms、微軟、輝達和特斯拉等權重均等科技巨頭的 Roundhill Magnificent Seven ETF（MAGS），今年以來已下跌 0.5%。事實上，過去 12 個月該基金的表現已落後標普500（S&amp;P 500）指數，主要原因是七巨頭內部表現出現巨大分化。 例如，Alphabet公司股價過去一年飆漲 101%，蘋果也",
-      "published": "07/11 07:18",
-      "link": "https://tw.stock.yahoo.com/news/%E7%BE%8E%E5%9C%8B%E8%82%A1%E5%B8%82%E8%BF%8E%E9%A2%A8%E6%A0%BC%E8%BC%AA%E5%8B%95-%E5%B0%8F%E7%9B%A4%E6%88%90%E9%95%B7%E8%82%A1-2026-%E8%B6%85%E8%B6%8A%E4%B8%83%E5%B7%A8%E9%A0%AD-071830408.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "環球晶獲美光10年合約大單　9日盤中攻漲停",
-      "summary": "雙方擬簽訂10年期長期供應協議（LTA），確保美光未來先進記憶體所需關鍵材料供應穩定。環球晶9日股價勁揚，於早盤鎖死漲停，報市價1350元。美光表示，此次最高達30億美元的策略性投資計畫，主要為了強化美國關鍵製造材料供應、提升供應鏈韌性，值得注意的是，環球晶是目前唯...",
-      "published": "07/11 07:00",
-      "link": "https://tw.news.yahoo.com/%E7%92%B0%E7%90%83%E6%99%B6%E7%8D%B2%E7%BE%8E%E5%85%8910%E5%B9%B4%E5%90%88%E7%B4%84%E5%A4%A7%E5%96%AE-9%E6%97%A5%E7%9B%A4%E4%B8%AD%E6%94%BB%E6%BC%B2%E5%81%9C-070056246.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "颱風巴威全台停電　台電：逾8成9修復仍逾萬戶未復電",
-      "summary": "（中央社記者曾筠庭台北11日電）颱風巴威傍晚前風雨最劇烈，根據台電最新統計，截至今天下午2時，全台曾停電戶數17萬7485戶，其中15萬8631戶已修復，復電逾8成9，目前尚有1萬8854戶未復電。",
-      "published": "07/11 06:45",
-      "link": "https://tw.news.yahoo.com/%E9%A2%B1%E9%A2%A8%E5%B7%B4%E5%A8%81%E5%85%A8%E5%8F%B0%E5%81%9C%E9%9B%BB-%E5%8F%B0%E9%9B%BB-%E9%80%BE8%E6%88%909%E4%BF%AE%E5%BE%A9%E4%BB%8D%E9%80%BE%E8%90%AC%E6%88%B6%E6%9C%AA%E5%BE%A9%E9%9B%BB-064522089.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "記憶體黑馬爆發！法人喊出2205元目標價",
-      "summary": "[NOWNEWS今日新聞]繼群聯之後，記憶體族群再添千金股焦點。工業記憶體大廠宜鼎近年受惠記憶體價格回升及AI應用需求擴大，營運表現持續升溫。宜鼎公布第二季合併營收達224.43億元，季增70.3%、...",
-      "published": "07/11 06:35",
-      "link": "https://tw.news.yahoo.com/%E8%A8%98%E6%86%B6%E9%AB%94%E9%BB%91%E9%A6%AC%E7%88%86%E7%99%BC-%E6%B3%95%E4%BA%BA%E5%96%8A%E5%87%BA2205%E5%85%83%E7%9B%AE%E6%A8%99%E5%83%B9-063524956.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "鴻海法人董事劉憶如辭任！自砍一席董事　維持獨董過半治理標準",
-      "summary": "[FTNN新聞網]實習記者盛琳／綜合報導鴻海（2317）昨（10）日公告，法人董事鴻景國際投資及其代表人劉憶如辭任董事職務。鴻海表示，此次調整主要是為維持董事...",
-      "published": "07/11 06:32",
-      "link": "https://tw.stock.yahoo.com/news/%E9%B4%BB%E6%B5%B7%E6%B3%95%E4%BA%BA%E8%91%A3%E4%BA%8B%E5%8A%89%E6%86%B6%E5%A6%82%E8%BE%AD%E4%BB%BB-%E8%87%AA%E7%A0%8D-%E5%B8%AD%E8%91%A3%E4%BA%8B-%E7%B6%AD%E6%8C%81%E7%8D%A8%E8%91%A3%E9%81%8E%E5%8D%8A%E6%B2%BB%E7%90%86%E6%A8%99%E6%BA%96-063200138.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "4檔記憶體7月準備噴？「這檔」良率飆95%今年EPS達13元　南亞科獲大量3年長約、威剛DRAM Q3再漲30%",
-      "summary": "[FTNN新聞網]記者陳献朋／綜合報導由於全球AI伺服器和資料中心需求猛烈，記憶體供給持續吃緊，相關廠商營運爆發，包含顆粒廠首選南亞科（2408）及模組廠指標...",
-      "published": "07/11 06:30",
-      "link": "https://tw.stock.yahoo.com/news/4%E6%AA%94%E8%A8%98%E6%86%B6%E9%AB%947%E6%9C%88%E6%BA%96%E5%82%99%E5%99%B4-%E9%80%99%E6%AA%94-%E8%89%AF%E7%8E%87%E9%A3%8695-%E4%BB%8A%E5%B9%B4eps%E9%81%9413%E5%85%83-%E5%8D%97%E4%BA%9E%E7%A7%91%E7%8D%B2%E5%A4%A7%E9%87%8F3%E5%B9%B4%E9%95%B7%E7%B4%84-063000145.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "【9904 寶成】公告本公司之子公司裕元工業(集團)有限公司及 寶勝國際(控股)有限公司115年6月自結營收",
-      "summary": "",
-      "published": "07/10 17:02",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "title": "南亞科（2408）法說 Q2 毛利率飆 79.5% 超越台積電",
+      "summary": "稅後大賺 501.92 億元、EPS 14.66 元創單季新高，總座稱記憶體缺貨將延續數季；股價亮燈漲停 435.5 元。",
+      "published": "07/11",
+      "link": "",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "【2454 聯發科】聯發科技115年6月份自結合併營收淨額公告",
-      "summary": "",
-      "published": "07/10 16:55",
-      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "title": "大立光（3008）H1 稅後 107.93 億元年增 44%",
+      "summary": "EPS 82.35 元；林恩平稱 7、8 月動能逐月增，CPO 本月送樣、最快 2027 量產。",
+      "published": "07/11",
+      "link": "",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "廣達（2382）6 月營收 3,851.91 億元年增 102.87% 創史上最強六月",
+      "summary": "Q2 營收破兆（1 兆 365 億）改寫單季新高，GB300 拉貨助攻。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "鴻海（2317）6 月營收 8,217.63 億元年增 52%",
+      "summary": "單月、Q2、上半年皆創同期新高，公司估 Q3 季年雙增。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%",
+      "summary": "Q2 營收 1,521.82 億元飛越財測高標；Q3 推 2 奈米旗艦晶片、AI ASIC Q4 量產估貢獻約 20 億美元。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "緯創（3231）6 月營收 3,218.22 億元寫歷史次高、年增 53.9%",
+      "summary": "Q2 達 8,954.43 億元創單季新高，下半年出貨續強、全年拚新猷。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "國巨（2327）6 月營收 153.59 億元連四月創單月新高、年增 38.9%",
+      "summary": "Q2 營收 444.56 億元同創單季新高，AI 需求帶動、股價收復 900 元。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "力積電（6770）6 月營收 64.74 億元創 47 個月新高、年增 68.8%",
+      "summary": "Q2 季增 27.4% 為 15 季最佳；記憶體代工漲價效益下半年續發酵。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "長榮（2603）6 月營收 391.41 億元月增 12.9%、年增 30%",
+      "summary": "受惠國際運價上揚與港口壅塞。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "聯電（2303）6 月營收 231 億元月增 0.8%、年增 22.8%",
+      "summary": "成熟製程需求回溫。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "禾伸堂（3026）6 月營收年增 33.9% 為今年最高",
+      "summary": "股價飆天價超車國巨、奪被動元件股王。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台積電（2330）6 月營收因颱風延至 7/13 公布",
+      "summary": "法人估上看 4,400 億元、Q2 財測 1.2 兆有望超標；7/16 法說會為下週焦點。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
+      "summary": "為退出中國後最大海外布局，客戶涵蓋輝達、博通、Google 等。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "記憶體族群異動：南亞科、鈺創、晶豪科攻漲停、華邦電漲逾 8%",
+      "summary": "威剛董座陳立白透露原廠通知 Q3 DRAM 合約價再漲 20–30%、NAND 漲 35–40%。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "法人動向（7/9）：外資賣超 471 億元",
+      "summary": "晶圓雙雄各遭砍逾萬張、塑化成重災區，惟大買面板股。",
+      "published": "07/11",
+      "link": "",
+      "is_revenue": false,
+      "source": "yahoo"
     }
   ]
 }
