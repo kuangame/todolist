@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-13T21:42:00+08:00",
+  "fetched_at": "2026-07-13T20:44:04+08:00",
   "items": [
     {
       "title": "台積電（2330）6 月營收 4,426.8 億元、年增 67.87% 單月單季同創新高",
@@ -11,9 +11,9 @@
     },
     {
       "title": "台積電（2330）7/16 法說登場，外資紛紛上調目標價",
-      "summary": "法人聚焦上修全年展望、資本支出與 CoWoS 先進封裝進度，目標價喊上 2,600 元，牽動台股能否挑戰 4 萬 8。",
+      "summary": "法人聚焦上修全年展望、資本支出與 CoWoS 先進封裝進度，關注五大焦點，牽動台股能否挑戰 4 萬 8。",
       "published": "07/13",
-      "link": "https://money.udn.com/money/story/5607/9596199",
+      "link": "https://money.udn.com/money/story/5607/9623292",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -27,25 +27,9 @@
     },
     {
       "title": "大立光（3008）奪首張 CPO 訂單，外資目標價上看 5,150 元、開盤漲停鎖死",
-      "summary": "董座林恩平證實共同封裝光學新事業首單入袋，7 月送樣、第 3 季底試產；6 月營收 37.12 億元月減 19%、估 7 月回升。",
+      "summary": "董座林恩平證實共同封裝光學新事業首單入袋，7 月送樣、第 3 季底試產；Q2 稅後純益 46.69 億元年增 3.5 倍。",
       "published": "07/13",
       "link": "https://money.udn.com/money/story/5607/9623825",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "無人機軍工股全面漲停，漢翔（2634）開盤鎖漲停 63.8 元",
-      "summary": "無人機條例四版本 16 日聯席審查、千億國防預算題材點火，晟田、保勝光學攻漲停，長榮航太、台船、中光電、龍德造船同步大漲。",
-      "published": "07/13",
-      "link": "https://udn.com/news/story/7251/9624181",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "環球晶（6488）美光十年長約點火，矽晶圓五檔亮燈漲停、攻上 1,485 元",
-      "summary": "AI 需求外溢至矽晶圓與功率半導體，中美晶、台勝科、合晶等同步鎖漲停，合晶寫 18 年新高。",
-      "published": "07/13",
-      "link": "https://money.udn.com/money/story/5607/9624016",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -62,6 +46,14 @@
       "summary": "連分析師都納悶跌勢主因，市場擔憂被動元件庫存與需求變化，帶動族群震盪。",
       "published": "07/13",
       "link": "https://money.udn.com/money/story/5607/9624436",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "環球晶（6488）美光十年長約點火，矽晶圓五檔亮燈漲停、攻上 1,485 元",
+      "summary": "AI 需求外溢至矽晶圓與功率半導體，中美晶、台勝科、合晶等同步鎖漲停，合晶寫 18 年新高。",
+      "published": "07/13",
+      "link": "https://money.udn.com/money/story/5607/9624016",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -120,6 +112,14 @@
       "link": "https://money.udn.com/money/story/5607/9624014",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "泰豐（2102）擬投 2.5 億元買進南港（2101）股票，創造營業外收益",
+      "summary": "以閒置資金投資同業南港輪胎股票，挹注業外收益。",
+      "published": "07/13",
+      "link": "https://money.udn.com/money/story/5607/9625065",
+      "is_revenue": false,
+      "source": "yahoo"
     }
   ]
 }
