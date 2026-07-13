@@ -1,49 +1,25 @@
 {
-  "fetched_at": "2026-07-13T11:13:37+08:00",
+  "fetched_at": "2026-07-13T10:12:09+08:00",
   "items": [
     {
       "title": "台積電（2330）6 月營收今（7/13）13:30 公布，法人估上看 4,400 億元史上新高",
-      "summary": "因巴威颱風順延至今日下午 1:30 公布；法人估 6 月落在 4,000～4,400 億元，Q2 有望達成 390～402 億美元（約 1.23～1.27 兆元）財測。",
+      "summary": "受巴威颱風順延至今日下午 1:30 公布；4、5 月營收分別為 4,107、4,169 億元，法人估 6 月落在 4,000～4,400 億元，Q2 可順利達成 390～402 億美元財測。",
       "published": "07/13",
       "link": "https://www.nownews.com/news/6855297",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "南亞科（2408）法說 Q2 毛利率飆 79.5%、單季大賺 501.92 億元 EPS 14.66 元創新高",
-      "summary": "銷售量與 Q1 持平，受惠 DRAM 平均售價季增逾 60%，稅後淨利季增 92.6%、年增逾 13 倍；6 月營收 293.88 億元年增逾 600% 創歷史新高。",
-      "published": "07/11",
-      "link": "https://tw.stock.yahoo.com/news/%E5%8D%97%E4%BA%9E%E7%A7%91%E6%9C%80%E9%97%9C%E9%8D%B5%E6%B3%95%E8%AA%AA%E5%85%A8%E5%A0%B4%E7%9B%AF-%E6%AF%9B%E5%88%A9%E8%83%BD%E7%A0%B470-4%E5%A4%A7%E7%94%9F%E6%AD%BB%E9%A1%8C%E6%90%B6%E5%85%88%E7%9C%8B-%E7%9B%AE%E6%A8%99%E5%83%B9%E4%B8%8A%E8%A1%9D550-%E4%B8%8B%E9%98%B2343-034853358.html",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "環球晶（6488）拿下美光 10 年長約，並取得 5 億美元策略資金",
-      "summary": "美光提供 5 億美元策略性資金支持環球晶美國業務，雙方簽 10 年期長約；董座徐秀蘭稱為公司史上時間最長、金額最大的合約。",
-      "published": "07/09",
-      "link": "https://news.cnyes.com/news/id/6529902",
+      "title": "台積電（2330）7/16 法說登場，法人聚焦上修展望、資本支出與三星英特爾搶單",
+      "summary": "市場關注今年營運展望是否上修、資本支出是否調高、海內外擴廠與先進製程進度，以及如何因應三星、英特爾在 2 奈米、18A 製程搶單。",
+      "published": "07/13",
+      "link": "https://money.udn.com/money/story/11162/9617051",
       "is_revenue": false,
       "source": "yahoo"
-    },
-    {
-      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
-      "summary": "為退出中國後最大海外布局，配合台積電亞利桑那產能開出，客戶涵蓋輝達、博通、Google 等。",
-      "published": "07/10",
-      "link": "https://news.cnyes.com/news/id/6530688",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "大立光（3008）上半年 EPS 82.35 元、稅後純益 107.93 億元年增 44%",
-      "summary": "執行長林恩平指 7 月動能優於 6 月、8 月又優於 7 月，產能滿載；上半年毛利率 49.41%。",
-      "published": "07/07",
-      "link": "https://news.cnyes.com/news/id/6530873",
-      "is_revenue": true,
-      "source": "mops"
     },
     {
       "title": "台達電（2308）6 月營收 656.03 億元年增 55.4% 改寫單月新高",
-      "summary": "月增 11.3%；Q2 營收 1,832.56 億元年增 47.7%，上半年 3,426.09 億元年增 41%，AI 電源與資料中心需求強勁。",
+      "summary": "月增 11.3%，超越 3 月 597.79 億元前高；Q2 營收 1,832.56 億元年增 47.7%，上半年 3,426.09 億元年增 41%，AI 電源與資料中心需求強勁。",
       "published": "07/10",
       "link": "https://news.cnyes.com/news/id/6529815",
       "is_revenue": true,
@@ -51,19 +27,11 @@
     },
     {
       "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%、年增 2.8%",
-      "summary": "Q2 合併營收 1,521.82 億元，超越先前財測高標，旗艦手機晶片與 ASIC 貢獻延續。",
+      "summary": "Q2 合併營收達 1,521.82 億元，順利超越先前財測高標，旗艦手機晶片與 ASIC 貢獻延續。",
       "published": "07/09",
       "link": "https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E8%81%AF%E7%99%BC%E7%A7%91-2026%E5%B9%B46%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B6580-12%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E2-091211636.html",
       "is_revenue": true,
       "source": "mops"
-    },
-    {
-      "title": "台積電（2330）7/16 法說登場，法人聚焦上修展望、資本支出與先進封裝進度",
-      "summary": "市場關注全年營運展望是否上修、資本支出是否調高、CoWoS 先進封裝擴產與海內外擴廠進度。",
-      "published": "07/13",
-      "link": "https://money.udn.com/money/story/11162/9617051",
-      "is_revenue": false,
-      "source": "yahoo"
     },
     {
       "title": "光寶科（3211）6 月營收創近 8 年新高，AI 電源動能推升",
@@ -77,7 +45,7 @@
       "title": "南亞科（2408）獲本土投顧調升目標價至 720 元，看好記憶體缺口延續",
       "summary": "報告指全球記憶體供需結構持續改善、2028 年前缺口難緩解，維持增持評等，目標價由 520 元上調至 720 元。",
       "published": "07/13",
-      "link": "https://tw.stock.yahoo.com/rank/change-up",
+      "link": "https://tw.stock.yahoo.com/news/1%E8%A1%A8%E7%9C%8B-%E5%8D%97%E4%BA%9E%E7%A7%91-%E6%97%BA%E5%AE%8F-%E8%8F%AF%E9%82%A6%E9%9B%BB-%E5%A8%81%E5%89%9B-212130948.html",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -90,6 +58,14 @@
       "source": "yahoo"
     },
     {
+      "title": "聯電（2303）股價一度衝上 176 元亮燈漲停",
+      "summary": "晶圓代工成熟製程需求回溫題材帶動，聯電股價強勢表態。",
+      "published": "07/13",
+      "link": "https://tw.stock.yahoo.com/rank/change-up",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "士電（1503）在手訂單逾 600 億元、能見度拉至 2028～2030 年",
       "summary": "台電強韌電網、半導體擴廠、北美 AI 資料中心、表後儲能四線並進，2026 年北美營收預估年增 30%。",
       "published": "07/13",
@@ -98,10 +74,34 @@
       "source": "yahoo"
     },
     {
+      "title": "藥華藥（6446）領軍生技股走揚，亞洲生技大會 7/15 登場點火行情",
+      "summary": "第二季以來已有 12 家新藥公司傳出藥證利多；BIO Asia–Taiwan 亞洲生技大會 7/15 起舉辦五天，帶動生技族群買氣。",
+      "published": "07/06",
+      "link": "https://www.ctee.com.tw/news/20260706701090-430201",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台灣神隆（1789）19 日召開法說會，2025 全年營收 31.63 億元、稅後淨利 1.37 億元",
+      "summary": "將說明 2025 年度營運成果與業務進展，原料藥與 CDMO 布局為市場關注焦點。",
+      "published": "07/13",
+      "link": "https://money.udn.com/money/cate/5590",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
       "title": "日月光投控（3711）先進封裝需求強，封測、載板族群同步走揚",
       "summary": "受惠台積電擴大先進封裝委外，法人看好 Q2 封測需求，帶動封測、載板族群走強。",
       "published": "07/13",
       "link": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
+      "summary": "為退出中國後最大海外布局，客戶涵蓋輝達、博通、Google 等，配合台積電亞利桑那產能開出。",
+      "published": "07/11",
+      "link": "https://finance.technews.tw/2026/07/11/kyec-has-approved-the-establishment-of-a-factory-in-the-united-states/",
       "is_revenue": false,
       "source": "yahoo"
     }
