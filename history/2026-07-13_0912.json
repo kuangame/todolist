@@ -1,51 +1,11 @@
 {
-  "fetched_at": "2026-07-13T09:41:30+08:00",
+  "fetched_at": "2026-07-13T09:12:00+08:00",
   "items": [
     {
-      "title": "台積電（2330）6 月營收今（7/13）13:30 開牌，法人估上看 4,400 億元史上新高",
-      "summary": "受巴威颱風順延至今日下午 1:30 公布；市場估可望突破 4,000 億、挑戰 4,400 億元，Q2 累計有望達 1.2 兆元財測區間，7/16 法說會為本週最大焦點。",
+      "title": "台積電（2330）6 月營收今（7/13）13:30 公布，法人估上看 4,400 億元",
+      "summary": "受巴威颱風影響延後至今日開牌，市場估可望突破 4,000 億、挑戰 4,400 億元史上新高；Q2 累計有望達成 1.2 兆元財測，7/16 法說會為下週最大焦點。",
       "published": "07/13",
       "link": "https://www.nownews.com/news/6855297",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "大聯大（3702）6 月營收 1,929.16 億元年增 131.85%，通路法說行情續航",
-      "summary": "AI 基礎建設拉貨強勁、運算類產品占比近半，帶動營收大增；通路股法說行情延燒，大聯大接棒亮燈。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/id/6529723",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "MCU 族群漲價效益發酵：盛群（3527）逆勢大漲 7.7%、新唐（4919）同步走揚",
-      "summary": "微控制器漲價題材帶動，颱風休市後台股恢復交易，MCU 相關個股逆勢走強。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "日月光投控（3711）大漲 8.3% 至 677 元，法人看好 Q2 先進封裝需求強勁",
-      "summary": "受惠台積電擴大先進封裝委外，封測、載板族群同步走強，日月光領軍攻高。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "環球晶（6488）獲高盛喊多矽晶圓產業，開盤亮燈攻漲停",
-      "summary": "矽晶圓報價回升題材延燒，中美晶、合晶等相關個股同步走揚。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "大立光（3008）法說：上半年 EPS 82.35 元年增 44%、Q2 EPS 35.72 元",
-      "summary": "上半年營收 292.09 億元年增 11%、毛利率 49.41%；林恩平稱拉貨動能逐月升溫，7、8 月優於 6 月，CPO 最快明年中放量。",
-      "published": "07/09",
-      "link": "https://news.cnyes.com/news/id/6528718",
       "is_revenue": true,
       "source": "mops"
     },
@@ -54,14 +14,6 @@
       "summary": "Q2 合併營收 825.49 億元季增 68.2%，稅後大賺 501.92 億元；6 月營收 293.88 億元月增 6.21%、年增逾 6 倍連 8 月創高，總座稱記憶體缺貨延續數季。",
       "published": "07/11",
       "link": "https://tw.stock.yahoo.com/news/%E7%B7%A0%E6%96%B0%E7%8C%B7%EF%BC%81%E5%8D%97%E4%BA%9E%E7%A7%91%E7%AC%AC%E4%BA%8C%E5%AD%A3%E6%AF%8F%E8%82%A1%E7%9B%88%E9%A4%981466%E5%85%83-%E7%B8%BD%E5%BA%A7%EF%BC%9A%E7%BC%BA%E8%B2%A8%E5%BB%B6%E7%BA%8C%E6%95%B8%E5%AD%A3-062519043.html",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "鈺創（5351）6 月營收 19.03 億元月增 14.4%、年增 657%，連 3 月創新高",
-      "summary": "記憶體需求暢旺，Q2 營收約 49 億元創單季新高，法人看好下半年動能延續。",
-      "published": "07/10",
-      "link": "https://tw.stock.yahoo.com/news",
       "is_revenue": true,
       "source": "mops"
     },
@@ -98,6 +50,22 @@
       "source": "yahoo"
     },
     {
+      "title": "日月光投控（3711）受惠台積電牽手 Amkor，封測、載板族群同步走強",
+      "summary": "台積電 6 月與 Amkor 簽 10 年長約擴大先進封裝委外，日月光、京元電領軍，先進封裝缺口擴大帶動設備、測試族群訂單外溢。",
+      "published": "07/11",
+      "link": "https://cmnews.com.tw/article/cmoney-112e7eb6-6e14-11f1-bded-b44ce20edb2f",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "環球晶（6488）矽晶圓漲價與第三代半導體題材延燒，族群走強",
+      "summary": "矽晶圓報價回升，中美晶、合晶、嘉晶、漢磊等第三代半導體相關個股同步走揚。",
+      "published": "07/11",
+      "link": "https://www.sinotrade.com.tw/richclub/hotstock/2026%E5%8F%B0%E8%82%A1%E6%BC%B2%E5%83%B9%E6%A6%82%E5%BF%B5%E8%82%A1%E7%B8%BD%E6%95%B4%E7%90%86-%E5%BE%9E%E6%99%B6%E5%9C%93%E4%BB%A3%E5%B7%A5-%E8%A2%AB%E5%8B%95%E5%85%83%E4%BB%B6%E5%88%B0%E7%9F%BD%E6%99%B6%E5%9C%93-%E4%B8%83%E5%A4%A7%E9%A1%8C%E6%9D%90%E4%B8%80%E6%AC%A1%E6%8E%83%E6%8F%8F-%E8%82%A1%E5%B8%82%E8%A9%B1%E9%A1%8C-6a475b94ec9e6be57f07b614",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
       "title": "台特化（4772）30 億元收購弘潔 65% 股權，擴大半導體先進製程布局",
       "summary": "透過併購切入半導體特用化學品，強化先進製程材料供應鏈。",
       "published": "07/11",
@@ -106,8 +74,32 @@
       "source": "yahoo"
     },
     {
-      "title": "雷虎（8033）無人機概念股續強，盤中拉出漲停",
-      "summary": "國防與無人機自主化題材帶動，邑錡、長榮航太、事欣科等同步走強。",
+      "title": "永豐金（2890）：併購符合三條件才考慮，旗下永豐證將辦 200 億聯貸",
+      "summary": "強調併購需符合版圖擴張、延伸業務、提升集團綜效三條件；證券子公司規劃 200 億元聯貸。",
+      "published": "07/11",
+      "link": "https://money.udn.com/money/story/5613/9573134",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "統新（6426）前 5 月合併營收 2.91 億元年增逾 6 成",
+      "summary": "薄膜濾光片（TFF）供應商營運動能強勁，法人看好下半年續增。",
+      "published": "07/11",
+      "link": "https://money.udn.com/money/cate/5590",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台鎔科技（6947）將於 7 月下旬由興櫃轉上市掛牌",
+      "summary": "半導體廢棄物處理廠切入循環經濟題材，掛牌在即受市場關注。",
+      "published": "07/11",
+      "link": "https://money.udn.com/money/cate/5590",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "雷虎（8033）無人機概念股續強，盤中拉出第三根漲停",
+      "summary": "國防與無人機自主化題材帶動，邑錡、長榮航太、事欣科等同步攻漲停。",
       "published": "07/01",
       "link": "https://udn.com/news/story/7251/9599265",
       "is_revenue": false,
