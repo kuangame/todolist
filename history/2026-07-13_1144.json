@@ -1,0 +1,117 @@
+{
+  "fetched_at": "2026-07-13T11:44:27+08:00",
+  "items": [
+    {
+      "title": "台積電（2330）6 月營收今（7/13）13:30 公布，法人估上看 4,400 億元史上新高",
+      "summary": "因巴威颱風順延至今日下午發布；法人估 6 月落在 4,000～4,400 億元、年增逾 6 成，攸關 Q2 能否達成 390～402 億美元（約 1.23～1.27 兆元）財測。",
+      "published": "07/13",
+      "link": "https://udn.com/news/story/7251/9619223",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台積電（2330）7/16 法說登場，法人聚焦上修展望、資本支出與先進封裝進度",
+      "summary": "市場關注全年營運展望是否上修、資本支出是否調高、CoWoS 先進封裝擴產與海內外擴廠進度，牽動 AI 供應鏈多空。",
+      "published": "07/13",
+      "link": "https://money.udn.com/money/story/11162/9617051",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "南亞科（2408）法說 Q2 毛利率飆 79.5% 超越台積電、單季大賺 501.92 億元 EPS 14.66 元創新高",
+      "summary": "受惠 DRAM 平均售價季增逾 60%、銷量與 Q1 持平；Q2 營收 825.49 億元季增 68.2%，總座李培瑛看好記憶體缺貨延續數季。",
+      "published": "07/10",
+      "link": "https://news.cnyes.com/news/id/6530697",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "鴻海（2317）6 月營收 8,218 億元年增 52.11%，Q2 及上半年同期新高",
+      "summary": "月減 4.38% 仍為歷年同期最高；Q2 營收 2.51 兆元年增 39.83%、上半年 4.64 兆元年增 34.99%，AI 伺服器動能延續，估 Q3 季年雙增。",
+      "published": "07/10",
+      "link": "https://tw.stock.yahoo.com/news/鴻海6月-q2及上半年營收齊創同期新高-估q3營運季-年雙增-231818529.html",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "廣達（2382）6 月營收 3,851.91 億元月增 23.66%、年增 102.87% 改寫單月新高",
+      "summary": "連續四個月站穩 3 千億元大關，電子五哥中稱冠；AI 伺服器出貨強勁帶動營運續揚。",
+      "published": "07/09",
+      "link": "https://tw.stock.yahoo.com/news/廣達6月營收3851億元年月雙增-改寫歷史新高-070251780.html",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%、年增 2.8%",
+      "summary": "Q2 合併營收 1,521.83 億元，超越先前 1,402～1,492 億元財測高標，旗艦手機晶片與邊緣 AI 動能延續，7 月底法說聚焦 ASIC 展望。",
+      "published": "07/09",
+      "link": "https://news.cnyes.com/news/id/6530759",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台達電（2308）6 月營收 656.03 億元年增 55.4% 改寫單月新高",
+      "summary": "月增 11.3%；Q2 營收 1,832.56 億元年增 47.7%、上半年 3,426.09 億元年增 41%，AI 電源與資料中心需求強勁。",
+      "published": "07/10",
+      "link": "https://news.cnyes.com/news/id/6529815",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "緯創（3231）6 月營收 3,218.22 億元寫歷史次高",
+      "summary": "Q2 營收 8,954.42 億元、上半年累計 1.74 兆元，全面改寫歷年同期最佳；第三季桌機螢幕買氣略回溫。",
+      "published": "07/09",
+      "link": "https://tw.stock.yahoo.com/news/緯創6月營收寫歷史次高-第三季桌機螢幕買氣略回溫-074251700.html",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "力積電（6770）6 月營收 64.74 億元年增 68.75%，衝 47 個月新高",
+      "summary": "月增 12.2%；Q2 營收 172.9 億元為近 15 季最佳，代工報價調漲與記憶體需求回溫發酵，全年本業可望轉虧為盈。",
+      "published": "07/09",
+      "link": "https://news.cnyes.com/news/id/6529799",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
+      "summary": "為退出中國後最大海外布局，配合台積電亞利桑那產能開出，客戶涵蓋輝達、博通、Marvell、Google 等。",
+      "published": "07/10",
+      "link": "https://news.cnyes.com/news/id/6530688",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "環球晶（6488）拿下美光 10 年長約，並取得 5 億美元策略資金",
+      "summary": "美光提供 5 億美元支持環球晶美國業務、雙方簽 10 年期長約；董座徐秀蘭稱為公司史上時間最長、金額最大的合約。",
+      "published": "07/09",
+      "link": "https://news.cnyes.com/news/id/6529902",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "大立光（3008）上半年 EPS 82.35 元、稅後純益 107.93 億元年增 44%",
+      "summary": "執行長林恩平指 7 月動能優於 6 月、8 月又優於 7 月，產能滿載；上半年毛利率 49.41%。",
+      "published": "07/07",
+      "link": "https://news.cnyes.com/news/id/6530873",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "光寶科（3211）6 月營收創近 8 年新高，AI 電源動能推升",
+      "summary": "與台達電同步受惠 AI 伺服器電源需求，6 月營收改寫近 8 年單月新高。",
+      "published": "07/10",
+      "link": "https://udn.com/news/story/7253/9617705",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "華邦電（2344）摩根士丹利喊目標價 288 元，看好 NAND 供不應求延續至 2027 年",
+      "summary": "外資認為 NAND Flash 供不應求延續，記憶體族群近期在南亞科帶頭下多頭資金回流。",
+      "published": "07/13",
+      "link": "https://www.businesstoday.com.tw/article/category/183008/post/202607060010/",
+      "is_revenue": false,
+      "source": "yahoo"
+    }
+  ]
+}

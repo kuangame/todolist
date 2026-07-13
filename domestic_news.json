@@ -1,33 +1,57 @@
 {
-  "fetched_at": "2026-07-13T11:44:27+08:00",
+  "fetched_at": "2026-07-13T12:11:58+08:00",
   "items": [
     {
-      "title": "台積電（2330）6 月營收今（7/13）13:30 公布，法人估上看 4,400 億元史上新高",
-      "summary": "因巴威颱風順延至今日下午發布；法人估 6 月落在 4,000～4,400 億元、年增逾 6 成，攸關 Q2 能否達成 390～402 億美元（約 1.23～1.27 兆元）財測。",
-      "published": "07/13",
-      "link": "https://udn.com/news/story/7251/9619223",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
       "title": "台積電（2330）7/16 法說登場，法人聚焦上修展望、資本支出與先進封裝進度",
-      "summary": "市場關注全年營運展望是否上修、資本支出是否調高、CoWoS 先進封裝擴產與海內外擴廠進度，牽動 AI 供應鏈多空。",
+      "summary": "地點台北文華東方酒店，將公布 Q2 財報與 Q3 展望；市場關注全年營運是否上修、資本支出是否調高、CoWoS 擴產與海內外擴廠進度。今日台積電領漲逾 2%。",
       "published": "07/13",
-      "link": "https://money.udn.com/money/story/11162/9617051",
+      "link": "https://money.udn.com/money/story/11162/9595914",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "南亞科（2408）法說 Q2 毛利率飆 79.5% 超越台積電、單季大賺 501.92 億元 EPS 14.66 元創新高",
-      "summary": "受惠 DRAM 平均售價季增逾 60%、銷量與 Q1 持平；Q2 營收 825.49 億元季增 68.2%，總座李培瑛看好記憶體缺貨延續數季。",
+      "title": "南亞科（2408）法說 Q2 毛利率飆 79.5%、單季大賺逾 500 億元 EPS 14.66 元創新高",
+      "summary": "受惠 DRAM 平均售價季增逾 60%，總座李培瑛看好記憶體缺貨延續數季；6 月營收 293.88 億元年增 621%、上半年累計連 8 個月創新高。",
       "published": "07/10",
       "link": "https://news.cnyes.com/news/id/6530697",
       "is_revenue": true,
       "source": "mops"
     },
     {
+      "title": "京元電（2449）董事會通過提高 2026 資本支出至 500 億元，並拍板赴美設廠上限 14 億美元",
+      "summary": "看好北美 CSP 持續增加資本支出、先進封裝產能擴張不及，預期 2026 為豐收年；GPU 客戶預燒（Burn-in）測試需求顯著增加。今日外資買超居前。",
+      "published": "07/10",
+      "link": "https://news.cnyes.com/news/id/6530688",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "大立光（3008）反映 CPO 進程利多，早盤攻上漲停 4345 元",
+      "summary": "法說釋出共同封裝光學（CPO）試產線進度，帶動聯一光、先進光同步攻漲停，玉晶光早盤漲逾 5%，光學族群全面走強。",
+      "published": "07/13",
+      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "大立光（3008）上半年 EPS 82.35 元、稅後純益 107.93 億元年增 44%",
+      "summary": "執行長林恩平指產能滿載、7 月動能優於 6 月、8 月又優於 7 月，第三季迎 iPhone 新機拉貨與可變光圈升級。",
+      "published": "07/09",
+      "link": "https://news.cnyes.com/news/id/6530873",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台達電（2308）AI 電源需求強勁，訂單能見度延伸至 2027 年，今日股價漲至 1915 元",
+      "summary": "憑高功率電源轉換與機房液冷散熱兩大核心技術受惠雲端業者加碼資本支出；6 月營收 656.03 億元年增 55.4% 改寫單月新高。",
+      "published": "07/13",
+      "link": "https://news.cnyes.com/news/id/6529815",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
       "title": "鴻海（2317）6 月營收 8,218 億元年增 52.11%，Q2 及上半年同期新高",
-      "summary": "月減 4.38% 仍為歷年同期最高；Q2 營收 2.51 兆元年增 39.83%、上半年 4.64 兆元年增 34.99%，AI 伺服器動能延續，估 Q3 季年雙增。",
+      "summary": "Q2 營收 2.51 兆元年增 39.83%、上半年 4.64 兆元年增 34.99%，AI 伺服器動能延續，估 Q3 季年雙增。",
       "published": "07/10",
       "link": "https://tw.stock.yahoo.com/news/鴻海6月-q2及上半年營收齊創同期新高-估q3營運季-年雙增-231818529.html",
       "is_revenue": true,
@@ -35,49 +59,25 @@
     },
     {
       "title": "廣達（2382）6 月營收 3,851.91 億元月增 23.66%、年增 102.87% 改寫單月新高",
-      "summary": "連續四個月站穩 3 千億元大關，電子五哥中稱冠；AI 伺服器出貨強勁帶動營運續揚。",
+      "summary": "連四個月站穩 3 千億元大關，電子五哥中稱冠；AI 伺服器出貨強勁帶動營運續揚。",
       "published": "07/09",
       "link": "https://tw.stock.yahoo.com/news/廣達6月營收3851億元年月雙增-改寫歷史新高-070251780.html",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%、年增 2.8%",
-      "summary": "Q2 合併營收 1,521.83 億元，超越先前 1,402～1,492 億元財測高標，旗艦手機晶片與邊緣 AI 動能延續，7 月底法說聚焦 ASIC 展望。",
-      "published": "07/09",
+      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%，Q2 超越財測高標；今日股價由紅翻黑",
+      "summary": "Q2 合併營收 1,521.83 億元優於財測，旗艦手機晶片與邊緣 AI 動能延續；盤中一度下跌逾 30 元、7 月底法說聚焦 ASIC 展望。",
+      "published": "07/13",
       "link": "https://news.cnyes.com/news/id/6530759",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "台達電（2308）6 月營收 656.03 億元年增 55.4% 改寫單月新高",
-      "summary": "月增 11.3%；Q2 營收 1,832.56 億元年增 47.7%、上半年 3,426.09 億元年增 41%，AI 電源與資料中心需求強勁。",
-      "published": "07/10",
-      "link": "https://news.cnyes.com/news/id/6529815",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "緯創（3231）6 月營收 3,218.22 億元寫歷史次高",
-      "summary": "Q2 營收 8,954.42 億元、上半年累計 1.74 兆元，全面改寫歷年同期最佳；第三季桌機螢幕買氣略回溫。",
-      "published": "07/09",
-      "link": "https://tw.stock.yahoo.com/news/緯創6月營收寫歷史次高-第三季桌機螢幕買氣略回溫-074251700.html",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "力積電（6770）6 月營收 64.74 億元年增 68.75%，衝 47 個月新高",
-      "summary": "月增 12.2%；Q2 營收 172.9 億元為近 15 季最佳，代工報價調漲與記憶體需求回溫發酵，全年本業可望轉虧為盈。",
-      "published": "07/09",
-      "link": "https://news.cnyes.com/news/id/6529799",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
-      "summary": "為退出中國後最大海外布局，配合台積電亞利桑那產能開出，客戶涵蓋輝達、博通、Marvell、Google 等。",
-      "published": "07/10",
-      "link": "https://news.cnyes.com/news/id/6530688",
+      "title": "台塑四寶盤中強攻：台化、南亞、台塑亮燈漲停，台塑化漲逾 8%",
+      "summary": "台化 66 元、南亞 199.5 元、台塑 60.2 元攻上漲停板，帶動塑化傳產族群買氣回溫。",
+      "published": "07/13",
+      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -90,20 +90,28 @@
       "source": "yahoo"
     },
     {
-      "title": "大立光（3008）上半年 EPS 82.35 元、稅後純益 107.93 億元年增 44%",
-      "summary": "執行長林恩平指 7 月動能優於 6 月、8 月又優於 7 月，產能滿載；上半年毛利率 49.41%。",
-      "published": "07/07",
-      "link": "https://news.cnyes.com/news/id/6530873",
+      "title": "矽晶圓族群盤中同步亮燈漲停：環球晶、中美晶（5483）、台勝科（3532）、合晶（6182）、嘉晶（3016）",
+      "summary": "高盛看好 AI 熱潮下半年蔓延至矽晶圓與類比／功率半導體，帶動族群買盤湧入、多檔漲停鎖死。",
+      "published": "07/13",
+      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "宏碁（2353）第 2 季營收 852 億元，創 13 年同期新高",
+      "summary": "受惠 PC 換機與 AI PC 需求，季度營收改寫 13 年來同期最佳表現。",
+      "published": "07/11",
+      "link": "https://www.cna.com.tw/news/afe/202607110094.aspx",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "光寶科（3211）6 月營收創近 8 年新高，AI 電源動能推升",
-      "summary": "與台達電同步受惠 AI 伺服器電源需求，6 月營收改寫近 8 年單月新高。",
-      "published": "07/10",
-      "link": "https://udn.com/news/story/7253/9617705",
-      "is_revenue": true,
-      "source": "mops"
+      "title": "無人機概念股盤中噴發：漢翔（2634）、晟田（4541）、保勝光學（6517）攻漲停，長榮航太（2645）大漲近 8%",
+      "summary": "國防與無人機供應鏈題材延燒，帶動航太族群買盤，和成、台船盤中亦漲逾 6%。",
+      "published": "07/13",
+      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "華邦電（2344）摩根士丹利喊目標價 288 元，看好 NAND 供不應求延續至 2027 年",
