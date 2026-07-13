@@ -1,0 +1,117 @@
+{
+  "fetched_at": "2026-07-13T09:41:30+08:00",
+  "items": [
+    {
+      "title": "台積電（2330）6 月營收今（7/13）13:30 開牌，法人估上看 4,400 億元史上新高",
+      "summary": "受巴威颱風順延至今日下午 1:30 公布；市場估可望突破 4,000 億、挑戰 4,400 億元，Q2 累計有望達 1.2 兆元財測區間，7/16 法說會為本週最大焦點。",
+      "published": "07/13",
+      "link": "https://www.nownews.com/news/6855297",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "大聯大（3702）6 月營收 1,929.16 億元年增 131.85%，通路法說行情續航",
+      "summary": "AI 基礎建設拉貨強勁、運算類產品占比近半，帶動營收大增；通路股法說行情延燒，大聯大接棒亮燈。",
+      "published": "07/13",
+      "link": "https://news.cnyes.com/news/id/6529723",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "MCU 族群漲價效益發酵：盛群（3527）逆勢大漲 7.7%、新唐（4919）同步走揚",
+      "summary": "微控制器漲價題材帶動，颱風休市後台股恢復交易，MCU 相關個股逆勢走強。",
+      "published": "07/13",
+      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "日月光投控（3711）大漲 8.3% 至 677 元，法人看好 Q2 先進封裝需求強勁",
+      "summary": "受惠台積電擴大先進封裝委外，封測、載板族群同步走強，日月光領軍攻高。",
+      "published": "07/13",
+      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "環球晶（6488）獲高盛喊多矽晶圓產業，開盤亮燈攻漲停",
+      "summary": "矽晶圓報價回升題材延燒，中美晶、合晶等相關個股同步走揚。",
+      "published": "07/13",
+      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "大立光（3008）法說：上半年 EPS 82.35 元年增 44%、Q2 EPS 35.72 元",
+      "summary": "上半年營收 292.09 億元年增 11%、毛利率 49.41%；林恩平稱拉貨動能逐月升溫，7、8 月優於 6 月，CPO 最快明年中放量。",
+      "published": "07/09",
+      "link": "https://news.cnyes.com/news/id/6528718",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "南亞科（2408）Q2 毛利率飆 79.5% 超越台積電、EPS 14.66 元創新高",
+      "summary": "Q2 合併營收 825.49 億元季增 68.2%，稅後大賺 501.92 億元；6 月營收 293.88 億元月增 6.21%、年增逾 6 倍連 8 月創高，總座稱記憶體缺貨延續數季。",
+      "published": "07/11",
+      "link": "https://tw.stock.yahoo.com/news/%E7%B7%A0%E6%96%B0%E7%8C%B7%EF%BC%81%E5%8D%97%E4%BA%9E%E7%A7%91%E7%AC%AC%E4%BA%8C%E5%AD%A3%E6%AF%8F%E8%82%A1%E7%9B%88%E9%A4%981466%E5%85%83-%E7%B8%BD%E5%BA%A7%EF%BC%9A%E7%BC%BA%E8%B2%A8%E5%BB%B6%E7%BA%8C%E6%95%B8%E5%AD%A3-062519043.html",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "鈺創（5351）6 月營收 19.03 億元月增 14.4%、年增 657%，連 3 月創新高",
+      "summary": "記憶體需求暢旺，Q2 營收約 49 億元創單季新高，法人看好下半年動能延續。",
+      "published": "07/10",
+      "link": "https://tw.stock.yahoo.com/news",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "宏碁（2353）Q2 營收 852.96 億元創 13 年同期新高、6 月 278.18 億元月增 6.3%",
+      "summary": "受惠 AI PC 與桌機需求，Q2 年增 28.2%、桌機營收年增 57.3%，上半年營收 1,577.27 億元年增 23.3%。",
+      "published": "07/10",
+      "link": "https://money.udn.com/money/story/5710/9620163",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "華航（2610）6 月營收 217.61 億元三高，Q2、上半年營收同創歷史新高",
+      "summary": "6 月營收年增 28.82% 連創單月新高，貨運收入 80.85 億元年增 51.6%；Q2 營收 638.45 億元、上半年 1,208.03 億元同刷新猷。",
+      "published": "07/10",
+      "link": "https://udn.com/news/story/7252/9619360",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "國巨*（2327）6 月營收續創單月新高、華新科（2492）寫逾 5 年最佳",
+      "summary": "被動元件漲價題材帶動，MLCC 供不應求；惟股價 7 月上旬劇烈震盪，國巨曾破千元後回檔。",
+      "published": "07/10",
+      "link": "https://tw.stock.yahoo.com/news/%E5%9C%8B%E5%B7%A8-6%E6%9C%88%E7%87%9F%E6%94%B6%E7%BA%8C%E5%89%B5%E5%96%AE%E6%9C%88%E6%96%B0%E9%AB%98-%E8%8F%AF%E6%96%B0%E7%A7%91%E5%AF%AB%E9%80%BE5%E5%B9%B4%E6%9C%80%E4%BD%B3-103830290.html",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "京元電（2449）董事會拍板赴美設廠，投資上限 14 億美元（約 450 億台幣）",
+      "summary": "卡位美國本土封測產能缺口，配合台積電亞利桑那產能開出；今年資本支出提高至 500 億元創新高。",
+      "published": "07/11",
+      "link": "https://finance.technews.tw/2026/07/11/kyec-has-approved-the-establishment-of-a-factory-in-the-united-states/",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台特化（4772）30 億元收購弘潔 65% 股權，擴大半導體先進製程布局",
+      "summary": "透過併購切入半導體特用化學品，強化先進製程材料供應鏈。",
+      "published": "07/11",
+      "link": "https://money.udn.com/money/story/5612/8835753",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "雷虎（8033）無人機概念股續強，盤中拉出漲停",
+      "summary": "國防與無人機自主化題材帶動，邑錡、長榮航太、事欣科等同步走強。",
+      "published": "07/01",
+      "link": "https://udn.com/news/story/7251/9599265",
+      "is_revenue": false,
+      "source": "yahoo"
+    }
+  ]
+}
