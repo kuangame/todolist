@@ -1,85 +1,69 @@
 {
-  "fetched_at": "2026-07-13T12:11:58+08:00",
+  "fetched_at": "2026-07-13T14:12:17+08:00",
   "items": [
     {
       "title": "台積電（2330）7/16 法說登場，法人聚焦上修展望、資本支出與先進封裝進度",
       "summary": "地點台北文華東方酒店，將公布 Q2 財報與 Q3 展望；市場關注全年營運是否上修、資本支出是否調高、CoWoS 擴產與海內外擴廠進度。今日台積電領漲逾 2%。",
       "published": "07/13",
-      "link": "https://money.udn.com/money/story/11162/9595914",
+      "link": "https://money.udn.com/money/story/5607/9620624",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
       "title": "南亞科（2408）法說 Q2 毛利率飆 79.5%、單季大賺逾 500 億元 EPS 14.66 元創新高",
-      "summary": "受惠 DRAM 平均售價季增逾 60%，總座李培瑛看好記憶體缺貨延續數季；6 月營收 293.88 億元年增 621%、上半年累計連 8 個月創新高。",
+      "summary": "受惠 DRAM 平均售價季增逾 60%，總座李培瑛看好記憶體缺貨延續數季；6 月營收 293.88 億元年增 621%、連 8 個月創高，上半年累計 1,316 億元。",
       "published": "07/10",
-      "link": "https://news.cnyes.com/news/id/6530697",
+      "link": "https://www.ctee.com.tw/news/20260705700327-430105",
       "is_revenue": true,
       "source": "mops"
     },
     {
       "title": "京元電（2449）董事會通過提高 2026 資本支出至 500 億元，並拍板赴美設廠上限 14 億美元",
-      "summary": "看好北美 CSP 持續增加資本支出、先進封裝產能擴張不及，預期 2026 為豐收年；GPU 客戶預燒（Burn-in）測試需求顯著增加。今日外資買超居前。",
+      "summary": "看好北美 CSP 持續增加資本支出、先進封裝產能擴張不及，預期 2026 為豐收年；GPU 客戶預燒（Burn-in）測試需求顯著增加。",
       "published": "07/10",
       "link": "https://news.cnyes.com/news/id/6530688",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "大立光（3008）反映 CPO 進程利多，早盤攻上漲停 4345 元",
-      "summary": "法說釋出共同封裝光學（CPO）試產線進度，帶動聯一光、先進光同步攻漲停，玉晶光早盤漲逾 5%，光學族群全面走強。",
-      "published": "07/13",
-      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "大立光（3008）上半年 EPS 82.35 元、稅後純益 107.93 億元年增 44%",
-      "summary": "執行長林恩平指產能滿載、7 月動能優於 6 月、8 月又優於 7 月，第三季迎 iPhone 新機拉貨與可變光圈升級。",
-      "published": "07/09",
-      "link": "https://news.cnyes.com/news/id/6530873",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "台達電（2308）AI 電源需求強勁，訂單能見度延伸至 2027 年，今日股價漲至 1915 元",
-      "summary": "憑高功率電源轉換與機房液冷散熱兩大核心技術受惠雲端業者加碼資本支出；6 月營收 656.03 億元年增 55.4% 改寫單月新高。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/id/6529815",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
       "title": "鴻海（2317）6 月營收 8,218 億元年增 52.11%，Q2 及上半年同期新高",
-      "summary": "Q2 營收 2.51 兆元年增 39.83%、上半年 4.64 兆元年增 34.99%，AI 伺服器動能延續，估 Q3 季年雙增。",
+      "summary": "Q2 營收 2.51 兆元年增 39.83%、上半年 4.64 兆元年增約 35%，AI 伺服器動能延續，估 Q3 季年雙增。",
       "published": "07/10",
-      "link": "https://tw.stock.yahoo.com/news/鴻海6月-q2及上半年營收齊創同期新高-估q3營運季-年雙增-231818529.html",
+      "link": "https://finance.ettoday.net/news/3195644",
       "is_revenue": true,
       "source": "mops"
     },
     {
       "title": "廣達（2382）6 月營收 3,851.91 億元月增 23.66%、年增 102.87% 改寫單月新高",
-      "summary": "連四個月站穩 3 千億元大關，電子五哥中稱冠；AI 伺服器出貨強勁帶動營運續揚。",
+      "summary": "連四個月站穩 3 千億元大關，Q2 營收 1.04 兆元季增 28.1% 同創新高；AI 伺服器出貨強勁帶動營運續揚。",
       "published": "07/09",
-      "link": "https://tw.stock.yahoo.com/news/廣達6月營收3851億元年月雙增-改寫歷史新高-070251780.html",
+      "link": "https://newtalk.tw/news/view/2026-07-09/1046286",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%，Q2 超越財測高標；今日股價由紅翻黑",
-      "summary": "Q2 合併營收 1,521.83 億元優於財測，旗艦手機晶片與邊緣 AI 動能延續；盤中一度下跌逾 30 元、7 月底法說聚焦 ASIC 展望。",
-      "published": "07/13",
-      "link": "https://news.cnyes.com/news/id/6530759",
+      "title": "緯創（3231）6 月營收年增 53.9%、上半年 5,546.6 億元年增 41.7% 同創新高",
+      "summary": "六大 ODM 廠中上半年成長最亮眼，AI 伺服器拉貨強勁帶動單月與上半年營收同締歷史新高。",
+      "published": "07/09",
+      "link": "https://newtalk.tw/news/view/2026-07-09/1046286",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "台塑四寶盤中強攻：台化、南亞、台塑亮燈漲停，台塑化漲逾 8%",
-      "summary": "台化 66 元、南亞 199.5 元、台塑 60.2 元攻上漲停板，帶動塑化傳產族群買氣回溫。",
-      "published": "07/13",
-      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
-      "is_revenue": false,
-      "source": "yahoo"
+      "title": "聯發科（2454）6 月營收 580.12 億元月增 22.3%，Q2 超越財測高標",
+      "summary": "Q2 合併營收 1,521.83 億元優於財測，旗艦手機晶片與邊緣 AI 動能延續；除息 24.5 元、7 月底法說聚焦 ASIC 展望。",
+      "published": "07/10",
+      "link": "https://www.businesstoday.com.tw/article/category/183008/post/202607050010/",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "台達電（2308）6 月營收 656.03 億元年增 55.4% 改寫單月新高，AI 電源訂單能見度延伸至 2027 年",
+      "summary": "憑高功率電源轉換與機房液冷散熱兩大核心技術受惠雲端業者加碼資本支出，訂單能見度延伸至 2027 年。",
+      "published": "07/10",
+      "link": "https://news.cnyes.com/news/id/6529815",
+      "is_revenue": true,
+      "source": "mops"
     },
     {
       "title": "環球晶（6488）拿下美光 10 年長約，並取得 5 億美元策略資金",
@@ -90,10 +74,18 @@
       "source": "yahoo"
     },
     {
-      "title": "矽晶圓族群盤中同步亮燈漲停：環球晶、中美晶（5483）、台勝科（3532）、合晶（6182）、嘉晶（3016）",
-      "summary": "高盛看好 AI 熱潮下半年蔓延至矽晶圓與類比／功率半導體，帶動族群買盤湧入、多檔漲停鎖死。",
+      "title": "矽晶圓族群同步走強：環球晶、中美晶（5483）、台勝科（3532）、合晶（6182）、嘉晶（3016）",
+      "summary": "高盛看好 AI 熱潮下半年蔓延至矽晶圓與類比／功率半導體，帶動族群買盤湧入、多檔亮燈漲停。",
       "published": "07/13",
-      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
+      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台塑四寶轉強：台化、南亞、台塑、台塑化領漲，塑化傳產族群買氣回溫",
+      "summary": "7 月除息秀由台塑四寶帶動，塑化族群買盤回流；聯發科、廣達接棒除息，高殖利率股醞釀填息行情。",
+      "published": "07/13",
+      "link": "https://www.ctee.com.tw/news/20260703700093-439901",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -106,10 +98,10 @@
       "source": "mops"
     },
     {
-      "title": "無人機概念股盤中噴發：漢翔（2634）、晟田（4541）、保勝光學（6517）攻漲停，長榮航太（2645）大漲近 8%",
-      "summary": "國防與無人機供應鏈題材延燒，帶動航太族群買盤，和成、台船盤中亦漲逾 6%。",
-      "published": "07/13",
-      "link": "https://www.cna.com.tw/news/afe/202607130058.aspx",
+      "title": "威剛（3260）公開收購琉園（6603），累積應賣逾 1,000 萬股",
+      "summary": "威剛啟動對琉園公開收購案，市場關注最終收購比例與後續整合布局。",
+      "published": "07/11",
+      "link": "https://news.cnyes.com/news/cat/tw_stock_news",
       "is_revenue": false,
       "source": "yahoo"
     },
