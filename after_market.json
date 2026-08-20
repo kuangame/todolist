@@ -1,30 +1,30 @@
 {
-  "fetched_at": "2026-08-19T20:00:16.045572",
-  "date": "2026/08/19",
+  "fetched_at": "2026-08-20T20:00:16.130255",
+  "date": "2026/08/20",
   "taiex_futures": {
     "自營商": {
-      "buy": 8335,
-      "sell": 8143,
-      "net_trade": 192,
-      "oi_long": 5957,
-      "oi_short": 3395,
-      "oi_net": 2562
+      "buy": 3303,
+      "sell": 3845,
+      "net_trade": -542,
+      "oi_long": 5674,
+      "oi_short": 3655,
+      "oi_net": 2019
     },
     "投信": {
-      "buy": 1024,
-      "sell": 2267,
-      "net_trade": -1243,
-      "oi_long": 78301,
-      "oi_short": 3512,
-      "oi_net": 74789
+      "buy": 1110,
+      "sell": 74,
+      "net_trade": 1036,
+      "oi_long": 79336,
+      "oi_short": 3511,
+      "oi_net": 75825
     },
     "外資": {
-      "buy": 57364,
-      "sell": 56615,
-      "net_trade": 749,
-      "oi_long": 6692,
-      "oi_short": 88193,
-      "oi_net": -81501
+      "buy": 51781,
+      "sell": 52682,
+      "net_trade": -901,
+      "oi_long": 6959,
+      "oi_short": 89382,
+      "oi_net": -82423
     }
   }
 }
