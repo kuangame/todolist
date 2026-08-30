@@ -347,16 +347,30 @@
       min-width: 0;
     }
 
-    .btn-edit, .btn-delete, .btn-note {
+    .btn-edit, .btn-delete {
       background: none; border: none; cursor: pointer;
       padding: 0 4px; flex-shrink: 0; transition: color 0.2s;
     }
-    .btn-note { color: var(--text-3); font-size: 13px; }
-    .btn-note:hover { color: var(--exec); }
     .btn-edit { color: var(--text-3); font-size: 13px; }
     .btn-edit:hover { color: var(--accent); }
     .btn-delete { color: var(--text-3); font-size: 15px; }
     .btn-delete:hover { color: var(--neg); }
+
+    .btn-view-plan {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 6px 9px;
+      font-family: var(--ui);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--exec);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-view-plan:hover { border-color: var(--exec); background: rgba(56,201,201,0.1); }
 
     .empty { text-align: center; color: var(--text-3); padding: 40px; font-size: 14px; font-family: var(--mono); letter-spacing: 0.5px; }
 
@@ -1577,6 +1591,9 @@
           ? `<a class="todo-note-link" href="obsidian://open?vault=${encodeURIComponent(VAULT)}&file=${encodeURIComponent(t.note)}" onclick="event.stopPropagation()">⬡ ${esc(t.note)}</a>`
           : '';
         const descHtml = t.desc ? `<div class="todo-desc">${esc(t.desc)}</div>` : '';
+        const planBtnHtml = t.note
+          ? `<button class="btn-view-plan" onclick="openNoteModal(${i})">📄 查看規劃內容</button>`
+          : '';
         return `<li class="todo-item" data-priority="${t.priority}"
             draggable="true" ondragstart="dragStart(event,${i})" ondragover="dragOver(event)" ondrop="drop(event,${i})" ondragend="dragEnd(event)">
           <div class="todo-item-top">
@@ -1586,6 +1603,7 @@
               ${noteHtml}${descHtml}
             </div>
           </div>
+          ${planBtnHtml}
           <div class="todo-item-controls">
             <select class="priority-select" onchange="changePriority(${i},this.value)">
               <option value="1" ${t.priority==1?'selected':''}>🔴 高</option>
@@ -1593,7 +1611,6 @@
               <option value="3" ${t.priority==3?'selected':''}>🟢 低</option>
             </select>
             <div class="todo-item-actions">
-              ${t.note ? `<button class="btn-note" onclick="openNoteModal(${i})" title="查看/編輯筆記">📄</button>` : ''}
               <button class="btn-edit" onclick="openEditModal(${i})" title="編輯">✎</button>
               <button class="btn-delete" onclick="deleteTodo(${i})">✕</button>
             </div>
