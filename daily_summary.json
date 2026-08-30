@@ -1,9 +1,10 @@
 {
-  "date": "2026-07-10",
+  "date": "2026-08-30",
   "items": [
-    "Discord 晨報行事曆權限問題待查 需檢查 discord-morning-error.log",
-    "翻譯 App 線上運作中 持續監控 Vercel 部署狀態",
-    "Dashboard 七個 tab 功能穩定 交割/晨報/股票正常更新",
-    "LINE Bot 客服系統運行中 Railway 自動 CI/CD 無異常"
+    "小銀月語音助理完成 PyQt6 GUI 升級 太陽系版面設計上線",
+    "修復 drawArc 整數溢位 segfault 和三個 skill symlink 損壞",
+    "TTS 供應商改用 VoAI 絕好聲創 定案配音員柔洢",
+    "記憶系統整合完成 對話即時雙寫 Claude 和 Obsidian",
+    "語音喚醒方案評估完畢 決定改用桌面捷徑啟動"
   ]
 }
