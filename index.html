@@ -23,6 +23,7 @@
       --pos: #2ee88a;
       --neg: #f55d6b;
       --warn: #f7b731;
+      --exec: #38c9c9;
       --pri-1: #f55d6b;
       --pri-2: #f7b731;
       --pri-3: #2ee88a;
@@ -346,10 +347,12 @@
       min-width: 0;
     }
 
-    .btn-edit, .btn-delete {
+    .btn-edit, .btn-delete, .btn-note {
       background: none; border: none; cursor: pointer;
       padding: 0 4px; flex-shrink: 0; transition: color 0.2s;
     }
+    .btn-note { color: var(--text-3); font-size: 13px; }
+    .btn-note:hover { color: var(--exec); }
     .btn-edit { color: var(--text-3); font-size: 13px; }
     .btn-edit:hover { color: var(--accent); }
     .btn-delete { color: var(--text-3); font-size: 15px; }
@@ -663,6 +666,16 @@
       transition: opacity 0.2s;
     }
     .btn-confirm:hover { opacity: 0.85; }
+
+    .modal-wide { max-width: 640px; }
+    .modal-wide textarea {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      resize: vertical;
+      min-height: 320px;
+    }
+    .note-modal-status { font-size: 11px; color: var(--text-3); margin: -4px 0 10px; font-family: var(--mono); }
 
     /* ── 股票 ─────────────────────────────────── */
     .stock-input-card {
@@ -1396,6 +1409,18 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="note-modal">
+  <div class="modal modal-wide">
+    <h2 id="note-modal-title">專案筆記</h2>
+    <div class="note-modal-status" id="note-modal-status"></div>
+    <textarea id="note-modal-content" placeholder="載入中..."></textarea>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeNoteModal()">取消</button>
+      <button class="btn-confirm" onclick="saveNoteModal()">儲存</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const REPO = 'kuangame/todolist';
   const VAULT = 'MyBrain';
@@ -1434,9 +1459,9 @@
     btn.className = 'btn-token' + (connected ? ' connected' : '');
   }
 
-  // ── GitHub API 通用 ───────────────────────────────────────
-  async function ghGet(file) {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}?t=${Date.now()}`, {
+  // ── GitHub API 通用（MYBRAIN_REPO 常數見下方「操作筆記」區塊）────
+  async function ghGet(file, repo = REPO) {
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/${file}?t=${Date.now()}`, {
       headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' },
       cache: 'no-store'
     });
@@ -1445,10 +1470,10 @@
     return res.json();
   }
 
-  async function ghPut(file, content, sha, message) {
+  async function ghPut(file, content, sha, message, repo = REPO) {
     const body = { message, content: btoa(unescape(encodeURIComponent(content))) };
     if (sha) body.sha = sha;
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, {
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/${file}`, {
       method: 'PUT',
       headers: {
         Authorization: `token ${getToken()}`,
@@ -1461,12 +1486,15 @@
     return res.json();
   }
 
-  // ── PROJECT（看板：未完成／處理中／審核／完成）──────────────
-  // 狀態只由聊天中請 Claude 移動（例如「開始處理 XXX」「這個過了，移到完成」），
-  // 面板上不放手動改狀態的按鈕/勾選框，避免自己隨手拖錯或誤按。
+  // ── PROJECT（看板：未完成／處理中／執行／審核／完成）─────────
+  // 未完成→處理中：project-patrol.sh 寫完 Obsidian 行動步驟筆記後自動推進。
+  // 處理中→執行：使用者確認計畫沒問題，手動拖曳過去。
+  // 執行→審核：自動實作完成後自動推進。
+  // 審核→完成：使用者在對話中口頭跟 Claude 確認才移動，面板上不放按鈕。
   const STATUSES = [
     { key: 'todo',   label: '未完成', md: ' ', color: 'var(--text-3)' },
     { key: 'doing',  label: '處理中', md: '/', color: 'var(--warn)' },
+    { key: 'exec',   label: '執行',   md: '!', color: 'var(--exec)' },
     { key: 'review', label: '審核',   md: '?', color: 'var(--accent)' },
     { key: 'done',   label: '完成',   md: 'x', color: 'var(--pos)' },
   ];
@@ -1515,7 +1543,7 @@
     const priorityMap = { '🔴 高': 1, '🟠 中': 2, '🟢 低': 3 };
     const result = [];
     for (const line of md.split('\n')) {
-      const m = line.match(/^- \[( |x|\/|\?)\] (🔴 高|🟠 中|🟢 低) (.+?)( — \[\[(.+?)\]\])?$/);
+      const m = line.match(/^- \[( |x|\/|\?|!)\] (🔴 高|🟠 中|🟢 低) (.+?)( — \[\[(.+?)\]\])?$/);
       if (m) {
         result.push({
           status: STATUS_BY_MD[m[1]] || 'todo', // 舊資料只有 ' '/'x'，自然對應到 todo/done
@@ -1565,6 +1593,7 @@
               <option value="3" ${t.priority==3?'selected':''}>🟢 低</option>
             </select>
             <div class="todo-item-actions">
+              ${t.note ? `<button class="btn-note" onclick="openNoteModal(${i})" title="查看/編輯筆記">📄</button>` : ''}
               <button class="btn-edit" onclick="openEditModal(${i})" title="編輯">✎</button>
               <button class="btn-delete" onclick="deleteTodo(${i})">✕</button>
             </div>
@@ -1622,6 +1651,53 @@
       note: document.getElementById('edit-note').value.trim() || null,
       desc: document.getElementById('edit-desc').value.trim() || null };
     closeEditModal(); saveTodos(); render();
+  }
+
+  // ── 專案筆記（讀寫 MyBrain repo 裡的 Obsidian 筆記，例如 project-patrol
+  // 寫的「## 行動步驟」內容）──────────────────────────────────
+  let noteModalPath = null;
+  let noteModalSha = null;
+  async function openNoteModal(i) {
+    const t = todos[i];
+    if (!t.note) return;
+    noteModalPath = `${t.note}.md`;
+    noteModalSha = null;
+    document.getElementById('note-modal-title').textContent = t.note;
+    const ta = document.getElementById('note-modal-content');
+    ta.value = '';
+    const statusEl = document.getElementById('note-modal-status');
+    statusEl.textContent = '讀取中...';
+    document.getElementById('note-modal').classList.add('show');
+    try {
+      const data = await ghGet(noteModalPath, MYBRAIN_REPO);
+      if (!data) {
+        statusEl.textContent = '筆記還不存在，儲存後會自動建立';
+      } else {
+        noteModalSha = data.sha;
+        ta.value = b64decode(data.content);
+        statusEl.textContent = '';
+      }
+    } catch (e) {
+      statusEl.textContent = '讀取失敗：' + e.message;
+    }
+  }
+  function closeNoteModal() {
+    document.getElementById('note-modal').classList.remove('show');
+    noteModalPath = null; noteModalSha = null;
+  }
+  async function saveNoteModal() {
+    if (!noteModalPath) return;
+    const content = document.getElementById('note-modal-content').value;
+    const statusEl = document.getElementById('note-modal-status');
+    statusEl.textContent = '儲存中...';
+    try {
+      const result = await ghPut(noteModalPath, content, noteModalSha,
+        `update note [${new Date().toLocaleString('zh-TW')}]`, MYBRAIN_REPO);
+      noteModalSha = result.content.sha;
+      statusEl.textContent = '已儲存 — ' + new Date().toLocaleTimeString();
+    } catch (e) {
+      statusEl.textContent = '儲存失敗：' + e.message;
+    }
   }
 
   function toggleExpand(el) { el.closest('.todo-item').classList.toggle('expanded'); }
