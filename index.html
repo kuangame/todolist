@@ -252,8 +252,9 @@
     }
     .sub-input-row input::placeholder, .sub-input-row textarea::placeholder { color: var(--text-3); }
 
-    /* ── 看板（未完成／處理中／審核／完成）：固定一列橫排，
-       視窗窄的時候用左右滑動而不是換行堆疊 ───────────── */
+    /* ── 看板（未完成／處理中／執行／審核／完成）：固定一列橫排，
+       故意跳出 .container 的 1000px 上限、撐滿整個瀏覽器寬度，
+       5 欄才有機會不用捲動就看完；視窗真的不夠寬時才左右滑動 ─ */
     .kanban-board {
       display: flex;
       gap: 10px;
@@ -262,14 +263,21 @@
       overflow-x: auto;
       padding-bottom: 6px;
       -webkit-overflow-scrolling: touch;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-left: 16px;
+      padding-right: 16px;
+      box-sizing: border-box;
     }
     .kanban-col {
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
       padding: 10px;
-      flex: 1 0 220px;
-      min-width: 220px;
+      flex: 1 1 220px;
+      min-width: 200px;
+      max-width: 320px;
     }
     .kanban-col-head {
       display: flex;
