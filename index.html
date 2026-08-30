@@ -251,35 +251,62 @@
     }
     .sub-input-row input::placeholder, .sub-input-row textarea::placeholder { color: var(--text-3); }
 
-    .filter-bar { display: flex; gap: 6px; margin-bottom: 16px; margin-top: 12px; }
-
-    .filter-btn {
-      font-family: var(--ui);
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-3);
-      border-radius: 20px;
-      padding: 5px 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.3px;
+    /* ── 看板（未完成／處理中／審核／完成）：固定一列橫排，
+       視窗窄的時候用左右滑動而不是換行堆疊 ───────────── */
+    .kanban-board {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: start;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
     }
-    .filter-btn:hover { color: var(--text-2); border-color: var(--border); }
-    .filter-btn.active { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
-
-    #todo-list { list-style: none; }
-
-    .todo-item {
+    .kanban-col {
       background: var(--surface);
       border: 1px solid var(--border-dim);
-      border-radius: var(--radius);
-      padding: 12px 14px;
-      margin-bottom: 8px;
+      border-radius: var(--radius-lg);
+      padding: 10px;
+      flex: 1 0 220px;
+      min-width: 220px;
+    }
+    .kanban-col-head {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      padding: 2px 2px 10px;
+      margin-bottom: 8px;
+      border-bottom: 2px solid var(--col-color, var(--border));
+    }
+    .kanban-col-label {
+      font-family: var(--ui);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--col-color, var(--text-2));
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .kanban-col-count {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      background: var(--surface-2);
+      border-radius: 10px;
+      padding: 1px 7px;
+      flex-shrink: 0;
+    }
+    .kanban-col-body { list-style: none; min-height: 32px; }
+    .kanban-empty { text-align: center; color: var(--text-3); padding: 18px 6px; font-size: 11px; font-family: var(--mono); letter-spacing: 0.3px; }
+
+    .todo-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       cursor: grab;
       transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
       border-left: 3px solid transparent;
@@ -292,37 +319,40 @@
     .todo-item[data-priority="2"] { border-left-color: var(--pri-2); }
     .todo-item[data-priority="3"] { border-left-color: var(--pri-3); }
 
+    .todo-item-top { display: flex; align-items: flex-start; gap: 8px; }
+    .todo-item-controls { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .todo-item-actions { display: flex; align-items: center; gap: 2px; }
+
     .drag-handle { color: var(--text-3); font-size: 16px; cursor: grab; user-select: none; flex-shrink: 0; }
-    .todo-check { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); flex-shrink: 0; }
     .todo-main { flex: 1; min-width: 0; }
-    .todo-text { font-size: 15px; color: var(--text); word-break: break-word; display: block; cursor: pointer; line-height: 1.5; }
+    .todo-text { font-size: 14px; color: var(--text); word-break: break-word; display: block; cursor: pointer; line-height: 1.5; }
     .todo-text:hover { color: var(--accent); }
-    .todo-note-link { font-size: 12px; color: rgba(0,212,170,0.7); text-decoration: none; display: inline-block; margin-top: 3px; font-family: var(--mono); }
+    .todo-note-link { font-size: 11px; color: rgba(0,212,170,0.7); text-decoration: none; display: inline-block; margin-top: 3px; font-family: var(--mono); }
     .todo-note-link:hover { color: var(--accent); text-decoration: underline; }
-    .todo-desc { font-size: 13px; color: var(--text-2); margin-top: 6px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; display: none; border-left: 2px solid var(--border); padding-left: 10px; }
+    .todo-desc { font-size: 12px; color: var(--text-2); margin-top: 6px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; display: none; border-left: 2px solid var(--border); padding-left: 10px; }
     .todo-item.expanded .todo-desc { display: block; }
-    .todo-item.done .todo-text { text-decoration: line-through; color: var(--text-3); }
 
     .priority-select {
       font-family: var(--ui);
-      font-size: 12px;
+      font-size: 11px;
       border: 1px solid var(--border);
-      background: var(--surface-2);
+      background: var(--surface-3);
       color: var(--text-2);
       border-radius: 6px;
-      padding: 4px 6px;
+      padding: 3px 5px;
       outline: none;
       cursor: pointer;
       flex-shrink: 0;
+      min-width: 0;
     }
 
     .btn-edit, .btn-delete {
       background: none; border: none; cursor: pointer;
       padding: 0 4px; flex-shrink: 0; transition: color 0.2s;
     }
-    .btn-edit { color: var(--text-3); font-size: 14px; }
+    .btn-edit { color: var(--text-3); font-size: 13px; }
     .btn-edit:hover { color: var(--accent); }
-    .btn-delete { color: var(--text-3); font-size: 16px; }
+    .btn-delete { color: var(--text-3); font-size: 15px; }
     .btn-delete:hover { color: var(--neg); }
 
     .empty { text-align: center; color: var(--text-3); padding: 40px; font-size: 14px; font-family: var(--mono); letter-spacing: 0.5px; }
@@ -1167,13 +1197,7 @@
       <textarea id="new-desc" rows="2" placeholder="描述（選填）"></textarea>
     </div>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="setFilter('all', this)">全部</button>
-      <button class="filter-btn" onclick="setFilter('active', this)">未完成</button>
-      <button class="filter-btn" onclick="setFilter('done', this)">已完成</button>
-    </div>
-
-    <ul id="todo-list"></ul>
+    <div class="kanban-board" id="kanban-board"></div>
   </div>
 
   <!-- 交割計算機 Tab -->
@@ -1437,9 +1461,19 @@
     return res.json();
   }
 
-  // ── PROJECT ───────────────────────────────────────────────
+  // ── PROJECT（看板：未完成／處理中／審核／完成）──────────────
+  // 狀態只由聊天中請 Claude 移動（例如「開始處理 XXX」「這個過了，移到完成」），
+  // 面板上不放手動改狀態的按鈕/勾選框，避免自己隨手拖錯或誤按。
+  const STATUSES = [
+    { key: 'todo',   label: '未完成', md: ' ', color: 'var(--text-3)' },
+    { key: 'doing',  label: '處理中', md: '/', color: 'var(--warn)' },
+    { key: 'review', label: '審核',   md: '?', color: 'var(--accent)' },
+    { key: 'done',   label: '完成',   md: 'x', color: 'var(--pos)' },
+  ];
+  const STATUS_BY_MD = Object.fromEntries(STATUSES.map(s => [s.md, s.key]));
+  const MD_BY_STATUS = Object.fromEntries(STATUSES.map(s => [s.key, s.md]));
+
   let todos = [];
-  let filter = 'all';
   let dragSrcIdx = null;
   let todosSha = null;
 
@@ -1481,9 +1515,13 @@
     const priorityMap = { '🔴 高': 1, '🟠 中': 2, '🟢 低': 3 };
     const result = [];
     for (const line of md.split('\n')) {
-      const m = line.match(/^- \[( |x)\] (🔴 高|🟠 中|🟢 低) (.+?)( — \[\[(.+?)\]\])?$/);
+      const m = line.match(/^- \[( |x|\/|\?)\] (🔴 高|🟠 中|🟢 低) (.+?)( — \[\[(.+?)\]\])?$/);
       if (m) {
-        result.push({ done: m[1]==='x', priority: priorityMap[m[2]]||2, text: m[3].trim(), note: m[5]||null, desc: null });
+        result.push({
+          status: STATUS_BY_MD[m[1]] || 'todo', // 舊資料只有 ' '/'x'，自然對應到 todo/done
+          priority: priorityMap[m[2]] || 2,
+          text: m[3].trim(), note: m[5] || null, desc: null,
+        });
       } else if (result.length > 0 && line.startsWith('  > ')) {
         result[result.length-1].desc = line.slice(4);
       }
@@ -1495,38 +1533,51 @@
     const lbl = { 1:'🔴 高', 2:'🟠 中', 3:'🟢 低' };
     return ['---', `synced: ${new Date().toISOString()}`, '---', '', '# 專案清單', '',
       ...todos.flatMap(t => {
-        const lines = [`- ${t.done?'[x]':'[ ]'} ${lbl[t.priority]} ${t.text}${t.note?` — [[${t.note}]]`:''}`];
+        const lines = [`- [${MD_BY_STATUS[t.status] || ' '}] ${lbl[t.priority]} ${t.text}${t.note?` — [[${t.note}]]`:''}`];
         if (t.desc) lines.push(`  > ${t.desc}`);
         return lines;
       }), ''].join('\n');
   }
 
   function render() {
-    const list = document.getElementById('todo-list');
-    const filtered = todos.filter(t => filter==='active'?!t.done : filter==='done'?t.done : true);
-    if (!filtered.length) { list.innerHTML = '<div class="empty">— no items —</div>'; return; }
-    list.innerHTML = filtered.map(t => {
-      const i = todos.indexOf(t);
-      const noteHtml = t.note
-        ? `<a class="todo-note-link" href="obsidian://open?vault=${encodeURIComponent(VAULT)}&file=${encodeURIComponent(t.note)}" onclick="event.stopPropagation()">⬡ ${esc(t.note)}</a>`
-        : '';
-      const descHtml = t.desc ? `<div class="todo-desc">${esc(t.desc)}</div>` : '';
-      return `<li class="todo-item ${t.done?'done':''}" data-priority="${t.priority}"
-          draggable="true" ondragstart="dragStart(event,${i})" ondragover="dragOver(event)" ondrop="drop(event,${i})" ondragend="dragEnd(event)">
-        <span class="drag-handle">⠿</span>
-        <input type="checkbox" class="todo-check" ${t.done?'checked':''} onchange="toggleDone(${i})" />
-        <div class="todo-main">
-          <span class="todo-text" onclick="toggleExpand(this)">${esc(t.text)}${t.desc?' <span style="color:var(--text-3);font-size:10px;">▾</span>':''}</span>
-          ${noteHtml}${descHtml}
+    const board = document.getElementById('kanban-board');
+    board.innerHTML = STATUSES.map(col => {
+      const items = todos.filter(t => t.status === col.key);
+      const cardsHtml = items.length ? items.map(t => {
+        const i = todos.indexOf(t);
+        const noteHtml = t.note
+          ? `<a class="todo-note-link" href="obsidian://open?vault=${encodeURIComponent(VAULT)}&file=${encodeURIComponent(t.note)}" onclick="event.stopPropagation()">⬡ ${esc(t.note)}</a>`
+          : '';
+        const descHtml = t.desc ? `<div class="todo-desc">${esc(t.desc)}</div>` : '';
+        return `<li class="todo-item" data-priority="${t.priority}"
+            draggable="true" ondragstart="dragStart(event,${i})" ondragover="dragOver(event)" ondrop="drop(event,${i})" ondragend="dragEnd(event)">
+          <div class="todo-item-top">
+            <span class="drag-handle">⠿</span>
+            <div class="todo-main">
+              <span class="todo-text" onclick="toggleExpand(this)">${esc(t.text)}${t.desc?' <span style="color:var(--text-3);font-size:10px;">▾</span>':''}</span>
+              ${noteHtml}${descHtml}
+            </div>
+          </div>
+          <div class="todo-item-controls">
+            <select class="priority-select" onchange="changePriority(${i},this.value)">
+              <option value="1" ${t.priority==1?'selected':''}>🔴 高</option>
+              <option value="2" ${t.priority==2?'selected':''}>🟠 中</option>
+              <option value="3" ${t.priority==3?'selected':''}>🟢 低</option>
+            </select>
+            <div class="todo-item-actions">
+              <button class="btn-edit" onclick="openEditModal(${i})" title="編輯">✎</button>
+              <button class="btn-delete" onclick="deleteTodo(${i})">✕</button>
+            </div>
+          </div>
+        </li>`;
+      }).join('') : '<div class="kanban-empty">— empty —</div>';
+      return `<div class="kanban-col">
+        <div class="kanban-col-head" style="--col-color:${col.color}">
+          <span class="kanban-col-label">${col.label}</span>
+          <span class="kanban-col-count">${items.length}</span>
         </div>
-        <select class="priority-select" onchange="changePriority(${i},this.value)">
-          <option value="1" ${t.priority==1?'selected':''}>🔴 高</option>
-          <option value="2" ${t.priority==2?'selected':''}>🟠 中</option>
-          <option value="3" ${t.priority==3?'selected':''}>🟢 低</option>
-        </select>
-        <button class="btn-edit" onclick="openEditModal(${i})" title="編輯">✎</button>
-        <button class="btn-delete" onclick="deleteTodo(${i})">✕</button>
-      </li>`;
+        <ul class="kanban-col-body">${cardsHtml}</ul>
+      </div>`;
     }).join('');
   }
 
@@ -1539,7 +1590,7 @@
     const input = document.getElementById('new-todo');
     const text = input.value.trim();
     if (!text) return;
-    todos.push({ text, priority: parseInt(document.getElementById('new-priority').value), done: false,
+    todos.push({ text, priority: parseInt(document.getElementById('new-priority').value), status: 'todo',
       note: document.getElementById('new-note').value.trim() || null,
       desc: document.getElementById('new-desc').value.trim() || null });
     todos.sort((a,b) => a.priority - b.priority);
@@ -1574,17 +1625,18 @@
   }
 
   function toggleExpand(el) { el.closest('.todo-item').classList.toggle('expanded'); }
-  function toggleDone(i) { todos[i].done = !todos[i].done; saveTodos(); render(); }
   function deleteTodo(i) { todos.splice(i,1); saveTodos(); render(); }
   function changePriority(i, v) { todos[i].priority = parseInt(v); saveTodos(); render(); }
-  function setFilter(f, btn) {
-    filter = f;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active'); render();
-  }
   function dragStart(e,i) { dragSrcIdx=i; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; }
   function dragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect='move'; e.currentTarget.classList.add('drag-over'); }
-  function drop(e,i) { e.preventDefault(); if (dragSrcIdx===null||dragSrcIdx===i) return; todos.splice(i,0,todos.splice(dragSrcIdx,1)[0]); saveTodos(); render(); }
+  function drop(e,i) {
+    e.preventDefault();
+    if (dragSrcIdx===null || dragSrcIdx===i) return;
+    // 卡片狀態只由 Claude 在對話中移動，面板拖曳只允許同一欄內重新排序，
+    // 避免手滑把卡片拖到別欄卻沒有真的改到狀態、造成畫面跟資料對不上。
+    if (todos[dragSrcIdx].status !== todos[i].status) return;
+    todos.splice(i,0,todos.splice(dragSrcIdx,1)[0]); saveTodos(); render();
+  }
   function dragEnd(e) { dragSrcIdx=null; document.querySelectorAll('.todo-item').forEach(el => el.classList.remove('dragging','drag-over')); }
 
   // ── 工作日計算 ─────────────────────────────────────────────
