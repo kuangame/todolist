@@ -278,7 +278,9 @@
       flex: 1 1 220px;
       min-width: 200px;
       max-width: 320px;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
+    .kanban-col.drag-over { border-color: var(--exec); box-shadow: 0 0 0 1px var(--exec), 0 0 16px rgba(56,201,201,0.25); }
     .kanban-col-head {
       display: flex;
       align-items: center;
@@ -1625,7 +1627,7 @@
           </div>
         </li>`;
       }).join('') : '<div class="kanban-empty">— empty —</div>';
-      return `<div class="kanban-col">
+      return `<div class="kanban-col" ondragover="dragOver(event)" ondrop="dropOnColumn(event, '${col.key}')">
         <div class="kanban-col-head" style="--col-color:${col.color}">
           <span class="kanban-col-label">${col.label}</span>
           <span class="kanban-col-count">${items.length}</span>
@@ -1730,15 +1732,43 @@
   function changePriority(i, v) { todos[i].priority = parseInt(v); saveTodos(); render(); }
   function dragStart(e,i) { dragSrcIdx=i; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; }
   function dragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect='move'; e.currentTarget.classList.add('drag-over'); }
+
+  // 大部分欄位轉換是自動的（未完成→處理中由 patrol、執行→審核由實作機制、
+  // 審核→完成要在對話裡口頭確認），面板拖曳只允許同欄內重新排序。
+  // 唯一的例外：處理中→執行，使用者確認規劃沒問題後要能自己手動拖過去。
+  function canAdvance(srcStatus, dstStatus) {
+    return srcStatus === dstStatus || (srcStatus === 'doing' && dstStatus === 'exec');
+  }
+
   function drop(e,i) {
     e.preventDefault();
+    e.stopPropagation();
     if (dragSrcIdx===null || dragSrcIdx===i) return;
-    // 卡片狀態只由 Claude 在對話中移動，面板拖曳只允許同一欄內重新排序，
-    // 避免手滑把卡片拖到別欄卻沒有真的改到狀態、造成畫面跟資料對不上。
-    if (todos[dragSrcIdx].status !== todos[i].status) return;
-    todos.splice(i,0,todos.splice(dragSrcIdx,1)[0]); saveTodos(); render();
+    const srcStatus = todos[dragSrcIdx].status;
+    const dstStatus = todos[i].status;
+    if (!canAdvance(srcStatus, dstStatus)) return;
+    if (srcStatus !== dstStatus) todos[dragSrcIdx].status = dstStatus;
+    todos.splice(i,0,todos.splice(dragSrcIdx,1)[0]);
+    saveTodos(); render();
   }
-  function dragEnd(e) { dragSrcIdx=null; document.querySelectorAll('.todo-item').forEach(el => el.classList.remove('dragging','drag-over')); }
+
+  // 欄位本身（不是卡片）也要能接住拖曳，不然「執行」欄一開始是空的，
+  // 沒有任何卡片可以當拖放目標，會完全拖不進去。
+  function dropOnColumn(e, statusKey) {
+    e.preventDefault();
+    if (dragSrcIdx===null) return;
+    const srcStatus = todos[dragSrcIdx].status;
+    if (!canAdvance(srcStatus, statusKey)) return;
+    const item = todos.splice(dragSrcIdx, 1)[0];
+    item.status = statusKey;
+    todos.push(item);
+    saveTodos(); render();
+  }
+
+  function dragEnd(e) {
+    dragSrcIdx = null;
+    document.querySelectorAll('.todo-item, .kanban-col').forEach(el => el.classList.remove('dragging','drag-over'));
+  }
 
   // ── 工作日計算 ─────────────────────────────────────────────
   const TW_HOLIDAYS = new Set([
