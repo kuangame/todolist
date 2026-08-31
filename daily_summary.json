@@ -1,10 +1,9 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "items": [
-    "小銀月語音助理完成 PyQt6 GUI 升級 太陽系版面設計上線",
-    "修復 drawArc 整數溢位 segfault 和三個 skill symlink 損壞",
-    "TTS 供應商改用 VoAI 絕好聲創 定案配音員柔洢",
-    "記憶系統整合完成 對話即時雙寫 Claude 和 Obsidian",
-    "語音喚醒方案評估完畢 決定改用桌面捷徑啟動"
+    "修好 patrol 的 exit code 誤判，現在能確實檢查筆記檔案是否真的被寫入",
+    "完成名片整理系統核心功能，包括 OCR 辨識、寫入筆記、資料夾監看",
+    "更新了 project patrol 和 executor 的記憶文件，系統穩定性提升",
+    "待確認晨報行事曆 TCC 權限問題，明天檢查 discord-morning-error.log"
   ]
 }
