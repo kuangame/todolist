@@ -1,8 +1,9 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "items": [
-    "今日無 commit，沒有專案推進",
-    "project_calendar_debug 待查 Discord 晨報行事曆 log",
-    "Dashboard、晨報、股票筆記等專案持續維護中"
+    "今日無 commit，主要在整理記憶系統和專案文檔",
+    "Discord 晨報 Calendar 權限 debug 待確認，明天查 error log",
+    "Dashboard、翻譯 App、晨報機器人等專案持續維護中",
+    "project-patrol 和 project-executor 腳本定期自動推進看板"
   ]
 }
