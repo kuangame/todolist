@@ -1,9 +1,8 @@
 {
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "items": [
-    "用 Opus 重新規劃 patrol 和 executor 兩個自動化專案，明確分工",
-    "修正晨報「假 bug」誤判問題，提升判斷準確度",
-    "更新記憶檔案和 Git 文檔，同步專案狀態",
-    "待確認：早上檢查晨報 Calendar 權限 debug log"
+    "晨報優化專案 A/B 項完成，C/D 項待確認後續方向",
+    "Calendar 權限 debug 待確認 log，明天檢查 discord-morning-error.log",
+    "Dashboard 七 tab 架構完整，操作筆記功能實裝中"
   ]
 }
