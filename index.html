@@ -1008,8 +1008,31 @@
     }
     .report-subtab-btn:hover { border-color: var(--border); color: var(--text-2); }
     .report-subtab-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
-    .report-section { display: none; }
-    .report-section.active { display: block; }
+    .report-section-block { margin-bottom: 32px; }
+    .report-section-block:last-child { margin-bottom: 0; }
+    .report-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-bottom: 4px;
+    }
+    .report-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0;
+    }
+    .report-update-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    .report-update-meta.stale { color: var(--neg); font-weight: 700; }
 
     #report-content {
       background: var(--surface);
@@ -1143,6 +1166,7 @@
     .am-table tr:hover td { background: var(--surface-2); }
     @media (max-width: 700px) {
       .am-tables-grid { grid-template-columns: 1fr; }
+      .conf-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 480px) {
@@ -1333,39 +1357,68 @@
 
   <!-- 晨報 Tab -->
   <div class="tab-panel" id="tab-report">
-    <div id="report-meta" style="font-family:var(--mono);font-size:11px;color:var(--text-3);margin-bottom:14px;text-align:right;letter-spacing:0.3px;"></div>
     <div id="report-market" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
     <div class="report-subtabs">
-      <button class="report-subtab-btn active" onclick="switchReportSection('international', this)">🌍 國際</button>
-      <button class="report-subtab-btn" onclick="switchReportSection('domestic', this)">📰 國內</button>
-      <button class="report-subtab-btn" onclick="switchReportSection('analysis', this)">📈 分析</button>
-      <button class="report-subtab-btn" onclick="switchReportSection('conferences', this)">📢 法說會</button>
-      <button class="report-subtab-btn" onclick="switchReportSection('aftermarket', this)">📊 盤後</button>
+      <button class="report-subtab-btn" onclick="scrollToReportSection('international')">🌍 國際</button>
+      <button class="report-subtab-btn" onclick="scrollToReportSection('analysis')">📈 分析</button>
+      <button class="report-subtab-btn" onclick="scrollToReportSection('domestic')">📰 國內</button>
+      <button class="report-subtab-btn" onclick="scrollToReportSection('conferences')">📢 法說會</button>
+      <button class="report-subtab-btn" onclick="scrollToReportSection('aftermarket')">📊 盤後</button>
     </div>
     <div id="report-content">
-      <div class="report-section active" id="section-international"></div>
-      <div class="report-section" id="section-domestic"></div>
-      <div class="report-section" id="section-analysis"></div>
-      <div class="report-section" id="section-conferences"></div>
-      <div class="report-section" id="section-aftermarket">
-        <div id="am-meta" class="am-meta"></div>
-        <div id="am-futures" class="am-futures-wrap"></div>
-        <div class="am-tables-grid">
-          <div>
-            <div class="am-section-title">外資買超前十</div>
-            <div id="am-foreign-buy"></div>
-          </div>
-          <div>
-            <div class="am-section-title">外資賣超前十</div>
-            <div id="am-foreign-sell"></div>
-          </div>
-          <div>
-            <div class="am-section-title">投信買超前十</div>
-            <div id="am-trust-buy"></div>
-          </div>
-          <div>
-            <div class="am-section-title">投信賣超前十</div>
-            <div id="am-trust-sell"></div>
+      <div class="report-section-block" id="block-international">
+        <div class="report-section-header">
+          <h2 class="report-section-title">🌍 國際</h2>
+          <div class="report-update-meta" id="meta-international">最後更新：—</div>
+        </div>
+        <div class="report-section" id="section-international"></div>
+      </div>
+      <div class="report-section-block" id="block-analysis">
+        <div class="report-section-header">
+          <h2 class="report-section-title">📈 分析</h2>
+          <div class="report-update-meta" id="meta-analysis">最後更新：—</div>
+        </div>
+        <div class="report-section" id="section-analysis"></div>
+      </div>
+      <div class="report-section-block" id="block-domestic">
+        <div class="report-section-header">
+          <h2 class="report-section-title">📰 國內</h2>
+          <div class="report-update-meta" id="meta-domestic">最後更新：—</div>
+        </div>
+        <div class="report-section" id="section-domestic"></div>
+      </div>
+      <div class="report-section-block" id="block-conferences">
+        <div class="report-section-header">
+          <h2 class="report-section-title">📢 法說會</h2>
+          <div class="report-update-meta" id="meta-conferences">最後更新：—</div>
+        </div>
+        <div class="report-section" id="section-conferences"></div>
+      </div>
+      <div class="report-section-block" id="block-aftermarket">
+        <div class="report-section-header">
+          <h2 class="report-section-title">📊 盤後</h2>
+          <div class="report-update-meta" id="meta-aftermarket">最後更新：—</div>
+        </div>
+        <div class="report-section" id="section-aftermarket">
+          <div id="am-meta" class="am-meta"></div>
+          <div id="am-futures" class="am-futures-wrap"></div>
+          <div class="am-tables-grid">
+            <div>
+              <div class="am-section-title">外資買超前十</div>
+              <div id="am-foreign-buy"></div>
+            </div>
+            <div>
+              <div class="am-section-title">外資賣超前十</div>
+              <div id="am-foreign-sell"></div>
+            </div>
+            <div>
+              <div class="am-section-title">投信買超前十</div>
+              <div id="am-trust-buy"></div>
+            </div>
+            <div>
+              <div class="am-section-title">投信賣超前十</div>
+              <div id="am-trust-sell"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2045,12 +2098,47 @@
       .replace(/(<\/ul>|<\/h2>)\s*(<p>|<\/p>)/g, '$1');
   }
 
-  function switchReportSection(name, btn) {
-    document.querySelectorAll('.report-section').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.report-subtab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById('section-' + name).classList.add('active');
-    btn.classList.add('active');
-    if (name === 'aftermarket') loadAfterMarket();
+  function scrollToReportSection(name) {
+    const el = document.getElementById('block-' + name);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // 資料時間距今超過這個時數（排除完整跨越的六日）就視為過期
+  const REPORT_STALE_HOURS = 24;
+
+  function reportSectionAgeHours(isoString) {
+    if (!isoString) return null;
+    const from = new Date(isoString);
+    const to = new Date();
+    let hours = (to - from) / 36e5;
+    const cursor = new Date(from);
+    cursor.setHours(0, 0, 0, 0);
+    cursor.setDate(cursor.getDate() + 1);
+    const endDay = new Date(to);
+    endDay.setHours(0, 0, 0, 0);
+    while (cursor < endDay) {
+      const day = cursor.getDay();
+      if (day === 0 || day === 6) hours -= 24;
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    return hours;
+  }
+
+  function setUpdateMeta(elId, isoString) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (!isoString) {
+      el.textContent = '最後更新：—';
+      el.classList.remove('stale');
+      return;
+    }
+    const timeText = new Date(isoString).toLocaleString('zh-TW', {
+      month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+    });
+    const age = reportSectionAgeHours(isoString);
+    const stale = age !== null && age > REPORT_STALE_HOURS;
+    el.textContent = `最後更新：${timeText}${stale ? ' ⚠️ 資料可能未更新' : ''}`;
+    el.classList.toggle('stale', stale);
   }
 
   async function loadReport() {
@@ -2071,7 +2159,9 @@
       const report = JSON.parse(b64decode(data.content));
 
       const confs = report.conferences || [];
-      document.getElementById('report-meta').textContent = `generated: ${new Date(report.generated_at).toLocaleString('zh-TW')} ｜ conf: ${confs.length}`;
+      setUpdateMeta('meta-international', report.generated_at);
+      setUpdateMeta('meta-analysis', report.generated_at);
+      setUpdateMeta('meta-conferences', report.generated_at);
 
       const market = report.market || {};
       document.getElementById('report-market').innerHTML = Object.entries(market).map(([name, d]) => {
@@ -2107,6 +2197,8 @@
 
       // 國內新聞：讀 domestic_news.json（每小時更新）
       loadDomesticNews();
+      // 盤後籌碼：讀 after_market.json
+      loadAfterMarket();
     } catch(e) {
       document.getElementById('section-international').innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
     }
@@ -2118,10 +2210,11 @@
       const data = await ghGet('domestic_news.json');
       if (!data) {
         el.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 尚無資料 —</p>';
+        setUpdateMeta('meta-domestic', null);
         return;
       }
       const news = JSON.parse(b64decode(data.content));
-      const fetchedAt = new Date(news.fetched_at).toLocaleString('zh-TW');
+      setUpdateMeta('meta-domestic', news.fetched_at);
       const items = news.items || [];
 
       const revenue = items.filter(i => i.source === 'mops');
@@ -2140,7 +2233,7 @@
         }).join('');
       }
 
-      let html = `<p style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:right;margin-bottom:12px;">更新：${fetchedAt}</p>`;
+      let html = '';
       if (revenue.length > 0) {
         html += `<h2>💰 營收 / 自結財報</h2><ul>${renderItems(revenue)}</ul>`;
       }
@@ -2383,6 +2476,7 @@
         const empty = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">— 尚無資料，盤後 15:05 自動更新 —</p>';
         ['am-futures','am-foreign-buy','am-foreign-sell','am-trust-buy','am-trust-sell'].forEach(id =>
           document.getElementById(id).innerHTML = empty);
+        setUpdateMeta('meta-aftermarket', null);
         return;
       }
 
@@ -2390,6 +2484,7 @@
       const fetched = d.fetched_at ? new Date(d.fetched_at).toLocaleString('zh-TW') : '';
       document.getElementById('am-meta').textContent =
         `資料日期: ${d.date || d.fetched_at?.slice(0,10) || '—'}  ｜  更新: ${fetched}`;
+      setUpdateMeta('meta-aftermarket', d.fetched_at);
 
       // ── 期貨三大法人 ──
       const fut = d.taiex_futures || {};
