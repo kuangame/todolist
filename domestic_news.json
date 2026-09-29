@@ -1,115 +1,203 @@
 {
-  "fetched_at": "2026-07-14T08:12:00+08:00",
+  "fetched_at": "2026-09-29T21:26:17.763256",
   "items": [
     {
-      "title": "台積電（2330）6 月營收 4,426.8 億元、年增 67.87% 單月單季同創新高",
-      "summary": "AI 需求強勁帶動，6 月營收改寫單月紀錄、上半年首破 2 兆元，7/16 法說前為台股挹注動能。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9624491",
+      "title": "【3219 倚強科】本公司可轉換公司債倚強科一(代號：32191)達公布注 意交易資訊標準，故公告相關訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 17:46",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5301 寶得利】公告本公司月底自結合併財務報告之財務比率",
+      "summary": "",
+      "published": "09/29 17:33",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
     },
     {
-      "title": "台積電（2330）7/16 法說登場，外資紛紛上調目標價",
-      "summary": "法人聚焦上修全年展望、資本支出與 CoWoS 先進封裝進度，目標價喊上 2,600 元，牽動台股能否挑戰 4 萬 8。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9596199",
+      "title": "【3117 年程】公告本公司115年8月份自結合併財務報告之負債比率、 流動比率、速動比率、未來三個月現金收支情形及銀行可使 用融資額度情形",
+      "summary": "",
+      "published": "09/29 16:22",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【3523 迎輝】公告本公司115年8月份自結合併財務報告之公告流動比率、 速動比率及負債比率",
+      "summary": "",
+      "published": "09/29 16:17",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【7590 怡和國際】公告本公司115年8月份自結財務報告之流動比率、速動比率 及負債比率",
+      "summary": "",
+      "published": "09/29 16:05",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": true,
+      "source": "mops"
+    },
+    {
+      "title": "【8150 南茂】係因本公司有價證券於集中交易市場達公布注意交易資訊 標準，故公布相關財務業務等重大訊息，以利投資人區別 瞭解。",
+      "summary": "",
+      "published": "09/29 15:58",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3653 健策】因本公司有價證券於集中交易市場達公布 注意交易資訊標準，故公布相關財務業務等 重大訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 15:57",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4770 上品】係因本公司有價證券於集中交易市場達公佈注意交易資訊標準 ，故公佈相關財務業務等重大訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 15:55",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【2030 彰源】因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 15:22",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【4542 科嶠】本公司有價證券近期多次達公布注意交易資訊標準，故公告 相關訊息，以利投資人區別暸解。",
+      "summary": "",
+      "published": "09/29 15:17",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【6488 環球晶】本公司有價證券達公布注意交易資訊標準，故公告 相關訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 15:17",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3324 雙鴻】本公司可轉換公司債雙鴻五(代號:33245)近期達公布注意 交易資訊標準，故公告相關訊息，以利投資人區別了解",
+      "summary": "",
+      "published": "09/29 14:51",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【3026 禾伸堂】係因本公司有價證券於集中交易市場達公布注意交易資訊標準， 故公布相關財務業務等重大訊息，以利投資人區別瞭解。",
+      "summary": "",
+      "published": "09/29 14:45",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "【5465 富驊】本公司有價證券近期多次達公布注意交易資訊標準， 故公告相關訊息，以利投資人區別暸解",
+      "summary": "",
+      "published": "09/29 14:37",
+      "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
+      "is_revenue": false,
+      "source": "mops"
+    },
+    {
+      "title": "房市信心反彈創18個月新高　周鶴鳴曝2大原因：台股+央行鬆綁限貸令",
+      "summary": "中央大學台經中心公布最新消費者信心指數，9月「購買房地產時機」指標來到98.84點，月增8.81點，創下近18個月新高。台灣房屋集團首席副總裁周鶴鳴分析，主因是央行鬆綁信用管制，加上利率凍結緩解資金壓力，以及台股高點帶動的財富效應，使市場信心回溫。儘管指標尚未脫離悲觀區間，但政策轉向友善，預期今年全年建物買賣移轉將呈「開低走穩」態勢，微幅收紅機會濃厚。目前買氣聚焦於中坪數換屋、抗通膨標的及高資產族的商用不動產布局，顯示市場在政策助攻下，正朝溫和復甦方向穩定邁進。",
+      "published": "09/29 13:19",
+      "link": "https://tw.news.yahoo.com/%E6%88%BF%E5%B8%82%E4%BF%A1%E5%BF%83%E5%8F%8D%E5%BD%88%E5%89%B518%E5%80%8B%E6%9C%88%E6%96%B0%E9%AB%98-%E5%91%A8%E9%B6%B4%E9%B3%B4%E6%9B%9D2%E5%A4%A7%E5%8E%9F%E5%9B%A0-%E5%8F%B0%E8%82%A1-%E5%A4%AE%E8%A1%8C%E9%AC%86%E7%B6%81%E9%99%90%E8%B2%B8%E4%BB%A4-131900457.html",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "南亞科（2408）Q2 法說毛利率飆 79.5%、單季 EPS 14.66 元創新高",
-      "summary": "第 2 季稅後淨利 501.92 億元，DRAM 均價季增逾 60%；總座稱記憶體缺貨將延續數季，外資調升明後年獲利預估。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9623704",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "川湖（2059）6 月營收 44.4 億元、年增逾 2 倍創新高，股價 8,560 元登股后",
-      "summary": "伺服器導軌新品出貨報喜，第 2 季營收 108.3 億元同創新高；資金湧入跳空鎖漲停、躋身台股股價次高。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6523659",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "小摩調升台塑集團目標價，激勵三寶（1301、1326、1303）亮燈漲停",
-      "summary": "摩根大通上修台塑 60 元、台化 60 元、台塑化 65 元、南亞 200 元；集團 Q2 稅後純益 642.76 億元、年增 45.5%。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6532284",
+      "title": "PCB成新寵兒！三大法人搶買「這2檔」4.7萬張　砸115億元連2天掃貨南亞",
+      "summary": "[FTNN新聞網]記者陳献朋／綜合報導台股加權指數今（29）日收47631.96點，下跌392.64點，跌幅0.82%，成交量達7868億元。根據證交所資料，三大法人賣超781.86億...",
+      "published": "09/29 13:00",
+      "link": "https://tw.stock.yahoo.com/news/pcb%E6%88%90%E6%96%B0%E5%AF%B5%E5%85%92-%E4%B8%89%E5%A4%A7%E6%B3%95%E4%BA%BA%E6%90%B6%E8%B2%B7-%E9%80%992%E6%AA%94-4-7%E8%90%AC%E5%BC%B5-130000192.html",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "台塑四寶上半年獲利 1,085 億元全數轉盈、南亞（1303）EPS 5.17 元居冠",
-      "summary": "翻轉去年同期虧損；台塑化 EPS 4.32 元、台塑 2.19 元、台化 2.11 元，第 3 季旺季回歸。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9624014",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "營邦（3693）6 月營收 11.6 億元、月增 74.81% 年增 74.98%，跳空鎖漲停 542 元",
-      "summary": "AMD Instinct MI450 機架產品首家合作廠，相關產品第 2 季開始出貨貢獻，激勵股價亮燈漲停。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6523571",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "大立光（3008）奪首張 CPO 訂單，外資目標價上看 5,150 元、開盤漲停",
-      "summary": "董座林恩平證實共同封裝光學新事業首單入袋，7 月送樣、第 3 季底試產；6 月營收 37.12 億元估 7 月回升。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9623825",
+      "title": "聯嘉投控三大成長引擎助攻 打造光電成長平台",
+      "summary": "LED車用照明廠聯嘉投控（3717）今天召開法說會，聯嘉投控總經理黃昉鈺表示，集團已打造3大成長引擎，分別是汽車光電、Mini-LED顯示應用及AI光通訊，將從汽車照明轉型為全球光電科技成長平台。黃昉鈺指出，墨西哥廠將於年底投產，已排定7專案（51機種）生產、明年第一季有27機種將於墨西哥廠放量投產",
+      "published": "09/29 12:49",
+      "link": "https://tw.news.yahoo.com/%E8%81%AF%E5%98%89%E6%8A%95%E6%8E%A7%E4%B8%89%E5%A4%A7%E6%88%90%E9%95%B7%E5%BC%95%E6%93%8E%E5%8A%A9%E6%94%BB-%E6%89%93%E9%80%A0%E5%85%89%E9%9B%BB%E6%88%90%E9%95%B7%E5%B9%B3%E5%8F%B0-124958410.html",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "聯發科（2454）ASIC 布局報捷，拿下 Google V8 並獨吃 V9 世代 2 奈米推論晶片訂單",
-      "summary": "客製化 AI ASIC 動能延續，除息秒填息、外資最高喊上萬元，看好 2027 年起加速放量。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6524898",
+      "title": "目標價大升至108元！這「石油煉製廠」搶進半導體化學市場　美外資「2原因」力挺喊買",
+      "summary": "[FTNN新聞網]記者周雅琦／綜合報導石油煉製廠台塑化（6505）手握自有VLCC超大型油輪船隊及高柴油出口比重2大優勢，近期再獲美系外資看好，最新報告不僅給予「...",
+      "published": "09/29 12:45",
+      "link": "https://tw.stock.yahoo.com/news/%E7%9B%AE%E6%A8%99%E5%83%B9%E5%A4%A7%E5%8D%87%E8%87%B3108%E5%85%83-%E9%80%99-%E7%9F%B3%E6%B2%B9%E7%85%89%E8%A3%BD%E5%BB%A0-%E6%90%B6%E9%80%B2%E5%8D%8A%E5%B0%8E%E9%AB%94%E5%8C%96%E5%AD%B8%E5%B8%82%E5%A0%B4-%E7%BE%8E%E5%A4%96%E8%B3%87-124500400.html",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "欣興（3037）6 月營收 148.97 億元、年增 36.31%",
-      "summary": "ABF 載板需求強勁，外資看好載板缺貨潮延續，帶動營收年增逾三成。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6529654",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "星宇航空（2646）6 月營收 52.87 億元、年增 40.8%",
-      "summary": "暑假旅遊旺季挹注客運動能，單月營收年增逾四成。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5710/9625078",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "台灣大（3045）電信三雄上半年財報出爐，登 EPS 王",
-      "summary": "電信三雄公布上半年財報，台灣大每股盈餘居三雄之冠，本業與新事業穩健成長。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9625209",
-      "is_revenue": true,
-      "source": "mops"
-    },
-    {
-      "title": "大成鋼（2027）今日除息 1.5 元，預估參考價 39.4 元",
-      "summary": "7/14 進行除息交易，每股配發現金股利 1.5 元，市場觀察後續填息表現。",
-      "published": "07/14",
-      "link": "https://news.cnyes.com/news/id/6525652",
+      "title": "湧盛電機預計10月下旬上櫃",
+      "summary": "由凱基證券主辦輔導的湧盛電機（2249）昨（29）日舉辦上櫃前業績發表會，最快10月下旬上櫃。該公司長期深耕汽車售後維修（AfterMarket,AM）市場，憑藉完整的產品開發、製造及市場拓展能力，建立穩固競爭優勢。面對全球汽車產業朝電動化與智慧化發展趨勢，除持續鞏固既有AM市場地位外，也積極拓展海外市場及新能源車相關產品布局。在產品布局方面，該公司除既有斜盤式、旋葉式壓縮機外，持續開發高效率、低噪音的渦捲式壓縮機，預計2026年底完成開發，鎖定高階車款及新能源車市場；同時已完成油電及純電車電動壓縮機開發，並建置相關生產線及實驗設備。隨新能源車保有量增加，未來電動壓縮機亦有機會帶動新的AM替換",
+      "published": "09/29 12:44",
+      "link": "https://tw.news.yahoo.com/%E6%B9%A7%E7%9B%9B%E9%9B%BB%E6%A9%9F%E9%A0%90%E8%A8%8810%E6%9C%88%E4%B8%8B%E6%97%AC%E4%B8%8A%E6%AB%83-124430662.html",
       "is_revenue": false,
       "source": "yahoo"
     },
     {
-      "title": "環球晶（6488）美光十年長約點火，矽晶圓五檔亮燈漲停、攻上 1,485 元",
-      "summary": "AI 需求外溢至矽晶圓與功率半導體，中美晶、台勝科、合晶等同步鎖漲停，合晶寫 18 年新高。",
-      "published": "07/14",
-      "link": "https://money.udn.com/money/story/5607/9624016",
+      "title": "訊聯細胞智藥申請創新板上市",
+      "summary": "證交所表示，訊聯細胞智藥（股）（7808）昨（29）日送件申請股票於臺灣創新板（tib-創）上市，為本今年度第7家申請股票於臺灣創新板（tib-創）上市之企業。訊聯細胞智藥實收資本額/淨值（申請時）：700,000千元/1,192,736千元，主要產品：再生醫療及外泌體（Exosome）研究及其延伸產品、開發與製造服務（CRDMO）、客制化血小板保養品（PRE）、幹細胞及外泌體新藥研發，114年度稅前淨損：97,426千元，每股稅後淨損：1.39元。 ...",
+      "published": "09/29 12:44",
+      "link": "https://tw.news.yahoo.com/%E8%A8%8A%E8%81%AF%E7%B4%B0%E8%83%9E%E6%99%BA%E8%97%A5%E7%94%B3%E8%AB%8B%E5%89%B5%E6%96%B0%E6%9D%BF%E4%B8%8A%E5%B8%82-124430919.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "車用壓縮機大廠湧盛10月上櫃！暫定承銷價75元　搶攻歐美AM市場轉單商機",
+      "summary": "車用空調壓縮機廠湧盛（2249）電機今（29）日舉辦上櫃前業績發表會，預計10月下旬掛牌上櫃，暫定每股承銷價75元。湧盛今年前8月自結合併營收14.28億元，年減17.34%，上半年歸屬母公司業主獲利1.36億元，每股純益5.34元，較去年同期6.4元下滑。面對今年營收受到客戶庫存調整影響，湧盛持續提高自製產品比重，並鎖定歐美AM（售後維修）市場供應鏈重組商......",
+      "published": "09/29 12:34",
+      "link": "https://tw.news.yahoo.com/%E8%BB%8A%E7%94%A8%E5%A3%93%E7%B8%AE%E6%A9%9F%E5%A4%A7%E5%BB%A0%E6%B9%A7%E7%9B%9B10%E6%9C%88%E4%B8%8A%E6%AB%83-%E6%9A%AB%E5%AE%9A%E6%89%BF%E9%8A%B7%E5%83%B975%E5%85%83-%E6%90%B6%E6%94%BB%E6%AD%90%E7%BE%8Eam%E5%B8%82%E5%A0%B4%E8%BD%89%E5%96%AE%E5%95%86%E6%A9%9F-123420695.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台積電上看8千元？專家喊台股「上看13萬點」原因曝",
+      "summary": "財經中心／綜合報導台股 29 日賣壓沉重，終場下跌 392.64 點、收在 47,631.96 點，不過市場對護國神山台積電（2330）的長線前景依舊信心十足！總體經濟學家吳嘉隆引述台美兩地分析師的最新推算指出，隨 AI 產業革命爆發與新產能開出，台積電未來股價不只上看 5000 元，在美系分析師的極限推演下，更有機會在 4 至 5 年內驚人翻倍衝上 8000 元大關；若權值股同步起飛，台股大盤指數甚至有機會衝破 13 萬點大關。",
+      "published": "09/29 12:30",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%B8%8A%E7%9C%8B8%E5%8D%83%E5%85%83-%E5%B0%88%E5%AE%B6%E5%96%8A%E5%8F%B0%E8%82%A1-%E4%B8%8A%E7%9C%8B13%E8%90%AC%E9%BB%9E-%E5%8E%9F%E5%9B%A0%E6%9B%9D-123020880.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "玉山金注資三商壽160億元到位　強化資本體質",
+      "summary": "（中央社記者蘇思云台北29日電）玉山金規劃今、明兩年現金增資三商美邦人壽合計新台幣220億元，強化壽險資本體質。玉山金今天代三商壽公告，三商壽辦理現金增資案，募集總金額新台幣160億元，已在今天募集完成，由金控100%認購。",
+      "published": "09/29 12:24",
+      "link": "https://tw.news.yahoo.com/%E7%8E%89%E5%B1%B1%E9%87%91%E6%B3%A8%E8%B3%87%E4%B8%89%E5%95%86%E5%A3%BD160%E5%84%84%E5%85%83%E5%88%B0%E4%BD%8D-%E5%BC%B7%E5%8C%96%E8%B3%87%E6%9C%AC%E9%AB%94%E8%B3%AA-122451357.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "陳立武：台積電是「夥伴」非對手",
+      "summary": "[NOWNEWS今日新聞]英特爾面臨著高階晶片製造的困境，執行長陳立武於去年接任後，試圖拯救公司，他近期接受訪問時表示，與台積電的關係是合作夥伴而非競爭對手。並透露與台積電創辦人張忠謀用餐的花絮。根據...",
+      "published": "09/29 12:20",
+      "link": "https://tw.news.yahoo.com/%E9%99%B3%E7%AB%8B%E6%AD%A6-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E6%98%AF-%E5%A4%A5%E4%BC%B4-%E9%9D%9E%E5%B0%8D%E6%89%8B-122059112.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股明開紅盤？台指期夜盤「重返48K大關」大漲583點",
+      "summary": "即時中心／徐子為報導今（29）日中秋連假後的首個台股交易日，不過受美股影響，4萬8千點大關失守，不過晚間的台指期夜盤今以小漲開出，開盤價為47992點，截至晚間8點13分，暫報48364點，上漲583點，漲幅達1.22%。",
+      "published": "09/29 12:20",
+      "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E6%98%8E%E9%96%8B%E7%B4%85%E7%9B%A4-%E5%8F%B0%E6%8C%87%E6%9C%9F%E5%A4%9C%E7%9B%A4-%E9%87%8D%E8%BF%9448k%E5%A4%A7%E9%97%9C-%E5%A4%A7%E6%BC%B2583%E9%BB%9E-122014773.html",
       "is_revenue": false,
       "source": "yahoo"
     }
