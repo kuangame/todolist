@@ -1,9 +1,9 @@
 {
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "items": [
-    "修復 GitHub Token 失效導致的自動化靜默故障，晨報系統恢復正常",
-    "發現並修正 Dashboard 晨報國內新聞流程停擺，過期警示機制上線",
-    "封存穩定案子到 archive，更新專案記憶索引精簡化",
-    "待確認：Discord 晨報行事曆權限 debug，查看 launchd TCC 問題"
+    "修復 domestic_news.json 停更問題，根因是 GitHub PAT 失效 + 無自動觸發機制",
+    "Dashboard 晨報單頁化完成，加入更新時間警示（超過 24 小時轉紅）",
+    "發現 Discord 晨報行事曆權限 bug，launchd 執行時 macOS TCC 可能擋掉存取",
+    "名片系統核心流程驗證完成，待真實名片測試與排程自動化"
   ]
 }
