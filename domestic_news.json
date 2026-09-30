@@ -1,6 +1,14 @@
 {
-  "fetched_at": "2026-10-01T03:30:15.801135",
+  "fetched_at": "2026-10-01T04:30:36.078985",
   "items": [
+    {
+      "title": "大華銀投信：00918定期定額卡位 台股Q4行情",
+      "summary": "【記者柯安聰台北報導】大華優利高填息30（00918）經理人郭修誠表示，AI產業正加速從生成式AI（訓練端）轉向代理AI與邊緣AI（推論端），預估2026年全球AI市場規模將衝上3120億美元，至20...",
+      "published": "09/30 20:19",
+      "link": "https://tw.news.yahoo.com/%E5%A4%A7%E8%8F%AF%E9%8A%80%E6%8A%95%E4%BF%A1-00918%E5%AE%9A%E6%9C%9F%E5%AE%9A%E9%A1%8D%E5%8D%A1%E4%BD%8D-%E5%8F%B0%E8%82%A1q4%E8%A1%8C%E6%83%85-201952402.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
     {
       "title": "【8171 天宇】公告本公司115年8月份自結應收帳款餘額(含已逾期及未逾期) 、占資產及股本比例",
       "summary": "",
@@ -8,6 +16,54 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
+    },
+    {
+      "title": "台新2檔半導體ETF高配息 同創掛牌以來新高",
+      "summary": "【記者柯安聰台北報導】台股ETF 10月除息秀登場，台新00904、00947共2檔季配息半導體ETF大有異彩，配息金額同創新高。00904(台新臺灣半導體30 ETF)與00947(台新臺灣...",
+      "published": "09/30 20:04",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E6%96%B02%E6%AA%94%E5%8D%8A%E5%B0%8E%E9%AB%94etf%E9%AB%98%E9%85%8D%E6%81%AF-%E5%90%8C%E5%89%B5%E6%8E%9B%E7%89%8C%E4%BB%A5%E4%BE%86%E6%96%B0%E9%AB%98-200457011.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "牧德：高階載板、半導體與AI帶動中長期成長",
+      "summary": "【記者柯安聰台北報導】牧德科技（3563）30日召開法人說明會，分享公司近期營運成果及未來產品發展布局。公司表示，隨著AI伺服器、高效能運算及高速傳輸等應用持續發展，高階PCB、MSAP、ABF載板及...",
+      "published": "09/30 19:56",
+      "link": "https://tw.news.yahoo.com/%E7%89%A7%E5%BE%B7-%E9%AB%98%E9%9A%8E%E8%BC%89%E6%9D%BF-%E5%8D%8A%E5%B0%8E%E9%AB%94%E8%88%87ai%E5%B8%B6%E5%8B%95%E4%B8%AD%E9%95%B7%E6%9C%9F%E6%88%90%E9%95%B7-195636524.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "00922集結50檔台股領袖 規模逼近千億",
+      "summary": "【記者柯安聰台北報導】全球AI競賽從晶片算力延伸至電力、散熱及資料中心建置，台灣企業在供應鏈的關鍵角色更加鮮明，國泰台灣領袖50（00922）聚焦50檔領袖級台股企業，持股涵蓋台積電、聯發科、台達電、...",
+      "published": "09/30 19:45",
+      "link": "https://tw.news.yahoo.com/00922%E9%9B%86%E7%B5%9050%E6%AA%94%E5%8F%B0%E8%82%A1%E9%A0%98%E8%A2%96-%E8%A6%8F%E6%A8%A1%E9%80%BC%E8%BF%91%E5%8D%83%E5%84%84-194520660.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "被動台股ETF強出頭 6檔半導體ETF全上榜",
+      "summary": "【記者柯安聰台北報導】台股秋節過後，受到美國10年期公債殖利率持續創新高影響，加上川普拒絕伊朗方案導致油價上漲，拖累大盤表現，不過最近美股費半指數強勢上漲，國發會公布最新台股景氣燈號連9顆紅燈，加上台...",
+      "published": "09/30 19:33",
+      "link": "https://tw.news.yahoo.com/%E8%A2%AB%E5%8B%95%E5%8F%B0%E8%82%A1etf%E5%BC%B7%E5%87%BA%E9%A0%AD-6%E6%AA%94%E5%8D%8A%E5%B0%8E%E9%AB%94etf%E5%85%A8%E4%B8%8A%E6%A6%9C-193313735.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "旺季來臨、AI出貨添動能　00985A發布除息公告",
+      "summary": "【記者柯安聰台北報導】台股在AI需求與企業獲利成長帶動下再創新高，隨著第4季傳統電子旺季到來，加上新一代AI伺服器出貨與供應鏈規格升級，可望為後市增添成長動能。主動野村台灣50 ETF（00985A）...",
+      "published": "09/30 19:26",
+      "link": "https://tw.news.yahoo.com/%E6%97%BA%E5%AD%A3%E4%BE%86%E8%87%A8-ai%E5%87%BA%E8%B2%A8%E6%B7%BB%E5%8B%95%E8%83%BD-00985a%E7%99%BC%E5%B8%83%E9%99%A4%E6%81%AF%E5%85%AC%E5%91%8A-192608544.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "櫃買10/5審議科明公司上櫃案",
+      "summary": "【記者柯安聰台北報導】櫃買中心預定10月5日召開上櫃審議會，審議科明公司（7881）股票上櫃案。科明公司主要從事人工水晶體、眼科手術設備與相關耗材之經銷，以及設備租賃與保固服務，董事長為江勁賢...",
+      "published": "09/30 19:20",
+      "link": "https://tw.news.yahoo.com/%E6%AB%83%E8%B2%B710-5%E5%AF%A9%E8%AD%B0%E7%A7%91%E6%98%8E%E5%85%AC%E5%8F%B8%E4%B8%8A%E6%AB%83%E6%A1%88-192015826.html",
+      "is_revenue": false,
+      "source": "yahoo"
     },
     {
       "title": "【5321 美而快】公告本公司115年08月份自結合併財務報表之負債比率、 流動比率及速動比率",
@@ -98,14 +154,6 @@
       "source": "mops"
     },
     {
-      "title": "台股反彈308點！9月創新高、漲3.9％　法人曝Q4投資展望",
-      "summary": "台股週二收假下跌392點，昨天馬上重振雄風，盤中一度反彈747點，重登48379點，但尾盤遭遇特定賣盤摜壓223點，收盤上漲308點，收在47940點，4萬8千點再度得而復失，成交量8774億元。",
-      "published": "09/30 16:02",
-      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E5%8F%8D%E5%BD%88308%E9%BB%9E-9%E6%9C%88%E5%89%B5%E6%96%B0%E9%AB%98-%E6%BC%B23-9-%E6%B3%95%E4%BA%BA%E6%9B%9Dq4%E6%8A%95%E8%B3%87%E5%B1%95%E6%9C%9B-160200453.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
       "title": "【3064 泰偉】公告本公司115年8月份自結合併財務報表之流動比率、速動 比率及負債比率",
       "summary": "",
       "published": "09/30 15:55",
@@ -128,14 +176,6 @@
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": false,
       "source": "mops"
-    },
-    {
-      "title": "除息月來臨配息狂炸！年化衝18.3%、最高升81%　3檔主動型ETF最新配息曝",
-      "summary": "台股自9月重回4萬8千點高檔以來，台股ETF表現亮眼，其中高額配息能力更是引人矚目。主動野村台灣50（00985A）、主動群益科技創新（00992A）與摩根台灣鑫收益（00401A）三檔主動型ETF均於今（30）日公布最新配息金額，展現強勁的收益分配實力。",
-      "published": "09/30 15:24",
-      "link": "https://tw.news.yahoo.com/%E9%99%A4%E6%81%AF%E6%9C%88%E4%BE%86%E8%87%A8%E9%85%8D%E6%81%AF%E7%8B%82%E7%82%B8-%E5%B9%B4%E5%8C%96%E8%A1%9D18-3-%E6%9C%80%E9%AB%98%E5%8D%8781-3%E6%AA%94%E4%B8%BB%E5%8B%95%E5%9E%8Betf%E6%9C%80%E6%96%B0%E9%85%8D%E6%81%AF%E6%9B%9D-152400168.html",
-      "is_revenue": false,
-      "source": "yahoo"
     },
     {
       "title": "【8444 綠河-KY】公告本公司115年8月自結合併財務報告之負債比率、流動比率及 速動比率",
@@ -178,44 +218,12 @@
       "source": "mops"
     },
     {
-      "title": "達麗首度插旗台積電亞利桑那特區　斥資布局鳳凰城指標商辦",
-      "summary": "自2015年布局西雅圖、深耕美國市場逾10年，達麗建設（6177）進一步擴大美國版圖，今（30）日宣布，代子公司「達麗建設亞利桑那」（DA LI DEVELOPMENT ARIZONA LLC／DA LI CORRIDORS LLC）取得位於亞利桑那州鳳凰城Deer Valley區的Corridors Corporate Center，首度進入台積電（TSMC）亞利桑那州廠周邊商用不動產市場。",
-      "published": "09/30 15:01",
-      "link": "https://tw.news.yahoo.com/%E9%81%94%E9%BA%97%E9%A6%96%E5%BA%A6%E6%8F%92%E6%97%97%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%BA%9E%E5%88%A9%E6%A1%91%E9%82%A3%E7%89%B9%E5%8D%80-%E6%96%A5%E8%B3%87%E5%B8%83%E5%B1%80%E9%B3%B3%E5%87%B0%E5%9F%8E%E6%8C%87%E6%A8%99%E5%95%86%E8%BE%A6-150100104.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
       "title": "【6462 神盾】公告本公司115年8月份自結個體財務報告之流動比率、 速動比率及銀行可使用融資額度情形",
       "summary": "",
       "published": "09/30 14:55",
       "link": "https://mops.twse.com.tw/mops/#/web/t05sr01_1",
       "is_revenue": true,
       "source": "mops"
-    },
-    {
-      "title": "興櫃公司圓點奈米晚間突發重訊！公告董事簡建興逝世",
-      "summary": "興櫃公司圓點奈米（6797）於今（30）日晚間連發重大訊息公告，於當日獲悉自然人董事、總經理兼發言人簡建興逝世，同任期董事變動比率為七分之一。",
-      "published": "09/30 14:51",
-      "link": "https://tw.news.yahoo.com/%E8%88%88%E6%AB%83%E5%85%AC%E5%8F%B8%E5%9C%93%E9%BB%9E%E5%A5%88%E7%B1%B3%E6%99%9A%E9%96%93%E7%AA%81%E7%99%BC%E9%87%8D%E8%A8%8A-%E5%85%AC%E5%91%8A%E8%91%A3%E4%BA%8B%E7%B0%A1%E5%BB%BA%E8%88%88%E9%80%9D%E4%B8%96-145125746.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "美系CSP擴大ASIC布局！「封測大廠」AI業務占比衝破20%　今年營收、毛利率拚逐季走高",
-      "summary": "[FTNN新聞網]記者黃詩雯／綜合報導AI與高速運算需求持續升溫，封測廠矽格（6257）營運動能同步增強。隨ASIC、矽光子等高階應用快速成長，AI相關三大業務營收...",
-      "published": "09/30 14:45",
-      "link": "https://tw.stock.yahoo.com/news/%E7%BE%8E%E7%B3%BBcsp%E6%93%B4%E5%A4%A7asic%E5%B8%83%E5%B1%80-%E5%B0%81%E6%B8%AC%E5%A4%A7%E5%BB%A0-ai%E6%A5%AD%E5%8B%99%E5%8D%A0%E6%AF%94%E8%A1%9D%E7%A0%B420-%E4%BB%8A%E5%B9%B4%E7%87%9F%E6%94%B6-%E6%AF%9B%E5%88%A9%E7%8E%87%E6%8B%9A%E9%80%90%E5%AD%A3%E8%B5%B0%E9%AB%98-144500193.html",
-      "is_revenue": true,
-      "source": "yahoo"
-    },
-    {
-      "title": "輝達玻璃基板點火！群創漲停吸自營商砸2.12億力挺奪冠　「這檔記憶體」併購英飛凌利多獲喊245元目標價同發威",
-      "summary": "[FTNN新聞網]記者邱梓欣／綜合報導雖然美股前一日漲少跌多，不過對台股影響最重的費半終場大漲1.32％，烘托台股今（30）日以47,767.49點開高走高，以47940點...",
-      "published": "09/30 14:45",
-      "link": "https://tw.stock.yahoo.com/news/%E8%BC%9D%E9%81%94%E7%8E%BB%E7%92%83%E5%9F%BA%E6%9D%BF%E9%BB%9E%E7%81%AB-%E7%BE%A4%E5%89%B5%E6%BC%B2%E5%81%9C%E5%90%B8%E8%87%AA%E7%87%9F%E5%95%86%E7%A0%B82-12%E5%84%84%E5%8A%9B%E6%8C%BA%E5%A5%AA%E5%86%A0-%E9%80%99%E6%AA%94%E8%A8%98%E6%86%B6%E9%AB%94-%E4%BD%B5%E8%B3%BC%E8%8B%B1%E9%A3%9B%E5%87%8C%E5%88%A9%E5%A4%9A%E7%8D%B2%E5%96%8A245%E5%85%83%E7%9B%AE%E6%A8%99%E5%83%B9%E5%90%8C%E7%99%BC%E5%A8%81-144500054.html",
-      "is_revenue": false,
-      "source": "yahoo"
     },
     {
       "title": "【8472 納維康】公告115年08月自結合併財務報告負債比率.流動比率.速動比率",
