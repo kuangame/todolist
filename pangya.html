@@ -1,0 +1,3565 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Pangya 球場攻略中文版</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #f5f3ef;
+    --card-bg: #ffffff;
+    --text: #2b2b2b;
+    --text-dim: #6b6b6b;
+    --accent: #e86a92;
+    --border: #e4ddd2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1a1f;
+      --card-bg: #262429;
+      --text: #ece8e3;
+      --text-dim: #a8a2ab;
+      --accent: #ff8fb1;
+      --border: #39363d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1a1f; --card-bg: #262429; --text: #ece8e3; --text-dim: #a8a2ab; --accent: #ff8fb1; --border: #39363d;
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f3ef; --card-bg: #ffffff; --text: #2b2b2b; --text-dim: #6b6b6b; --accent: #e86a92; --border: #e4ddd2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px 60px; }
+  header.top {
+    padding: 20px 16px 12px;
+    text-align: center;
+  }
+  header.top h1 { margin: 0 0 4px; font-size: 1.6rem; }
+  .source-note {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+  }
+  .source-note a { color: var(--text-dim); }
+  nav.coursenav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .navlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+  .navlink:hover { border-color: var(--accent); color: var(--accent); }
+  .navcode {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 0 5px;
+  }
+  .course-section { padding-top: 26px; scroll-margin-top: 64px; }
+  .course-head {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+  }
+  .course-thumb {
+    width: 72px; height: 72px; object-fit: cover; border-radius: 10px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .course-head-text h2 { margin: 0 0 4px; font-size: 1.25rem; }
+  .course-sub { font-size: 0.72rem; color: var(--text-dim); font-weight: normal; }
+  .course-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .pill {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+  }
+  .note { font-size: 0.85rem; color: var(--text-dim); }
+  .holes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .hole-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .hole-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hole-num { font-weight: 600; font-size: 0.9rem; }
+  .par-badge {
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .hole-body { padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .hole-imgs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .hole-imgs img {
+    height: 150px;
+    width: auto;
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    object-fit: contain;
+    background: #000;
+    flex-shrink: 0;
+  }
+  .noimg {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    padding: 20px 0;
+    text-align: center;
+  }
+  .hole-text {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+  @media (max-width: 480px) {
+    .course-head { flex-wrap: wrap; }
+    .hole-imgs img { height: 120px; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>⛳ Pangya 球場攻略中文版</h1>
+  <p class="source-note">翻譯自 <a href="https://wikiwiki.jp/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX" target="_blank" rel="noopener">ピュアッチ Wiki* 球場攻略頁</a>，僅供個人參考。遊戲術語（Spike／Tomahawk／BS／TS／OD／PP 等）保留原文或音譯，社群黑話若無法確認含義會標註「含義待確認」，不會亂猜。</p>
+</header>
+<nav class="coursenav">
+<a href="#course-LostSeaway" class="navlink">失落的航道<span class="navcode">LS</span></a>
+<a href="#course-IceSpa" class="navlink">冰上溫泉<span class="navcode">IS</span></a>
+<a href="#course-PinkWind" class="navlink">粉紅之風<span class="navcode">PW</span></a>
+<a href="#course-BlueLagoon" class="navlink">青色珊瑚礁<span class="navcode">BL</span></a>
+<a href="#course-WestWiz" class="navlink">西方魔境<span class="navcode">西</span></a>
+<a href="#course-EasternValley" class="navlink">東方之谷<span class="navcode">EV</span></a>
+<a href="#course-IceCannon" class="navlink">冰上大砲<span class="navcode">IC</span></a>
+<a href="#course-ShiningSand" class="navlink">閃耀之砂<span class="navcode">SS</span></a>
+<a href="#course-BlueWater" class="navlink">青色之海<span class="navcode">BW</span></a>
+<a href="#course-SepiaWind" class="navlink">懷舊之風<span class="navcode">SW</span></a>
+<a href="#course-BlueMoon" class="navlink">蒼藍之月<span class="navcode">BM</span></a>
+<a href="#course-WhiteWiz" class="navlink">白銀魔境<span class="navcode">白W</span></a>
+<a href="#course-WizWiz" class="navlink">魔法之國<span class="navcode">Wiz</span></a>
+<a href="#course-SilviaCannon" class="navlink">軍艦西爾維亞號<span class="navcode">SC</span></a>
+<a href="#course-DeepInferno" class="navlink">深淵地獄<span class="navcode">DI</span></a>
+<a href="#course-WindHill" class="navlink">風之丘<span class="navcode">WH</span></a>
+</nav>
+<div class="wrap">
+
+  <section class="course-section" id="course-LostSeaway">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/LS.jpg?rev=a90e4a0d5442fcc54b7be28c593e2bce" alt="失落的航道">
+      <div class="course-head-text">
+        <h2>失落的航道 <span class="course-sub">ロスト シーウェイ / Lost Seaway</span></h2>
+        <div class="course-meta"><span class="pill">海賊</span><span class="note">滾球打 OD 也能賺 PP，很舒服！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%201H.jpg.webp?rev=22a903c599e27d674bae6bfb4f65c0f4" loading="lazy" alt="失落的航道 第1洞"></div>
+          <p class="hole-text">用 Spike 瞄準大門，穩定 1ON（一桿上果嶺）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%202H.jpg.webp?rev=62dc11e62a31c5cac17987e78992c29b" loading="lazy" alt="失落的航道 第2洞"></div>
+          <p class="hole-text">因高低差和洞杯位置的關係，裸打想上果嶺需要足夠的距離。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%203H.jpg.webp?rev=98cd734ec9c58cd3366999c02698c74f" loading="lazy" alt="失落的航道 第3洞"></div>
+          <p class="hole-text">順利打進大門的話，也有機會 1ON。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%204H.jpg.webp?rev=b7abdf2764223a878193cd5ab5afcfa2" loading="lazy" alt="失落的航道 第4洞"></div>
+          <p class="hole-text">瞄準中間大門，用 Spike 可以 1ON。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%205H.jpg.webp?rev=ed7b6c8188b7252edd6617bf9537b7d7" loading="lazy" alt="失落的航道 第5洞"></div>
+          <p class="hole-text">把球打進大門，讓球低飛越過牆、不超過果嶺剛好停在果嶺上。（社群補充：瞄大門打 Cobra 式也不錯）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%206H.jpg.webp?rev=6585c39ad4587b056c83eafe8a2fc3ac" loading="lazy" alt="失落的航道 第6洞"></div>
+          <p class="hole-text">單純拚距離抓 2ON，或是二打打不到果嶺時，看進大門的角度也有機會上果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%207H.jpg.webp?rev=06a6cf3f2bfb13ac6dace4b5bf4b1827" loading="lazy" alt="失落的航道 第7洞"></div>
+          <p class="hole-text">近側大門用 Spike 上過果嶺一次，但平常很少上。瞄中間大門結果如何還沒驗證過。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%208H.jpg.webp?rev=cb4bb0f8df14eef31ed211a573806c0e" loading="lazy" alt="失落的航道 第8洞"></div>
+          <p class="hole-text">順風夠強時，可以稍微往右繞開船左邊突出處，用 Spike 上果嶺。瞄大門上果嶺比較難，船常常擋路，但也有機會上果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%209H.jpg.webp?rev=84aa947cea57aceb4dca731ef7451ae8" loading="lazy" alt="失落的航道 第9洞"></div>
+          <p class="hole-text">用 Spike 穩定 1ON。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2010H.jpg.webp?rev=af9b4b93c5f11abd7e1f7eb27d6402b2" loading="lazy" alt="失落的航道 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2011H.jpg.webp?rev=f3a04709096d181132214ee99fd7ab45" loading="lazy" alt="失落的航道 第11洞"></div>
+          <p class="hole-text">打順的話有機會 1ON。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2012H.jpg.webp?rev=37464e97565ca3802d9e5ccc494566f3" loading="lazy" alt="失落的航道 第12洞"></div>
+          <p class="hole-text">打進左邊大門賺距離，可以安全二上果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2013H.jpg.webp?rev=14d2dd7095b39354ab5a56243f7aed4a" loading="lazy" alt="失落的航道 第13洞"></div>
+          <p class="hole-text">建議用特殊球打比較穩。如果風不夠大打不到 1ON，就往左邊大門打順便賺 PP。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2014H_0.jpg.webp?rev=5a1515d0bfbc8bfd3e2d1c6b776acdde" loading="lazy" alt="失落的航道 第14洞"></div>
+          <p class="hole-text">用 Power Curve 輕鬆靠近洞杯。萬一打失誤……用 Spin Mastery 下打點配 Tomahawk 硬越過也行，這種打法要盡量落在果嶺最遠端，再用 BS 避免滾出果嶺。（社群補充：瞄大門用 Cobra 式打過去也不錯）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2015H.jpg.webp?rev=e49e000b75e8c574e88294b1daec356c" loading="lazy" alt="失落的航道 第15洞"></div>
+          <p class="hole-text">打進中間大門，手感超好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2016H.jpg.webp?rev=19a10f6093ab8ad467e99cac170f03af" loading="lazy" alt="失落的航道 第16洞"></div>
+          <p class="hole-text">順風很強時，用 Tomahawk 瞄大門確認可以 1ON，其他風向還不確定。（社群補充：用 Spin Mastery 打 TS 瞄大門也能賺 PP）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2017H.jpg.webp?rev=625f19a813923cc2cb0e1abaed165ca0" loading="lazy" alt="失落的航道 第17洞"></div>
+          <p class="hole-text">正常瞄準或瞄大門，精度都夠上果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/LostSeaway/::ref/LS%2018H.jpg.webp?rev=3ef488ef1a7018f3c533e35bdb50261b" loading="lazy" alt="失落的航道 第18洞"></div>
+          <p class="hole-text">用剩餘力量瞄大門打 Tomahawk，二打輕鬆愉快，PP 很好賺。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-IceSpa">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/IS.jpg?rev=d89b44beeb137132c3d1bed508cac934" alt="冰上溫泉">
+      <div class="course-head-text">
+        <h2>冰上溫泉 <span class="course-sub">アイス スパ / Ice Spa</span></h2>
+        <div class="course-meta"><span class="note">滾球滾球再滾球，PP 穩穩賺！（9、14、17、18 洞打 Spike 要小心會打到鴨子，用 Tomahawk 就不會打到）</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_1h_p4.jpg.webp?rev=1b36a2d771996e8596244660d3d1eef1" loading="lazy" alt="冰上溫泉 第1洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_1h_%E3%83%88%E3%83%9E.jpg.webp?rev=811671f4e2a6caf92abdb54cc10ca4f6" loading="lazy" alt="冰上溫泉 第1洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_1h_%E3%83%91%E3%83%AF%E3%82%AB%E3%83%96.jpg.webp?rev=af3d8870d75c3af8279feac019ee69ff" loading="lazy" alt="冰上溫泉 第1洞"></div>
+          <p class="hole-text">想賺 PP 就用滾球，正常攻略也能瞄長切球（Long Chip）。如圖瞄準顏色變化的深處，用 3 或 4 號鐵桿配 Tomahawk Power Spin 朝果嶺滾過去，途中可能會中途落地，建議多試幾次找自己好瞄的落點。不擅長 Tomahawk Power Spin 的話，用類似角度打 2 或 3 號木桿 Power Curve 也能滾到果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_2h_p3.jpg.webp?rev=0eb493a8f3cfae5706478c0558254e7b" loading="lazy" alt="冰上溫泉 第2洞"></div>
+          <p class="hole-text">Tomahawk 配 BS，或裸打 BS 都可以。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_3h_p5.jpg.webp?rev=6eae12e5a3ec1965b55e4f414376f3df" loading="lazy" alt="冰上溫泉 第3洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_3h_BS.jpg.webp?rev=b0546ecd4f3017ad147fea94b7cc0e0e" loading="lazy" alt="冰上溫泉 第3洞"></div>
+          <p class="hole-text">落點前有高低差，可以用 Spike 避開冰縫，不過……正常瞄這附近配 BS 攻略比較穩，風大會被吹偏要注意。容易失誤的朋友……辛苦了（笑）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_4h_p4.jpg.webp?rev=4ffc776d48c078aab46cd0af9fbb881a" loading="lazy" alt="冰上溫泉 第4洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_4h_%E3%83%88%E3%83%9E.jpg.webp?rev=860a01e3e20cbcefd2a67d5d0e5d6d2d" loading="lazy" alt="冰上溫泉 第4洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_4h_%E9%80%9A%E5%B8%B8.jpg.webp?rev=a07f3b679ef5760197e5b49b42e39869" loading="lazy" alt="冰上溫泉 第4洞"></div>
+          <p class="hole-text">這球場的賺 PP 好洞！用 Spike 瞄準也不是不能 1ON。如圖瞄準用 3 或 4 號鐵桿配 Tomahawk BS 滾過去，逆風時 4 號鐵桿幾乎到不了。不用 Tomahawk BS，用 2 號木桿正常打也能滾過去，想賺 PP 這種打法可以直接用 Power Shot。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_5h_p4.jpg.webp?rev=116c572eb79eb78127e46f118cf7ca06" loading="lazy" alt="冰上溫泉 第5洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_5h_%E7%99%BB%E5%B1%B1.jpg.webp?rev=d0de6a3367108f8505248abdf5442e75" loading="lazy" alt="冰上溫泉 第5洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/tozanninnmoru.jpg.webp?rev=d83af86f6af27b5e5865c9f2e2a8be58" loading="lazy" alt="冰上溫泉 第5洞"></div>
+          <p class="hole-text">Spike BS 可以確實 1ON！用 Power Curve 或 Kick 也能上果嶺，洞杯位置好的話 HIO 也不是夢。從拱門下用上旋水切過去的打法也有，但沒試過不確定效果。失誤 Spike 球的話……可以爬到視野很好的地方（笑）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_6h_p3.jpg.webp?rev=4861611808582b80221c68bde98b1ada" loading="lazy" alt="冰上溫泉 第6洞"></div>
+          <p class="hole-text">Tomahawk 配 BS，或裸打 BS 都可以，跟 2 洞一樣不特別說明。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_7h_p4.jpg.webp?rev=6795208ba4899be3f70b69e17c517a3c" loading="lazy" alt="冰上溫泉 第7洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_7h_TS.jpg.webp?rev=990e7beef57f8c54ec41d84f3c0f9266" loading="lazy" alt="冰上溫泉 第7洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_7%EF%BD%88_%E3%83%AD%E3%83%B3%E3%82%B0%E3%83%81%E3%83%83%E3%83%97.jpg.webp?rev=9e779f75f0c89769c34fbe003022eff6" loading="lazy" alt="冰上溫泉 第7洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_7h_%E3%83%AD%E3%83%B3%E3%82%B0%E3%83%81%E3%83%83%E3%83%97%E5%B0%84%E7%A8%8B.jpg.webp?rev=8705459006c8b0bb24cd501c2be2793c" loading="lazy" alt="冰上溫泉 第7洞"></div>
+          <p class="hole-text">左邊牆也有 Spike 踢牆的打法。穩健走法是用 TS 讓球在冰上跳彈到對岸。落在這附近，瞄洞杯打長切球賺 PP，Tomahawk 或裸打 BS 看個人喜好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_8h_p4.jpg.webp?rev=192791843cf4ad31daf2bda90a4bfa2b" loading="lazy" alt="冰上溫泉 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_8h_%E3%83%88%E3%83%9E.jpg.webp?rev=855ba02d19469c47c205c5ecdeea6684" loading="lazy" alt="冰上溫泉 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_8h_%E9%80%9A%E5%B8%B8.jpg.webp?rev=3e478d9b47a0af24f4b15fcb97adcba8" loading="lazy" alt="冰上溫泉 第8洞"></div>
+          <p class="hole-text">滾球配 OD 賺 PP 洞第三發。左邊用 3 或 4 號鐵桿配 Tomahawk BS，有距離的話右邊用 1 或 2 號木桿；左邊也可以用 2 或 3 號木桿 BS 打。（社群補充：我是往左邊用 Spin Mastery + Spike 直接瞄果嶺）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_9h_p5.jpg.webp?rev=8185b7fabd13f362962dfac94f789e25" loading="lazy" alt="冰上溫泉 第9洞"></div>
+          <p class="hole-text">用 Spike BS 進攻！2 號木桿 Tomahawk 也能 1ON，但想 HIO 還是 Spike 比較穩。（社群補充：實測 250y 以上用 1 號木桿裸打也能過，注意風；想省力、省紅條的大賽場合可以試試，基本還是以 Spike 或 Tomahawk 為主）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_10%EF%BD%88_p3.jpg.webp?rev=58c13a74bd1df39cdf9c3a38ead2e865" loading="lazy" alt="冰上溫泉 第10洞"></div>
+          <p class="hole-text">Tomahawk 配 BS，或裸打 BS 都可以，跟 2、6 洞一樣。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_11h_p4.jpg.webp?rev=80a782cde7a8dd87e8ff112a05b2ce54" loading="lazy" alt="冰上溫泉 第11洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_11%EF%BD%88_%E3%82%B9%E3%83%91.jpg.webp?rev=548f21038870cca9fdb420dff60e6dd0" loading="lazy" alt="冰上溫泉 第11洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_11h_%E3%82%AB%E3%83%9E%E3%82%AF%E3%83%A9%E4%B8%8A%E7%A9%BA.jpg.webp?rev=5c61a6cde8f8dfd43a4f2a8782dd3ccb" loading="lazy" alt="冰上溫泉 第11洞"></div>
+          <p class="hole-text">滾到這邊球道賺一點 OD。直接瞄準用 Spike 打 1ON 也行，但要注意風向別撞到雪屋（如圖），還容易忘記鴨子的事……（笑）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_12h_p5.jpg.webp?rev=f785ab8943cf8cc4681811cc0faf98cb" loading="lazy" alt="冰上溫泉 第12洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_12h_%E3%83%88%E3%83%9E%E4%B8%8A%E7%A9%BA.jpg.webp?rev=68a998f085c0da5df0bbd01f54e7ccc9" loading="lazy" alt="冰上溫泉 第12洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_12h_%E3%83%88%E3%83%9E%E6%AD%A3%E9%9D%A2.jpg.webp?rev=01d4d7413488235a58327416591965be" loading="lazy" alt="冰上溫泉 第12洞"></div>
+          <p class="hole-text">沒距離不太建議，但可以落在溝前用 4～8 號鐵桿瞄果嶺。看飛行距離選 1 號或 2 號木桿，瞄準溝最低點用 Tomahawk 滾順的話，OD 和信天翁（Albatross）都有機會。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_13h_p4.jpg.webp?rev=f30dd42d70cf792f915c7583e1e60130" loading="lazy" alt="冰上溫泉 第13洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_13%EF%BD%88_%E3%83%88%E3%83%9E.jpg.webp?rev=d85b62d3c5af279ba4d2fcaa9793f951" loading="lazy" alt="冰上溫泉 第13洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_13%EF%BD%88_%E9%80%9A%E5%B8%B8.jpg.webp?rev=96c85d6ee4394ff58f0e4cd8e24f1b92" loading="lazy" alt="冰上溫泉 第13洞"></div>
+          <p class="hole-text">OD 賺 PP 洞第四發。下方冰面滾球打法也有，但老實說沒成功過。用 2 號木桿 Tomahawk BS 瞄左邊，或用 1 號木桿也能滾，但 1 號木桿會撞到前面的樹要避開。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_14h_p4.jpg.webp?rev=88192bb7228f4e53aba169b753cc04f2" loading="lazy" alt="冰上溫泉 第14洞"></div>
+          <p class="hole-text">2 號木桿 Tomahawk 瞄準，目標 HIO 的球場。上果嶺的話 Eagle 很穩。Spike 攻略也行……但容易被鴨子擋住。力量夠（25 以上）裸打 BS 也能瞄。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_15h_p3.jpg.webp?rev=94592e26abbc058f787e6d470389ba80" loading="lazy" alt="冰上溫泉 第15洞"></div>
+          <p class="hole-text">Tomahawk 配 BS，或裸打 BS 都可以，跟 2、6、10 洞一樣。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_16h_p4.jpg.webp?rev=f38a3307cc676d5366a9588b386e5d0c" loading="lazy" alt="冰上溫泉 第16洞"></div>
+          <p class="hole-text">用 Spin Mastery 打 TS 滾球，1ON 和 HIO 都不是夢。有力量就用 Spike TS 或 Tomahawk TS 進攻，裸打旋轉接近 20 的話不用 Spin Mastery 也行。順帶一提，左邊冰面用 3 號木桿左右滾球能賺一點 OD。（社群補充：用 Spin Mastery 打 Cobra 式 TS 也可以）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_17h_p4.jpg.webp?rev=963eb915a4b0aef60dc6f99c03049f6c" loading="lazy" alt="冰上溫泉 第17洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_17%EF%BD%88_%E3%82%B9%E3%83%91%E3%83%88%E3%83%9E.jpg.webp?rev=9dd31a387ae7876d2cabae20e137f38f" loading="lazy" alt="冰上溫泉 第17洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_17h_%E3%82%AD%E3%83%83%E3%82%AF.jpg.webp?rev=97e3a7a6ba20e4b752b696e33927b364" loading="lazy" alt="冰上溫泉 第17洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_17h_%E3%82%B3%E3%83%96%E3%83%A9.jpg.webp?rev=92c459966f5927a4f48ee878e06e1d00" loading="lazy" alt="冰上溫泉 第17洞"></div>
+          <p class="hole-text">攻法很多的球場。左圖用 Spike 或 Tomahawk 瞄果嶺；右圖踢牆 1ON 也行；還有用 Cobra 打穿兩個圓頂中間的打法。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_18h_p5.jpg.webp?rev=a04fa8ac2146bb7e7f62223599c08fc4" loading="lazy" alt="冰上溫泉 第18洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_18h_%E9%80%9A%E5%B8%B8.jpg.webp?rev=8aa8d970a85c83924251cae8be376e6b" loading="lazy" alt="冰上溫泉 第18洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceSpa/::ref/IS_18h_%E3%83%88%E3%83%9E.jpg.webp?rev=4bb2deae72dd35c797b2c2a9bee8557c" loading="lazy" alt="冰上溫泉 第18洞"></div>
+          <p class="hole-text">右邊冰路用 Tomahawk Power Curve 賺 OD。左圖踢雪屋滾到對面球道，這個落點要預判著地點，不然容易打到意想不到的地方；右圖用 Tomahawk 越過谷地，或在谷地右側用 Spike TS 踢牆──但後者容易掉進冰洞，機率不低。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-PinkWind">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/PW.jpg?rev=14ba4e75d2d151cbd0247b795a9d12b2" alt="粉紅之風">
+      <div class="course-head-text">
+        <h2>粉紅之風 <span class="course-sub">ピンク ウインド / Pink Wind</span></h2>
+        <div class="course-meta"><span class="note">比較簡單的球場，適合基本練習。果嶺簡單，有人會故意打遠一點抓長推（LP）賺 PP。</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%201H.jpg.webp?rev=f616a369500d06dda160c0de989ba9d6" loading="lazy" alt="粉紅之風 第1洞"></div>
+          <p class="hole-text">沒什麼特別問題的洞。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%202H.jpg.webp?rev=5b83c66139bb08b6a0a6d601beb33d27" loading="lazy" alt="粉紅之風 第2洞"></div>
+          <p class="hole-text">用喜歡的方式瞄準就好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%203H.jpg.webp?rev=6984e8ac657541f3d0d06ed8cb48731f" loading="lazy" alt="粉紅之風 第3洞"></div>
+          <p class="hole-text">利用丘上車道賺 OD，二上果嶺。從球道切球進洞也不錯。（社群補充：往圖示方向用 Top Spin 在丘上稍微滾一下，太靠左會 OB）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%204H.jpg.webp?rev=fa1b12f9208c0693e1492614febc0ab7" loading="lazy" alt="粉紅之風 第4洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%204H-01.jpg.webp?rev=9b0734a54f5359d5d32cf2a3d8f20d47" loading="lazy" alt="粉紅之風 第4洞"></div>
+          <p class="hole-text">（藍）落在左邊沙坑旁的球道，從那邊二上。風車看起來會擋，但其實除了扇葉以外都能穿過去（扇葉會打到），不用太在意，不過太靠近會讓二打距離不夠。（紅）有距離的人用特殊球可以 1ON。（社群補充：視距離，1 號木桿 Tomahawk 到沙坑前稍微墊高的粗草區比較安全，Spike 能上但失誤必 OB；走左邊球道也行，但太靠近會被風車擋到）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%205H.jpg.webp?rev=b9e387d59aaf21d4a8436f31a616e0c3" loading="lazy" alt="粉紅之風 第5洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%205H-01.jpg.webp?rev=6a18d3a7006a57f06db54ac6557fd86d" loading="lazy" alt="粉紅之風 第5洞"></div>
+          <p class="hole-text">一般落在球道或沙坑過去的粗草區。水池和球道之間是好落點，可以切球進洞。（社群補充：右下球道也行，但注意有樹）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%206H.jpg.webp?rev=67215fbf495c74589ba4c1230ba035b7" loading="lazy" alt="粉紅之風 第6洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%207H.jpg.webp?rev=a064a21592ee3d0613c6473677aea3f4" loading="lazy" alt="粉紅之風 第7洞"></div>
+          <p class="hole-text">左右兩邊都能二上。走右邊的話二打注意樹。（社群補充：飛距離不夠走右下會被樹擋）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%208H.jpg.webp?rev=feac19b357334c8edf29ed649381454a" loading="lazy" alt="粉紅之風 第8洞"></div>
+          <p class="hole-text">車道附近坡度較小，從那邊切球進洞。（社群補充：很多人瞄水池左邊）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%209H.jpg.webp?rev=b30d013baf730621616e995c0541ff2a" loading="lazy" alt="粉紅之風 第9洞"></div>
+          <p class="hole-text">擔心距離或風不好就走左邊，二打注意障礙物。右邊二打需要多一點距離但沒有障礙物，可能比較好瞄。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2010H.jpg.webp?rev=c494f7433d254b8f9dc521c44241e5b1" loading="lazy" alt="粉紅之風 第10洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2010H-01.jpg.webp?rev=3ca2424a4fa69f3f1d6de5a781e1f9ba" loading="lazy" alt="粉紅之風 第10洞"></div>
+          <p class="hole-text">完全沒問題的洞。崖和河之間（白圈處）是好落點，從那邊切球進洞。（社群補充：河右側粗草區較平，很多人當好落點瞄）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2011H.jpg.webp?rev=68769f09beb686b03ca0eb37fe9c883e" loading="lazy" alt="粉紅之風 第11洞"></div>
+          <p class="hole-text">右邊沙坑旁好像有好落點。落在那邊二打看板會擋到，但看板其實能穿過去，正常打就好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2012H.jpg.webp?rev=61149fc32cf7dc6584627550c04ed3ef" loading="lazy" alt="粉紅之風 第12洞"></div>
+          <p class="hole-text">喜歡的方式瞄準，注意前方高低落差。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2013H.jpg.webp?rev=567cb5652c1b94b2a6ea672490caf66c" loading="lazy" alt="粉紅之風 第13洞"></div>
+          <p class="hole-text">距離長，桿具限制又多，討厭的球場。厲害的人會把一打打到車道上抓最短路線。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2014H.jpg.webp?rev=2f93703e50b038b27697963cb61e3568" loading="lazy" alt="粉紅之風 第14洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2014H-01.jpg.webp?rev=7c429892a7d49775ea86ad333f17dd7b" loading="lazy" alt="粉紅之風 第14洞"></div>
+          <p class="hole-text">左右都可以。走右邊注意別太靠左；走左邊注意別太靠牆，看板能穿過去正常打就好。左邊沙坑前有好落點，從那邊切球進洞。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2015H.jpg.webp?rev=f938f5e8000e159274a40901e6ba148f" loading="lazy" alt="粉紅之風 第15洞"></div>
+          <p class="hole-text">一般打到球道。左邊懸崖和 OB 之間落點可以切球進洞，二打容易打到樹要注意。左邊懸崖用特殊球（+可能搭配 Spin Mastery）1ON 的打法也存在。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2016H.jpg.webp?rev=25c7869e76e216a7567b825518b7b171" loading="lazy" alt="粉紅之風 第16洞"></div>
+          <p class="hole-text">喜歡的方式打就好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2017H.jpg.webp?rev=62f290b788e7c74a8a3ef84966f7802d" loading="lazy" alt="粉紅之風 第17洞"></div>
+          <p class="hole-text">左右都 OK。果嶺較難，建議用 Tomahawk 或 BS 盡量靠近洞杯。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/PinkWind/::ref/PW%2018H.jpg.webp?rev=01da8c01ea7449a9f3282f9ce66fb99c" loading="lazy" alt="粉紅之風 第18洞"></div>
+          <p class="hole-text">距離長的洞。250y 以下的人一打二打不用力，可能靠不近洞杯。（社群補充：沒距離走球道很難二上，我是打到右上二段粗草區用 Tomahawk，再 Tomahawk 或 Spike 輕鬆二上）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-BlueLagoon">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/BL.jpg?rev=588d20657718faddd28a74d3b5e3dd29" alt="青色珊瑚礁">
+      <div class="course-head-text">
+        <h2>青色珊瑚礁 <span class="course-sub">ブルー ラグーン / Blue Lagoon</span></h2>
+        <div class="course-meta"><span class="note">障礙物少、算好打的球場，落點區也比較寬，適合練習切球進洞……不過評等只有一顆星，果嶺卻意外地難。</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%201H.jpg.webp?rev=ccda352f2f00b4bd9c1ec9a3b2fe752e" loading="lazy" alt="青色珊瑚礁 第1洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%201H-01.jpg.webp?rev=1b13d0da83e5bae24aa76c8bd024f0c9" loading="lazy" alt="青色珊瑚礁 第1洞"></div>
+          <p class="hole-text">一般一打抓住球道就 OK。果嶺朝深處是下坡，建議用 BS 或輕打。（藍）一打打到右邊粗草區（白圈處）切球進洞，落在沙坑附近、靠球道或砂灘附近有坡度要注意（而且落在砂灘附近或砂灘上會有桿具限制）。250y 的人不用 90% 以上力量打會打到蘑菇。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%202H.jpg.webp?rev=5974294eeb30854dd7f5abfdbe3f2058" loading="lazy" alt="青色珊瑚礁 第2洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%203H.jpg.webp?rev=6aa6ae47ab64d4aa9a8e926575e802f9" loading="lazy" alt="青色珊瑚礁 第3洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%203H-02_edited-1.jpg.webp?rev=6c514716e8abd1c6b678d60829f6406e" loading="lazy" alt="青色珊瑚礁 第3洞"></div>
+          <p class="hole-text">正常攻略確實拿博蒂。（藍）落在右邊球道（白圈處）切球進洞。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%204H.jpg.webp?rev=847a9edf64d1324b1e6ef9e2bf661664" loading="lazy" alt="青色珊瑚礁 第4洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%204H-01.jpg.webp?rev=a8e7df6462393f65df5942ee779e8044" loading="lazy" alt="青色珊瑚礁 第4洞"></div>
+          <p class="hole-text">左邊沙坑和車道之間（白圈處）粗草是好落點。250y 的話大概 70% 力量就能落到好位置，從那邊切球進洞。果嶺朝深處是上坡，長推（LP）時高低差相當大。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%205H.jpg.webp?rev=b7e2aba9e84de37c5df0dcfc8056d242" loading="lazy" alt="青色珊瑚礁 第5洞"></div>
+          <p class="hole-text">一打盡量抓距離二上。看洞杯位置和風，二打裸打感覺容易掉海裡，而且果嶺難，二打建議用 Tomahawk。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%206H.jpg.webp?rev=e53c3eb8bf1d0f697fcda29822eddf30" loading="lazy" alt="青色珊瑚礁 第6洞"></div>
+          <p class="hole-text">不管用什麼方式都要越過海。果嶺朝深處下坡，用 BS 或 Tomahawk 靠近比較好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%207H.jpg.webp?rev=9754635146a65eae6b7daf17dcc66a76" loading="lazy" alt="青色珊瑚礁 第7洞"></div>
+          <p class="hole-text">總之很長的球場。一打盡量抓距離二上，一打落太前面會因桿具限制二不了果嶺。二上的話果嶺算簡單可以抓老鷹。（好像哪裡有好落點但沒確認，抱歉）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%208H.jpg.webp?rev=439b148a4f8483920aed084377f86ca8" loading="lazy" alt="青色珊瑚礁 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%208H-02.jpg.webp?rev=894c3770f49119a4d4ad76b38f836158" loading="lazy" alt="青色珊瑚礁 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%208H-03.jpg.webp?rev=7e5d90cb524a880189a6b0f6bf24d31f" loading="lazy" alt="青色珊瑚礁 第8洞"></div>
+          <p class="hole-text">一般打右邊球道二上，注意沙灘。（黃）左邊燈塔旁（白圈處）是好落點，從那邊切球進洞；旁邊沙灘上的圓形粗草也不錯。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%209H.jpg.webp?rev=91f7eddfef48ff80f466b18357f77240" loading="lazy" alt="青色珊瑚礁 第9洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%209H-02.jpg.webp?rev=05634a8b21bcdb285017a551902a29e7" loading="lazy" alt="青色珊瑚礁 第9洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%209H-04.jpg.webp?rev=b9d6480bebd42f798187691d27bd67bc" loading="lazy" alt="青色珊瑚礁 第9洞"></div>
+          <p class="hole-text">完全沒障礙物的洞，想確實拿博蒂。（黃）右邊靠前的球道和粗草之間是好落點，從那邊切球進洞，但老實說落點不好瞄。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2010H_0.jpg.webp?rev=bd920fe8682faae191db7c8a5b954525" loading="lazy" alt="青色珊瑚礁 第10洞"></div>
+          <p class="hole-text">用 Tomahawk 瞄山可以 1ON，有距離直接瞄 HIO 也行。不過果嶺超難，建議盡量靠近洞杯穩拿 Par。擅長切球進洞（6I BI）的人，故意落在果嶺外瞄準也是一種選擇。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2011H_0.jpg.webp?rev=086dd490bf69fb0645ea187af8d177eb" loading="lazy" alt="青色珊瑚礁 第11洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2011H-01.jpg.webp?rev=ded89c9a557965623ad60e381a555706" loading="lazy" alt="青色珊瑚礁 第11洞"></div>
+          <p class="hole-text">一般走右邊島上二上。白圈處是好落點（失誤容易 OB），從那邊切球進洞。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2012H.jpg.webp?rev=17ffdd21afb8733cad9edb2d67cdec81" loading="lazy" alt="青色珊瑚礁 第12洞"></div>
+          <p class="hole-text">距離很長的洞。一打用 Tomahawk + Spin Mastery TS 或 Spike + Spin Mastery TS 盡量拉距離，瞄二上。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2013H.jpg.webp?rev=03b2aea877795c7732c3ba6c782a8339" loading="lazy" alt="青色珊瑚礁 第13洞"></div>
+          <p class="hole-text">一打沒拉開距離，二打就會被山擋。果嶺前有不少坡度要注意。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2014H.jpg.webp?rev=93f09a7ea3ea0e46a8b157e5d51a6c4b" loading="lazy" alt="青色珊瑚礁 第14洞"></div>
+          <p class="hole-text">一打落左邊球道二上。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2015H.jpg.webp?rev=5435e999e34b1a289b7c548f4859af9f" loading="lazy" alt="青色珊瑚礁 第15洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2015H-01.jpg.webp?rev=00054361f0b45a5f9940cfc7a8c8c285" loading="lazy" alt="青色珊瑚礁 第15洞"></div>
+          <p class="hole-text">（黃）越過海直接 1ON，洞杯位置好的話 HIO 可行。（紅）擔心距離的人先落中間島上再二上也不錯。二打用 1 號木桿好像會打到海裡長出來的草？</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2016H.jpg.webp?rev=cd769722abda7d1398b6d127f61f0f09" loading="lazy" alt="青色珊瑚礁 第16洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可，果嶺坡度相當陡。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2017H.jpg.webp?rev=d243a9dae71d1f0ee671edfb560bc0b1" loading="lazy" alt="青色珊瑚礁 第17洞"></div>
+          <p class="hole-text">正常瞄球道二上。球道下坡，一打瞄球道中間左右可以靠 OD 賺不少 PP。落在左邊粗草和球道之間會意外彈很遠，要注意（風向不好有時還會彈進海裡）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2018H.jpg.webp?rev=eab91df29239767c327154eff9ba12a3" loading="lazy" alt="青色珊瑚礁 第18洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueLagoon/::ref/BL%2018H-01.jpg.webp?rev=6d57fda391b1abb7a2fbe438dca901f6" loading="lazy" alt="青色珊瑚礁 第18洞"></div>
+          <p class="hole-text">一打球道或粗草都行，從那邊二上。果嶺頗難，二打建議用 Tomahawk。白圈處是好落點，從那邊切球進洞。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-WestWiz">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/%E8%A5%BF.jpg?rev=a4979bbe7bde0e3982f3f51526c7497f" alt="西方魔境">
+      <div class="course-head-text">
+        <h2>西方魔境 <span class="course-sub">ウエスト ウィズ / West Wiz</span></h2>
+        <div class="course-meta"><span class="pill">西 / 西W / 丹多的庭院</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%91H.jpg.webp?rev=58a2d8140d2f702ba106e4f52ff97eb2" loading="lazy" alt="西方魔境 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%802H.jpg.webp?rev=199321ddfda8321279222563376db5c2" loading="lazy" alt="西方魔境 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%93H.jpg.webp?rev=944654c5936f9b2127c095d6104ae573" loading="lazy" alt="西方魔境 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%94H.jpg.webp?rev=0391a2ee496caad229dcd8210a65e1cc" loading="lazy" alt="西方魔境 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%95H.jpg.webp?rev=55c36d7c32401bb09996ef1b47655b58" loading="lazy" alt="西方魔境 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%806H.jpg.webp?rev=253d9f07e81cc8bf11ac9ec33583459b" loading="lazy" alt="西方魔境 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%97H.jpg.webp?rev=b2971ec25dc38cf01ce272f1a4275be9" loading="lazy" alt="西方魔境 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%808H.jpg.webp?rev=8aa209f94ff615fbc7aee69f8778a45d" loading="lazy" alt="西方魔境 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%809H.jpg.webp?rev=c059e411d19fb6bd25ca64198a708949" loading="lazy" alt="西方魔境 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%910H.jpg.webp?rev=348016e334b605f3db2f73334c061287" loading="lazy" alt="西方魔境 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%20%EF%BC%911H.jpg.webp?rev=adeb79f2f4cc60db74f18254b159ff32" loading="lazy" alt="西方魔境 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%20%EF%BC%912H.jpg.webp?rev=c91c10fb976044328aba83c2677360fd" loading="lazy" alt="西方魔境 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%20%EF%BC%913H.jpg.webp?rev=05b2a6a2f8f119d92bface2ef2fb786e" loading="lazy" alt="西方魔境 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%20%EF%BC%914H.jpg.webp?rev=0e10899f969b494a7c3cf5268ad2823d" loading="lazy" alt="西方魔境 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%20%EF%BC%915H.jpg.webp?rev=b4396a574b1d84b026210953199478f4" loading="lazy" alt="西方魔境 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%91%EF%BC%96H.jpg.webp?rev=2407a0059b5b590a15b9599db0e8718c" loading="lazy" alt="西方魔境 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%91%EF%BC%97H.jpg.webp?rev=79facfdf627863ed884e88ba6caba324" loading="lazy" alt="西方魔境 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WestWiz/::ref/%E8%A5%BF%E3%80%80%EF%BC%91%EF%BC%98H.jpg.webp?rev=50d7aede2df816c08212c7f6358295f3" loading="lazy" alt="西方魔境 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-EasternValley">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/EV.jpg?rev=75ea0fa6c6ff593ff91525e984c6f292" alt="東方之谷">
+      <div class="course-head-text">
+        <h2>東方之谷 <span class="course-sub">イースタン バレー / Eastern Valley</span></h2>
+        <div class="course-meta"><span class="pill">EV？</span><span class="note">基本走球道，留住自己擅長的距離再出手。洞杯位置常在果嶺邊緣，BS 失誤容易出果嶺。整體果嶺算簡單，只要上果嶺大致都能處理。</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%201H.jpg.webp?rev=76823d70b497aa364748db4b02a1bccf" loading="lazy" alt="東方之谷 第1洞"></div>
+          <p class="hole-text">沒什麼特別問題的洞。很多人一打會留自己擅長的距離。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%202H.jpg.webp?rev=bf02629c23601af3a712b0ae33ff432b" loading="lazy" alt="東方之谷 第2洞"></div>
+          <p class="hole-text">一打用 Tomahawk 到島上，落太深的話桿具限制會讓二上變困難。一打用水切也能直接過河到對岸。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%203H.jpg.webp?rev=f024feb13a09340191245e51539b6111" loading="lazy" alt="東方之谷 第3洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%204H.jpg.webp?rev=27ef406576331a3a18417993f22c2fe7" loading="lazy" alt="東方之谷 第4洞"></div>
+          <p class="hole-text">一打正常打到球道。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%205H.jpg.webp?rev=540bc74b0d71ebea8de54d59e19e57e9" loading="lazy" alt="東方之谷 第5洞"></div>
+          <p class="hole-text">一打視風向和距離，選沙坑前或沙坑過去的球道。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%206H.jpg.webp?rev=fc98cbb07b26ee4fe21adbd4c8a47649" loading="lazy" alt="東方之谷 第6洞"></div>
+          <p class="hole-text">一打打到沙坑前的球道。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%207H.jpg.webp?rev=9fb9994cd9c2659824c5d213846f6205" loading="lazy" alt="東方之谷 第7洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%207H-01.jpg.webp?rev=f7d1724f92a0bcdf0a064d2cec6f5a41" loading="lazy" alt="東方之谷 第7洞"></div>
+          <p class="hole-text">（藍）一打用 Tomahawk 到左邊島上二上，二打容易打到樹要注意（沒距離的人二打幾乎只能用 Tomahawk）。（紅）在中間島的球道刻意分段，瞄三上。（社群補充：有一定距離、風不差的話落中間島也行，不是邊緣的話幾乎沒坡度）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%208H.jpg.webp?rev=2ae667b7a53e142b5052716eb009821c" loading="lazy" alt="東方之谷 第8洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%209H.jpg.webp?rev=2983713a26b83d5afe37300235687a6a" loading="lazy" alt="東方之谷 第9洞"></div>
+          <p class="hole-text">用 Spin Mastery 打 TS 有 1ON 可能。正常用 1 號木桿打到球道，離果嶺也只剩約 50y，沒距離的人這樣打也不錯。（社群補充：右邊的丘朝果嶺方向是斜坡，可以用 Spin Mastery 滾過去；沒 Spin Mastery 又沒距離，1 號木桿 Tomahawk 可能卡在丘上，1 號木桿 Spike 可以到果嶺旁，但失誤的話有沙坑和樹，後續麻煩；1W 256y 正常瞄果嶺方向打就能上果嶺；Spike 好像不太有效，抱歉）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2010H.jpg.webp?rev=973f1a005b837125e20303101cce050f" loading="lazy" alt="東方之谷 第10洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2011H.jpg.webp?rev=bf6106e7ba918e64bc7197b444d74880" loading="lazy" alt="東方之谷 第11洞"></div>
+          <p class="hole-text">一打打到球道，依喜好或風向有人會落在右邊圓形球道。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2012H.jpg.webp?rev=a6978e63595694ade27aa55d346155b8" loading="lazy" alt="東方之谷 第12洞"></div>
+          <p class="hole-text">雖然是 PAR5，但完全能二上，可以的話想拿老鷹。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2013H.jpg.webp?rev=36e298349b114782226cfc20cb63dd6a" loading="lazy" alt="東方之谷 第13洞"></div>
+          <p class="hole-text">正常打到球道。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2014H.jpg.webp?rev=ebc71a2c8c6a76cae22f9ec0639732ae" loading="lazy" alt="東方之谷 第14洞"></div>
+          <p class="hole-text">一打正常打到球道，果嶺較窄，BS 失誤容易出果嶺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2015H.jpg.webp?rev=7438abcf8ba5111a3bea2a6047e34171" loading="lazy" alt="東方之谷 第15洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2016H.jpg.webp?rev=d458001118217174b74cee11036885ba" loading="lazy" alt="東方之谷 第16洞"></div>
+          <p class="hole-text">直打或走球道都 OK，直打太靠牆坡度會很陡（太靠左邊牆有時甚至打不了球）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2017H.jpg.webp?rev=0040117834e1f989a1e9b27644702bf5" loading="lazy" alt="東方之谷 第17洞"></div>
+          <p class="hole-text">一打正常打到球道，果嶺較窄，視洞杯位置和風，落在果嶺前方非沙坑的右邊球道可能更好。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/EasternValley/::ref/EV%2018H.jpg.webp?rev=5d5d93f7fe42483af648f2095193ae35" loading="lazy" alt="東方之谷 第18洞"></div>
+          <p class="hole-text">（社群補充：1W Spike TS 可以 1ON）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-IceCannon">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/IC.jpg?rev=68924cc6d3d0592bbbb8dc77c018c35a" alt="冰上大砲">
+      <div class="course-head-text">
+        <h2>冰上大砲 <span class="course-sub">アイス キャノン / Ice Cannon</span></h2>
+        <div class="course-meta"><span class="note">滾球洞不少，但沒點距離有些洞也會吃虧。</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%201H.jpg.webp?rev=834851723218fc201fcc000ded120ff0" loading="lazy" alt="冰上大砲 第1洞"></div>
+          <p class="hole-text">瞄左邊冰面滾球賺 OD。260y 以上或用特殊力量瞄右邊冰面也行。運氣好可能 1ON，但果嶺很難。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%202H.jpg.webp?rev=f888d4d5aeecda17002c96ed90c2f7b2" loading="lazy" alt="冰上大砲 第2洞"></div>
+          <p class="hole-text">喜歡的方式瞄準，果嶺朝深處下坡坡度相當陡。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%203H.jpg.webp?rev=f8004d6d5bc75cb1f22d3426017c2b94" loading="lazy" alt="冰上大砲 第3洞"></div>
+          <p class="hole-text">一打瞄球道方向，二打注意船。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%204H.jpg.webp?rev=caf39064edf340b45e1390348cc8cf28" loading="lazy" alt="冰上大砲 第4洞"></div>
+          <p class="hole-text">左邊牆用 Tomahawk TP 或 Spike TP 賺 OD。有距離的人正常打 + TP 也行，中途停下會有桿具限制。Tomahawk + Spin Mastery TS 或 Spike + Spin Mastery TP 運氣好能 1ON（運氣不好會掉水裡）。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%205H.jpg.webp?rev=8b3aa2ae7ad106aa48af594154faff87" loading="lazy" alt="冰上大砲 第5洞"></div>
+          <p class="hole-text">一打刻意落在船上方球道二上。也有人滾右邊冰面賺 OD。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%206H.jpg.webp?rev=cb4dba223961e8fb4a1d5c3734c534cc" loading="lazy" alt="冰上大砲 第6洞"></div>
+          <p class="hole-text">一打落船上方，從那邊二上。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%207H.jpg.webp?rev=34aed3071fc839f500842749e7c341b6" loading="lazy" alt="冰上大砲 第7洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可，但距離夠大多人會用 Tomahawk 或 Spike。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%208H.jpg.webp?rev=c3f982370a167dd2d3e61b5019b8409a" loading="lazy" alt="冰上大砲 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%208H-01.jpg.webp?rev=a5b09c2330b0afa9c77389701d95a1ff" loading="lazy" alt="冰上大砲 第8洞"></div>
+          <p class="hole-text">（紅）一打落 OB 外側，從那邊二上。（藍）一打落牆和 OB 之間，從那邊二上（一打好像打到牆比較容易成功）。（黃）一打落左邊粗草，二打穿過隧道二上，但二打需要相當距離。基本都是瞄二上，喜歡的方式都行，推薦紅或藍路線。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%209H.jpg.webp?rev=00b976446faa86b5c6fbbf6e9e96144b" loading="lazy" alt="冰上大砲 第9洞"></div>
+          <p class="hole-text">一打注意 OB，落飛機左側，二打不夠就用力量打。也有人一打落船下方冰面。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2010H.jpg.webp?rev=de0e613d282d57e2c8b1bd3f45230aeb" loading="lazy" alt="冰上大砲 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2011H.jpg.webp?rev=e38e43a0aac55394d3c6d26a45f66a1e" loading="lazy" alt="冰上大砲 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2012H.jpg.webp?rev=326cbb66bd7fcc6503001709c8ac478e" loading="lazy" alt="冰上大砲 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2013H.jpg.webp?rev=91e36f6eee119bc83f983902ffadef5b" loading="lazy" alt="冰上大砲 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2014H.jpg.webp?rev=83ae473d244172333cd67f5ee322551f" loading="lazy" alt="冰上大砲 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2015H.jpg.webp?rev=93ec8d80afbae67ca0e3f2370261f8a1" loading="lazy" alt="冰上大砲 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2016H.jpg.webp?rev=09ca9280ecff7014f8c2df8def98b5f1" loading="lazy" alt="冰上大砲 第16洞"></div>
+          <p class="hole-text">（社群補充：3I Tomahawk 打到 98% 以上力量可以瞄 HIO！！）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2017H.jpg.webp?rev=fe620d09b9dc16c8cd1c3f5f9a8ecb7a" loading="lazy" alt="冰上大砲 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/IceCannon/::ref/IC%2018H.jpg.webp?rev=766838603ae1384df5646a2e893745ac" loading="lazy" alt="冰上大砲 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-ShiningSand">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/SS.jpg?rev=69b6fadf20e480bfe4dace768a33d480" alt="閃耀之砂">
+      <div class="course-head-text">
+        <h2>閃耀之砂 <span class="course-sub">シャイニング サンド / Shining Sand</span></h2>
+        <div class="course-meta"><span class="pill">SS / 砂</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%201H.jpg.webp?rev=5a67a3465de14bac0fb3fa7f078443c5" loading="lazy" alt="閃耀之砂 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%202H.jpg.webp?rev=cc4dae96eda5eb48dc1a62bd511b0cf1" loading="lazy" alt="閃耀之砂 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%203H.jpg.webp?rev=96f5e92136c698c875776df67b1f6176" loading="lazy" alt="閃耀之砂 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%204H.jpg.webp?rev=3362a9613761c393c96a562e9e7432b0" loading="lazy" alt="閃耀之砂 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%205H.jpg.webp?rev=45d8229816d191db1ea639369c015094" loading="lazy" alt="閃耀之砂 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%206H.jpg.webp?rev=25d2725a5320ce2ee5dfae22dad4e98d" loading="lazy" alt="閃耀之砂 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%207H.jpg.webp?rev=88bcd9945ff0a0436393d2bd4f17d984" loading="lazy" alt="閃耀之砂 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%208H.jpg.webp?rev=c0d240e8c29fa68eadef5af3ddbc9809" loading="lazy" alt="閃耀之砂 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%209H.jpg.webp?rev=fd9ffdff4caeb45991de3c8c5e38f603" loading="lazy" alt="閃耀之砂 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2010H.jpg.webp?rev=fa57016e88a249d83a837a37d619e4ae" loading="lazy" alt="閃耀之砂 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2011H.jpg.webp?rev=be404f1c435cad07bc2a54cb3a126eed" loading="lazy" alt="閃耀之砂 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2012H.jpg.webp?rev=13c1f1cc6c35d1ddfd4dfc2e8d786bc2" loading="lazy" alt="閃耀之砂 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2013H.jpg.webp?rev=eda03650bb3fa9217843ea85670c3dd6" loading="lazy" alt="閃耀之砂 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2014H.jpg.webp?rev=c7a1a402188557cdc3aeea2ce9bb25cb" loading="lazy" alt="閃耀之砂 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2015H.jpg.webp?rev=55b04b17c9196df3829756df61ee7421" loading="lazy" alt="閃耀之砂 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2016H.jpg.webp?rev=6253cd3772f251d28ebce7ee34dab7fe" loading="lazy" alt="閃耀之砂 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2017H.jpg.webp?rev=458c98bc1aed8977d9919b53b9116fd6" loading="lazy" alt="閃耀之砂 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/ShiningSand/::ref/SS%2018H.jpg.webp?rev=0a87ed8163f24ee2e7d84b687d72fd4e" loading="lazy" alt="閃耀之砂 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-BlueWater">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/BW.jpg?rev=7093a00198a66ced825ecd7eaf5eb466" alt="青色之海">
+      <div class="course-head-text">
+        <h2>青色之海 <span class="course-sub">ブルー ウォーター / Blue Water</span></h2>
+        <div class="course-meta"><span class="pill">BW</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%201H.jpg.webp?rev=0e88eaba5766a4a71df00cb0f166d6f6" loading="lazy" alt="青色之海 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%202H.jpg.webp?rev=cdb0eee3fe66fea23ccb1fac75e6b380" loading="lazy" alt="青色之海 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%203H.jpg.webp?rev=90fdf92cf6327eb03298d20f860c557c" loading="lazy" alt="青色之海 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%204H.jpg.webp?rev=9b9a74e6b2fb1ef410c027a6cc628e56" loading="lazy" alt="青色之海 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%205H.jpg.webp?rev=f3641132765c8b4acf72296e7dda1363" loading="lazy" alt="青色之海 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%206H.jpg.webp?rev=3fdf2ad906feac7b573b293a5989a284" loading="lazy" alt="青色之海 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%207H.jpg.webp?rev=407103ffa315f748f43242f9bba0c068" loading="lazy" alt="青色之海 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%208H.jpg.webp?rev=c761386a7b8adf5fa9d887092fdbf4a5" loading="lazy" alt="青色之海 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%209H.jpg.webp?rev=ed03f4e27e8bd98d1db25a8c6092291a" loading="lazy" alt="青色之海 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2010H.jpg.webp?rev=ba1b76028da6932abd984561d3315633" loading="lazy" alt="青色之海 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2011H.jpg.webp?rev=7741c1dd8e33b49d652559f7c2f3343f" loading="lazy" alt="青色之海 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2012H.jpg.webp?rev=471ff743db2a1bc302daf9fc2e456fee" loading="lazy" alt="青色之海 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2013H_edited-1.jpg.webp?rev=5d2e758441708958e5337b1ff59bddaa" loading="lazy" alt="青色之海 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2014H_edited-1.jpg.webp?rev=c98be8dbf8d0f033c98766fcff387742" loading="lazy" alt="青色之海 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2015H.jpg.webp?rev=5bfb51c73ae6c689e66d8090a2c7ce68" loading="lazy" alt="青色之海 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2016H.jpg.webp?rev=c1f5a2d61dc7952f05d660e206edf15e" loading="lazy" alt="青色之海 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2017H.jpg.webp?rev=96e3418c78385b5244c4383232668c47" loading="lazy" alt="青色之海 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueWater/::ref/BW%2018H.jpg.webp?rev=ed487ad89521230576cfaec2b4e42df9" loading="lazy" alt="青色之海 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-SepiaWind">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/SW.jpg?rev=85efbf5baded9491c6c37634ade53487" alt="懷舊之風">
+      <div class="course-head-text">
+        <h2>懷舊之風 <span class="course-sub">セピア ウインド / Sepia Wind</span></h2>
+        <div class="course-meta"><span class="pill">SW</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%201H.jpg.webp?rev=e1524850e8a983fe3bdc72bb1289be8c" loading="lazy" alt="懷舊之風 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%202H.jpg.webp?rev=027b12369275777ee64fbe02ef0f3048" loading="lazy" alt="懷舊之風 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%203H.jpg.webp?rev=8cbcbd1041a6ebd6741873e278e90f1f" loading="lazy" alt="懷舊之風 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%204H.jpg.webp?rev=fbe59579027eeadb520b7a79a8333d2d" loading="lazy" alt="懷舊之風 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%205H.jpg.webp?rev=8339a5f5e1380a8ff4e112ba2daf5a96" loading="lazy" alt="懷舊之風 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%206H.jpg.webp?rev=fbd02e007e48883733da6b96d927231b" loading="lazy" alt="懷舊之風 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%207H.jpg.webp?rev=717609f507eb9ac72c68728f2a51b2dd" loading="lazy" alt="懷舊之風 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%208H.jpg.webp?rev=67986358ece5a0ec3b570a096144100c" loading="lazy" alt="懷舊之風 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%209H.jpg.webp?rev=86aa83da2d56c3acd59e98c4a563c77e" loading="lazy" alt="懷舊之風 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2010H.jpg.webp?rev=ce3ebf30ad7ca4a73428940676455f4a" loading="lazy" alt="懷舊之風 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2011H.jpg.webp?rev=655bc1a6f7ff8784b609dc92e704054f" loading="lazy" alt="懷舊之風 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2012H.jpg.webp?rev=b03590514a3b9ed06b3df2bba69daa33" loading="lazy" alt="懷舊之風 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2013H.jpg.webp?rev=102bf8aeb8023018d5b503b321e02288" loading="lazy" alt="懷舊之風 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2014H.jpg.webp?rev=b60fa7019bcd084eb4cbc7da54e1e4a6" loading="lazy" alt="懷舊之風 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2015H.jpg.webp?rev=407879a4bdf694903c98a71b3ddf1b1a" loading="lazy" alt="懷舊之風 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2016H.jpg.webp?rev=6a62e8fb19fa9a5c833e099d23897168" loading="lazy" alt="懷舊之風 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2017H.jpg.webp?rev=dbc37fe95b7a1234d3fea47b2f8b6d4a" loading="lazy" alt="懷舊之風 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SepiaWind/::ref/SW%2018H.jpg.webp?rev=d6fb50a4701386d4be91cd6ac92ce4e4" loading="lazy" alt="懷舊之風 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-BlueMoon">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/BM.jpg?rev=0d80451b8e4ac1d266023822e95b668c" alt="蒼藍之月">
+      <div class="course-head-text">
+        <h2>蒼藍之月 <span class="course-sub">ブルー ムーン / Blue Moon</span></h2>
+        <div class="course-meta"><span class="pill">BM</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%201H.jpg.webp?rev=69675cb64c2a76ec19a9edd63a28bc9a" loading="lazy" alt="蒼藍之月 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%202H.jpg.webp?rev=009871850cdc5517d43b0507ec0f15c2" loading="lazy" alt="蒼藍之月 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%203H.jpg.webp?rev=76dc3fcc147374a8491ce4cd4c8f4e62" loading="lazy" alt="蒼藍之月 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%204H.jpg.webp?rev=ff3888a603de9ef3eb9028e82555fc4d" loading="lazy" alt="蒼藍之月 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%20%205H.jpg.webp?rev=5f3aa17fcf49f31defecaa8cecddabaa" loading="lazy" alt="蒼藍之月 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%206H.jpg.webp?rev=9440582fe9e6668d3d6c0407b8ae9e19" loading="lazy" alt="蒼藍之月 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%20%207H.jpg.webp?rev=6c060368694123b9294c51334eeb14c2" loading="lazy" alt="蒼藍之月 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%208H.jpg.webp?rev=d802750567ba3e2afc8c3af8a69218b7" loading="lazy" alt="蒼藍之月 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%209H.jpg.webp?rev=36abfa190187c95e4a7c4364b5b8b3a0" loading="lazy" alt="蒼藍之月 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2010H.jpg.webp?rev=2079be48211fc94e8aa216ccdb7ad0aa" loading="lazy" alt="蒼藍之月 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2011H.jpg.webp?rev=29724402a4536e6168d9278207f04d6f" loading="lazy" alt="蒼藍之月 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%20%EF%BC%91%EF%BC%92H.jpg.webp?rev=ebca34fd9c13f4bfdec79b321340174e" loading="lazy" alt="蒼藍之月 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2013H.jpg.webp?rev=7f105fe64622be1f2e22139e5819b571" loading="lazy" alt="蒼藍之月 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2014H.jpg.webp?rev=4164857a214d711d115c5d8b78f19b77" loading="lazy" alt="蒼藍之月 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2015H.jpg.webp?rev=966ea36c7724c098345268ca1143b279" loading="lazy" alt="蒼藍之月 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2016H.jpg.webp?rev=3e2b4ff296c6445e20bf5e45ab297a2e" loading="lazy" alt="蒼藍之月 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%2017H.jpg.webp?rev=e88be94211f6588dbb1860f6214e06c1" loading="lazy" alt="蒼藍之月 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/BlueMoon/::ref/BM%20%2018H.jpg.webp?rev=5f60974f692cb7af83daef153731d957" loading="lazy" alt="蒼藍之月 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-WhiteWiz">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/%E7%99%BD.jpg?rev=187036f4ee543c7cb55399f8d9f53ce4" alt="白銀魔境">
+      <div class="course-head-text">
+        <h2>白銀魔境 <span class="course-sub">ホワイト ウィズ / White Wiz</span></h2>
+        <div class="course-meta"><span class="pill">白W</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%201H.jpg.webp?rev=a8d13c551fc4fda9494d621219976edf" loading="lazy" alt="白銀魔境 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%202H.jpg.webp?rev=e09bb23c21be340b7453565285d791d1" loading="lazy" alt="白銀魔境 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%203H.jpg.webp?rev=7e3d7668f89a248bfbbc9f4c51e74845" loading="lazy" alt="白銀魔境 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%204H.jpg.webp?rev=b2921d8cda36a71ded00ecf553d8d6dd" loading="lazy" alt="白銀魔境 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%205H.jpg.webp?rev=ef6425c2ffeb23762942a93d4cf74bd8" loading="lazy" alt="白銀魔境 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%206H.jpg.webp?rev=b8c1e38fe7340b69fa0f739fa306d62a" loading="lazy" alt="白銀魔境 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%207H.jpg.webp?rev=3e945b4e3e9dd8ee0a9ab0556060456d" loading="lazy" alt="白銀魔境 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%208H.jpg.webp?rev=1d5e24d0612b1f032c2955871ebd7db5" loading="lazy" alt="白銀魔境 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%209H.jpg.webp?rev=819c48ec79ed6ed879641c03900acbf9" loading="lazy" alt="白銀魔境 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2010H.jpg.webp?rev=9ce920a93803835718a699d43d3605f0" loading="lazy" alt="白銀魔境 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2011H.jpg.webp?rev=1ae0cb878b23b8d6ee1ecc8305cc4a56" loading="lazy" alt="白銀魔境 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2012H.jpg.webp?rev=9600bd82a8156cdadd14e8b45d04e8d8" loading="lazy" alt="白銀魔境 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2013H.jpg.webp?rev=6e4af182e522f123ff35679ee7d21bc8" loading="lazy" alt="白銀魔境 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2014H.jpg.webp?rev=75b0bf440fc4a7f38063af468e25b594" loading="lazy" alt="白銀魔境 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2015H.jpg.webp?rev=9135c094d4f766342e3d2ebde2fea46a" loading="lazy" alt="白銀魔境 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2016H.jpg.webp?rev=cd182a9469c633099ab73e60be7bd141" loading="lazy" alt="白銀魔境 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2017H.jpg.webp?rev=1973c7601e724df4beea14440437bfea" loading="lazy" alt="白銀魔境 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WhiteWiz/::ref/%E7%99%BDWiz%2018H.jpg.webp?rev=603c47cc01e66812650acf51abea3e69" loading="lazy" alt="白銀魔境 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-WizWiz">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/WW.jpg?rev=36000f64b0e081ccbdf17c0089087b1a" alt="魔法之國">
+      <div class="course-head-text">
+        <h2>魔法之國 <span class="course-sub">ウィズ ウィズ / Wiz Wiz</span></h2>
+        <div class="course-meta"><span class="pill">Wiz / WW</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%201H.jpg.webp?rev=b11993686ee44d66b02b833143d54009" loading="lazy" alt="魔法之國 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%202H.jpg.webp?rev=4f1fdd0e566c541ed0ef31717e59b6eb" loading="lazy" alt="魔法之國 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%203H.jpg.webp?rev=e742d6c9297989158ea780644096480d" loading="lazy" alt="魔法之國 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%204H.jpg.webp?rev=1623a66b45badc4cf39660fa8161023e" loading="lazy" alt="魔法之國 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%205H.jpg.webp?rev=4465996857a52039acfaac5f662d7c64" loading="lazy" alt="魔法之國 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%206H.jpg.webp?rev=a8874cc7afa59515672d649a0fb9d9f4" loading="lazy" alt="魔法之國 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%207H.jpg.webp?rev=02e984a6479bb84b8e7c72912a875b03" loading="lazy" alt="魔法之國 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%208H.jpg.webp?rev=901e3c2d324ba0ddea61acb3d1989429" loading="lazy" alt="魔法之國 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%209H.jpg.webp?rev=047150716a92cd2709d3c6ae1678e77a" loading="lazy" alt="魔法之國 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2010H.jpg.webp?rev=42a3a0a0a98eece80f26ce7932006865" loading="lazy" alt="魔法之國 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2011H.jpg.webp?rev=9b42a12d76bbaba41a382cc9a67ffb42" loading="lazy" alt="魔法之國 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2012H.jpg.webp?rev=53657ebcb6fcfd06e4f9a535e24aa136" loading="lazy" alt="魔法之國 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2013H.jpg.webp?rev=a924ed04f5347ec64121a229e6a717cc" loading="lazy" alt="魔法之國 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2014H.jpg.webp?rev=4645eb01d210ae61785955253881cc57" loading="lazy" alt="魔法之國 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2015H.jpg.webp?rev=389310d69f2f784af0723280eb0bddc1" loading="lazy" alt="魔法之國 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2016H.jpg.webp?rev=1f0a630580b12ed4d644299f19bec2c1" loading="lazy" alt="魔法之國 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2017H.jpg.webp?rev=4e39be614ba8c4f5bb4be036b0566496" loading="lazy" alt="魔法之國 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WizWiz/::ref/WW%2018H.jpg.webp?rev=518a0b5d642acebbf1e85da201d3b13d" loading="lazy" alt="魔法之國 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-SilviaCannon">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/SC.jpg?rev=dcc4e932da2d52272440843dfead1d21" alt="軍艦西爾維亞號">
+      <div class="course-head-text">
+        <h2>軍艦西爾維亞號 <span class="course-sub">シルビア キャノン / Silvia Cannon</span></h2>
+        <div class="course-meta"><span class="note">經驗需求頗高的球場。250y 也能打，但距離長一點比較好。大砲風向是固定的，善用這點會有優勢的地方。（社群補充：這是新手向留言，有更好的打法歡迎補充）</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%201H.jpg.webp?rev=795a9772732ae6c7b0852d7e7b353a8b" loading="lazy" alt="軍艦西爾維亞號 第1洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%201H%2001.jpg.webp?rev=6aa99d1f25f08e1b91db67aeab066d74" loading="lazy" alt="軍艦西爾維亞號 第1洞"></div>
+          <p class="hole-text">一般往藍色方向打二上。風不好或擔心距離時，可以等大砲風。依洞杯位置，有時往紅色方向打更有利。（社群補充：一打盡量打到右上方，否則二打到不了，很多人會卡在果嶺旁的樹，要注意）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%202H.jpg.webp?rev=9e758c0fc24dd8981fd1f8bac245f8cc" loading="lazy" alt="軍艦西爾維亞號 第2洞"></div>
+          <p class="hole-text">喜歡的方式攻略即可。（社群補充：注意樹）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%203H.jpg.webp?rev=2d17e0a65a2539fcc57a14cde0d5ef69" loading="lazy" alt="軍艦西爾維亞號 第3洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%203H_01.jpg.webp?rev=85294d15649d900f0e954daf41a0ed26" loading="lazy" alt="軍艦西爾維亞號 第3洞"></div>
+          <p class="hole-text">（藍）瞄中間的船用 Tomahawk 打二上。250y 以上的人一打裸打、打點稍微往下、利用上升氣流能上果嶺，但相當難，建議先練習。（黃）用 Tomahawk 或大砲風打到球道二上；二打距離不夠就改瞄紅色三上。（社群補充：一打往圖示方向打 Tomahawk，二打在直升機下方風會減弱距離，裸打尤其要注意）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%204H.jpg.webp?rev=0fe083206ac478576f53f93390a47da1" loading="lazy" alt="軍艦西爾維亞號 第4洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%204H_%EF%BC%90%EF%BC%91.jpg.webp?rev=aacbb42c1780b90ff680b7a5385fc16f" loading="lazy" alt="軍艦西爾維亞號 第4洞"></div>
+          <p class="hole-text">（藍）250y 以上用正常或 Tomahawk 上船，二上；距離吃緊或風不好就等大砲風。（黃）用 Power Curve 或 Cobra 上船二上，靠大砲風二打可能更好瞄……注意煙囪。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%205H.jpg.webp?rev=6a787378f5dab23e871411288597190e" loading="lazy" alt="軍艦西爾維亞號 第5洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%205H_01.jpg.webp?rev=b03dd966ef81b3cc0104cc8aad454fd8" loading="lazy" alt="軍艦西爾維亞號 第5洞"></div>
+          <p class="hole-text">PAR4 但距離意外地長的洞。（紅）一打用 TS 或 Spike 落在碼頭先端附近，二打用 Tomahawk 二上，但 Tomahawk 失誤就完了。（藍）比較保險的路線。（社群補充：力量 25 的話滾到直升機那邊，從那邊 Tomahawk 就夠了）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%206H.jpg.webp?rev=9feae77c336227a44d427eacedd39c16" loading="lazy" alt="軍艦西爾維亞號 第6洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%206H_01.jpg.webp?rev=83f6caf6e70669109125f171a0036826" loading="lazy" alt="軍艦西爾維亞號 第6洞"></div>
+          <p class="hole-text">（紅）一打用 Tomahawk 或 Spike 直接上船，從那邊用 Tomahawk 二上，落點不同會有不同桿具限制（具體位置未確認，抱歉）。（黃）打煙囪彈到隔壁船再二上，但老實說很難。（藍）比較保險的路線。（社群補充：二打如果到果嶺下方粗草，沒高低差比較輕鬆？到不了的話二打也正常打直線，之後上果嶺要注意有一棵樹，別勾到；有人一打用 Cobra 撞煙囪飛過去，但很危險）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%207H.jpg.webp?rev=9838e0d36ace21e0a6fc3b653aa8db88" loading="lazy" alt="軍艦西爾維亞號 第7洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%207H_02.jpg.webp?rev=fc57b2f147107d87e6665f1c8fbc0f1c" loading="lazy" alt="軍艦西爾維亞號 第7洞"></div>
+          <p class="hole-text">想二上就走藍色路線，大砲風吹起來會到不了碼頭先端，要注意。沒距離的人走球道。（社群補充：力量 25 從潛水艇左邊碼頭用 Tomahawk 就能到，風車上升氣流有時看起來到不了其實到了）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%208H.jpg.webp?rev=b52b3779663c350ad1f8dc7890e5b0b9" loading="lazy" alt="軍艦西爾維亞號 第8洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%208H_01.jpg.webp?rev=b10923df039135cd9df18347636e539e" loading="lazy" alt="軍艦西爾維亞號 第8洞"></div>
+          <p class="hole-text">（紅）1 號木桿 Spike 可以 1ON。（藍）一打落看板附近，二打用 2 或 3 號木桿 Tomahawk 二上。（社群補充：我是一打打短，二打穿過第二個低矮島上 ON；直升機→島→風車方向想辦法打瞄 1ON？沒看過也沒試過；直升機→島→風車用 Spike 打 1ON 成功過）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%209H.jpg.webp?rev=ea39b460b81d352d201c847584bccabc" loading="lazy" alt="軍艦西爾維亞號 第9洞"></div>
+          <p class="hole-text">裸打或 Tomahawk 都隨意，注意容易打到砲台。（社群補充：島的外壁或果嶺周圍的金屬粗草會彈開，還有樹要注意；裸打和 Tomahawk 都可以）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2010H.jpg.webp?rev=6f0f07ab79efd01695e44b545d8fcf53" loading="lazy" alt="軍艦西爾維亞號 第10洞"></div>
+          <p class="hole-text">一打利用船上的磁磚拉距離。順利的話 250y 也能用 Tomahawk 或 Spike 輕鬆二上。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2011H.jpg.webp?rev=83b3dfb919fc669749393de6384f9236" loading="lazy" alt="軍艦西爾維亞號 第11洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2011H_01.jpg.webp?rev=f49120b31f023fdd982256cdbf63cde7" loading="lazy" alt="軍艦西爾維亞號 第11洞"></div>
+          <p class="hole-text">船和島之間用 Tomahawk 或 Spike 可以 1ON（注意右邊的島）。Tomahawk 的話打點偏左比較容易上。（社群補充：正常直線 Tomahawk 到果嶺旁，Tomahawk Curve 看能不能上）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2012H.jpg.webp?rev=9aad0d094ed15ba7f944b02ada77aa6d" loading="lazy" alt="軍艦西爾維亞號 第12洞"></div>
+          <p class="hole-text">用鐵桿就能打到、距離很短的洞。裸打容易落進前方沙坑要注意。（社群補充：總之樹很擾人要注意）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2013H.jpg.webp?rev=e9376e87bd548c26c789766e2db0de92" loading="lazy" alt="軍艦西爾維亞號 第13洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2013H_01.jpg.webp?rev=0bc1ebcd548a62fe61eeba95dbaf6221" loading="lazy" alt="軍艦西爾維亞號 第13洞"></div>
+          <p class="hole-text">（藍）落在左邊球道二上，沙坑周邊粗草會有桿具限制要注意。（紅）利用上升氣流的路線，二打高低差會變得相當大。（社群補充：過風車上方可以靠上升氣流到果嶺下方球道方向）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2014H.jpg.webp?rev=cfe6369d644eb32cde0c68a3f9952f17" loading="lazy" alt="軍艦西爾維亞號 第14洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2014H_01.jpg.webp?rev=5343647cb80701644d4b4c4949615c15" loading="lazy" alt="軍艦西爾維亞號 第14洞"></div>
+          <p class="hole-text">（紅）一打落中間的船，二打用 Tomahawk 或 Spike 二上，250y 的人二打幾乎都要用 Spike。（黃）一打落中間船，二打落船邊緣粗草，三打切球進洞（大砲風幾乎會是向下方向），三打距離不夠就改綠色路線。（黃：另一版本）穩健路線。（社群補充：最短路線是瞄第二個島左下方（兩架飛機下方），從那邊用 Spike 或 Tomahawk 上果嶺，但依風向和距離可能到不了）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2015H.jpg.webp?rev=b97bfde8b526ba015b7281d50de3b6aa" loading="lazy" alt="軍艦西爾維亞號 第15洞"></div>
+          <p class="hole-text">一打注意直升機，落在左側二上。落太前面二打容易打到。二打距離擔心就等大砲風。（社群補充：瞄圓形「球道」，二打用 1 號木桿，裸打滾進果嶺，Tomahawk 會撞到飛很遠可能果嶺超過；太靠近高低差會用不了 1 號木桿，粗草區用 1 號木桿也可能到不了，要分段打）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2016H.jpg.webp?rev=1a62974d6d00cfe5b2720c1bc3f99962" loading="lazy" alt="軍艦西爾維亞號 第16洞"></div>
+          <p class="hole-text">因亂流距離會變短，建議用力一點配 BS 瞄準。（社群補充：經過直升機下方受下沉氣流影響，裸打到不了，用力量裸打或 Tomahawk）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2017H.jpg.webp?rev=2d788c82fc056322cba26aa657040716" loading="lazy" alt="軍艦西爾維亞號 第17洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2017H_01.jpg.webp?rev=21e1a2a89d0dec85c4a83ba7c20ea603" loading="lazy" alt="軍艦西爾維亞號 第17洞"></div>
+          <p class="hole-text">（紅）有距離的人路線，一打用 Tomahawk 或 Spike 落船端，二打利用上升氣流打 Tomahawk 二上。（藍）一般路線。250y 的話三打可能到不了，那就換路線。（綠）穩健三上路線，三打是相當大的下坡，沒距離的人也能用 Tomahawk 或 Spike 上果嶺。（社群補充：一打盡量打遠一點到球道，靠風車上升氣流打 Tomahawk，一打不夠的話會差一點到不了；二打建議用 Spike，但注意失誤）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2018H.jpg.webp?rev=5365d5a7bb796183a2e2470df2e28772" loading="lazy" alt="軍艦西爾維亞號 第18洞"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/SilviaCannon/::ref/SC%2018H_01.jpg.webp?rev=e5890fb20b3bca5d35edd17d39a18d58" loading="lazy" alt="軍艦西爾維亞號 第18洞"></div>
+          <p class="hole-text">（藍）4 號鐵桿穿過縫隙到中間的船，二打因下沉氣流要打得用力一點。（紅）用 Power Curve 到中間的船，跟藍色一樣二打要打得用力一點。（綠）穩健四上路線，有距離的話也能穿過中間的船三上。（社群補充：一打瞄齒輪左上方縫隙用 4 號鐵桿左右的 BS，沒 BS 會掉海裡，但有時會撞牆得救；照上面圖的方向走，也能瞄果嶺，但想一桿進洞有點難）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-DeepInferno">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/DI.jpg?rev=df9fd5bd0fe071460041f2ec98b5f5a3" alt="深淵地獄">
+      <div class="course-head-text">
+        <h2>深淵地獄 <span class="course-sub">ディープ インフェルノ / Deep Inferno</span></h2>
+        <div class="course-meta"><span class="note">很適合拿經驗值的球場。</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_1h_p4.jpg.webp?rev=3e11315fce5b1d1688193a6e87301e36" loading="lazy" alt="深淵地獄 第1洞"></div>
+          <p class="hole-text">岩漿池左前方 95% 粗草和右邊 85% 粗草是好落點，二打瞄準！</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_2h_p3.jpg?rev=057ee830f8add711131d8bd77e59f0d9" loading="lazy" alt="深淵地獄 第2洞"></div>
+          <p class="hole-text">洞杯遠的話是打下坡，Spike 好用。洞杯在左邊的話坡度陡，BS 會轉得很明顯。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_3h_p4.jpg?rev=9ee210bee3135cead7f9530e2683761d" loading="lazy" alt="深淵地獄 第3洞"></div>
+          <p class="hole-text">左邊球道右側 95% 粗草是好落點，注意別卡到角狀地形。二打有高低差，沒距離的話一打也要拉開距離。用特殊球直接越過中間池塘也是一種選擇。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_4h_p4.jpg?rev=54fb2608d9f197d921c47ca259e923b4" loading="lazy" alt="深淵地獄 第4洞"></div>
+          <p class="hole-text">左邊認真打二打會打不到。要像跨過骨頭一樣，或用特殊球落在右邊 85% 粗草。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_5h_p5.jpg.webp?rev=b839c88ca3462835d8e1c4631434946f" loading="lazy" alt="深淵地獄 第5洞"></div>
+          <p class="hole-text">沙坑左邊 95% 粗草可能是好落點？注意別讓二打到不了。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_6h_p3.jpg?rev=0d398e241ad717ede697b467b4f63583" loading="lazy" alt="深淵地獄 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。 （注意雪屋地形）</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_7h_p4.jpg?rev=27c845bf666de27adbd2093ee763c7b6" loading="lazy" alt="深淵地獄 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_8h_p4.jpg.webp?rev=1df7d13a6956372a80fc48449111e5c7" loading="lazy" alt="深淵地獄 第8洞"></div>
+          <p class="hole-text">瞄山的另一側打 Tomahawk Curve，有 1ON 可能，PP 也很好賺。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_9h_p5.jpg.webp?rev=38de9f03003215e7407aa0601a6ffda1" loading="lazy" alt="深淵地獄 第9洞"></div>
+          <p class="hole-text">很容易打不到，山擋著不好瞄。一打瞄右邊山、注意別撞到前方風車用 Cobra，可以賺不少距離。盡量打到貼近山邊不要撞到，最後再滾球。用 Tomahawk 撞過去也行，但滾到的地方常有沙坑，二打會變難。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_10h_p4.jpg?rev=f33174eb8196f118a893d2df36d54d09" loading="lazy" alt="深淵地獄 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_11h_p4.jpg?rev=24eea91d0ac0dcdf724c9e89ccc35ca3" loading="lazy" alt="深淵地獄 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_12h_p3.jpg.webp?rev=23d4b3ef7fdc64f4eb59afeb871197de" loading="lazy" alt="深淵地獄 第12洞"></div>
+          <p class="hole-text">用 Spike 越過山也有過，撞到也有過……</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_13h_p4.jpg?rev=e387eac73fa3ee670148d1b5cbad33f8" loading="lazy" alt="深淵地獄 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_14h_p5.jpg?rev=ff1d69ee15925a6af262ad6ab5c757ba" loading="lazy" alt="深淵地獄 第14洞"></div>
+          <p class="hole-text">沒距離就別勉強，瞄三上比較保險。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_15h_p4.jpg?rev=8d6d39fffdf4800d153ca65429248a39" loading="lazy" alt="深淵地獄 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_16h_p3.jpg.webp?rev=d28f2d2a9d630c63e5ddd98a34295e7b" loading="lazy" alt="深淵地獄 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_17h_p4.jpg?rev=42fe67755973988cd2547325eeeaf2e9" loading="lazy" alt="深淵地獄 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/DeepInferno/::ref/DI_18h_p5.jpg?rev=2ec8f038f641c962f6838ac867073cef" loading="lazy" alt="深淵地獄 第18洞"></div>
+          <p class="hole-text">大家都被牆弄哭過的洞。靠左邊球道貼近牆，用比 4 號鐵桿更短的鐵桿（4 號含以下，5、6、7、8 號⋯⋯）打 Tomahawk 可以越過。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-section" id="course-WindHill">
+    <div class="course-head">
+      <img class="course-thumb" src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/::ref/WH.jpg?rev=190f09e39283baa480524b6169937aa3" alt="風之丘">
+      <div class="course-head-text">
+        <h2>風之丘 <span class="course-sub">ウインド ヒル / Wind Hill</span></h2>
+        <div class="course-meta"><span class="pill">WH</span><span class="note">沒有留下攻略文字說明，只有每洞截圖，自己瞄準看看吧！</span></div>
+      </div>
+    </div>
+    <div class="holes-grid">
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 1 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%201H.jpg.webp?rev=f7163c11b1f7dc43c1b67e2749f256d4" loading="lazy" alt="風之丘 第1洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 2 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%202H.jpg.webp?rev=c903cd53061c0275a83156c4309f35b2" loading="lazy" alt="風之丘 第2洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 3 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%203H.jpg.webp?rev=8c7c4fb3a4d6e5f9d44fd007cea42ef8" loading="lazy" alt="風之丘 第3洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 4 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%204H.jpg.webp?rev=3170c973076f3af04455298cc0fc45ba" loading="lazy" alt="風之丘 第4洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 5 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%205H.jpg.webp?rev=029764a4ac844c164f81c7a501898797" loading="lazy" alt="風之丘 第5洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 6 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%206H.jpg.webp?rev=8bfd526059d1f540079d5a1eed4c24c9" loading="lazy" alt="風之丘 第6洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 7 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%207H.jpg.webp?rev=d4fc40dde2cb8d77c8023385657ffce0" loading="lazy" alt="風之丘 第7洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 8 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%208H.jpg.webp?rev=6d2fefc829988e123577f9556bdaf534" loading="lazy" alt="風之丘 第8洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 9 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%209H.jpg.webp?rev=b63570aef3da572abb93ac0cf986a2dc" loading="lazy" alt="風之丘 第9洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 10 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2010H.jpg.webp?rev=204a111006dbd70ad0689ff16b953246" loading="lazy" alt="風之丘 第10洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 11 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2011H.jpg.webp?rev=7c6cc4d687e48f83ec3a08b04a0cab8f" loading="lazy" alt="風之丘 第11洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 12 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2012H.jpg.webp?rev=bcb1576f6771aad8b0e2ade2664dd309" loading="lazy" alt="風之丘 第12洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 13 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2013H.jpg.webp?rev=631d4eb61a149f849d5c120aac40d6d5" loading="lazy" alt="風之丘 第13洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 14 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2014H.jpg.webp?rev=4c9a2fe5f3c8dd0c19db8ff87b1cab77" loading="lazy" alt="風之丘 第14洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 15 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2015H.jpg.webp?rev=f45d5529ed69f56fff6b20871087909f" loading="lazy" alt="風之丘 第15洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 16 洞</span>
+          <span class="par-badge" style="background:#4dabf7">PAR 3</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2016H.jpg.webp?rev=f26bed09113668fd04399ffd384599dc" loading="lazy" alt="風之丘 第16洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 17 洞</span>
+          <span class="par-badge" style="background:#ff922b">PAR 5</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2017H.jpg.webp?rev=4f8ed966c21c4fc0806e04e550e39d9c" loading="lazy" alt="風之丘 第17洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+
+      <div class="hole-card">
+        <div class="hole-head">
+          <span class="hole-num">第 18 洞</span>
+          <span class="par-badge" style="background:#51cf66">PAR 4</span>
+        </div>
+        <div class="hole-body">
+          <div class="hole-imgs"><img src="https://cdn.wikiwiki.jp/to/w/pyuatti/%E6%94%BB%E7%95%A5INDEX/%E3%82%B3%E3%83%BC%E3%82%B9INDEX/WindHill/::ref/WH%2018H.jpg.webp?rev=b057a202feb49b6f13fd64f26d8a2711" loading="lazy" alt="風之丘 第18洞"></div>
+          <p class="hole-text">暫無攻略筆記，請參考球洞截圖。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer>共 16 個球場、288 洞。資料來源最後更新於原站 2009–2010 年間，部分舊圖連結可能已失效。</footer>
+</body>
+</html>
