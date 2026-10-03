@@ -1,10 +1,9 @@
 {
-  "date": "2026-10-02",
+  "date": "2026-10-03",
   "items": [
     "晨報系統穩定運行中，Haiku API 33秒完成",
-    "名片系統核心功能完成，待真實名片實測",
-    "股票匯集器缺自動排程，目前手動跑 stock_sync.py",
-    "Dashboard 晨報單頁化已完成，國內新聞流程待修復",
-    "Calendar 權限 debug 待確認，明早查 discord-morning-error.log"
+    "名片系統核心功能完成，待真實名片測試和排程自動化",
+    "股票匯集器Dashboard輸入到Obsidian流程可用，缺自動排程",
+    "Discord晨報行事曆權限bug待確認，明天查log檢查TCC問題"
   ]
 }
