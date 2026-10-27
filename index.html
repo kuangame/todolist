@@ -393,27 +393,45 @@
       border-radius: var(--radius-lg);
       padding: 14px 18px;
       margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
     }
-
-    .calc-cash-row label {
+    .calc-cash-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin-bottom: 10px;
       font-size: 13px;
       font-weight: 600;
       color: var(--text-2);
+      letter-spacing: 0.5px;
+    }
+    .calc-cash-total { white-space: nowrap; }
+    .calc-cash-total #cash-total { font-family: var(--mono); font-size: 16px; margin-left: 6px; }
+    .calc-cash-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .calc-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .calc-field[hidden] { display: none; }
+    .calc-field > span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
       white-space: nowrap;
       letter-spacing: 0.5px;
     }
 
     .cash-input {
-      flex: 1;
+      width: 100%;
+      min-width: 0;
       background: var(--surface-2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 10px 14px;
+      padding: 9px 12px;
       font-family: var(--mono);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--text);
       text-align: right;
@@ -426,9 +444,14 @@
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
-      overflow: hidden;
+      overflow-x: auto;
       margin-bottom: 14px;
     }
+    /* 交割表：固定欄寬，T+1／T+2 兩欄等寬，輸入框、表頭、合計同一條右緣對齊 */
+    .calc-table { table-layout: fixed; }
+    .calc-table th:first-child, .calc-table td:first-child { width: 28%; }
+    .calc-table thead th { vertical-align: bottom; line-height: 1.5; }
+    #tab-calc tbody td, #tab-calc tfoot td { white-space: nowrap; vertical-align: middle; }
 
     table { width: 100%; border-collapse: collapse; }
 
@@ -470,7 +493,9 @@
     tfoot td:first-child { text-align: left; font-family: var(--ui); color: var(--text-2); font-size: 13px; }
 
     .num-input {
-      width: 130px;
+      width: 100%;
+      max-width: 180px;
+      min-width: 0;
       background: var(--surface-2);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -491,18 +516,22 @@
     /* ── 對帳簿 / 本月損益（台股習慣：紅賺綠賠，跟上面 .pos/.neg 相反，另開 class）── */
     .pnl-up   { color: var(--neg); font-weight: 700; }
     .pnl-down { color: var(--pos); font-weight: 700; }
-    .calc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 14px; align-items: start; }
+    /* 左右兩欄：左欄 minmax(0,1fr) + min-width:0 防止內容把欄位撐爆；右欄固定寬、頂端對齊、sticky，
+       左欄對帳簿展開只會拉長左欄，不會改變右欄 */
+    .calc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 16px; align-items: start; }
+    .calc-main, .calc-side { min-width: 0; }
     .calc-side { position: sticky; top: 12px; }
     .pnl-month {
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
-      padding: 14px 16px;
+      padding: 14px 18px;
     }
-    .pnl-month h4 { margin: 0 0 12px; font-size: 12px; color: var(--text-3); letter-spacing: 1px; font-weight: 700; }
-    .pnl-month-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--border-dim); font-size: 13px; color: var(--text-2); }
+    .pnl-month h4 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 10px; font-size: 12px; color: var(--text-3); letter-spacing: 1px; font-weight: 700; }
+    .pnl-month-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-dim); font-size: 13px; color: var(--text-2); }
     .pnl-month-row:last-child { border-bottom: none; }
-    .pnl-month-row .v { font-family: var(--mono); font-size: 15px; }
+    .pnl-month-row > span:first-child { white-space: nowrap; }
+    .pnl-month-row .v { font-family: var(--mono); font-size: 15px; white-space: nowrap; text-align: right; min-width: 0; }
     .pnl-month-row.total .v { font-size: 18px; }
     .pnl-ledger { margin-top: 14px; }
     .pnl-ledger-head {
@@ -518,28 +547,33 @@
     }
     .pnl-ledger-head:hover { border-color: var(--border); }
     .pnl-ledger-body { display: none; margin-top: 10px; }
+    .pnl-ledger-body .table-wrap { max-height: 420px; overflow: auto; }
+    .pnl-ledger-body thead th { position: sticky; top: 0; z-index: 1; background: #14151f; }
+    .pnl-ledger-body tbody td:first-child { font-family: var(--mono); font-weight: 400; color: var(--text-2); font-size: 13px; }
     .pnl-ledger.open .pnl-ledger-body { display: block; }
     .pnl-ledger .arrow { transition: transform 0.15s; }
     .pnl-ledger.open .arrow { transform: rotate(90deg); }
     .pnl-empty { color: var(--text-3); font-family: var(--mono); font-size: 13px; text-align: center; padding: 14px; }
-    @media (max-width: 700px) {
-      .calc-layout { grid-template-columns: 1fr; }
+    /* 左欄低於 ~560px 就太擠（三張卡片＋表格），改單欄，本月損益接在下方 */
+    @media (max-width: 860px) {
+      .calc-layout { grid-template-columns: minmax(0, 1fr); }
       .calc-side { position: static; }
     }
 
-    .result-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .result-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
-      padding: 16px;
+      padding: 16px 10px;
       text-align: center;
+      min-width: 0;
       transition: border-color 0.2s;
     }
     .card:hover { border-color: var(--border); }
     .card-label { font-size: 11px; color: var(--text-3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-    .card-value { font-family: var(--mono); font-size: 18px; font-weight: 700; }
+    .card-value { font-family: var(--mono); font-size: 18px; font-weight: 700; overflow-wrap: anywhere; line-height: 1.3; }
     .card-sub { font-family: var(--mono); font-size: 10px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.3px; }
 
     .btn-reset {
@@ -597,7 +631,7 @@
       background: var(--surface-2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      color: var(--text-1);
+      color: var(--text);
       padding: 6px 10px;
       outline: none;
       transition: border-color 0.15s;
@@ -1209,7 +1243,9 @@
     }
 
     @media (max-width: 480px) {
-      .num-input { width: 100px; font-size: 12px; }
+      .num-input { font-size: 12px; padding: 7px 8px; }
+      #tab-calc thead th, #tab-calc tbody td, #tab-calc tfoot td { padding-left: 10px; padding-right: 10px; }
+      .calc-cash-fields { grid-template-columns: 1fr 1fr; }
       .result-cards { grid-template-columns: 1fr; }
       .tabs { gap: 1px; }
       .tab-btn { font-size: 12px; padding: 8px 4px; }
@@ -1307,14 +1343,25 @@
    <div class="calc-layout">
    <div class="calc-main">
     <div class="calc-cash-row">
-      <label>CASH <span id="date-today" style="color:var(--text-3);font-size:11px;font-family:var(--mono);font-weight:400;"></span></label>
-      <input class="cash-input" type="number" id="calc-cash" placeholder="0" oninput="calcRecalc()" />
-      <label>預收</label>
-      <input class="cash-input" type="number" id="calc-prepaid" placeholder="0" oninput="calcRecalc()" style="flex:0.6;" />
+      <div class="calc-cash-head">
+        <span>CASH <span id="date-today" style="color:var(--text-3);font-size:11px;font-family:var(--mono);font-weight:400;"></span></span>
+        <span class="calc-cash-total">現金合計 <span id="cash-total">—</span></span>
+      </div>
+      <div class="calc-cash-fields">
+        <label class="calc-field"><span>富邦現金</span>
+          <input class="cash-input" type="number" id="calc-cash-fubon" placeholder="0" oninput="calcRecalc()" /></label>
+        <label class="calc-field"><span>元大現金</span>
+          <input class="cash-input" type="number" id="calc-cash-yuanta" placeholder="0" oninput="calcRecalc()" /></label>
+        <label class="calc-field"><span>預收</span>
+          <input class="cash-input" type="number" id="calc-prepaid" placeholder="0" oninput="calcRecalc()" /></label>
+        <!-- 其他現金：接凱基等沒有現金格的 T+1，只有不為 0 時才顯示 -->
+        <label class="calc-field" id="calc-cash-other-field" hidden><span>其他現金</span>
+          <input class="cash-input" type="number" id="calc-cash-other" placeholder="0" oninput="calcRecalc()" /></label>
+      </div>
     </div>
 
     <div class="table-wrap">
-      <table>
+      <table class="calc-table">
         <thead>
           <tr>
             <th>帳戶</th>
@@ -1940,11 +1987,37 @@
 
   // ── 交割計算機 ─────────────────────────────────────────────
   let calcSha = null;
-  let calcData = { cash: '', prepaid: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
+  // 現金依券商拆開：富邦／元大各一格；凱基（或其他沒有現金格的帳戶）的 T+1 滾進 cashOther
+  const CASH_FIELD = { 富邦: 'cashFubon', 元大: 'cashYuanta' };
+  const cashFieldOf = acc => CASH_FIELD[acc] || 'cashOther';
+
+  function emptyCalcData() {
+    return { cashFubon: '', cashYuanta: '', cashOther: '', prepaid: '',
+      accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
+  }
+  let calcData = emptyCalcData();
+
+  // 補齊欄位＋舊資料相容：舊版只有單一 cash → 放進富邦現金，元大留空
+  function normalizeCalcData(d) {
+    d = d || {};
+    if (d.cash !== undefined && d.cashFubon === undefined && d.cashYuanta === undefined) {
+      d.cashFubon = d.cash;
+      d.cashYuanta = '';
+    }
+    delete d.cash;
+    ['cashFubon', 'cashYuanta', 'cashOther', 'prepaid'].forEach(k => { if (d[k] == null) d[k] = ''; });
+    d.accounts = d.accounts || {};
+    ACCOUNTS.forEach(acc => { d.accounts[acc] = { t1: '', t2: '', ...(d.accounts[acc] || {}) }; });
+    if (d.lastDate === undefined) d.lastDate = null;
+    return d;
+  }
 
   function buildCalcRows() {
     updateCalcDates();
-    document.getElementById('calc-cash').value = calcData.cash || '';
+    document.getElementById('calc-cash-fubon').value = calcData.cashFubon || '';
+    document.getElementById('calc-cash-yuanta').value = calcData.cashYuanta || '';
+    document.getElementById('calc-cash-other').value = calcData.cashOther || '';
+    document.getElementById('calc-cash-other-field').hidden = !(parseFloat(calcData.cashOther) || 0);
     document.getElementById('calc-prepaid').value = calcData.prepaid || '';
     document.getElementById('calc-rows').innerHTML = ACCOUNTS.map(acc => `
       <tr>
@@ -1961,17 +2034,23 @@
     const days = countWorkDaysBetween(last, today);
     if (days <= 0) return;
 
+    // 各帳戶的 T+1 交割進自己的現金格（富邦→富邦現金、元大→元大現金、凱基→其他現金）
+    const settleT1 = () => ACCOUNTS.forEach(acc => {
+      const t1 = parseFloat(calcData.accounts[acc].t1) || 0;
+      if (!t1) return;
+      const k = cashFieldOf(acc);
+      calcData[k] = String((parseFloat(calcData[k]) || 0) + t1);
+    });
+
     for (let i = 0; i < Math.min(days, 2); i++) {
-      const t1Sum = ACCOUNTS.reduce((sum, acc) => sum + (parseFloat(calcData.accounts[acc].t1) || 0), 0);
-      calcData.cash = String((parseFloat(calcData.cash) || 0) + t1Sum);
+      settleT1();
       ACCOUNTS.forEach(acc => {
         calcData.accounts[acc].t1 = calcData.accounts[acc].t2;
         calcData.accounts[acc].t2 = '';
       });
     }
     if (days >= 3) {
-      const t1Sum = ACCOUNTS.reduce((sum, acc) => sum + (parseFloat(calcData.accounts[acc].t1) || 0), 0);
-      calcData.cash = String((parseFloat(calcData.cash) || 0) + t1Sum);
+      settleT1();
       ACCOUNTS.forEach(acc => { calcData.accounts[acc].t1 = ''; calcData.accounts[acc].t2 = ''; });
     }
     calcData.lastDate = localDateStr(today);
@@ -1994,7 +2073,9 @@
   function calcRecalc() {
     const today = new Date(); today.setHours(0,0,0,0);
     calcData.lastDate = localDateStr(today);
-    calcData.cash = document.getElementById('calc-cash').value;
+    calcData.cashFubon = document.getElementById('calc-cash-fubon').value;
+    calcData.cashYuanta = document.getElementById('calc-cash-yuanta').value;
+    calcData.cashOther = document.getElementById('calc-cash-other').value;
     calcData.prepaid = document.getElementById('calc-prepaid').value;
     ACCOUNTS.forEach(acc => {
       if (!calcData.accounts[acc]) calcData.accounts[acc] = {};
@@ -2003,13 +2084,14 @@
       });
     });
 
-    const cash = calcVal('calc-cash');
+    const cash = calcVal('calc-cash-fubon') + calcVal('calc-cash-yuanta') + calcVal('calc-cash-other');
     const prepaid = calcVal('calc-prepaid');
     let sumT1 = 0, sumT2 = 0;
     ACCOUNTS.forEach(acc => { sumT1 += calcVal(`calc-${acc}-t1`); sumT2 += calcVal(`calc-${acc}-t2`); });
 
     setColored('sum-t1', sumT1);
     setColored('sum-t2', sumT2);
+    setColored('cash-total', cash);
     setColored('res-cash', cash - prepaid);
     setColored('res-t1', cash + sumT1);
     setColored('res-t2', cash + sumT1 + sumT2);
@@ -2030,7 +2112,7 @@
       const data = await ghGet('calculator.json');
       if (data) {
         calcSha = data.sha;
-        calcData = JSON.parse(b64decode(data.content));
+        calcData = normalizeCalcData(JSON.parse(b64decode(data.content)));
         rollCalcIfNeeded();
       }
       buildCalcRows();
@@ -2128,7 +2210,7 @@
 
   function calcReset() {
     if (!confirm('確定清除所有數字？')) return;
-    calcData = { cash: '', prepaid: '', accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} } };
+    calcData = emptyCalcData();
     calcSha = null;
     buildCalcRows();
     calcRecalc();
