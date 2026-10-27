@@ -488,6 +488,45 @@
     .neg { color: var(--neg); font-weight: 700; }
     .zero { color: var(--text-3); }
 
+    /* ── 對帳簿 / 本月損益（台股習慣：紅賺綠賠，跟上面 .pos/.neg 相反，另開 class）── */
+    .pnl-up   { color: var(--neg); font-weight: 700; }
+    .pnl-down { color: var(--pos); font-weight: 700; }
+    .calc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 14px; align-items: start; }
+    .calc-side { position: sticky; top: 12px; }
+    .pnl-month {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+    }
+    .pnl-month h4 { margin: 0 0 12px; font-size: 12px; color: var(--text-3); letter-spacing: 1px; font-weight: 700; }
+    .pnl-month-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--border-dim); font-size: 13px; color: var(--text-2); }
+    .pnl-month-row:last-child { border-bottom: none; }
+    .pnl-month-row .v { font-family: var(--mono); font-size: 15px; }
+    .pnl-month-row.total .v { font-size: 18px; }
+    .pnl-ledger { margin-top: 14px; }
+    .pnl-ledger-head {
+      width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 12px 18px;
+      color: var(--text-2);
+      font-family: var(--ui); font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+    .pnl-ledger-head:hover { border-color: var(--border); }
+    .pnl-ledger-body { display: none; margin-top: 10px; }
+    .pnl-ledger.open .pnl-ledger-body { display: block; }
+    .pnl-ledger .arrow { transition: transform 0.15s; }
+    .pnl-ledger.open .arrow { transform: rotate(90deg); }
+    .pnl-empty { color: var(--text-3); font-family: var(--mono); font-size: 13px; text-align: center; padding: 14px; }
+    @media (max-width: 700px) {
+      .calc-layout { grid-template-columns: 1fr; }
+      .calc-side { position: static; }
+    }
+
     .result-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
 
     .card {
@@ -1265,6 +1304,8 @@
 
   <!-- 交割計算機 Tab -->
   <div class="tab-panel active" id="tab-calc">
+   <div class="calc-layout">
+   <div class="calc-main">
     <div class="calc-cash-row">
       <label>CASH <span id="date-today" style="color:var(--text-3);font-size:11px;font-family:var(--mono);font-weight:400;"></span></label>
       <input class="cash-input" type="number" id="calc-cash" placeholder="0" oninput="calcRecalc()" />
@@ -1312,6 +1353,16 @@
 
     <button class="btn-reset" onclick="calcReset()">清除全部</button>
 
+    <!-- 對帳簿（pnl.json，預設收起） -->
+    <div class="pnl-ledger" id="pnl-ledger">
+      <button class="pnl-ledger-head" onclick="document.getElementById('pnl-ledger').classList.toggle('open')">
+        <span>對帳簿</span><span class="arrow">▸</span>
+      </button>
+      <div class="pnl-ledger-body" id="pnl-ledger-body">
+        <div class="pnl-empty">尚無對帳資料</div>
+      </div>
+    </div>
+
     <!-- 委託匯出 -->
     <div class="export-section">
       <h4>委託匯出</h4>
@@ -1327,6 +1378,16 @@
         <button class="btn-export-csv" onclick="exportAll()">一鍵匯出</button>
       </div>
     </div>
+   </div>
+
+   <!-- 右側：本月損益加總 -->
+   <div class="calc-side">
+    <div class="pnl-month" id="pnl-month">
+      <h4>本月損益加總</h4>
+      <div class="pnl-empty">尚無對帳資料</div>
+    </div>
+   </div>
+   </div>
   </div>
 
   <!-- 股票 Tab -->
@@ -1527,7 +1588,7 @@
     if (!t) return;
     localStorage.setItem('gh_token', t);
     closeTokenModal();
-    await Promise.all([loadTodos(), loadCalc()]);
+    await Promise.all([loadTodos(), loadCalc(), loadPnl()]);
   }
 
   function setSyncStatus(msg) { document.getElementById('sync-status').textContent = msg; }
@@ -1976,6 +2037,79 @@
       calcRecalc();
     } catch (e) {
       buildCalcRows();
+    }
+  }
+
+  // ── 對帳簿（pnl.json：{"YYYY-MM-DD": {"富邦": n, "元大": n}}，當日已實現損益）──
+  const PNL_BROKERS = ['富邦', '元大'];
+
+  function pnlNum(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
+  function pnlFmt(n) {
+    const cls = n > 0 ? 'pnl-up' : n < 0 ? 'pnl-down' : 'zero';
+    return `<span class="${cls}">${n > 0 ? '+' : ''}${Math.round(n).toLocaleString('en-US')}</span>`;
+  }
+
+  function renderPnlEmpty() {
+    document.getElementById('pnl-ledger-body').innerHTML = '<div class="pnl-empty">尚無對帳資料</div>';
+    document.getElementById('pnl-month').innerHTML = '<h4>本月損益加總</h4><div class="pnl-empty">尚無對帳資料</div>';
+  }
+
+  function renderPnl(pnl) {
+    const dates = Object.keys(pnl || {}).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort().reverse();
+    if (!dates.length) { renderPnlEmpty(); return; }
+    const rowOf = d => {
+      const vals = PNL_BROKERS.map(b => pnlNum((pnl[d] || {})[b]));
+      return { d, vals, total: vals.reduce((a, b) => a + b, 0) };
+    };
+    const rows = dates.map(rowOf);
+
+    const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
+    const top = rows[0];
+    const topLabel = top.d === today ? `今日 ${top.d}` : `最新 ${top.d}`;
+
+    document.getElementById('pnl-ledger-body').innerHTML = `
+      <div class="result-cards">
+        ${PNL_BROKERS.map((b, i) => `
+        <div class="card">
+          <div class="card-label">${b}</div>
+          <div class="card-value">${pnlFmt(top.vals[i])}</div>
+          <div class="card-sub">${topLabel}</div>
+        </div>`).join('')}
+        <div class="card">
+          <div class="card-label">合計</div>
+          <div class="card-value">${pnlFmt(top.total)}</div>
+          <div class="card-sub">${topLabel}</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>日期</th>${PNL_BROKERS.map(b => `<th>${b}</th>`).join('')}<th>合計</th></tr></thead>
+          <tbody>${rows.map(r => `
+            <tr><td>${r.d}</td>${r.vals.map(v => `<td>${pnlFmt(v)}</td>`).join('')}<td>${pnlFmt(r.total)}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+
+    const month = today.slice(0, 7);
+    const mRows = rows.filter(r => r.d.startsWith(month));
+    const mSum = PNL_BROKERS.map((_, i) => mRows.reduce((a, r) => a + r.vals[i], 0));
+    const mTotal = mSum.reduce((a, b) => a + b, 0);
+    document.getElementById('pnl-month').innerHTML = `
+      <h4>本月損益加總 <span style="font-family:var(--mono);font-weight:400;">${month}</span></h4>
+      ${PNL_BROKERS.map((b, i) => `
+      <div class="pnl-month-row"><span>${b}</span><span class="v">${pnlFmt(mSum[i])}</span></div>`).join('')}
+      <div class="pnl-month-row total"><span>總計</span><span class="v">${pnlFmt(mTotal)}</span></div>
+      <div class="pnl-month-row"><span>交易天數</span><span class="v">${mRows.length} 天</span></div>`;
+  }
+
+  async function loadPnl() {
+    if (!getToken()) { renderPnlEmpty(); return; }
+    try {
+      const data = await ghGet('pnl.json');
+      if (!data) { renderPnlEmpty(); return; }
+      renderPnl(JSON.parse(b64decode(data.content)));
+    } catch (e) {
+      renderPnlEmpty();
     }
   }
 
@@ -2747,7 +2881,7 @@
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
   if (getToken()) {
-    Promise.all([loadTodos(), loadCalc()]);
+    Promise.all([loadTodos(), loadCalc(), loadPnl()]);
   } else {
     setSyncStatus('no token — click ⚙ to set');
     render();
