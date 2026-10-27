@@ -554,6 +554,16 @@
     .pnl-ledger .arrow { transition: transform 0.15s; }
     .pnl-ledger.open .arrow { transform: rotate(90deg); }
     .pnl-empty { color: var(--text-3); font-family: var(--mono); font-size: 13px; text-align: center; padding: 14px; }
+    /* 對帳簿卡片數 = 帳戶數 + 合計（JS 設 --pnl-cols）；表頭不換行，欄多時 table-wrap 橫向捲動 */
+    .pnl-ledger-body .result-cards { grid-template-columns: repeat(var(--pnl-cols, 4), minmax(0, 1fr)); }
+    .pnl-ledger-body .card-value { font-size: 16px; }
+    .pnl-ledger-body thead th { white-space: nowrap; }
+    /* 本月交易量：成交金額不是損益，一般顏色 */
+    .pnl-vol { margin-top: 14px; }
+    .pnl-vol-v { color: var(--text); font-weight: 700; }
+    @media (max-width: 600px) {
+      .pnl-ledger-body .result-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     /* 左欄低於 ~560px 就太擠（三張卡片＋表格），改單欄，本月損益接在下方 */
     @media (max-width: 860px) {
       .calc-layout { grid-template-columns: minmax(0, 1fr); }
@@ -2122,14 +2132,19 @@
     }
   }
 
-  // ── 對帳簿（pnl.json：{"YYYY-MM-DD": {"富邦": n, "元大": n}}，當日已實現損益）──
-  const PNL_BROKERS = ['富邦', '元大'];
+  // ── 對帳簿（pnl.json：{"YYYY-MM-DD": {"富邦": n, "元大": n, "富邦期貨": n, "vol": {"富邦": n, "元大": n}}}）──
+  // 損益帳戶（顯示順序），要加帳戶只改這裡；舊資料缺的帳戶視為 0、表格顯示 —
+  const PNL_ACCOUNTS = ['富邦', '元大', '富邦期貨'];
+  // 交易量帳戶（"vol" 欄位，成交金額，不是損益，不進損益合計）
+  const PNL_VOL_ACCOUNTS = ['富邦', '元大'];
 
   function pnlNum(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
   function pnlFmt(n) {
     const cls = n > 0 ? 'pnl-up' : n < 0 ? 'pnl-down' : 'zero';
     return `<span class="${cls}">${n > 0 ? '+' : ''}${Math.round(n).toLocaleString('en-US')}</span>`;
   }
+  function pnlCell(n, has) { return has ? pnlFmt(n) : '<span class="zero">—</span>'; }
+  function volFmt(n) { return `<span class="pnl-vol-v">${Math.round(n).toLocaleString('en-US')}</span>`; }
 
   function renderPnlEmpty() {
     document.getElementById('pnl-ledger-body').innerHTML = '<div class="pnl-empty">尚無對帳資料</div>';
@@ -2140,8 +2155,11 @@
     const dates = Object.keys(pnl || {}).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort().reverse();
     if (!dates.length) { renderPnlEmpty(); return; }
     const rowOf = d => {
-      const vals = PNL_BROKERS.map(b => pnlNum((pnl[d] || {})[b]));
-      return { d, vals, total: vals.reduce((a, b) => a + b, 0) };
+      const day = pnl[d] || {};
+      const vals = PNL_ACCOUNTS.map(b => pnlNum(day[b]));
+      const has = PNL_ACCOUNTS.map(b => day[b] != null);
+      const vol = PNL_VOL_ACCOUNTS.map(b => pnlNum((day.vol || {})[b]));
+      return { d, vals, has, vol, total: vals.reduce((a, b) => a + b, 0) };
     };
     const rows = dates.map(rowOf);
 
@@ -2150,11 +2168,11 @@
     const topLabel = top.d === today ? `今日 ${top.d}` : `最新 ${top.d}`;
 
     document.getElementById('pnl-ledger-body').innerHTML = `
-      <div class="result-cards">
-        ${PNL_BROKERS.map((b, i) => `
+      <div class="result-cards" style="--pnl-cols:${PNL_ACCOUNTS.length + 1}">
+        ${PNL_ACCOUNTS.map((b, i) => `
         <div class="card">
           <div class="card-label">${b}</div>
-          <div class="card-value">${pnlFmt(top.vals[i])}</div>
+          <div class="card-value">${pnlCell(top.vals[i], top.has[i])}</div>
           <div class="card-sub">${topLabel}</div>
         </div>`).join('')}
         <div class="card">
@@ -2165,23 +2183,31 @@
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>日期</th>${PNL_BROKERS.map(b => `<th>${b}</th>`).join('')}<th>合計</th></tr></thead>
+          <thead><tr><th>日期</th>${PNL_ACCOUNTS.map(b => `<th>${b}</th>`).join('')}<th>合計</th></tr></thead>
           <tbody>${rows.map(r => `
-            <tr><td>${r.d}</td>${r.vals.map(v => `<td>${pnlFmt(v)}</td>`).join('')}<td>${pnlFmt(r.total)}</td></tr>`).join('')}
+            <tr><td>${r.d}</td>${r.vals.map((v, i) => `<td>${pnlCell(v, r.has[i])}</td>`).join('')}<td>${pnlFmt(r.total)}</td></tr>`).join('')}
           </tbody>
         </table>
       </div>`;
 
     const month = today.slice(0, 7);
     const mRows = rows.filter(r => r.d.startsWith(month));
-    const mSum = PNL_BROKERS.map((_, i) => mRows.reduce((a, r) => a + r.vals[i], 0));
+    const mSum = PNL_ACCOUNTS.map((_, i) => mRows.reduce((a, r) => a + r.vals[i], 0));
     const mTotal = mSum.reduce((a, b) => a + b, 0);
+    const mVol = PNL_VOL_ACCOUNTS.map((_, i) => mRows.reduce((a, r) => a + r.vol[i], 0));
+    const mVolTotal = mVol.reduce((a, b) => a + b, 0);
     document.getElementById('pnl-month').innerHTML = `
       <h4>本月損益加總 <span style="font-family:var(--mono);font-weight:400;">${month}</span></h4>
-      ${PNL_BROKERS.map((b, i) => `
+      ${PNL_ACCOUNTS.map((b, i) => `
       <div class="pnl-month-row"><span>${b}</span><span class="v">${pnlFmt(mSum[i])}</span></div>`).join('')}
       <div class="pnl-month-row total"><span>總計</span><span class="v">${pnlFmt(mTotal)}</span></div>
-      <div class="pnl-month-row"><span>交易天數</span><span class="v">${mRows.length} 天</span></div>`;
+      <div class="pnl-month-row"><span>交易天數</span><span class="v">${mRows.length} 天</span></div>
+      <div class="pnl-vol">
+        <h4>本月交易量 <span style="font-family:var(--mono);font-weight:400;">元</span></h4>
+        ${PNL_VOL_ACCOUNTS.map((b, i) => `
+        <div class="pnl-month-row"><span>${b}</span><span class="v">${volFmt(mVol[i])}</span></div>`).join('')}
+        <div class="pnl-month-row total"><span>合計</span><span class="v">${volFmt(mVolTotal)}</span></div>
+      </div>`;
   }
 
   async function loadPnl() {
