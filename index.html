@@ -553,6 +553,15 @@
     .pnl-ledger.open .pnl-ledger-body { display: block; }
     .pnl-ledger .arrow { transition: transform 0.15s; }
     .pnl-ledger.open .arrow { transform: rotate(90deg); }
+    .pnl-ledger-body tr.pnl-mrow { cursor: pointer; background: rgba(255,255,255,0.04); }
+    .pnl-ledger-body tr.pnl-mrow:hover { background: rgba(255,255,255,0.08); }
+    .pnl-ledger-body tr.pnl-mrow td { font-weight: 700; white-space: nowrap; }
+    .pnl-ledger-body tbody tr.pnl-mrow td:first-child { font-family: var(--ui); color: var(--text); font-weight: 700; }
+    .pnl-ledger-body tr.pnl-mrow .arrow { display: inline-block; transition: transform 0.15s; }
+    .pnl-ledger.open .pnl-ledger-body tr.pnl-mrow .arrow { transform: none; }
+    .pnl-ledger.open .pnl-ledger-body tr.pnl-mrow.open .arrow { transform: rotate(90deg); }
+    .pnl-mdays { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--text-3); margin-left: 4px; }
+    .pnl-ledger-body tr.pnl-drow[hidden] { display: none; }
     .pnl-empty { color: var(--text-3); font-family: var(--mono); font-size: 13px; text-align: center; padding: 14px; }
     /* 對帳簿卡片數 = 帳戶數 + 合計（JS 設 --pnl-cols）；表頭不換行，欄多時 table-wrap 橫向捲動 */
     .pnl-ledger-body .result-cards { grid-template-columns: repeat(var(--pnl-cols, 4), minmax(0, 1fr)); }
@@ -2146,6 +2155,35 @@
   function pnlCell(n, has) { return has ? pnlFmt(n) : '<span class="zero">—</span>'; }
   function volFmt(n) { return `<span class="pnl-vol-v">${Math.round(n).toLocaleString('en-US')}</span>`; }
 
+  // 對帳簿月份收摺：預設最新月展開、其他收起；手動切換記在 localStorage
+  const PNL_MONTH_KEY = 'pnlLedgerMonths';
+  function pnlMonthState() { try { return JSON.parse(localStorage.getItem(PNL_MONTH_KEY)) || {}; } catch (e) { return {}; } }
+  function pnlMonthIsOpen(m, dflt) { const st = pnlMonthState(); return m in st ? !!st[m] : dflt; }
+  function pnlMonthGroups(rows) {
+    const groups = [];
+    rows.forEach(r => {
+      const m = r.d.slice(0, 7);
+      let g = groups[groups.length - 1];
+      if (!g || g.m !== m) { g = { m, rows: [] }; groups.push(g); }
+      g.rows.push(r);
+    });
+    groups.forEach(g => {
+      g.sum = PNL_ACCOUNTS.map((_, i) => g.rows.reduce((a, r) => a + r.vals[i], 0));
+      g.total = g.sum.reduce((a, b) => a + b, 0);
+    });
+    return groups;
+  }
+  function togglePnlMonth(m) {
+    const head = document.querySelector(`#pnl-ledger-body tr.pnl-mrow[data-m="${m}"]`);
+    if (!head) return;
+    const open = !head.classList.contains('open');
+    head.classList.toggle('open', open);
+    document.querySelectorAll(`#pnl-ledger-body tr.pnl-drow[data-m="${m}"]`).forEach(tr => { tr.hidden = !open; });
+    const st = pnlMonthState(); st[m] = open;
+    try { localStorage.setItem(PNL_MONTH_KEY, JSON.stringify(st)); } catch (e) {}
+  }
+  window.togglePnlMonth = togglePnlMonth;
+
   function renderPnlEmpty() {
     document.getElementById('pnl-ledger-body').innerHTML = '<div class="pnl-empty">尚無對帳資料</div>';
     document.getElementById('pnl-month').innerHTML = '<h4>本月損益加總</h4><div class="pnl-empty">尚無對帳資料</div>';
@@ -2184,8 +2222,12 @@
       <div class="table-wrap">
         <table>
           <thead><tr><th>日期</th>${PNL_ACCOUNTS.map(b => `<th>${b}</th>`).join('')}<th>合計</th></tr></thead>
-          <tbody>${rows.map(r => `
-            <tr><td>${r.d}</td>${r.vals.map((v, i) => `<td>${pnlCell(v, r.has[i])}</td>`).join('')}<td>${pnlFmt(r.total)}</td></tr>`).join('')}
+          <tbody>${pnlMonthGroups(rows).map(g => {
+            const open = pnlMonthIsOpen(g.m, g.m === rows[0].d.slice(0, 7));
+            return `
+            <tr class="pnl-mrow${open ? ' open' : ''}" data-m="${g.m}" onclick="togglePnlMonth('${g.m}')"><td><span class="arrow">▸</span> ${g.m.slice(0, 4)}年${Number(g.m.slice(5, 7))}月 <span class="pnl-mdays">${g.rows.length}天</span></td>${g.sum.map(v => `<td>${pnlFmt(v)}</td>`).join('')}<td>${pnlFmt(g.total)}</td></tr>${g.rows.map(r => `
+            <tr class="pnl-drow" data-m="${g.m}"${open ? '' : ' hidden'}><td>${r.d}</td>${r.vals.map((v, i) => `<td>${pnlCell(v, r.has[i])}</td>`).join('')}<td>${pnlFmt(r.total)}</td></tr>`).join('')}`;
+          }).join('')}
           </tbody>
         </table>
       </div>`;
