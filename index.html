@@ -2053,11 +2053,15 @@
     const days = countWorkDaysBetween(last, today);
     if (days <= 0) return;
 
+    // 今天 08:00 同步已把富邦、元大現金寫成券商可用餘額（含當日交割），T+1 不能再加一次
+    const syncedToday = calcData.cashSyncDate === new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
+
     // 各帳戶的 T+1 交割進自己的現金格（富邦→富邦現金、元大→元大現金、凱基→其他現金）
     const settleT1 = () => ACCOUNTS.forEach(acc => {
       const t1 = parseFloat(calcData.accounts[acc].t1) || 0;
       if (!t1) return;
       const k = cashFieldOf(acc);
+      if (syncedToday && k !== 'cashOther') return;
       calcData[k] = String((parseFloat(calcData[k]) || 0) + t1);
     });
 
@@ -2278,7 +2282,9 @@
 
   function calcReset() {
     if (!confirm('確定清除所有數字？')) return;
+    const { cashSyncDate } = calcData;
     calcData = emptyCalcData();
+    if (cashSyncDate !== undefined) calcData.cashSyncDate = cashSyncDate;
     calcSha = null;
     buildCalcRows();
     calcRecalc();
