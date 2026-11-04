@@ -2047,6 +2047,7 @@
   }
 
   function rollCalcIfNeeded() {
+    return; // 2026-11-04 使用者要求：不自動換日清交割款，以券商同步為準
     if (!calcData.lastDate) return;
     const today = new Date(); today.setHours(0, 0, 0, 0);
     const last = parseLocalDate(calcData.lastDate);
