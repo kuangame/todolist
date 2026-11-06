@@ -1334,7 +1334,8 @@
     .mon-table td.mon-bot { font-weight: 600; vertical-align: top; border-right: 1px solid var(--border-dim); }
     .mon-ellip { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .mon-bot .mon-ellip { max-width: 140px; }
-    .mon-name .mon-ellip { max-width: 200px; }
+    .mon-table th.mon-name, .mon-table td.mon-name { text-align: right; }
+    .mon-name .mon-ellip { display: inline-block; max-width: 200px; vertical-align: bottom; text-align: right; }
     .mon-note .mon-ellip { max-width: 260px; }
     .mon-table tr:last-child td { border-bottom: none; }
     .mon-table .mon-mono { font-family: var(--mono); font-size: 12px; color: var(--text-2); white-space: nowrap; }
@@ -1640,7 +1641,7 @@
       <table class="mon-table">
         <thead>
           <tr>
-            <th>Bot</th><th>任務</th><th>排程</th><th>LINE</th><th>今日狀態</th><th>最後執行</th><th>說明</th><th>近 7 天（← 今天 · 較早 →）</th>
+            <th>Bot</th><th class="mon-name">任務</th><th>排程</th><th>LINE</th><th>今日狀態</th><th>最後執行</th><th>說明</th><th>近 7 天（← 今天 · 較早 →）</th>
           </tr>
         </thead>
         <tbody id="mon-tbody">
