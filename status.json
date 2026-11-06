@@ -1,0 +1,723 @@
+{
+  "generated_at": "2026-11-06T16:22:34+08:00",
+  "date": "2026-11-06",
+  "timezone": "Asia/Taipei",
+  "is_trading_day": true,
+  "tasks": [
+    {
+      "id": "tw-premarket",
+      "bot": "台股盤後 bot",
+      "name": "盤前快報",
+      "schedule": "07:50",
+      "days": "trading",
+      "line": true,
+      "status": "ok",
+      "last_run": "2026-11-06T08:11:56+08:00",
+      "note": "已找到當日產出",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "ok",
+          "last_run": "2026-11-06T08:11:56+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T07:55:56+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "ok",
+          "last_run": "2026-11-03T07:58:20+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "ok",
+          "last_run": "2026-11-02T07:58:02+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "tw-postmarket",
+      "bot": "台股盤後 bot",
+      "name": "盤後快報",
+      "schedule": "21:30",
+      "days": "trading",
+      "line": true,
+      "status": "pending",
+      "last_run": null,
+      "note": "尚未到排程時間",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "pending",
+          "last_run": null,
+          "note": "尚未到排程時間"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": "2026-11-05T21:47:31+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T21:53:24+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "ok",
+          "last_run": "2026-11-03T21:46:11+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "ok",
+          "last_run": "2026-11-02T21:47:08+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "tw-weekly",
+      "bot": "台股盤後 bot",
+      "name": "週六週報",
+      "schedule": "10:05",
+      "days": "sat",
+      "line": true,
+      "status": "not_today",
+      "last_run": null,
+      "note": "今日不排程",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "ok",
+          "last_run": "2026-10-31T10:16:43+08:00",
+          "note": "已找到當日產出"
+        }
+      ]
+    },
+    {
+      "id": "gmail-daily",
+      "bot": "Gmail 整理 bot",
+      "name": "每日新信整理",
+      "schedule": "07:48",
+      "days": "daily",
+      "line": false,
+      "status": "ok",
+      "last_run": "2026-11-06T07:58:49+08:00",
+      "note": "已找到當日產出",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "ok",
+          "last_run": "2026-11-06T07:58:49+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "late",
+          "last_run": "2026-11-05T08:29:59+08:00",
+          "note": "已產出，但晚於寬限（07:48 + 20 分）"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T07:51:52+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "ok",
+          "last_run": "2026-11-03T07:57:41+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "ok",
+          "last_run": "2026-11-02T07:49:16+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "ok",
+          "last_run": "2026-11-01T07:50:41+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "ok",
+          "last_run": "2026-10-31T07:56:40+08:00",
+          "note": "已找到當日產出"
+        }
+      ]
+    },
+    {
+      "id": "us-morning",
+      "bot": "美股研究 bot",
+      "name": "美股盤後整理（台北晨間）",
+      "schedule": "07:30",
+      "days": "trading",
+      "line": false,
+      "status": "ok",
+      "last_run": "2026-11-06T07:34:57+08:00",
+      "note": "已找到當日產出",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "ok",
+          "last_run": "2026-11-06T07:34:57+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": "2026-11-05T07:35:09+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T07:33:47+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "ok",
+          "last_run": "2026-11-03T07:32:14+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "ok",
+          "last_run": "2026-11-02T07:35:01+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "us-watchlist-link",
+      "bot": "美股研究 bot",
+      "name": "跑車名單美股對應",
+      "schedule": "19:30",
+      "days": "trading",
+      "line": false,
+      "status": "pending",
+      "last_run": null,
+      "note": "尚未到排程時間",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "pending",
+          "last_run": null,
+          "note": "尚未到排程時間"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": "2026-11-05T19:31:29+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "zt-watchlist",
+      "bot": "漲停分析 bot",
+      "name": "跑車名單",
+      "schedule": "20:00",
+      "days": "trading",
+      "line": true,
+      "status": "pending",
+      "last_run": null,
+      "note": "尚未到排程時間",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "pending",
+          "last_run": null,
+          "note": "尚未到排程時間"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": "2026-11-05T20:13:14+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T20:18:57+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "late",
+          "last_run": "2026-11-03T20:22:13+08:00",
+          "note": "已產出，但晚於寬限（20:00 + 20 分）"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "api-charts",
+      "bot": "股票 API bot",
+      "name": "跑車 K 線圖",
+      "schedule": "19:50",
+      "days": "trading",
+      "line": false,
+      "status": "pending",
+      "last_run": null,
+      "note": "尚未到排程時間",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "pending",
+          "last_run": null,
+          "note": "尚未到排程時間"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": "2026-11-05T20:13:16+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": "2026-11-04T20:19:07+08:00",
+          "note": "已找到當日產出"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "missing",
+          "last_run": null,
+          "note": "寬限已過，未找到當日產出"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "api-ledger",
+      "bot": "股票 API bot",
+      "name": "對帳簿寫入",
+      "schedule": null,
+      "days": "trading",
+      "line": false,
+      "status": "ok",
+      "last_run": null,
+      "note": "pnl.json 已有當日鍵（未讀取金額）",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "ok",
+          "last_run": null,
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "ok",
+          "last_run": null,
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "ok",
+          "last_run": null,
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "ok",
+          "last_run": null,
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "ok",
+          "last_run": null,
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    },
+    {
+      "id": "api-holdings",
+      "bot": "股票 API bot",
+      "name": "庫存分析",
+      "schedule": "14:30",
+      "days": "trading",
+      "line": false,
+      "status": "unknown",
+      "last_run": null,
+      "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        }
+      ]
+    },
+    {
+      "id": "gh-image-cleanup",
+      "bot": "小銀月",
+      "name": "清除 GitHub 舊快報圖片",
+      "schedule": "18:11",
+      "days": "daily",
+      "line": false,
+      "status": "unknown",
+      "last_run": null,
+      "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        }
+      ]
+    },
+    {
+      "id": "bot-supervisor",
+      "bot": "小銀月",
+      "name": "Bot 任務總管檢查",
+      "schedule": "21:51",
+      "days": "mon-sat",
+      "line": false,
+      "status": "unknown",
+      "last_run": null,
+      "note": "週一至週六 21:51；正常時不通知，無產出標記檔。",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "unknown",
+          "last_run": null,
+          "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
+        }
+      ]
+    },
+    {
+      "id": "stock-group",
+      "bot": "小銀月",
+      "name": "股票小組盤後選股討論",
+      "schedule": "21:45",
+      "days": "trading",
+      "line": false,
+      "status": "unknown",
+      "last_run": null,
+      "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "status": "unknown",
+          "last_run": null,
+          "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
+        },
+        {
+          "date": "2026-11-05",
+          "status": "unknown",
+          "last_run": null,
+          "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
+        },
+        {
+          "date": "2026-11-04",
+          "status": "unknown",
+          "last_run": null,
+          "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
+        },
+        {
+          "date": "2026-11-03",
+          "status": "unknown",
+          "last_run": null,
+          "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
+        },
+        {
+          "date": "2026-11-02",
+          "status": "unknown",
+          "last_run": null,
+          "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
+        },
+        {
+          "date": "2026-11-01",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
+          "date": "2026-10-31",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        }
+      ]
+    }
+  ]
+}
