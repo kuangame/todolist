@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "items": [
-    "今日無新 commit，各系統正常運轉中",
-    "晨報系統穩定 33 秒完成，Discord 早安晨報每日準時推送",
-    "名片系統核心功能可用，待真實名片實測與自動排程",
-    "股票匯集器缺自動排程，目前手動跑 stock_sync.py",
-    "Discord 晨報 Calendar 權限 debug 中，待確認 launchd TCC 問題"
+    "晨報系統穩定運行，Haiku API 平均 33 秒完成，Discord 早安晨報每日準時發送",
+    "名片辨識系統核心功能完成，待真實名片實測與自動排程機制",
+    "股票匯集器功能可用，缺乏自動觸發排程，目前手動跑 stock_sync.py",
+    "Dashboard 晨報頁面單頁化改版完成，新增 24 小時過期警示，待 push",
+    "Calendar 權限 debug 中，launchd 執行時行事曆存取可能被 macOS TCC 擋掉"
   ]
 }
