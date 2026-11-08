@@ -1,11 +1,59 @@
 {
-  "fetched_at": "2026-11-08T16:53:37.164732",
+  "fetched_at": "2026-11-08T17:54:10.850714",
   "items": [
+    {
+      "title": "3D DRAM也要台積電「一條龍」？　外媒爆料1內幕「韓廠憂心」官方回應了",
+      "summary": "根據美國科技媒體《The Information》爆料指出，晶圓代工龍頭台積電據傳，應主要客戶輝達要求，正在評估跨足先進記憶體領域、3D DRAM之可能性。韓媒分析認為，若台積電成功掌握記憶體製造技術，未來有望整合GPU製造、記憶體生產及先進封裝服務，形成「一條龍」供應鏈，恐對三星電子與SK海力士等韓國半導體巨頭構成競爭壓力。對此，台積電近日也回應該報導，對傳聞做出回應。",
+      "published": "11/08 09:25",
+      "link": "https://tw.news.yahoo.com/3d-dram%E4%B9%9F%E8%A6%81%E5%8F%B0%E7%A9%8D%E9%9B%BB-%E6%A2%9D%E9%BE%8D-%E5%A4%96%E5%AA%92%E7%88%86%E6%96%991%E5%85%A7%E5%B9%95-%E9%9F%93%E5%BB%A0%E6%86%82%E5%BF%83-092506344.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股殺破頭！過來人憶起金融海嘯 嘆「最恐怖不是股災」",
+      "summary": "台股殺破頭！過來人憶起金融海嘯 嘆「最恐怖不是股災」",
+      "published": "11/08 08:52",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E6%AE%BA%E7%A0%B4%E9%A0%AD-%E9%81%8E%E4%BE%86%E4%BA%BA%E6%86%B6%E8%B5%B7%E9%87%91%E8%9E%8D%E6%B5%B7%E5%98%AF-%E5%98%86-%E6%9C%80%E6%81%90%E6%80%96%E4%B8%8D%E6%98%AF%E8%82%A1%E7%81%BD-085200348.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "「藍色狂潮」跌過頭？ 股市暴跌反而是買點？",
+      "summary": "「藍色狂潮」跌過頭？ 股市暴跌反而是買點？",
+      "published": "11/08 08:47",
+      "link": "https://tw.news.yahoo.com/%E8%97%8D%E8%89%B2%E7%8B%82%E6%BD%AE-%E8%B7%8C%E9%81%8E%E9%A0%AD-%E8%82%A1%E5%B8%82%E6%9A%B4%E8%B7%8C%E5%8F%8D%E8%80%8C%E6%98%AF%E8%B2%B7%E9%BB%9E-084700716.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股一周狂瀉5510點！主動式ETF轉買金融股　台新新光金加碼近1.5萬張奪冠",
+      "summary": "[FTNN新聞網]實習記者藍彥欣／台北報導台股上周遭遇劇烈震盪，加權指數累計重挫5510.19點、跌幅12.19%，失守4萬點大關，不過，主動式ETF卻趁勢加碼金融股。根...",
+      "published": "11/08 08:47",
+      "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1-%E5%91%A8%E7%8B%82%E7%80%895510%E9%BB%9E-%E4%B8%BB%E5%8B%95%E5%BC%8Fetf%E8%BD%89%E8%B2%B7%E9%87%91%E8%9E%8D%E8%82%A1-%E5%8F%B0%E6%96%B0%E6%96%B0%E5%85%89%E9%87%91%E5%8A%A0%E7%A2%BC%E8%BF%911-5%E8%90%AC%E5%BC%B5%E5%A5%AA%E5%86%A0-084700433.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "港劇大時代重播又撞台股暴跌！股民盼「大奇蹟日」",
+      "summary": "港劇大時代重播又撞台股暴跌！股民盼「大奇蹟日」",
+      "published": "11/08 08:37",
+      "link": "https://tw.news.yahoo.com/%E6%B8%AF%E5%8A%87%E5%A4%A7%E6%99%82%E4%BB%A3%E9%87%8D%E6%92%AD%E5%8F%88%E6%92%9E%E5%8F%B0%E8%82%A1%E6%9A%B4%E8%B7%8C-%E8%82%A1%E6%B0%91%E7%9B%BC-%E5%A4%A7%E5%A5%87%E8%B9%9F%E6%97%A5-083700541.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
     {
       "title": "台股週一有望強彈　分析師點名「5檔隱藏版黑馬」",
       "summary": "台股日前遭遇史上最大跌點重挫失守4萬點，但在美股反彈與政策穩市下，市場看好迎來報復性反彈。大來投顧分析師謝逸文表示震盪提供布局良機，點名廣寰科、力新、廣豐、倚強科與強新等5檔隱藏版黑馬，建議投資人聚焦低基期與具基本面支撐的中小型成長股。",
       "published": "11/08 08:35",
       "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E9%80%B1-%E6%9C%89%E6%9C%9B%E5%BC%B7%E5%BD%88-%E5%88%86%E6%9E%90%E5%B8%AB%E9%BB%9E%E5%90%8D-5%E6%AA%94%E9%9A%B1%E8%97%8F%E7%89%88%E9%BB%91%E9%A6%AC-083500593.html",
+      "is_revenue": false,
+      "source": "yahoo"
+    },
+    {
+      "title": "台股周一跟「糖漿」加碼台積電？ 憂「先拉後殺」反被套",
+      "summary": "台股周一跟「糖漿」加碼台積電？ 憂「先拉後殺」反被套",
+      "published": "11/08 08:31",
+      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E5%91%A8-%E8%B7%9F-%E7%B3%96%E6%BC%BF-%E5%8A%A0%E7%A2%BC%E5%8F%B0%E7%A9%8D%E9%9B%BB-%E6%86%82-083100939.html",
       "is_revenue": false,
       "source": "yahoo"
     },
@@ -94,38 +142,6 @@
       "summary": "北德州謝爾曼成熱門選址，文件估2029年底投產",
       "published": "11/08 07:10",
       "link": "https://tw.news.yahoo.com/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E8%A9%95%E4%BC%B0%E5%BE%B7%E5%B7%9E-%E6%96%87%E4%BB%B6%E6%9B%9D450%E5%84%84%E7%BE%8E%E5%85%832%E5%BA%A7%E5%BB%A0-071000781.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股週一有望迎強彈！法人籲「別盲目搶短」緊盯1事",
-      "summary": "財經中心／李筱舲報導在美股重挫與美政壇擬收緊 AI 資料中心建設的雙重打擊下，台股上週崩跌 5,510 點、失守 4 萬點大關，短短一個月自歷史高點急跌逾萬點。不過，隨著 7 日美股科技股與台積電 ADR 回血強彈，加上國安基金緊急宣佈進場護盤，明（9）日台股有望迎來反彈。",
-      "published": "11/08 06:50",
-      "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E9%80%B1-%E6%9C%89%E6%9C%9B%E8%BF%8E%E5%BC%B7%E5%BD%88-%E6%B3%95%E4%BA%BA%E7%B1%B2-%E5%88%A5%E7%9B%B2%E7%9B%AE%E6%90%B6%E7%9F%AD-%E7%B7%8A%E7%9B%AF1%E4%BA%8B-065036116.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股血崩原油ETF卻暴衝11％！散戶搶進怕買在最高點　法人急喊這句話",
-      "summary": "[FTNN新聞網]記者陳雅婷／綜合報導台股6日遭遇重挫，收39,701.64點，下跌1,873.08點，跌幅4.51%，成交量19,077,135張，成交金額約1兆2,475.45億元。不過，市...",
-      "published": "11/08 06:33",
-      "link": "https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E8%A1%80%E5%B4%A9%E5%8E%9F%E6%B2%B9etf%E5%8D%BB%E6%9A%B4%E8%A1%9D11-%E6%95%A3%E6%88%B6%E6%90%B6%E9%80%B2%E6%80%95%E8%B2%B7%E5%9C%A8%E6%9C%80%E9%AB%98%E9%BB%9E-%E6%B3%95%E4%BA%BA%E6%80%A5%E5%96%8A%E9%80%99%E5%8F%A5%E8%A9%B1-063300823.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "台股暴跌大屠殺！外媒揪出幕後兇手 點名「這件事」是引爆關鍵",
-      "summary": "美國期中選舉民主黨大勝，引發市場擔憂未來將對AI產業祭出鐵腕監管，美股科技股遭逢慘烈屠殺，連帶引爆全球史詩級股災。其中，台股盤中狂瀉逾3700點，創下史上最大單日跌幅，日韓股市也慘遭血洗。分析師指出，只要全球運算需求未減，半導體供應鏈長期仍有望挺過危機，且適度修正也有助於擠出市場泡沫。",
-      "published": "11/08 06:31",
-      "link": "https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E6%9A%B4%E8%B7%8C%E5%A4%A7%E5%B1%A0%E6%AE%BA-%E5%A4%96%E5%AA%92%E6%8F%AA%E5%87%BA%E5%B9%95%E5%BE%8C%E5%85%87%E6%89%8B-%E9%BB%9E%E5%90%8D-%E9%80%99%E4%BB%B6%E4%BA%8B-%E6%98%AF%E5%BC%95%E7%88%86%E9%97%9C%E9%8D%B5-063100095.html",
-      "is_revenue": false,
-      "source": "yahoo"
-    },
-    {
-      "title": "波克夏現金滿手　股神接班人大量買回庫藏股",
-      "summary": "波克夏第三季營收爲127.05億美元，比同期下降5.8%；淨利221.12億美元，下降28.2%。其中，投資收益合計約94.07億美元，較去年同期的173.11億美元下降約45.7%，縮水近一半。資本配置方面，波克夏斥資約96億美元回購自家股票，達到今年以來單季最高水平。與此同時，波克夏賣出約...",
-      "published": "11/08 06:29",
-      "link": "https://tw.news.yahoo.com/%E6%B3%A2%E5%85%8B%E5%A4%8F%E7%8F%BE%E9%87%91%E6%BB%BF%E6%89%8B-%E8%82%A1%E7%A5%9E%E6%8E%A5%E7%8F%AD%E4%BA%BA%E5%A4%A7%E9%87%8F%E8%B2%B7%E5%9B%9E%E5%BA%AB%E8%97%8F%E8%82%A1-062916748.html",
       "is_revenue": false,
       "source": "yahoo"
     }
