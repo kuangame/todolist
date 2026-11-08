@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-07T21:54:37+08:00",
-  "date": "2026-11-07",
+  "generated_at": "2026-11-08T08:37:27+08:00",
+  "date": "2026-11-08",
   "timezone": "Asia/Taipei",
   "is_trading_day": false,
   "tasks": [
@@ -15,6 +15,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -50,12 +56,6 @@
           "status": "ok",
           "last_run": "2026-11-02T07:58:02+08:00",
           "note": "已找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -70,6 +70,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -105,12 +111,6 @@
           "status": "ok",
           "last_run": "2026-11-02T21:47:08+08:00",
           "note": "已找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -121,10 +121,16 @@
       "schedule": "10:05",
       "days": "sat",
       "line": true,
-      "status": "ok",
-      "last_run": "2026-11-07T10:15:02+08:00",
-      "note": "已找到當日產出",
+      "status": "not_today",
+      "last_run": null,
+      "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "ok",
@@ -160,12 +166,6 @@
           "status": "not_today",
           "last_run": null,
           "note": "今日不排程"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -177,9 +177,15 @@
       "days": "daily",
       "line": false,
       "status": "ok",
-      "last_run": "2026-11-07T07:56:37+08:00",
+      "last_run": "2026-11-08T07:52:15+08:00",
       "note": "已找到當日產出",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "ok",
+          "last_run": "2026-11-08T07:52:15+08:00",
+          "note": "已找到當日產出"
+        },
         {
           "date": "2026-11-07",
           "status": "ok",
@@ -215,12 +221,6 @@
           "status": "ok",
           "last_run": "2026-11-02T07:49:16+08:00",
           "note": "已找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "ok",
-          "last_run": "2026-11-01T07:50:41+08:00",
-          "note": "已找到當日產出"
         }
       ]
     },
@@ -235,6 +235,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -270,12 +276,6 @@
           "status": "ok",
           "last_run": "2026-11-02T07:35:01+08:00",
           "note": "已找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -290,6 +290,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -325,12 +331,6 @@
           "status": "missing",
           "last_run": null,
           "note": "寬限已過，未找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -345,6 +345,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -380,12 +386,6 @@
           "status": "missing",
           "last_run": null,
           "note": "寬限已過，未找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -400,6 +400,12 @@
       "last_run": null,
       "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "not_today",
@@ -435,12 +441,6 @@
           "status": "missing",
           "last_run": null,
           "note": "寬限已過，未找到當日產出"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -456,6 +456,12 @@
       "note": "今日不排程",
       "history": [
         {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
           "date": "2026-11-07",
           "status": "not_today",
           "last_run": null,
@@ -490,12 +496,6 @@
           "status": "ok",
           "last_run": null,
           "note": "pnl.json 已有當日鍵（未讀取金額）"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -511,6 +511,12 @@
       "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。",
       "history": [
         {
+          "date": "2026-11-08",
+          "status": "unknown",
+          "last_run": null,
+          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
+        },
+        {
           "date": "2026-11-07",
           "status": "unknown",
           "last_run": null,
@@ -542,12 +548,6 @@
         },
         {
           "date": "2026-11-02",
-          "status": "unknown",
-          "last_run": null,
-          "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
-        },
-        {
-          "date": "2026-11-01",
           "status": "unknown",
           "last_run": null,
           "note": "規劃交易日 14:30，自 11/5 起；每日排程尚待使用者同意。11/5 曾手動產出 holdings_20261105.md。未啟用監控以免誤報。"
@@ -566,6 +566,12 @@
       "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。",
       "history": [
         {
+          "date": "2026-11-08",
+          "status": "unknown",
+          "last_run": null,
+          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
+        },
+        {
           "date": "2026-11-07",
           "status": "unknown",
           "last_run": null,
@@ -597,12 +603,6 @@
         },
         {
           "date": "2026-11-02",
-          "status": "unknown",
-          "last_run": null,
-          "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
-        },
-        {
-          "date": "2026-11-01",
           "status": "unknown",
           "last_run": null,
           "note": "每日 18:11；腳本 /workspace/line/cleanup_github_images.py，無東西可刪時為 no-op，尚無成功標記檔。"
@@ -616,10 +616,16 @@
       "schedule": "21:51",
       "days": "mon-sat",
       "line": false,
-      "status": "unknown",
+      "status": "not_today",
       "last_run": null,
-      "note": "週一至週六 21:51；正常時不通知，無產出標記檔。",
+      "note": "今日不排程",
       "history": [
+        {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
         {
           "date": "2026-11-07",
           "status": "unknown",
@@ -655,12 +661,6 @@
           "status": "unknown",
           "last_run": null,
           "note": "週一至週六 21:51；正常時不通知，無產出標記檔。"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     },
@@ -676,6 +676,12 @@
       "note": "今日不排程",
       "history": [
         {
+          "date": "2026-11-08",
+          "status": "not_today",
+          "last_run": null,
+          "note": "今日不排程"
+        },
+        {
           "date": "2026-11-07",
           "status": "not_today",
           "last_run": null,
@@ -710,12 +716,6 @@
           "status": "unknown",
           "last_run": null,
           "note": "交易日 21:45 主持討論，結論私下傳給使用者；無固定產出檔。"
-        },
-        {
-          "date": "2026-11-01",
-          "status": "not_today",
-          "last_run": null,
-          "note": "今日不排程"
         }
       ]
     }
