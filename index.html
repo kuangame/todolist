@@ -6,6 +6,7 @@
   <title>Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/finance_overview.css">
   <style>
     :root {
       --bg: #05060b;
@@ -130,6 +131,7 @@
     /* ── Tabs ────────────────────────────────── */
     .tabs {
       display: flex;
+      flex-wrap: wrap;
       gap: 2px;
       margin-bottom: 20px;
       background: var(--surface);
@@ -139,7 +141,8 @@
     }
 
     .tab-btn {
-      flex: 1;
+      flex: 1 0 auto;
+      white-space: nowrap;
       border: none;
       background: transparent;
       border-radius: 9px;
@@ -1382,6 +1385,7 @@
     <button class="tab-btn" onclick="switchTab('opnotes', this)">📝 操作筆記</button>
     <button class="tab-btn" onclick="switchTab('project', this)">▸ Project</button>
     <button class="tab-btn" onclick="switchTab('monitor', this)">⏱ 排程監控</button>
+    <button class="tab-btn" id="tab-btn-finance" onclick="switchTab('finance', this)">▸ 財務總覽</button>
   </div>
 
   <!-- Project Tab -->
@@ -1650,6 +1654,11 @@
       </table>
     </div>
     <div class="mon-legend">最左格 = 今天，往右為較早日期；滑鼠移到格子上可看日期與狀態</div>
+  </div>
+
+  <!-- 財務總覽：公開示範，試算在 js/finance_demo.js，沒有本人財務 -->
+  <div class="tab-panel" id="tab-finance">
+    <p class="fin-fallback">財務總覽示範載入中。此頁只有虛構數字，不是本人財務。</p>
   </div>
 
 </div>
@@ -3217,5 +3226,7 @@
   }
   loadMonitor();
 </script>
+<script src="js/finance_demo.js"></script>
+<script src="js/finance_overview.js"></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>財務總覽示範（非本人財務）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/finance_overview.css">
+  <style>
+    :root {
+      --bg: #05060b;
+      --surface: rgba(140,150,255,0.045);
+      --border: rgba(255,255,255,0.10);
+      --border-dim: rgba(255,255,255,0.055);
+      --accent: #8b93ff;
+      --accent-dim: rgba(139,147,255,0.10);
+      --text: #eef1fb;
+      --text-2: #b3bdd6;
+      --text-3: #7480a0;
+      --pos: #2ee88a;
+      --neg: #f55d6b;
+      --warn: #f7b731;
+      --mono: 'Fira Code', 'SF Mono', monospace;
+      --ui: 'Syne', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ui);
+      background: linear-gradient(160deg, #0a0a12 0%, #050509 55%, #020203 100%) fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 28px 16px 60px;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .preview-note { margin-bottom: 14px; color: var(--text-2); font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="preview-note">這是財務總覽的獨立示範頁，與 Dashboard 的「財務總覽」使用同一份虛構資料。示範資料，非本人財務。</p>
+    <div id="tab-finance"></div>
+  </div>
+  <script src="js/finance_demo.js"></script>
+  <script src="js/finance_overview.js"></script>
+</body>
+</html>
