@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'none'; img-src data:; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>財務總覽</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05060b;
+      --surface: rgba(140,150,255,0.045);
+      --surface-2: rgba(140,150,255,0.07);
+      --surface-3: rgba(140,150,255,0.12);
+      --border: rgba(255,255,255,0.10);
+      --border-dim: rgba(255,255,255,0.055);
+      --accent: #8b93ff;
+      --accent-dim: rgba(139,147,255,0.10);
+      --accent-glow: rgba(139,147,255,0.30);
+      --text: #eef1fb;
+      --text-2: #b3bdd6;
+      --text-3: #7480a0;
+      --pos: #2ee88a;
+      --neg: #f55d6b;
+      --warn: #f7b731;
+      --mono: 'Fira Code', 'SF Mono', monospace;
+      --ui: 'Syne', -apple-system, sans-serif;
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--ui);
+      font-size: 15px;
+      background: linear-gradient(160deg, #0a0a12 0%, #050509 55%, #020203 100%) fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 28px 16px 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── 電影感環境光暈 ──────────────────────── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before {
+      width: 480px; height: 480px;
+      background: rgba(99,102,241,0.16);
+      top: -120px; left: -100px;
+    }
+    body::after {
+      width: 420px; height: 420px;
+      background: rgba(139,92,246,0.13);
+      bottom: -80px; right: -90px;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+
+    /* ── Header ─────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .header-left { display: flex; align-items: baseline; gap: 10px; }
+    .header h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+    .header h1 span.accent { color: var(--accent); text-shadow: 0 0 14px var(--accent-glow); }
+    .header-ver {
+      font-family: var(--mono); font-size: 10px; color: var(--text-3);
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2px 6px; letter-spacing: 1px;
+    }
+    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .btn {
+      font-family: var(--ui); font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+      border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2);
+      border-radius: var(--radius); padding: 7px 14px; cursor: pointer;
+      transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .btn.danger:hover { border-color: var(--neg); color: var(--neg); background: rgba(245,93,107,0.08); }
+    .btn.on { border-color: var(--warn); color: var(--warn); background: rgba(247,183,49,0.08); }
+    .btn-primary {
+      background: var(--accent); color: #060a12; border: none; border-radius: var(--radius);
+      padding: 10px 20px; font-family: var(--ui); font-size: 14px; font-weight: 700;
+      cursor: pointer; white-space: nowrap; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-primary:disabled { opacity: 0.5; cursor: wait; }
+
+    /* ── Card base ───────────────────────────── */
+    .card-base {
+      background: var(--surface);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      backdrop-filter: blur(18px) saturate(130%);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    /* ── 鎖定畫面（選檔／密碼） ─────────────── */
+    .gate { max-width: 460px; margin: 48px auto 0; padding: 26px 24px; }
+    .gate h2 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .gate p { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 14px; }
+    .gate .hint { font-size: 12px; color: var(--text-3); margin-top: 14px; margin-bottom: 0; }
+    .gate-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .gate input[type="password"] {
+      flex: 1; min-width: 180px;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 10px 14px; font-family: var(--mono); font-size: 14px; color: var(--text); outline: none;
+      transition: border-color 0.2s;
+    }
+    .gate input[type="password"]:focus { border-color: var(--accent); }
+    .file-drop {
+      display: block; border: 1px dashed var(--border); border-radius: var(--radius);
+      padding: 22px 14px; text-align: center; cursor: pointer; color: var(--text-2); font-size: 13px;
+      transition: all 0.2s;
+    }
+    .file-drop:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .file-drop input { display: none; }
+    .gate-error {
+      color: var(--neg); font-family: var(--mono); font-size: 13px; margin-top: 12px; min-height: 18px;
+    }
+    .gate-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+
+    /* ── 總覽 ───────────────────────────────── */
+    .meta-row {
+      display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 14px;
+      font-family: var(--mono); font-size: 12px; color: var(--text-2);
+    }
+    .meta-row b { color: var(--text); font-weight: 600; }
+    .meta-row .tz { color: var(--text-3); }
+    .mask-note { font-family: var(--mono); font-size: 11px; color: var(--warn); margin-bottom: 12px; }
+
+    .sum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+    .sum-grid.sub { grid-template-columns: repeat(2, 1fr); margin-bottom: 22px; }
+    .sum-card { padding: 16px 18px; }
+    .sum-label {
+      font-family: var(--mono); font-size: 11px; color: var(--text-3); letter-spacing: 1px;
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .sum-value { font-family: var(--mono); font-size: 24px; font-weight: 600; color: var(--text); }
+    .sum-grid.sub .sum-value { font-size: 18px; }
+    .sum-value.neg { color: var(--neg); }
+    .sum-value.pos { color: var(--pos); }
+    .sum-note { font-size: 12px; color: var(--text-2); margin-top: 8px; line-height: 1.6; }
+
+    .section { margin-bottom: 22px; }
+    .section-head {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .section-head::before { content: '▸'; color: var(--accent); }
+    .section-count {
+      font-family: var(--mono); font-size: 11px; color: var(--text-3);
+      background: var(--surface-2); border-radius: 10px; padding: 1px 7px;
+    }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border-dim); border-radius: var(--radius); background: var(--surface); }
+    table.fin { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.fin th {
+      text-align: left; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-3);
+      padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    table.fin td { padding: 8px 12px; border-bottom: 1px solid var(--border-dim); color: var(--text); vertical-align: top; }
+    table.fin tr:last-child td { border-bottom: none; }
+    table.fin tr:hover td { background: var(--surface-2); }
+    table.fin td.num, table.fin th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+    table.fin td.mono { font-family: var(--mono); font-size: 12px; color: var(--text-2); white-space: nowrap; }
+    table.fin td.note { color: var(--text-2); font-size: 12px; min-width: 160px; line-height: 1.6; }
+    .empty-row { text-align: center; color: var(--text-3); font-family: var(--mono); font-size: 12px; padding: 16px !important; }
+    .sub-line { display: block; color: var(--text-3); font-size: 11px; margin-top: 2px; }
+    .missing { color: var(--warn); font-family: var(--mono); }
+
+    .badge {
+      display: inline-block; font-family: var(--mono); font-size: 10px; font-weight: 600;
+      padding: 1px 7px; border-radius: 10px; border: 1px solid var(--border);
+      color: var(--text-2); background: var(--surface-2); white-space: nowrap; margin: 1px 2px 1px 0;
+      letter-spacing: 0.3px;
+    }
+    .badge.snapshot { color: var(--accent); border-color: rgba(139,147,255,0.35); background: var(--accent-dim); }
+    .badge.warn { color: var(--warn); border-color: rgba(247,183,49,0.35); background: rgba(247,183,49,0.08); }
+    .badge.neg { color: var(--neg); border-color: rgba(245,93,107,0.35); background: rgba(245,93,107,0.08); }
+    .badge.pos { color: var(--pos); border-color: rgba(46,232,138,0.35); background: rgba(46,232,138,0.08); }
+
+    .gap-findings { margin: 4px 0 0 16px; color: var(--text-2); font-size: 12px; line-height: 1.6; }
+    .excludes { font-family: var(--mono); font-size: 12px; color: var(--text-3); }
+
+    /* 隱藏金額：只是畫面遮蔽，不是存取控制 */
+    body.masked .amt { filter: blur(7px); user-select: none; }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 700px) {
+      .sum-grid { grid-template-columns: 1fr; }
+      .sum-grid.sub { grid-template-columns: 1fr 1fr; }
+      .sum-value { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>⬡ <span class="accent">財務</span>總覽</h1>
+      <span class="header-ver">ENCRYPTED</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn" id="btn-mask" type="button" hidden>◐ 隱藏金額</button>
+      <button class="btn" id="btn-lock" type="button" hidden>🔒 鎖定</button>
+      <button class="btn danger" id="btn-forget" type="button" hidden>✕ 忘記已載入檔案</button>
+      <a class="btn" href="index.html">← 回到 Dashboard</a>
+    </div>
+  </div>
+
+  <!-- 1. 選擇加密檔 -->
+  <section class="gate card-base" id="screen-file" hidden>
+    <h2>載入加密快照</h2>
+    <p>請選擇本機的 <code>finance.enc.json</code>（或相同格式的加密檔）。檔案只在瀏覽器內讀取，不會上傳；本頁只會把<b>加密後的內容</b>暫存在這台裝置的 localStorage。</p>
+    <label class="file-drop">
+      <input type="file" id="file-input" accept=".json,application/json" />
+      📂 點此選擇加密檔
+    </label>
+    <div class="gate-error" id="file-error" role="alert"></div>
+  </section>
+
+  <!-- 2. 輸入密碼 -->
+  <section class="gate card-base" id="screen-pass" hidden>
+    <h2>輸入密碼解鎖</h2>
+    <p>已載入加密檔。輸入密碼後會在瀏覽器內解密，密碼與解密內容都只存在這個分頁的記憶體，不會被儲存。</p>
+    <form id="pass-form" autocomplete="off">
+      <div class="gate-row">
+        <input type="password" id="pass-input" autocomplete="off" placeholder="密碼" spellcheck="false" />
+        <button class="btn-primary" id="pass-submit" type="submit">解鎖</button>
+      </div>
+    </form>
+    <div class="gate-error" id="pass-error" role="alert"></div>
+    <p class="hint">若瀏覽器跳出「儲存密碼」提示，請選擇不要儲存（那是瀏覽器的功能，本頁無法控制）。</p>
+    <div class="gate-links">
+      <button class="btn danger" id="btn-forget-gate" type="button">✕ 清除快取檔，改選其他檔案</button>
+    </div>
+  </section>
+
+  <!-- 3. 總覽（解密成功後才會填入） -->
+  <main id="screen-view" hidden></main>
+
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'todolist.finance.enc';
+  const MAX_FILE_BYTES = 5 * 1024 * 1024;
+  const MAX_ITER = 10000000;
+  const ERR_DECRYPT = '密碼不正確，或檔案已損壞';
+  const ERR_SHAPE = '解密成功，但內容格式不符，未顯示任何資料';
+
+  // ── 解密 ──────────────────────────────────────────────────
+  const B64_RE = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+
+  function b64ToBytes(s) {
+    if (typeof s !== 'string') throw new Error('not base64');
+    const clean = s.replace(/\s+/g, '');
+    if (!clean || !B64_RE.test(clean)) throw new Error('not base64');
+    const bin = atob(clean);
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  // 檢查加密檔外殼，回傳只含必要欄位的物件；不合格就丟錯
+  function validateEnvelope(obj) {
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) throw new Error('不是有效的 JSON 物件');
+    if (obj.v !== 1) throw new Error('不支援的檔案版本（v 必須為 1）');
+    if (obj.kdf !== 'PBKDF2-SHA256') throw new Error('不支援的金鑰演算法（kdf 必須為 PBKDF2-SHA256）');
+    if (typeof obj.iter !== 'number' || !Number.isInteger(obj.iter) || obj.iter < 1 || obj.iter > MAX_ITER) {
+      throw new Error('iter 欄位不正確');
+    }
+    let salt, iv, ct;
+    try {
+      salt = b64ToBytes(obj.salt);
+      iv = b64ToBytes(obj.iv);
+      ct = b64ToBytes(obj.ct);
+    } catch (e) {
+      throw new Error('salt / iv / ct 不是有效的 base64');
+    }
+    if (salt.length !== 16) throw new Error('salt 長度不正確（需 16 bytes）');
+    if (iv.length !== 12) throw new Error('iv 長度不正確（需 12 bytes）');
+    if (ct.length < 16) throw new Error('ct 長度不正確');
+    return { v: obj.v, kdf: obj.kdf, iter: obj.iter, salt: obj.salt, iv: obj.iv, ct: obj.ct };
+  }
+
+  // fileObj: {v,kdf,iter,salt,iv,ct}；成功回傳解密後的物件，失敗一律丟 ERR_DECRYPT
+  async function decryptFinance(fileObj, password) {
+    let env;
+    try {
+      env = validateEnvelope(fileObj);
+    } catch (e) {
+      throw new Error(ERR_DECRYPT);
+    }
+    try {
+      const salt = b64ToBytes(env.salt);
+      const iv = b64ToBytes(env.iv);
+      const ct = b64ToBytes(env.ct);
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
+      );
+      const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt, iterations: env.iter, hash: 'SHA-256' },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['decrypt']
+      );
+      const plaintext = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+      return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(plaintext));
+    } catch (e) {
+      throw new Error(ERR_DECRYPT);
+    }
+  }
+
+  // ── 渲染 ──────────────────────────────────────────────────
+  const FLAG_LABELS = {
+    snapshot: ['快照，非即時', 'snapshot'],
+    unconfirmed: ['未確認', 'warn'],
+    missing: ['資料缺失', 'neg'],
+    unconfirmed_surrender_value: ['尚未確認是否為解約金', 'warn'],
+    unknown_policy_loan: ['是否有保單借款未知', 'warn'],
+  };
+  const BILL_STATUS = {
+    current_due: ['本期應繳（已列入負債）', 'neg'],
+    overdue_unconfirmed: ['已過繳款日，是否已繳未確認（未列入負債）', 'warn'],
+    no_payment_due: ['無須繳款', 'pos'],
+    missing: ['金額缺失', 'neg'],
+    unknown_due_date: ['繳款日不明', 'warn'],
+  };
+  const NUM_FMT = new Intl.NumberFormat('zh-Hant-TW', { maximumFractionDigits: 2 });
+  const DEFAULT_ZONE = 'Asia/Taipei';
+
+  function el(tag, attrs, ...children) {
+    const node = document.createElement(tag);
+    if (attrs) {
+      for (const [k, v] of Object.entries(attrs)) {
+        if (v == null || v === false) continue;
+        if (k === 'class') node.className = v;
+        else node.setAttribute(k, v);
+      }
+    }
+    for (const c of children) {
+      if (c == null || c === false) continue;
+      node.append(c instanceof Node ? c : String(c));
+    }
+    return node;
+  }
+
+  function isNum(n) { return typeof n === 'number' && Number.isFinite(n); }
+  function arr(a) { return Array.isArray(a) ? a : []; }
+  function txt(v) { return v == null || v === '' ? '—' : String(v); }
+
+  function missingNode() { return el('span', { class: 'missing' }, '缺失'); }
+
+  // 金額：TWD 不加幣別，其他幣別附上代碼；null → 缺失
+  function amountNode(n, currency) {
+    if (!isNum(n)) return missingNode();
+    const cur = currency && currency !== 'TWD' ? ' ' + currency : '';
+    return el('span', { class: 'amt' }, NUM_FMT.format(n) + cur);
+  }
+
+  function last4(v) {
+    if (v == null) return '—';
+    const d = String(v).replace(/\D/g, '').slice(-4);
+    return d ? '••••' + d : '—';
+  }
+
+  function dateText(v, zone) {
+    if (v == null || v === '') return '—';
+    const s = String(v);
+    if (/^\d{4}-\d{2}(-\d{2})?$/.test(s)) return s.replace(/-/g, '/');
+    const d = new Date(s);
+    if (isNaN(d.getTime())) return s;
+    try {
+      return new Intl.DateTimeFormat('zh-TW', {
+        timeZone: zone || DEFAULT_ZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false,
+      }).format(d);
+    } catch (e) {
+      return s;
+    }
+  }
+
+  function zoneLabel(zone) {
+    const z = zone || DEFAULT_ZONE;
+    return z === DEFAULT_ZONE ? '台北時間 Asia/Taipei' : z;
+  }
+
+  function badge(label, kind) { return el('span', { class: 'badge ' + (kind || '') }, label); }
+
+  function flagBadges(flags) {
+    return arr(flags).map(f => {
+      const hit = FLAG_LABELS[f];
+      return hit ? badge(hit[0], hit[1]) : badge(String(f));
+    });
+  }
+
+  function confirmedBadge(confirmed) {
+    return confirmed === true ? null : badge('未確認', 'warn');
+  }
+
+  function currencyBadge(row) {
+    if (!row || !row.currency_assumed) return null;
+    const b = badge('幣別推定', 'warn');
+    if (row.currency_note) b.title = String(row.currency_note);
+    return b;
+  }
+
+  function cell(content, cls) {
+    const td = el('td', cls ? { class: cls } : null);
+    for (const c of [].concat(content)) {
+      if (c == null || c === false) continue;
+      td.append(c instanceof Node ? c : String(c));
+    }
+    return td;
+  }
+
+  function noteCell(...lines) {
+    const td = el('td', { class: 'note' });
+    let first = true;
+    for (const l of lines) {
+      if (l == null || l === '') continue;
+      if (!first) td.append(el('br'));
+      td.append(l instanceof Node ? l : String(l));
+      first = false;
+    }
+    if (first) td.append('—');
+    return td;
+  }
+
+  function table(headers, rows) {
+    const thead = el('thead', null, el('tr', null,
+      ...headers.map(h => el('th', h.num ? { class: 'num' } : null, h.label))));
+    const tbody = el('tbody');
+    if (!rows.length) {
+      tbody.append(el('tr', null, el('td', { class: 'empty-row', colspan: String(headers.length) }, '（無資料）')));
+    } else {
+      rows.forEach(r => tbody.append(r));
+    }
+    return el('div', { class: 'table-wrap' }, el('table', { class: 'fin' }, thead, tbody));
+  }
+
+  function section(title, count, body) {
+    return el('div', { class: 'section' },
+      el('div', { class: 'section-head' }, title, el('span', { class: 'section-count' }, String(count))),
+      body);
+  }
+
+  function sumCard(label, value, opts) {
+    const o = opts || {};
+    const valNode = el('div', { class: 'sum-value' + (o.cls ? ' ' + o.cls : '') }, amountNode(value, o.currency));
+    return el('div', { class: 'sum-card card-base' },
+      el('div', { class: 'sum-label' }, label, ...(o.badges || [])),
+      valNode,
+      o.note ? el('div', { class: 'sum-note' }, String(o.note)) : null);
+  }
+
+  function interestText(r) {
+    if (!isNum(r)) return '—';
+    // 小於 1 視為小數（0.021 → 2.1%），否則視為已是百分比
+    const pct = Math.abs(r) < 1 ? r * 100 : r;
+    return NUM_FMT.format(pct) + '%';
+  }
+
+  function validateData(d) {
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return false;
+    if (!d.summary || typeof d.summary !== 'object' || Array.isArray(d.summary)) return false;
+    for (const k of ['deposits', 'insurance', 'liabilities', 'card_bills_latest', 'gaps', 'excludes']) {
+      if (d[k] != null && !Array.isArray(d[k])) return false;
+    }
+    return true;
+  }
+
+  // 整份總覽先組在 fragment，全部成功才掛上畫面
+  function buildView(d) {
+    const s = d.summary;
+    const cur = d.currency || 'TWD';
+    const frag = document.createDocumentFragment();
+
+    frag.append(el('div', { class: 'meta-row' },
+      el('span', null, el('b', null, txt(d.title || '財務總覽'))),
+      el('span', null, '資料時間 ', el('b', null, dateText(d.as_of, d.as_of_zone)), ' ',
+        el('span', { class: 'tz' }, zoneLabel(d.as_of_zone))),
+      d.generated_at ? el('span', null, '產生於 ', dateText(d.generated_at, d.generated_at_zone), ' ',
+        el('span', { class: 'tz' }, zoneLabel(d.generated_at_zone))) : null,
+      el('span', null, '幣別 ', el('b', null, cur)),
+      el('span', null, ...flagBadges(s.flags))));
+
+    frag.append(el('div', { class: 'mask-note', id: 'mask-note', hidden: 'hidden' },
+      '◐ 金額已隱藏：只是遮住畫面上的數字，不是存取控制。'));
+
+    const net = s.provisional_net;
+    frag.append(el('div', { class: 'sum-grid' },
+      sumCard('總資產', s.total_assets, { currency: cur }),
+      sumCard('總負債', s.total_liabilities, { currency: cur, cls: 'neg' }),
+      sumCard('暫估淨值', net, {
+        currency: cur,
+        cls: isNum(net) ? (net < 0 ? 'neg' : 'pos') : '',
+        badges: [badge('暫估', 'warn')],
+        note: s.provisional_note,
+      })));
+
+    frag.append(el('div', { class: 'sum-grid sub' },
+      sumCard('存款合計', s.deposit_total, { currency: cur }),
+      sumCard('保險合計', s.insurance_total, {
+        currency: cur,
+        badges: s.insurance_unconfirmed ? [badge('未確認', 'warn')] : [],
+      })));
+
+    const deposits = arr(d.deposits);
+    frag.append(section('存款', deposits.length, table(
+      [{ label: '名稱' }, { label: '機構' }, { label: '商品' }, { label: '金額', num: true },
+       { label: '資料時間' }, { label: '狀態' }, { label: '備註' }],
+      deposits.map(r => el('tr', null,
+        cell(txt(r.name)),
+        cell(txt(r.institution)),
+        cell(txt(r.product)),
+        cell(amountNode(r.amount, r.currency), 'num'),
+        cell(dateText(r.as_of, r.as_of_zone), 'mono'),
+        cell([confirmedBadge(r.confirmed), currencyBadge(r), ...flagBadges(r.flags)]),
+        noteCell(r.note, r.currency_note))))));
+
+    const insurance = arr(d.insurance);
+    frag.append(section('保險', insurance.length, table(
+      [{ label: '名稱' }, { label: '機構' }, { label: '金額', num: true }, { label: '估值依據' },
+       { label: '保單借款', num: true }, { label: '資料時間' }, { label: '狀態' }, { label: '備註' }],
+      insurance.map(r => el('tr', null,
+        cell(txt(r.name)),
+        cell(txt(r.institution)),
+        cell(amountNode(r.amount, r.currency), 'num'),
+        cell(txt(r.valuation_basis)),
+        cell(r.policy_loan == null ? '未知' : amountNode(r.policy_loan, r.currency), 'num'),
+        cell(dateText(r.as_of, r.as_of_zone), 'mono'),
+        cell([confirmedBadge(r.confirmed), currencyBadge(r), ...flagBadges(r.flags)]),
+        noteCell(r.valuation_note, r.policy_loan_note, r.currency_note))))));
+
+    const liabilities = arr(d.liabilities);
+    frag.append(section('負債', liabilities.length, table(
+      [{ label: '名稱' }, { label: '機構' }, { label: '類型' }, { label: '金額', num: true },
+       { label: '卡號末四碼' }, { label: '帳單月份' }, { label: '繳款日' },
+       { label: '利率', num: true }, { label: '月付', num: true }, { label: '到期日' },
+       { label: '狀態' }, { label: '備註' }],
+      liabilities.map(r => el('tr', null,
+        cell(txt(r.name)),
+        cell(txt(r.institution)),
+        cell(txt(r.type)),
+        cell(amountNode(r.amount, r.currency), 'num'),
+        cell(last4(r.card_last4), 'mono'),
+        cell(txt(r.statement_month), 'mono'),
+        cell(dateText(r.payment_due_date, r.as_of_zone), 'mono'),
+        cell(interestText(r.interest_rate), 'num'),
+        cell(r.monthly_payment == null ? '—' : amountNode(r.monthly_payment, r.currency), 'num'),
+        cell(dateText(r.maturity_date, r.as_of_zone), 'mono'),
+        cell([confirmedBadge(r.confirmed), currencyBadge(r), ...flagBadges(r.flags)]),
+        noteCell(r.note, r.linked_asset_id ? '關聯資產：' + r.linked_asset_id : null))))));
+
+    const bills = arr(d.card_bills_latest);
+    frag.append(section('各卡最新帳單', bills.length, table(
+      [{ label: '銀行' }, { label: '卡片' }, { label: '末四碼' }, { label: '帳單月份' },
+       { label: '應繳金額', num: true }, { label: '最低應繳', num: true }, { label: '繳款日' },
+       { label: '狀態' }, { label: '備註' }],
+      bills.map(r => {
+        const st = BILL_STATUS[r.status];
+        return el('tr', null,
+          cell(txt(r.bank)),
+          cell(txt(r.card_name)),
+          cell(last4(r.card_last4), 'mono'),
+          cell(txt(r.statement_month), 'mono'),
+          cell(amountNode(r.amount_due, r.currency), 'num'),
+          cell(r.minimum_due == null ? '—' : amountNode(r.minimum_due, r.currency), 'num'),
+          cell(dateText(r.payment_due_date), 'mono'),
+          cell([
+            st ? badge(st[0], st[1]) : badge(txt(r.status)),
+            r.include_as_liability ? badge('已列入負債', 'neg') : badge('未列入負債'),
+            ...flagBadges(r.flags),
+          ]),
+          noteCell(r.note));
+      }))));
+
+    const gaps = arr(d.gaps);
+    frag.append(section('缺口／未確認項目', gaps.length, table(
+      [{ label: '項目' }, { label: '狀態' }, { label: '資料時間' }, { label: '說明' }],
+      gaps.map(r => {
+        const findings = arr(r.findings).length ? arr(r.findings)
+          : (r.findings != null && r.findings !== '' ? [r.findings] : []);
+        const note = noteCell(r.note);
+        if (findings.length) {
+          note.append(el('ul', { class: 'gap-findings' },
+            ...findings.map(f => el('li', null,
+              typeof f === 'object' && f !== null ? JSON.stringify(f) : String(f)))));
+        }
+        return el('tr', null,
+          cell(txt(r.title)),
+          cell([badge(txt(r.status), 'warn'), ...flagBadges(r.flags)]),
+          cell(dateText(r.as_of, r.as_of_zone), 'mono'),
+          note);
+      }))));
+
+    const excludes = arr(d.excludes);
+    if (excludes.length) {
+      frag.append(section('已排除項目', excludes.length,
+        el('div', { class: 'excludes' }, excludes.map(String).join('、'))));
+    }
+
+    return frag;
+  }
+
+  // ── 狀態與畫面 ────────────────────────────────────────────
+  let financeData = null;   // 解密後的資料，只存在這個閉包裡
+  let cachedEnvelope = null;
+  let masked = false;
+
+  const $ = id => document.getElementById(id);
+  const screenFile = $('screen-file');
+  const screenPass = $('screen-pass');
+  const screenView = $('screen-view');
+  const fileInput = $('file-input');
+  const fileError = $('file-error');
+  const passForm = $('pass-form');
+  const passInput = $('pass-input');
+  const passSubmit = $('pass-submit');
+  const passError = $('pass-error');
+  const btnMask = $('btn-mask');
+  const btnLock = $('btn-lock');
+  const btnForget = $('btn-forget');
+  const btnForgetGate = $('btn-forget-gate');
+
+  function show(name) {
+    screenFile.hidden = name !== 'file';
+    screenPass.hidden = name !== 'pass';
+    screenView.hidden = name !== 'view';
+    btnMask.hidden = name !== 'view';
+    btnLock.hidden = name !== 'view';
+    btnForget.hidden = name !== 'view';
+    if (name === 'pass') setTimeout(() => passInput.focus(), 0);
+  }
+
+  function wipeView() {
+    financeData = null;
+    screenView.replaceChildren();
+  }
+
+  function loadCached() {
+    let raw = null;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { raw = null; }
+    if (!raw) return null;
+    try {
+      return validateEnvelope(JSON.parse(raw));
+    } catch (e) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+      fileError.textContent = '快取的加密檔格式不正確，已清除，請重新選擇檔案。';
+      return null;
+    }
+  }
+
+  function lock() {
+    wipeView();
+    passError.textContent = '';
+    show(cachedEnvelope ? 'pass' : 'file');
+  }
+
+  function forget() {
+    wipeView();
+    cachedEnvelope = null;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    passInput.value = '';
+    passError.textContent = '';
+    fileError.textContent = '';
+    fileInput.value = '';
+    show('file');
+  }
+
+  fileInput.addEventListener('change', () => {
+    fileError.textContent = '';
+    const file = fileInput.files && fileInput.files[0];
+    fileInput.value = '';
+    if (!file) return;
+    if (file.size > MAX_FILE_BYTES) {
+      fileError.textContent = '檔案太大，不像是加密快照檔。';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onerror = () => { fileError.textContent = '讀取檔案失敗。'; };
+    reader.onload = () => {
+      let env;
+      try {
+        env = validateEnvelope(JSON.parse(String(reader.result)));
+      } catch (e) {
+        fileError.textContent = '不是有效的加密檔：' + (e instanceof SyntaxError ? 'JSON 格式錯誤' : e.message);
+        return;
+      }
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(env));
+      } catch (e) {
+        fileError.textContent = '無法寫入 localStorage（可能是無痕模式或空間不足），本次仍可解鎖，但重新整理後需重新選檔。';
+      }
+      cachedEnvelope = env;
+      passError.textContent = '';
+      show('pass');
+    };
+    reader.readAsText(file);
+  });
+
+  passForm.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const password = passInput.value;
+    passInput.value = '';
+    passError.textContent = '';
+    if (!password) {
+      passError.textContent = '請輸入密碼。';
+      return;
+    }
+    if (!cachedEnvelope) { show('file'); return; }
+    passSubmit.disabled = true;
+    passSubmit.textContent = '解密中…';
+    try {
+      let data;
+      try {
+        data = await decryptFinance(cachedEnvelope, password);
+      } catch (e) {
+        passError.textContent = ERR_DECRYPT;
+        return;
+      }
+      if (!validateData(data)) {
+        passError.textContent = ERR_SHAPE;
+        return;
+      }
+      let frag;
+      try {
+        frag = buildView(data);
+      } catch (e) {
+        passError.textContent = ERR_SHAPE;
+        return;
+      }
+      financeData = data;
+      screenView.replaceChildren(frag);
+      applyMask();
+      show('view');
+    } finally {
+      passSubmit.disabled = false;
+      passSubmit.textContent = '解鎖';
+    }
+  });
+
+  function applyMask() {
+    document.body.classList.toggle('masked', masked);
+    btnMask.classList.toggle('on', masked);
+    btnMask.textContent = masked ? '◑ 顯示金額' : '◐ 隱藏金額';
+    const note = $('mask-note');
+    if (note) note.hidden = !masked;
+  }
+
+  btnMask.addEventListener('click', () => { masked = !masked; applyMask(); });
+  btnLock.addEventListener('click', lock);
+  btnForget.addEventListener('click', forget);
+  btnForgetGate.addEventListener('click', forget);
+
+  // 離開頁面（含 bfcache）時一併清掉記憶體中的明文
+  window.addEventListener('pagehide', () => { wipeView(); passInput.value = ''; });
+  window.addEventListener('pageshow', (ev) => { if (ev.persisted && !financeData) lock(); });
+
+  // ── 啟動 ──────────────────────────────────────────────────
+  if (!window.crypto || !crypto.subtle) {
+    fileError.textContent = '此瀏覽器不支援 WebCrypto（需在 https 或本機檔案下開啟）。';
+    show('file');
+    fileInput.disabled = true;
+    return;
+  }
+  cachedEnvelope = loadCached();
+  show(cachedEnvelope ? 'pass' : 'file');
+})();
+</script>
+</body>
+</html>

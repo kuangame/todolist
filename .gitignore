@@ -1,0 +1,5 @@
+# 財務加密快照：永遠不進 repo
+finance.enc.json
+*.enc.json
+
+.DS_Store
