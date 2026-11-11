@@ -1083,71 +1083,156 @@
     .opnote-status { font-family: var(--mono); font-size: 11px; color: var(--text-3); text-align: right; margin-top: 8px; }
 
     /* ── 盤後快報 ─────────────────────────────── */
+    #tab-postmarket {
+      --pm-up: var(--neg);   /* 台灣慣例：漲紅 */
+      --pm-dn: var(--pos);   /* 跌綠 */
+      --pm-font: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      --pm-pad: 20px;
+    }
+    .pm-bar, #pm-content { max-width: 940px; margin-left: auto; margin-right: auto; }
     .pm-bar {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px;
+      display: flex; flex-wrap: nowrap; align-items: center; gap: 6px;
       margin-bottom: 14px; font-family: var(--mono); font-size: 13px; color: var(--text-2);
     }
     .pm-bar select, .pm-btn {
       background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
-      font-family: var(--mono); font-size: 13px; padding: 7px 10px; border-radius: 8px;
+      font-family: var(--mono); font-size: 13px; padding: 6px 10px; border-radius: 8px; height: 32px;
     }
-    .pm-bar select { max-width: 100%; min-width: 0; }
-    .pm-btn { cursor: pointer; color: var(--text-2); white-space: nowrap; }
+    .pm-bar select { min-width: 0; flex: 0 1 auto; }
+    .pm-btn { cursor: pointer; color: var(--text-2); white-space: nowrap; flex: none; }
     .pm-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
     .pm-btn:disabled { opacity: 0.4; cursor: default; }
-    .pm-updated { margin-left: auto; color: var(--text-3); font-size: 12px; }
+    .pm-updated {
+      margin-left: auto; color: var(--text-3); font-size: 12px; min-width: 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
     .pm-updated b { color: var(--text-2); font-weight: 600; }
-    .pm-msg { color: var(--text-3); text-align: center; padding: 40px; font-family: var(--mono); font-size: 13px; }
+    .pm-msg {
+      color: var(--text-3); text-align: center; padding: 40px; font-family: var(--mono); font-size: 13px;
+      background: var(--surface); border: 1px solid var(--border-dim); border-radius: var(--radius-lg); margin: 0;
+    }
     .pm-msg.pm-err { color: var(--neg); }
 
     #pm-content {
-      background: var(--surface);
-      border: 1px solid var(--border-dim);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-2);
-      overflow-wrap: anywhere;
+      font-family: var(--pm-font); font-size: 14.5px; line-height: 1.75; color: var(--text-2);
+      overflow-wrap: anywhere; display: flex; flex-direction: column; gap: 12px;
     }
-    #pm-content h1 { font-size: 20px; color: var(--text); margin: 0 0 14px; line-height: 1.4; }
-    #pm-content h2 {
-      font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px;
-      margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-dim);
+    .pm-card {
+      background: var(--surface); border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg); padding: var(--pm-pad);
     }
-    #pm-content h3 { font-size: 15px; color: var(--text); margin: 18px 0 8px; }
+    #pm-content h1 { font-size: 19px; color: var(--text); margin: 0; line-height: 1.4; font-weight: 700; }
+    #pm-content h2 { font-size: 16px; font-weight: 700; color: var(--text); margin: 0; line-height: 1.4; }
+    #pm-content h3 { font-size: 14.5px; color: var(--text); margin: 18px 0 6px; }
     #pm-content h4 { font-size: 14px; color: var(--text-2); margin: 14px 0 6px; }
-    #pm-content h1:first-child, #pm-content h2:first-child { margin-top: 0; }
     #pm-content p { margin: 8px 0; }
     #pm-content ul, #pm-content ol { padding-left: 22px; margin: 8px 0; }
     #pm-content li { margin-bottom: 6px; }
-    #pm-content strong { color: var(--text); font-weight: 700; }
-    #pm-content em { color: var(--text-3); font-size: 13px; }
-    #pm-content p > em:only-child { display: block; line-height: 1.7; }
+    #pm-content li::marker { color: var(--text-3); }
+    #pm-content strong { color: var(--text); font-weight: 600; }
     #pm-content a { color: var(--accent); text-decoration: none; }
     #pm-content a:hover { text-decoration: underline; }
-    #pm-content hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-    #pm-content blockquote {
-      margin: 10px 0; padding: 8px 14px; border-left: 3px solid var(--accent);
-      background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--text-2);
+    #pm-content blockquote { margin: 8px 0; padding: 0 0 0 10px; border-left: 2px solid var(--border); }
+    .pm-sec-body > :first-child, .pm-head > :first-child { margin-top: 0; }
+    .pm-sec-body > :last-child { margin-bottom: 0; }
+
+    /* 頂部摘要卡 */
+    .pm-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pm-chip {
+      background: var(--surface-2); border: 1px solid var(--border-dim); border-radius: 10px;
+      padding: 8px 14px; min-width: 0; line-height: 1.3;
     }
-    #pm-content blockquote p { margin: 4px 0; }
-    .pm-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; border: 1px solid var(--border-dim); border-radius: 8px; }
-    .pm-table { border-collapse: collapse; width: 100%; font-size: 13px; line-height: 1.5; }
+    .pm-chip-l { display: block; font-size: 11.5px; color: var(--text-3); margin-bottom: 3px; }
+    .pm-chip-v {
+      font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 20px;
+      font-weight: 600; color: var(--text); white-space: nowrap;
+    }
+    .pm-chip-s { font-family: var(--mono); font-size: 13px; margin-left: 6px; white-space: nowrap; }
+    .pm-chip.pm-up .pm-chip-v, .pm-chip.pm-up .pm-chip-s { color: var(--pm-up); }
+    .pm-chip.pm-dn .pm-chip-v, .pm-chip.pm-dn .pm-chip-s { color: var(--pm-dn); }
+
+    /* 今日重點 */
+    .pm-key { border-left: 3px solid var(--accent); background: linear-gradient(90deg, var(--accent-dim), var(--surface) 60%); }
+    .pm-key-l { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
+    .pm-key-body { max-width: 46em; color: var(--text); font-size: 15px; line-height: 1.8; }
+    .pm-key-body ol { padding-left: 20px !important; }
+    .pm-key-body li { margin-bottom: 8px !important; }
+    .pm-key-body li:last-child { margin-bottom: 0 !important; }
+
+    /* 章節卡片（可收合） */
+    .pm-sec { padding: 0; }
+    .pm-sec > summary {
+      list-style: none; cursor: pointer; padding: 14px var(--pm-pad);
+      display: flex; align-items: center; gap: 10px; border-radius: var(--radius-lg); user-select: none;
+    }
+    .pm-sec > summary::-webkit-details-marker { display: none; }
+    .pm-sec > summary::before {
+      content: '▸'; color: var(--text-3); font-size: 12px; transition: transform 0.15s; flex: none;
+    }
+    .pm-sec[open] > summary::before { transform: rotate(90deg); }
+    .pm-sec > summary:hover h2 { color: var(--accent); }
+    .pm-sec[open] > summary { border-bottom: 1px solid var(--border-dim); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .pm-sec-body { padding: 14px var(--pm-pad) var(--pm-pad); }
+
+    /* 註解：小字、灰、緊湊 */
+    #pm-content .pm-note {
+      font-size: 0.75em; line-height: 1.55; color: var(--text-3); margin: 6px 0;
+    }
+    #pm-content .pm-note em, #pm-content .pm-note strong { color: inherit; font-weight: inherit; font-style: normal; }
+    .pm-notes, .pm-meta { margin-top: 10px; font-size: 0.75em; line-height: 1.55; color: var(--text-3); }
+    .pm-notes > summary, .pm-meta > summary {
+      cursor: pointer; color: var(--text-3); display: inline-block; padding: 2px 8px;
+      border: 1px solid var(--border-dim); border-radius: 6px; user-select: none;
+    }
+    .pm-notes > summary:hover, .pm-meta > summary:hover { color: var(--text-2); border-color: var(--border); }
+    .pm-notes[open] > summary, .pm-meta[open] > summary { margin-bottom: 6px; }
+    #pm-content .pm-notes .pm-note, #pm-content .pm-meta .pm-note,
+    #pm-content .pm-meta p, #pm-content .pm-meta h4 { font-size: 1em; margin: 4px 0; color: var(--text-3); }
+    #pm-content .pm-meta blockquote { border: none; padding: 0; margin: 0; }
+    .pm-head .pm-meta { margin-top: 12px; }
+
+    /* 表格 */
+    .pm-table-wrap {
+      overflow: auto; -webkit-overflow-scrolling: touch; max-height: 72vh;
+      margin: 10px 0; border: 1px solid var(--border-dim); border-radius: 8px;
+    }
+    .pm-table { border-collapse: separate; border-spacing: 0; width: 100%; font-family: var(--pm-font); font-size: 13px; line-height: 1.45; }
     .pm-table th {
-      font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text-3);
-      padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--surface-2);
+      position: sticky; top: 0; z-index: 1; background: #121423;
+      font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: var(--text-3);
+      padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap;
     }
-    .pm-table td { padding: 6px 10px; border-bottom: 1px solid var(--border-dim); vertical-align: top; min-width: 4em; }
-    .pm-table tr:last-child td { border-bottom: none; }
+    .pm-table td { padding: 5px 10px; border-bottom: 1px solid var(--border-dim); vertical-align: top; min-width: 4.5em; }
+    .pm-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.022); }
+    .pm-table tbody tr:last-child td { border-bottom: none; }
     .pm-table tbody tr:hover td { background: var(--surface-2); }
-    .pm-table .pm-r { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .pm-table .pm-c { text-align: center; }
-    .pm-table .pm-l { text-align: left; }
+    /* 蓋掉全域 thead th / tbody td（交易分頁用的等寬、大寫、14px） */
+    #pm-content .pm-table th { letter-spacing: 0; text-transform: none; }
+    #pm-content .pm-table td { font-family: var(--pm-font); font-size: inherit; font-weight: 400; color: var(--text-2); }
+    #pm-content .pm-table td:first-child { color: var(--text); font-weight: 500; }
+    #pm-content .pm-table .pm-r { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    #pm-content .pm-table .pm-c { text-align: center; }
+    #pm-content .pm-table .pm-l { text-align: left; }
+    #pm-content .pm-table td.pm-up, #pm-content .pm-table td.pm-up strong { color: var(--pm-up); }
+    #pm-content .pm-table td.pm-dn, #pm-content .pm-table td.pm-dn strong { color: var(--pm-dn); }
+
     @media (max-width: 600px) {
-      #pm-content { padding: 14px; font-size: 15px; }
-      .pm-table { font-size: 13px; }
-      .pm-updated { margin-left: 0; width: 100%; }
+      #tab-postmarket { --pm-pad: 13px; }
+      #pm-content { font-size: 14px; gap: 10px; }
+      .pm-bar { gap: 5px; font-size: 12px; }
+      .pm-bar select, .pm-btn { font-size: 12px; padding: 5px 8px; height: 30px; }
+      .pm-updated { font-size: 11px; }
+      .pm-upd-l { display: none; }
+      #pm-content h1 { font-size: 17px; }
+      #pm-content h2 { font-size: 15px; }
+      .pm-chip { padding: 7px 10px; flex: 1 1 calc(50% - 8px); }
+      .pm-chip-v { font-size: 17px; }
+      .pm-chip-s { display: block; margin: 2px 0 0; }
+      .pm-key-body { font-size: 14.5px; }
+      .pm-table { font-size: 12.5px; }
+      .pm-table td { min-width: 5em; }
+      /* 手機上文字欄位不要被擠窄 → 寧可整張表水平滑動 */
+      #pm-content .pm-table td.pm-l:not(:first-child) { min-width: 11em; }
     }
 
     @media (max-width: 480px) {
@@ -1426,10 +1511,10 @@
        → 上傳到本 repo 的 postmarket/index.json 與 postmarket/YYYYMMDD.md（公開，同源讀取不需 token） -->
   <div class="tab-panel" id="tab-postmarket">
     <div class="pm-bar">
-      <button class="pm-btn" id="pm-prev" onclick="pmStep(1)" disabled>◀ 前一天</button>
+      <button class="pm-btn" id="pm-prev" onclick="pmStep(1)" disabled title="前一天" aria-label="前一天">◀</button>
       <select id="pm-date" onchange="pmSelect(this.value)" aria-label="選擇日期"></select>
-      <button class="pm-btn" id="pm-next" onclick="pmStep(-1)" disabled>後一天 ▶</button>
-      <span class="pm-updated">最後更新 <b id="pm-updated">—</b></span>
+      <button class="pm-btn" id="pm-next" onclick="pmStep(-1)" disabled title="後一天" aria-label="後一天">▶</button>
+      <span class="pm-updated"><span class="pm-upd-l">最後更新 </span><b id="pm-updated">—</b></span>
     </div>
     <div id="pm-content"><p class="pm-msg">切換到此 tab 後自動載入</p></div>
   </div>
@@ -2324,7 +2409,27 @@
 
   const PM_SEP_RE = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/;
 
-  function pmMarkdown(md) {
+  // 註解段落：以 註／*註／※／資料來源／說明／非投資建議 開頭（可帶 * 或 ** 標記），或整段斜體
+  const PM_NOTE_RE = /^(?:註|※|資料來源|說明|非投資建議)/;
+  const PM_ITALIC_RE = /^\*(?!\*)([\s\S]*[^*\s])\*$/;
+  function pmIsNote(text) {
+    return PM_ITALIC_RE.test(text) || PM_NOTE_RE.test(text.replace(/^\*+\s*/, ''));
+  }
+
+  // 去掉 markdown 標記的純文字（算字數、抓數字用）
+  function pmPlain(s) {
+    return String(s || '').replace(/\[([^\]\n]+)\]\([^)\s]*\)/g, '$1').replace(/\*+/g, '').trim();
+  }
+
+  // 儲存格以 +／−／- 開頭的數字 → 漲紅跌綠
+  function pmSignCls(c) {
+    const m = pmPlain(c).match(/^([+\-−])\s?\d/);
+    return m ? (m[1] === '+' ? ' pm-up' : ' pm-dn') : '';
+  }
+  const PM_NUM_CELL_RE = /^[+\-−]?\d[\d,]*(?:\.\d+)?\s*(?:%|張|口|元|億元|點|檔|家)?$/;
+
+  // markdown → 區塊陣列（純字串處理，不碰 DOM；所有文字經 pmInline 先跳脫）
+  function pmBlocks(md) {
     const lines = String(md || '').replace(/\r\n?/g, '\n').split('\n');
     const out = [];
     let para = [];
@@ -2333,9 +2438,12 @@
       const text = para.join('\n').trim();
       para = [];
       if (!text) return;
-      // 整段 *註：...* → 斜體段落（內部的單一 * 保留為文字）
-      const m = text.match(/^\*(?!\*)([\s\S]*[^*\s])\*$/);
-      out.push(m ? `<p><em>${pmInline(m[1])}</em></p>` : `<p>${pmInline(text)}</p>`);
+      if (pmIsNote(text)) {
+        const m = text.match(PM_ITALIC_RE);   // 整段 *…* → 去掉外層斜體（內部的單一 * 保留為文字）
+        out.push({ t: 'note', html: pmInline(m ? m[1] : text), len: pmPlain(text).length });
+      } else {
+        out.push({ t: 'p', html: pmInline(text), text });
+      }
     };
 
     let i = 0;
@@ -2347,13 +2455,12 @@
       const h = line.match(/^(#{1,4})\s+(.*?)\s*#*\s*$/);
       if (h) {
         flushPara();
-        const n = h[1].length;
-        out.push(`<h${n}>${pmInline(h[2])}</h${n}>`);
+        out.push({ t: 'h', n: h[1].length, html: pmInline(h[2]), text: pmPlain(h[2]) });
         i++; continue;
       }
 
       if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) {
-        flushPara(); out.push('<hr>'); i++; continue;
+        flushPara(); out.push({ t: 'hr' }); i++; continue;
       }
 
       // GFM 表格：本行含 | 且下一行是分隔列
@@ -2369,14 +2476,24 @@
           rows.push(pmSplitRow(lines[i]));
           i++;
         }
-        const cell = (tag, c, k) => `<${tag} class="${aligns[k] || 'pm-l'}">${pmInline(c || '')}</${tag}>`;
-        const thead = '<tr>' + head.map((c, k) => cell('th', c, k)).join('') + '</tr>';
+        // 未指定對齊、且整欄都是數字 → 靠右等寬
+        for (let k = 0; k < cols; k++) {
+          if (aligns[k] && aligns[k] !== 'pm-l') continue;
+          const vals = rows.map(r => pmPlain(r[k])).filter(Boolean);
+          if (vals.length && vals.every(v => PM_NUM_CELL_RE.test(v))) aligns[k] = 'pm-r';
+        }
+        const thead = '<tr>' + head.map((c, k) =>
+          `<th class="${aligns[k] || 'pm-l'}">${pmInline(c || '')}</th>`).join('') + '</tr>';
         const tbody = rows.map(r => {
           const cells = [];
-          for (let k = 0; k < cols; k++) cells.push(cell('td', r[k], k));
+          for (let k = 0; k < cols; k++) {
+            const c = r[k] || '';
+            cells.push(`<td class="${(aligns[k] || 'pm-l') + pmSignCls(c)}">${pmInline(c)}</td>`);
+          }
           return '<tr>' + cells.join('') + '</tr>';
         }).join('');
-        out.push(`<div class="pm-table-wrap"><table class="pm-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`);
+        out.push({ t: 'table', head, rows,
+          html: `<div class="pm-table-wrap"><table class="pm-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>` });
         continue;
       }
 
@@ -2387,7 +2504,7 @@
           q.push(lines[i].replace(/^\s*>\s?/, ''));
           i++;
         }
-        out.push(`<blockquote>${pmMarkdown(q.join('\n'))}</blockquote>`);
+        out.push({ t: 'quote', html: `<blockquote>${pmRender(pmBlocks(q.join('\n')))}</blockquote>` });
         continue;
       }
 
@@ -2408,12 +2525,14 @@
           break;
         }
         const lis = items.map(t => `<li>${pmInline(t)}</li>`).join('');
+        let html;
         if (ol) {
           const start = parseInt(ol[1], 10);
-          out.push(start !== 1 ? `<ol start="${start}">${lis}</ol>` : `<ol>${lis}</ol>`);
+          html = start !== 1 ? `<ol start="${start}">${lis}</ol>` : `<ol>${lis}</ol>`;
         } else {
-          out.push(`<ul>${lis}</ul>`);
+          html = `<ul>${lis}</ul>`;
         }
+        out.push({ t: 'list', html });
         continue;
       }
 
@@ -2421,7 +2540,124 @@
       i++;
     }
     flushPara();
-    return out.join('\n');
+    return out;
+  }
+
+  function pmRender(blocks) {
+    return blocks.map(b => {
+      if (b.t === 'h') return `<h${b.n}>${b.html}</h${b.n}>`;
+      if (b.t === 'hr') return '';
+      if (b.t === 'note') return `<p class="pm-note">${b.html}</p>`;
+      if (b.t === 'p') return `<p>${b.html}</p>`;
+      return b.html;
+    }).join('\n');
+  }
+
+  // 從「大盤概況」第一張表抓關鍵數字；抓不到就略過
+  function pmChips(sec) {
+    const tb = sec && sec.blocks.find(b => b.t === 'table');
+    if (!tb) return '';
+    const get = re => {
+      const r = tb.rows.find(r => re.test(pmPlain(r[0])));
+      return r ? pmPlain(r[1]) : '';
+    };
+    const dirOf = s => /^[\-−]/.test(s) ? 'pm-dn' : /^\+/.test(s) ? 'pm-up' : '';
+    const NUM = '\\d[\\d,]*(?:\\.\\d+)?';
+    const CHG = new RegExp(`([+\\-−]\\s?${NUM})\\s*點?\\s*[（(]\\s*([+\\-−]?${NUM}%)\\s*[）)]`);
+    const chips = [];
+
+    const cm = get(/^漲跌$/).match(CHG);
+    const dir = cm ? dirOf(cm[1]) : '';
+    const close = get(/^加權指數/).match(new RegExp(NUM));
+    if (close) chips.push({ l: '加權指數', v: close[0], d: dir });
+    if (cm) chips.push({ l: '漲跌（點）', v: cm[1].replace(/\s/g, ''), s: cm[2], d: dir });
+    const amt = get(/^成交金額/).match(new RegExp(`${NUM}\\s*億元?`));
+    if (amt) chips.push({ l: '成交金額', v: amt[0].replace(/\s*億元?/, ' 億') });
+    const otcRaw = get(/^櫃買指數/);
+    const otc = otcRaw.match(new RegExp(`^${NUM}`));
+    if (otc) {
+      const oc = otcRaw.match(CHG);
+      chips.push({ l: '櫃買指數', v: otc[0], s: oc ? `${oc[1].replace(/\s/g, '')}（${oc[2]}）` : '', d: oc ? dirOf(oc[1]) : '' });
+    }
+    if (!chips.length) return '';
+    return '<div class="pm-chips">' + chips.map(c =>
+      `<div class="pm-chip${c.d ? ' ' + c.d : ''}"><span class="pm-chip-l">${pmEscape(c.l)}</span>` +
+      `<span class="pm-chip-v">${pmEscape(c.v)}</span>${c.s ? `<span class="pm-chip-s">${pmEscape(c.s)}</span>` : ''}</div>`
+    ).join('') + '</div>';
+  }
+
+  const PM_COLLAPSED_RE = /個股盤後新聞|盤勢重點新聞|追蹤名單籌碼|台指期與選擇權籌碼/;
+  const PM_NOTE_FOLD = 120;   // 超過此字數的章節註解收進底部 <details>
+
+  // 報告 → 版面：摘要卡（標題＋關鍵數字＋註與資料來源）、今日重點卡、各章節可收合卡片
+  function pmMarkdown(md) {
+    const blocks = pmBlocks(md);
+    let title = '';
+    const meta = [];    // 開頭 blockquote／註 + 資料來源
+    const intro = [];
+    const secs = [];
+    let cur = null;
+    for (const b of blocks) {
+      if (b.t === 'h' && b.n === 1 && !title && !cur) { title = b.html; continue; }
+      if (b.t === 'h' && b.n === 2) { cur = { title: b.html, text: b.text, blocks: [] }; secs.push(cur); continue; }
+      if (cur) cur.blocks.push(b);
+      else if (b.t === 'quote' || b.t === 'note') meta.push(b);
+      else if (b.t !== 'hr') intro.push(b);
+    }
+
+    const parts = [];
+    let keyHtml = '';
+    const secHtml = [];
+    for (const s of secs) {
+      if (/資料來源/.test(s.text)) {
+        meta.push({ t: 'h', n: 4, html: s.title });
+        s.blocks.forEach(b => { if (b.t !== 'hr') meta.push(b); });
+        continue;
+      }
+      // 章節最後一條 --- 之後只剩註解（例如「**資料來源**：…」）→ 移到頂部的註與資料來源
+      const hr = s.blocks.map(b => b.t).lastIndexOf('hr');
+      if (hr >= 0) {
+        const tail = s.blocks.slice(hr + 1);
+        if (tail.length && tail.every(b => b.t === 'note')) {
+          meta.push(...tail);
+          s.blocks = s.blocks.slice(0, hr);
+        }
+      }
+      const body = s.blocks.filter(b => b.t !== 'hr');
+
+      if (/今日重點/.test(s.text)) {
+        // 單一長段落 → 依句號拆成條列，較好讀
+        const ps = body.filter(b => b.t === 'p');
+        let inner;
+        if (body.length === 1 && ps.length === 1 && (ps[0].text.match(/。/g) || []).length >= 2) {
+          const sents = ps[0].text.split(/(?<=。)/).map(x => x.trim()).filter(Boolean);
+          inner = '<ol>' + sents.map(x => `<li>${pmInline(x)}</li>`).join('') + '</ol>';
+        } else {
+          inner = pmRender(body);
+        }
+        keyHtml = `<section class="pm-card pm-key"><div class="pm-key-l">${s.title}</div><div class="pm-key-body">${inner}</div></section>`;
+        continue;
+      }
+
+      const longNotes = body.filter(b => b.t === 'note' && b.len > PM_NOTE_FOLD);
+      const main = body.filter(b => !(b.t === 'note' && b.len > PM_NOTE_FOLD));
+      const notes = longNotes.length
+        ? `<details class="pm-notes"><summary>註</summary>${pmRender(longNotes)}</details>` : '';
+      const open = PM_COLLAPSED_RE.test(s.text) ? '' : ' open';
+      secHtml.push(`<details class="pm-card pm-sec"${open}><summary><h2>${s.title}</h2></summary>` +
+        `<div class="pm-sec-body">${pmRender(main)}${notes}</div></details>`);
+    }
+
+    const chips = pmChips(secs.find(s => /大盤概況/.test(s.text)));
+    const metaHtml = meta.length
+      ? `<details class="pm-meta"><summary>註與資料來源</summary>${pmRender(meta)}</details>` : '';
+    if (title || chips || intro.length || metaHtml) {
+      parts.push(`<header class="pm-card pm-head">${title ? `<h1>${title}</h1>` : ''}${chips}` +
+        `${intro.length ? pmRender(intro) : ''}${metaHtml}</header>`);
+    }
+    if (keyHtml) parts.push(keyHtml);
+    parts.push(...secHtml);
+    return parts.join('\n');
   }
 
   async function pmFetchText(path) {
