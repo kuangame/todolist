@@ -1133,7 +1133,7 @@
     #pm-content a { color: var(--accent); text-decoration: none; }
     #pm-content a:hover { text-decoration: underline; }
     #pm-content blockquote { margin: 8px 0; padding: 0 0 0 10px; border-left: 2px solid var(--border); }
-    .pm-sec-body > :first-child, .pm-head > :first-child { margin-top: 0; }
+    .pm-sec-body > :first-child, .pm-head-body > :first-child { margin-top: 0; }
     .pm-sec-body > :last-child { margin-bottom: 0; }
 
     /* 頂部摘要卡 */
@@ -1153,26 +1153,35 @@
 
     /* 今日重點 */
     .pm-key { border-left: 3px solid var(--accent); background: linear-gradient(90deg, var(--accent-dim), var(--surface) 60%); }
-    .pm-key-l { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
+    .pm-key-l { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--accent); }
     .pm-key-body { max-width: 46em; color: var(--text); font-size: 15px; line-height: 1.8; }
     .pm-key-body ol { padding-left: 20px !important; }
     .pm-key-body li { margin-bottom: 8px !important; }
     .pm-key-body li:last-child { margin-bottom: 0 !important; }
 
-    /* 章節卡片（可收合） */
-    .pm-sec { padding: 0; }
-    .pm-sec > summary {
+    /* 可收合卡片（摘要卡、今日重點、章節）：整列標題可點，左側 chevron 展開時轉 90° */
+    .pm-fold { padding: 0; }
+    .pm-fold > summary {
       list-style: none; cursor: pointer; padding: 14px var(--pm-pad);
       display: flex; align-items: center; gap: 10px; border-radius: var(--radius-lg); user-select: none;
+      transition: background 0.15s;
     }
-    .pm-sec > summary::-webkit-details-marker { display: none; }
-    .pm-sec > summary::before {
-      content: '▸'; color: var(--text-3); font-size: 12px; transition: transform 0.15s; flex: none;
+    .pm-fold > summary::-webkit-details-marker { display: none; }
+    .pm-fold > summary::before {
+      content: '▸'; color: var(--text-3); font-size: 12px; transition: transform 0.15s, color 0.15s; flex: none;
     }
-    .pm-sec[open] > summary::before { transform: rotate(90deg); }
-    .pm-sec > summary:hover h2 { color: var(--accent); }
+    .pm-fold[open] > summary::before { transform: rotate(90deg); }
+    .pm-fold > summary:hover { background: rgba(255,255,255,0.025); }
+    .pm-fold > summary:hover::before, .pm-fold > summary:hover h1, .pm-fold > summary:hover h2 { color: var(--accent); }
+    .pm-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
     .pm-sec[open] > summary { border-bottom: 1px solid var(--border-dim); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .pm-key[open] > summary { padding-bottom: 6px; }
+    .pm-key > summary::before { color: var(--accent); }
     .pm-sec-body { padding: 14px var(--pm-pad) var(--pm-pad); }
+    .pm-head-body { padding: 0 var(--pm-pad) var(--pm-pad); }
+    .pm-head-body .pm-chips { margin-top: 0; }
+    .pm-key-body { padding: 0 var(--pm-pad) var(--pm-pad) calc(var(--pm-pad) + 22px); }
+    .pm-key:not([open]) > summary, .pm-head:not([open]) > summary { border-radius: var(--radius-lg); }
 
     /* 註解：小字、灰、緊湊 */
     #pm-content .pm-note {
@@ -1181,10 +1190,15 @@
     #pm-content .pm-note em, #pm-content .pm-note strong { color: inherit; font-weight: inherit; font-style: normal; }
     .pm-notes, .pm-meta { margin-top: 10px; font-size: 0.75em; line-height: 1.55; color: var(--text-3); }
     .pm-notes > summary, .pm-meta > summary {
-      cursor: pointer; color: var(--text-3); display: inline-block; padding: 2px 8px;
-      border: 1px solid var(--border-dim); border-radius: 6px; user-select: none;
+      list-style: none; cursor: pointer; color: var(--text-3); display: inline-flex; align-items: center; gap: 5px;
+      padding: 2px 8px; border: 1px solid var(--border-dim); border-radius: 6px; user-select: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .pm-notes > summary:hover, .pm-meta > summary:hover { color: var(--text-2); border-color: var(--border); }
+    .pm-notes > summary::-webkit-details-marker, .pm-meta > summary::-webkit-details-marker { display: none; }
+    .pm-notes > summary::before, .pm-meta > summary::before { content: '▸'; font-size: 10px; transition: transform 0.15s; }
+    .pm-notes[open] > summary::before, .pm-meta[open] > summary::before { transform: rotate(90deg); }
+    .pm-notes > summary:hover, .pm-meta > summary:hover { color: var(--text-2); border-color: var(--border); background: var(--surface-2); }
+    .pm-notes > summary:focus-visible, .pm-meta > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
     .pm-notes[open] > summary, .pm-meta[open] > summary { margin-bottom: 6px; }
     #pm-content .pm-notes .pm-note, #pm-content .pm-meta .pm-note,
     #pm-content .pm-meta p, #pm-content .pm-meta h4 { font-size: 1em; margin: 4px 0; color: var(--text-3); }
@@ -1222,7 +1236,7 @@
       .pm-bar { gap: 5px; font-size: 12px; }
       .pm-bar select, .pm-btn { font-size: 12px; padding: 5px 8px; height: 30px; }
       .pm-updated { font-size: 11px; }
-      .pm-upd-l { display: none; }
+      .pm-upd-l, .pm-fold-all-l { display: none; }
       #pm-content h1 { font-size: 17px; }
       #pm-content h2 { font-size: 15px; }
       .pm-chip { padding: 7px 10px; flex: 1 1 calc(50% - 8px); }
@@ -1277,6 +1291,21 @@
       line-height: 1.7;
     }
     .daily-bar-item::before { content: '▸ '; color: var(--accent); }
+
+    /* ── 通用區塊收合（daily-bar、其他分頁有標題的卡片）──
+       標題加 .dash-fold-head（JS 套用），區塊收合時加 .dash-collapsed，只藏標題以外的子元素 */
+    .dash-fold-head { cursor: pointer; user-select: none; transition: color 0.15s; }
+    .dash-fold-head::before {
+      content: '▸'; display: inline-block; margin-right: 6px; font-size: 0.9em;
+      transform: rotate(90deg); transition: transform 0.15s;
+    }
+    .dash-collapsed > .dash-fold-head::before { transform: none; }
+    .dash-fold-head:hover { color: var(--text) !important; }
+    .dash-fold-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    .dash-collapsed > :not(.dash-fold-head) { display: none !important; }
+    .dash-collapsed > .dash-fold-head { margin-bottom: 0 !important; }
+    .pnl-month > h4.dash-fold-head { justify-content: flex-start; }
+    .pnl-month > h4.dash-fold-head > span { margin-left: auto; }
 
     /* ── 排程監控 ─────────────────────────────── */
     .mon-head {
@@ -1342,7 +1371,7 @@
 
   <!-- Daily Summary Bar（永遠顯示，不隨分頁切換） -->
   <div class="daily-bar" id="daily-bar">
-    <span class="daily-bar-label" id="daily-bar-date">昨日</span>
+    <span class="daily-bar-label" id="daily-bar-date" title="點擊收合／展開">昨日</span>
     <div class="daily-bar-items" id="daily-bar-items"></div>
   </div>
 
@@ -1514,6 +1543,7 @@
       <button class="pm-btn" id="pm-prev" onclick="pmStep(1)" disabled title="前一天" aria-label="前一天">◀</button>
       <select id="pm-date" onchange="pmSelect(this.value)" aria-label="選擇日期"></select>
       <button class="pm-btn" id="pm-next" onclick="pmStep(-1)" disabled title="後一天" aria-label="後一天">▶</button>
+      <button class="pm-btn" id="pm-fold-all" onclick="pmFoldAll()" disabled title="全部展開" aria-label="全部展開"><span class="pm-fold-all-l">全部</span><span id="pm-fold-all-t">展開</span></button>
       <span class="pm-updated"><span class="pm-upd-l">最後更新 </span><b id="pm-updated">—</b></span>
     </div>
     <div id="pm-content"><p class="pm-msg">切換到此 tab 後自動載入</p></div>
@@ -2589,6 +2619,31 @@
   const PM_COLLAPSED_RE = /個股盤後新聞|盤勢重點新聞|追蹤名單籌碼|台指期與選擇權籌碼/;
   const PM_NOTE_FOLD = 120;   // 超過此字數的章節註解收進底部 <details>
 
+  // 區塊收合狀態：localStorage pm-collapse:<區塊鍵> = 'open' / 'closed'；沒動過的區塊用預設值
+  const PM_FOLD_PREFIX = 'pm-collapse:';
+  function pmFoldGet(key) {
+    try {
+      const v = localStorage.getItem(PM_FOLD_PREFIX + key);
+      return v === 'open' ? true : v === 'closed' ? false : null;
+    } catch (e) { return null; }
+  }
+  function pmFoldSet(key, open) {
+    try { localStorage.setItem(PM_FOLD_PREFIX + key, open ? 'open' : 'closed'); } catch (e) { /* 無痕模式等 */ }
+  }
+  // 章節鍵：標題去掉開頭編號（1)、6b)）與 emoji → 換日期也穩定
+  function pmSecKey(text) {
+    return String(text || '')
+      .replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu, '')
+      .replace(/^\s*\d+[a-zA-Z]?\s*[)）.．、]\s*/, '')
+      .replace(/\s+/g, ' ').trim();
+  }
+  // <details> 開頭屬性：data-pm-key（已跳脫）、data-pm-def（預設）、open（記憶值優先）
+  function pmFoldAttrs(key, def) {
+    const saved = pmFoldGet(key);
+    const open = saved === null ? def : saved;
+    return ` data-pm-key="${pmEscape(key)}" data-pm-def="${def ? 1 : 0}"${open ? ' open' : ''}`;
+  }
+
   // 報告 → 版面：摘要卡（標題＋關鍵數字＋註與資料來源）、今日重點卡、各章節可收合卡片
   function pmMarkdown(md) {
     const blocks = pmBlocks(md);
@@ -2635,25 +2690,27 @@
         } else {
           inner = pmRender(body);
         }
-        keyHtml = `<section class="pm-card pm-key"><div class="pm-key-l">${s.title}</div><div class="pm-key-body">${inner}</div></section>`;
+        keyHtml = `<details class="pm-card pm-fold pm-key"${pmFoldAttrs('highlights', true)}>` +
+          `<summary><span class="pm-key-l">${s.title}</span></summary><div class="pm-key-body">${inner}</div></details>`;
         continue;
       }
 
+      const key = pmSecKey(s.text) || s.text;
       const longNotes = body.filter(b => b.t === 'note' && b.len > PM_NOTE_FOLD);
       const main = body.filter(b => !(b.t === 'note' && b.len > PM_NOTE_FOLD));
       const notes = longNotes.length
-        ? `<details class="pm-notes"><summary>註</summary>${pmRender(longNotes)}</details>` : '';
-      const open = PM_COLLAPSED_RE.test(s.text) ? '' : ' open';
-      secHtml.push(`<details class="pm-card pm-sec"${open}><summary><h2>${s.title}</h2></summary>` +
+        ? `<details class="pm-notes"${pmFoldAttrs(key + ':note', false)}><summary>註</summary>${pmRender(longNotes)}</details>` : '';
+      secHtml.push(`<details class="pm-card pm-fold pm-sec"${pmFoldAttrs(key, !PM_COLLAPSED_RE.test(s.text))}><summary><h2>${s.title}</h2></summary>` +
         `<div class="pm-sec-body">${pmRender(main)}${notes}</div></details>`);
     }
 
     const chips = pmChips(secs.find(s => /大盤概況/.test(s.text)));
     const metaHtml = meta.length
-      ? `<details class="pm-meta"><summary>註與資料來源</summary>${pmRender(meta)}</details>` : '';
+      ? `<details class="pm-meta"${pmFoldAttrs('notes', false)}><summary>註與資料來源</summary>${pmRender(meta)}</details>` : '';
     if (title || chips || intro.length || metaHtml) {
-      parts.push(`<header class="pm-card pm-head">${title ? `<h1>${title}</h1>` : ''}${chips}` +
-        `${intro.length ? pmRender(intro) : ''}${metaHtml}</header>`);
+      parts.push(`<details class="pm-card pm-fold pm-head"${pmFoldAttrs('summary', true)}>` +
+        `<summary>${title ? `<h1>${title}</h1>` : '<h1>盤後快報</h1>'}</summary>` +
+        `<div class="pm-head-body">${chips}${intro.length ? pmRender(intro) : ''}${metaHtml}</div></details>`);
     }
     if (keyHtml) parts.push(keyHtml);
     parts.push(...secHtml);
@@ -2736,6 +2793,7 @@
       const md = await pmFetchText(r.file || `postmarket/${key}.md`);
       if (seq !== pmSeq) return;
       content.innerHTML = pmMarkdown(md);
+      pmFoldAllUpdate();
       if (pmHashKey() !== key && history.replaceState) {
         history.replaceState(null, '', `#postmarket=${key}`);
       }
@@ -2746,6 +2804,35 @@
   }
 
   function pmSelect(key) { pmShow(key); }
+
+  // 全部展開／收合：依目前是否有收合中的區塊決定方向，並寫入每個區塊的狀態
+  function pmFoldList() { return [...document.querySelectorAll('#pm-content details[data-pm-key]')]; }
+  function pmFoldAllUpdate() {
+    const btn = document.getElementById('pm-fold-all');
+    const list = pmFoldList();
+    const open = list.some(d => !d.open);   // true → 按下去會全部展開
+    const label = open ? '全部展開' : '全部收合';
+    btn.disabled = !list.length;
+    btn.title = label;
+    btn.setAttribute('aria-label', label);
+    document.getElementById('pm-fold-all-t').textContent = open ? '展開' : '收合';
+  }
+  function pmFoldAll() {
+    const list = pmFoldList();
+    const open = list.some(d => !d.open);
+    list.forEach(d => { pmFoldSet(d.dataset.pmKey, open); d.open = open; });
+    pmFoldAllUpdate();
+  }
+  // toggle 不會冒泡 → 用 capture。只在狀態跟「目前生效值」不同時寫入，
+  // 這樣 innerHTML 帶 open 屬性時瀏覽器補發的 toggle 不會把預設值寫進 localStorage
+  document.getElementById('pm-content').addEventListener('toggle', e => {
+    const d = e.target;
+    if (!d.dataset || d.dataset.pmKey === undefined) return;
+    const saved = pmFoldGet(d.dataset.pmKey);
+    const eff = saved === null ? d.dataset.pmDef === '1' : saved;
+    if (d.open !== eff) pmFoldSet(d.dataset.pmKey, d.open);
+    pmFoldAllUpdate();
+  }, true);
 
   // dir = +1 → 前一天（清單往後）；-1 → 後一天（清單往前）
   function pmStep(dir) {
@@ -3177,6 +3264,58 @@
     setSyncStatus('no token — click ⚙ to set');
     render();
   }
+
+  // ── 通用區塊收合 ──────────────────────────────────────────
+  // localStorage dash-collapse:<key> = 'open' / 'closed'，預設展開。只加 class 藏子元素，不動任何資料讀寫。
+  // 動態重繪的容器（本月損益、搜尋結果）用 MutationObserver 重新套用。
+  const DASH_FOLDS = [
+    { sel: '#daily-bar', head: '.daily-bar-label', key: () => 'daily-bar' },
+    { sel: '#tab-calc .export-section', head: 'h4', key: () => 'calc:export' },
+    { sel: '#pnl-month', head: 'h4', key: () => 'calc:pnl-month' },
+    { sel: '#search-results .src-section', head: '.src-section-title', key: h => 'search:' + h.textContent.trim() },
+  ];
+  function dashFoldOpen(key) {
+    try { return localStorage.getItem('dash-collapse:' + key) !== 'closed'; } catch (e) { return true; }
+  }
+  function dashFoldApply() {
+    DASH_FOLDS.forEach(cfg => {
+      document.querySelectorAll(cfg.sel).forEach(block => {
+        const head = [...block.children].find(c => c.matches(cfg.head));   // 只認直接子元素的第一個標題
+        if (!head) return;
+        const key = cfg.key(head);
+        const open = dashFoldOpen(key);
+        block.dataset.dashFold = key;
+        block.classList.toggle('dash-collapsed', !open);
+        head.classList.add('dash-fold-head');
+        head.setAttribute('role', 'button');
+        head.setAttribute('tabindex', '0');
+        head.setAttribute('aria-expanded', String(open));
+      });
+    });
+  }
+  function dashFoldToggle(head) {
+    const block = head.parentElement;
+    const key = block && block.dataset.dashFold;
+    if (!key) return;
+    const open = block.classList.contains('dash-collapsed');   // 目前收合 → 展開
+    block.classList.toggle('dash-collapsed', !open);
+    head.setAttribute('aria-expanded', String(open));
+    try { localStorage.setItem('dash-collapse:' + key, open ? 'open' : 'closed'); } catch (e) { /* ignore */ }
+  }
+  document.addEventListener('click', e => {
+    const head = e.target.closest && e.target.closest('.dash-fold-head');
+    if (head) dashFoldToggle(head);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const head = e.target.closest && e.target.closest('.dash-fold-head');
+    if (head && head === e.target) { e.preventDefault(); dashFoldToggle(head); }
+  });
+  ['pnl-month', 'search-results'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) new MutationObserver(dashFoldApply).observe(el, { childList: true, subtree: true });
+  });
+  dashFoldApply();
 
   // ── 昨日工作重點（永遠顯示） ────────────────────────────────
   async function loadDailySummary() {
