@@ -1076,189 +1076,72 @@
     .opnote-card-img:hover { opacity: 0.85; }
     .opnote-status { font-family: var(--mono); font-size: 11px; color: var(--text-3); text-align: right; margin-top: 8px; }
 
-    /* ── 晨報 ─────────────────────────────────── */
-    #report-content a.news-link { color: var(--text); text-decoration: none; cursor: pointer; }
-    #report-content a.news-link:hover { color: var(--accent); text-decoration: underline; }
-    .report-subtabs {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 16px;
+    /* ── 盤後快報 ─────────────────────────────── */
+    .pm-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px;
+      margin-bottom: 14px; font-family: var(--mono); font-size: 13px; color: var(--text-2);
     }
-    .report-subtab-btn {
-      background: var(--surface);
-      border: 1px solid var(--border-dim);
-      border-radius: var(--radius);
-      color: var(--text-3);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      padding: 7px 16px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.15s;
+    .pm-bar select, .pm-btn {
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+      font-family: var(--mono); font-size: 13px; padding: 7px 10px; border-radius: 8px;
     }
-    .report-subtab-btn:hover { border-color: var(--border); color: var(--text-2); }
-    .report-subtab-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
-    .report-section-block { margin-bottom: 32px; }
-    .report-section-block:last-child { margin-bottom: 0; }
-    .report-section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 6px 12px;
-      margin-bottom: 4px;
-    }
-    .report-section-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin: 0;
-    }
-    .report-update-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-3);
-      white-space: nowrap;
-    }
-    .report-update-meta.stale { color: var(--neg); font-weight: 700; }
+    .pm-bar select { max-width: 100%; min-width: 0; }
+    .pm-btn { cursor: pointer; color: var(--text-2); white-space: nowrap; }
+    .pm-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .pm-btn:disabled { opacity: 0.4; cursor: default; }
+    .pm-updated { margin-left: auto; color: var(--text-3); font-size: 12px; }
+    .pm-updated b { color: var(--text-2); font-weight: 600; }
+    .pm-msg { color: var(--text-3); text-align: center; padding: 40px; font-family: var(--mono); font-size: 13px; }
+    .pm-msg.pm-err { color: var(--neg); }
 
-    #report-content {
+    #pm-content {
       background: var(--surface);
       border: 1px solid var(--border-dim);
       border-radius: var(--radius-lg);
       padding: 24px;
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 1.8;
       color: var(--text-2);
+      overflow-wrap: anywhere;
     }
-
-    #report-content h2 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin: 20px 0 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border-dim);
+    #pm-content h1 { font-size: 20px; color: var(--text); margin: 0 0 14px; line-height: 1.4; }
+    #pm-content h2 {
+      font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px;
+      margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-dim);
     }
-    #report-content h2:first-child { margin-top: 0; }
-    #report-content ul { padding-left: 16px; margin: 8px 0; }
-    #report-content li { margin-bottom: 7px; color: var(--text-2); }
-    #report-content strong { color: var(--text); font-weight: 700; }
-    #report-content p { margin: 6px 0; }
-    .conf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 0; margin-top: 8px; }
-    .conf-item { font-size: 13px; color: var(--text-2); padding: 2px 0; }
-
-    .market-chip {
-      background: var(--surface);
-      border: 1px solid var(--border-dim);
-      border-radius: var(--radius);
-      padding: 10px 14px;
-      font-size: 12px;
-      text-align: center;
-      min-width: 88px;
-      transition: border-color 0.2s;
+    #pm-content h3 { font-size: 15px; color: var(--text); margin: 18px 0 8px; }
+    #pm-content h4 { font-size: 14px; color: var(--text-2); margin: 14px 0 6px; }
+    #pm-content h1:first-child, #pm-content h2:first-child { margin-top: 0; }
+    #pm-content p { margin: 8px 0; }
+    #pm-content ul, #pm-content ol { padding-left: 22px; margin: 8px 0; }
+    #pm-content li { margin-bottom: 6px; }
+    #pm-content strong { color: var(--text); font-weight: 700; }
+    #pm-content em { color: var(--text-3); font-size: 13px; }
+    #pm-content p > em:only-child { display: block; line-height: 1.7; }
+    #pm-content a { color: var(--accent); text-decoration: none; }
+    #pm-content a:hover { text-decoration: underline; }
+    #pm-content hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+    #pm-content blockquote {
+      margin: 10px 0; padding: 8px 14px; border-left: 3px solid var(--accent);
+      background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--text-2);
     }
-    .market-chip:hover { border-color: var(--border); }
-    .market-chip .chip-name { font-size: 11px; color: var(--text-3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; }
-    .market-chip .chip-val { font-family: var(--mono); font-weight: 700; font-size: 15px; }
-
-    /* ── 盤後 ─────────────────────────────────── */
-    .am-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-3);
-      text-align: right;
-      margin-bottom: 16px;
-      letter-spacing: 0.3px;
+    #pm-content blockquote p { margin: 4px 0; }
+    .pm-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; border: 1px solid var(--border-dim); border-radius: 8px; }
+    .pm-table { border-collapse: collapse; width: 100%; font-size: 13px; line-height: 1.5; }
+    .pm-table th {
+      font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text-3);
+      padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--surface-2);
     }
-    .am-futures-wrap {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .am-futures-card {
-      background: var(--surface);
-      border: 1px solid var(--border-dim);
-      border-radius: var(--radius-lg);
-      padding: 16px 20px;
-      flex: 1;
-      min-width: 200px;
-    }
-    .am-futures-card .afc-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 10px;
-    }
-    .am-futures-card .afc-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 6px;
-    }
-    .am-futures-card .afc-key {
-      font-size: 12px;
-      color: var(--text-2);
-    }
-    .am-futures-card .afc-val {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 700;
-    }
-    .am-tables-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    .am-section-title {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-    .am-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .am-table th {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-3);
-      text-align: left;
-      padding: 4px 6px;
-      border-bottom: 1px solid var(--border-dim);
-      font-weight: 700;
-    }
-    .am-table td {
-      padding: 6px 6px;
-      border-bottom: 1px solid var(--border-dim);
-      color: var(--text-2);
-      text-align: left;
-    }
-    .am-table td:last-child {
-      font-family: var(--mono);
-      text-align: right;
-      font-size: 13px;
-    }
-    .am-table tr:last-child td { border-bottom: none; }
-    .am-table tr:hover td { background: var(--surface-2); }
-    @media (max-width: 700px) {
-      .am-tables-grid { grid-template-columns: 1fr; }
-      .conf-grid { grid-template-columns: 1fr 1fr; }
+    .pm-table td { padding: 6px 10px; border-bottom: 1px solid var(--border-dim); vertical-align: top; min-width: 4em; }
+    .pm-table tr:last-child td { border-bottom: none; }
+    .pm-table tbody tr:hover td { background: var(--surface-2); }
+    .pm-table .pm-r { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .pm-table .pm-c { text-align: center; }
+    .pm-table .pm-l { text-align: left; }
+    @media (max-width: 600px) {
+      #pm-content { padding: 14px; font-size: 15px; }
+      .pm-table { font-size: 13px; }
+      .pm-updated { margin-left: 0; width: 100%; }
     }
 
     @media (max-width: 480px) {
@@ -1375,7 +1258,7 @@
   <!-- Tabs -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('calc', this)">▸ 交割</button>
-    <button class="tab-btn" onclick="switchTab('report', this)">▸ 晨報</button>
+    <button class="tab-btn" onclick="switchTab('postmarket', this)">▸ 盤後快報</button>
     <button class="tab-btn" onclick="switchTab('stocks', this)">▸ 股票</button>
     <button class="tab-btn" onclick="switchTab('search', this)">▸ 搜尋</button>
     <button class="tab-btn" onclick="switchTab('industry', this)">🗺 產業地圖</button>
@@ -1530,74 +1413,18 @@
     <div id="search-results"></div>
   </div>
 
-  <!-- 晨報 Tab -->
-  <div class="tab-panel" id="tab-report">
-    <div id="report-market" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
-    <div class="report-subtabs">
-      <button class="report-subtab-btn" onclick="scrollToReportSection('international')">🌍 國際</button>
-      <button class="report-subtab-btn" onclick="scrollToReportSection('analysis')">📈 分析</button>
-      <button class="report-subtab-btn" onclick="scrollToReportSection('domestic')">📰 國內</button>
-      <button class="report-subtab-btn" onclick="scrollToReportSection('conferences')">📢 法說會</button>
-      <button class="report-subtab-btn" onclick="scrollToReportSection('aftermarket')">📊 盤後</button>
+  <!-- 盤後快報 Tab
+       資料來源：盤後主播（每天約 21:30–22:00 產生 tw-postmarket-YYYYMMDD.md）
+       → box 上的 /workspace/bot-monitor/postmarket_sync.py（清理 Gmail 章節與本機路徑）
+       → 上傳到本 repo 的 postmarket/index.json 與 postmarket/YYYYMMDD.md（公開，同源讀取不需 token） -->
+  <div class="tab-panel" id="tab-postmarket">
+    <div class="pm-bar">
+      <button class="pm-btn" id="pm-prev" onclick="pmStep(1)" disabled>◀ 前一天</button>
+      <select id="pm-date" onchange="pmSelect(this.value)" aria-label="選擇日期"></select>
+      <button class="pm-btn" id="pm-next" onclick="pmStep(-1)" disabled>後一天 ▶</button>
+      <span class="pm-updated">最後更新 <b id="pm-updated">—</b></span>
     </div>
-    <div id="report-content">
-      <div class="report-section-block" id="block-international">
-        <div class="report-section-header">
-          <h2 class="report-section-title">🌍 國際</h2>
-          <div class="report-update-meta" id="meta-international">最後更新：—</div>
-        </div>
-        <div class="report-section" id="section-international"></div>
-      </div>
-      <div class="report-section-block" id="block-analysis">
-        <div class="report-section-header">
-          <h2 class="report-section-title">📈 分析</h2>
-          <div class="report-update-meta" id="meta-analysis">最後更新：—</div>
-        </div>
-        <div class="report-section" id="section-analysis"></div>
-      </div>
-      <div class="report-section-block" id="block-domestic">
-        <div class="report-section-header">
-          <h2 class="report-section-title">📰 國內</h2>
-          <div class="report-update-meta" id="meta-domestic">最後更新：—</div>
-        </div>
-        <div class="report-section" id="section-domestic"></div>
-      </div>
-      <div class="report-section-block" id="block-conferences">
-        <div class="report-section-header">
-          <h2 class="report-section-title">📢 法說會</h2>
-          <div class="report-update-meta" id="meta-conferences">最後更新：—</div>
-        </div>
-        <div class="report-section" id="section-conferences"></div>
-      </div>
-      <div class="report-section-block" id="block-aftermarket">
-        <div class="report-section-header">
-          <h2 class="report-section-title">📊 盤後</h2>
-          <div class="report-update-meta" id="meta-aftermarket">最後更新：—</div>
-        </div>
-        <div class="report-section" id="section-aftermarket">
-          <div id="am-meta" class="am-meta"></div>
-          <div id="am-futures" class="am-futures-wrap"></div>
-          <div class="am-tables-grid">
-            <div>
-              <div class="am-section-title">外資買超前十</div>
-              <div id="am-foreign-buy"></div>
-            </div>
-            <div>
-              <div class="am-section-title">外資賣超前十</div>
-              <div id="am-foreign-sell"></div>
-            </div>
-            <div>
-              <div class="am-section-title">投信買超前十</div>
-              <div id="am-trust-buy"></div>
-            </div>
-            <div>
-              <div class="am-section-title">投信賣超前十</div>
-              <div id="am-trust-sell"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="pm-content"><p class="pm-msg">切換到此 tab 後自動載入</p></div>
   </div>
 
   <!-- Industry Map Tab -->
@@ -2447,165 +2274,241 @@
     document.getElementById('export-rows').innerHTML = '';
   }
 
-  // ── 晨報 ──────────────────────────────────────────────────
-  function mdToHtml(md) {
-    return md
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-      .replace(/^- (.+)$/gm, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
-      .replace(/\n{2,}/g, '</p><p>')
-      .replace(/^(?!<[hup])(.+)$/gm, '$1')
-      .replace(/(<\/ul>|<\/h2>)\s*(<p>|<\/p>)/g, '$1');
+  // ── 盤後快報 ──────────────────────────────────────────────
+  // 資料來源：盤後主播產生 tw-postmarket-YYYYMMDD.md → box 上 /workspace/bot-monitor/postmarket_sync.py
+  // 清理後上傳到本 repo 的 postmarket/（index.json + YYYYMMDD.md）。公開 repo，同源相對路徑讀取即可。
+  let pmIndex = null;   // { updated_at, reports: [{date, file, title}] }，最新在前
+  let pmCur = null;     // 目前顯示的 YYYYMMDD
+  let pmSeq = 0;        // 避免快速切換時舊請求覆蓋新結果
+
+  // markdown → HTML（純字串函式，不碰 DOM；先跳脫 HTML 再轉換）
+  function pmEscape(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  function scrollToReportSection(name) {
-    const el = document.getElementById('block-' + name);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // 資料時間距今超過這個時數（排除完整跨越的六日）就視為過期
-  const REPORT_STALE_HOURS = 24;
-
-  function reportSectionAgeHours(isoString) {
-    if (!isoString) return null;
-    const from = new Date(isoString);
-    const to = new Date();
-    let hours = (to - from) / 36e5;
-    const cursor = new Date(from);
-    cursor.setHours(0, 0, 0, 0);
-    cursor.setDate(cursor.getDate() + 1);
-    const endDay = new Date(to);
-    endDay.setHours(0, 0, 0, 0);
-    while (cursor < endDay) {
-      const day = cursor.getDay();
-      if (day === 0 || day === 6) hours -= 24;
-      cursor.setDate(cursor.getDate() + 1);
-    }
-    return hours;
-  }
-
-  function setUpdateMeta(elId, isoString) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    if (!isoString) {
-      el.textContent = '最後更新：—';
-      el.classList.remove('stale');
-      return;
-    }
-    const timeText = new Date(isoString).toLocaleString('zh-TW', {
-      month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+  function pmInline(src) {
+    const links = [];
+    let s = pmEscape(src);
+    // 連結：只允許 http/https；先換成佔位符，避免 URL 內的 * 被當成粗斜體
+    s = s.replace(/\[([^\]\n]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)/g, (m, text, url) => {
+      if (!/^https?:\/\//i.test(url)) return text;
+      links.push(`<a href="${url}" target="_blank" rel="noopener">${pmEmph(text)}</a>`);
+      return `\u0000${links.length - 1}\u0000`;
     });
-    const age = reportSectionAgeHours(isoString);
-    const stale = age !== null && age > REPORT_STALE_HOURS;
-    el.textContent = `最後更新：${timeText}${stale ? ' ⚠️ 資料可能未更新' : ''}`;
-    el.classList.toggle('stale', stale);
+    s = pmEmph(s);
+    return s.replace(/\u0000(\d+)\u0000/g, (m, i) => links[+i]);
   }
 
-  async function loadReport() {
-    if (!getToken()) return;
-    const placeholder = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">loading...</p>';
-    ['international','domestic','analysis','conferences'].forEach(k =>
-      document.getElementById('section-' + k).innerHTML = placeholder
-    );
-    try {
-      const data = await ghGet('morning_report.json');
-      if (!data) {
-        const empty = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— no report yet —</p>';
-        ['international','domestic','analysis','conferences'].forEach(k =>
-          document.getElementById('section-' + k).innerHTML = empty
-        );
-        return;
-      }
-      const report = JSON.parse(b64decode(data.content));
-
-      const confs = report.conferences || [];
-      setUpdateMeta('meta-international', report.generated_at);
-      setUpdateMeta('meta-analysis', report.generated_at);
-      setUpdateMeta('meta-conferences', report.generated_at);
-
-      const market = report.market || {};
-      document.getElementById('report-market').innerHTML = Object.entries(market).map(([name, d]) => {
-        const cls = d.pct > 0 ? 'pos' : d.pct < 0 ? 'neg' : 'zero';
-        const sign = d.pct > 0 ? '+' : '';
-        return `<div class="market-chip"><div class="chip-name">${name}</div><div class="chip-val ${cls}">${sign}${d.pct}%</div></div>`;
-      }).join('');
-
-      // 新格式：sections 物件；舊格式：content 字串（向下相容）
-      const sections = report.sections || {};
-      const hasNewFormat = sections.international || sections.domestic || sections.analysis;
-
-      if (hasNewFormat) {
-        document.getElementById('section-international').innerHTML = mdToHtml(sections.international || '');
-        document.getElementById('section-analysis').innerHTML = mdToHtml(sections.analysis || '');
-      } else {
-        document.getElementById('section-international').innerHTML = mdToHtml(report.content || '');
-        document.getElementById('section-analysis').innerHTML =
-          '<p style="color:var(--text-3);padding:20px;font-family:var(--mono);font-size:12px;">（舊格式，請等明日晨報更新）</p>';
-      }
-
-      // 法說會分頁
-      if (confs.length > 0) {
-        const items = confs.map(c =>
-          `<div class="conf-item">${c.company}（${c.code}）${c.time ? ' ' + c.time : ''}</div>`
-        ).join('');
-        document.getElementById('section-conferences').innerHTML =
-          `<h2>📢 今日法說會（共 ${confs.length} 間）</h2><div class="conf-grid">${items}</div>`;
-      } else {
-        document.getElementById('section-conferences').innerHTML =
-          '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 今日無法說會 —</p>';
-      }
-
-      // 國內新聞：讀 domestic_news.json（每小時更新）
-      loadDomesticNews();
-      // 盤後籌碼：讀 after_market.json
-      loadAfterMarket();
-    } catch(e) {
-      document.getElementById('section-international').innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
-    }
+  function pmEmph(s) {
+    return s
+      .replace(/\*\*(?=\S)([\s\S]*?\S)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(?=[^\s*])([^*\n]*?[^\s*])\*/g, '<em>$1</em>')
+      .replace(/\*(?=[^\s*])([^*\n])\*/g, '<em>$1</em>');
   }
 
-  async function loadDomesticNews() {
-    const el = document.getElementById('section-domestic');
-    try {
-      const data = await ghGet('domestic_news.json');
-      if (!data) {
-        el.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;font-family:var(--mono);font-size:13px;">— 尚無資料 —</p>';
-        setUpdateMeta('meta-domestic', null);
-        return;
+  function pmSplitRow(line) {
+    let t = line.trim().replace(/\\\|/g, '\u0001');
+    if (t.startsWith('|')) t = t.slice(1);
+    if (t.endsWith('|')) t = t.slice(0, -1);
+    return t.split('|').map(c => c.trim().replace(/\u0001/g, '|'));
+  }
+
+  const PM_SEP_RE = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/;
+
+  function pmMarkdown(md) {
+    const lines = String(md || '').replace(/\r\n?/g, '\n').split('\n');
+    const out = [];
+    let para = [];
+    const flushPara = () => {
+      if (!para.length) return;
+      const text = para.join('\n').trim();
+      para = [];
+      if (!text) return;
+      // 整段 *註：...* → 斜體段落（內部的單一 * 保留為文字）
+      const m = text.match(/^\*(?!\*)([\s\S]*[^*\s])\*$/);
+      out.push(m ? `<p><em>${pmInline(m[1])}</em></p>` : `<p>${pmInline(text)}</p>`);
+    };
+
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+
+      if (!line.trim()) { flushPara(); i++; continue; }
+
+      const h = line.match(/^(#{1,4})\s+(.*?)\s*#*\s*$/);
+      if (h) {
+        flushPara();
+        const n = h[1].length;
+        out.push(`<h${n}>${pmInline(h[2])}</h${n}>`);
+        i++; continue;
       }
-      const news = JSON.parse(b64decode(data.content));
-      setUpdateMeta('meta-domestic', news.fetched_at);
-      const items = news.items || [];
 
-      const revenue = items.filter(i => i.source === 'mops');
-      const general = items.filter(i => i.source === 'yahoo');
+      if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) {
+        flushPara(); out.push('<hr>'); i++; continue;
+      }
 
-      function renderItems(list) {
-        return list.map(i => {
-          const title = i.link
-            ? `<a href="${i.link}" target="_blank" rel="noopener noreferrer" class="news-link">${i.title}</a>`
-            : i.title;
-          return `<li>
-            ${i.published ? `<span style="font-family:var(--mono);font-size:10px;color:var(--text-3);margin-right:8px;">${i.published}</span>` : ''}
-            <strong>${title}</strong>
-            ${i.summary ? `<br><span style="font-size:12px;color:var(--text-3);">${i.summary}</span>` : ''}
-          </li>`;
+      // GFM 表格：本行含 | 且下一行是分隔列
+      if (line.includes('|') && i + 1 < lines.length && lines[i + 1].includes('|') && PM_SEP_RE.test(lines[i + 1])) {
+        flushPara();
+        const head = pmSplitRow(line);
+        const aligns = pmSplitRow(lines[i + 1]).map(c =>
+          /^:-+:$/.test(c) ? 'pm-c' : /-+:$/.test(c) ? 'pm-r' : 'pm-l');
+        const cols = head.length;
+        i += 2;
+        const rows = [];
+        while (i < lines.length && lines[i].trim() && lines[i].includes('|')) {
+          rows.push(pmSplitRow(lines[i]));
+          i++;
+        }
+        const cell = (tag, c, k) => `<${tag} class="${aligns[k] || 'pm-l'}">${pmInline(c || '')}</${tag}>`;
+        const thead = '<tr>' + head.map((c, k) => cell('th', c, k)).join('') + '</tr>';
+        const tbody = rows.map(r => {
+          const cells = [];
+          for (let k = 0; k < cols; k++) cells.push(cell('td', r[k], k));
+          return '<tr>' + cells.join('') + '</tr>';
         }).join('');
+        out.push(`<div class="pm-table-wrap"><table class="pm-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`);
+        continue;
       }
 
-      let html = '';
-      if (revenue.length > 0) {
-        html += `<h2>💰 營收 / 自結財報</h2><ul>${renderItems(revenue)}</ul>`;
+      if (/^\s*>/.test(line)) {
+        flushPara();
+        const q = [];
+        while (i < lines.length && /^\s*>/.test(lines[i])) {
+          q.push(lines[i].replace(/^\s*>\s?/, ''));
+          i++;
+        }
+        out.push(`<blockquote>${pmMarkdown(q.join('\n'))}</blockquote>`);
+        continue;
       }
-      if (general.length > 0) {
-        html += `<h2>📰 國內財經新聞</h2><ul>${renderItems(general)}</ul>`;
+
+      const ol = line.match(/^\s*(\d+)[.)]\s+(.*)$/);
+      const ul = !ol && line.match(/^\s*[-*+]\s+(.*)$/);
+      if (ol || ul) {
+        flushPara();
+        const re = ol ? /^\s*(\d+)[.)]\s+(.*)$/ : /^\s*[-*+]\s+(.*)$/;
+        const items = [];
+        while (i < lines.length) {
+          const m = lines[i].match(re);
+          if (m) { items.push(ol ? m[2] : m[1]); i++; continue; }
+          // 縮排的延續行併入上一個項目
+          if (items.length && /^\s{2,}\S/.test(lines[i]) && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i])) {
+            items[items.length - 1] += '\n' + lines[i].trim();
+            i++; continue;
+          }
+          break;
+        }
+        const lis = items.map(t => `<li>${pmInline(t)}</li>`).join('');
+        if (ol) {
+          const start = parseInt(ol[1], 10);
+          out.push(start !== 1 ? `<ol start="${start}">${lis}</ol>` : `<ol>${lis}</ol>`);
+        } else {
+          out.push(`<ul>${lis}</ul>`);
+        }
+        continue;
       }
-      el.innerHTML = html;
-    } catch(e) {
-      el.innerHTML = `<p style="color:var(--neg)">error: ${e.message}</p>`;
+
+      para.push(line);
+      i++;
     }
+    flushPara();
+    return out.join('\n');
+  }
+
+  async function pmFetchText(path) {
+    try {
+      const r = await fetch(`${path}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return await r.text();
+    } catch (e) {
+      // 相對路徑失敗（例如本機開檔）→ 退回 GitHub contents API
+      const d = await ghGet(path);
+      if (!d || !d.content) throw new Error(`找不到 ${path}`);
+      return b64decode(d.content);
+    }
+  }
+
+  function pmWeekday(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!m) return '';
+    return '日一二三四五六'[new Date(+m[1], +m[2] - 1, +m[3]).getDay()];
+  }
+
+  function pmKey(r) { return String(r.date || '').replace(/-/g, ''); }
+
+  function pmHashKey() {
+    const m = /(?:^#|&)postmarket=(\d{8})/.exec(location.hash || '');
+    return m ? m[1] : null;
+  }
+
+  function pmUpdateNav() {
+    const list = (pmIndex && pmIndex.reports) || [];
+    const idx = list.findIndex(r => pmKey(r) === pmCur);
+    document.getElementById('pm-prev').disabled = idx < 0 || idx >= list.length - 1;
+    document.getElementById('pm-next').disabled = idx <= 0;
+    const sel = document.getElementById('pm-date');
+    if (idx >= 0) sel.value = pmCur;
+  }
+
+  async function loadPostmarket() {
+    const content = document.getElementById('pm-content');
+    const seq = ++pmSeq;
+    if (!pmIndex) content.innerHTML = '<p class="pm-msg">loading...</p>';
+    try {
+      const idx = JSON.parse(await pmFetchText('postmarket/index.json'));
+      if (seq !== pmSeq) return;
+      pmIndex = idx;
+      const list = Array.isArray(idx.reports) ? idx.reports : [];
+      document.getElementById('pm-updated').textContent = monTime(idx.updated_at);
+      document.getElementById('pm-date').innerHTML = list.map(r => {
+        const w = pmWeekday(r.date);
+        return `<option value="${pmEscape(pmKey(r))}">${pmEscape(r.date)}${w ? `（${w}）` : ''}</option>`;
+      }).join('');
+      if (!list.length) {
+        content.innerHTML = '<p class="pm-msg">— 尚無盤後快報 —</p>';
+        pmUpdateNav();
+        return;
+      }
+      const want = pmHashKey() || pmCur;
+      const key = list.some(r => pmKey(r) === want) ? want : pmKey(list[0]);
+      await pmShow(key);
+    } catch (e) {
+      if (seq !== pmSeq) return;
+      content.innerHTML = `<p class="pm-msg pm-err">⚠ 無法載入盤後快報：${pmEscape(e && e.message ? e.message : e)}</p>`;
+    }
+  }
+
+  async function pmShow(key) {
+    const list = (pmIndex && pmIndex.reports) || [];
+    const r = list.find(x => pmKey(x) === key);
+    if (!r) return;
+    pmCur = key;
+    pmUpdateNav();
+    const content = document.getElementById('pm-content');
+    const seq = ++pmSeq;
+    content.innerHTML = '<p class="pm-msg">loading...</p>';
+    try {
+      const md = await pmFetchText(r.file || `postmarket/${key}.md`);
+      if (seq !== pmSeq) return;
+      content.innerHTML = pmMarkdown(md);
+      if (pmHashKey() !== key && history.replaceState) {
+        history.replaceState(null, '', `#postmarket=${key}`);
+      }
+    } catch (e) {
+      if (seq !== pmSeq) return;
+      content.innerHTML = `<p class="pm-msg pm-err">⚠ 無法載入 ${pmEscape(r.date)}：${pmEscape(e && e.message ? e.message : e)}</p>`;
+    }
+  }
+
+  function pmSelect(key) { pmShow(key); }
+
+  // dir = +1 → 前一天（清單往後）；-1 → 後一天（清單往前）
+  function pmStep(dir) {
+    const list = (pmIndex && pmIndex.reports) || [];
+    const idx = list.findIndex(r => pmKey(r) === pmCur);
+    const next = list[idx + dir];
+    if (idx >= 0 && next) pmShow(pmKey(next));
   }
 
   // ── 股票彙集器 ────────────────────────────────────────────
@@ -2822,95 +2725,6 @@
       </div>`;
   }
 
-  // ── 盤後 ──────────────────────────────────────────────────
-  async function loadAfterMarket() {
-    if (!getToken()) return;
-    const loading = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">loading...</p>';
-    document.getElementById('am-futures').innerHTML = loading;
-    document.getElementById('am-foreign-buy').innerHTML = loading;
-    document.getElementById('am-foreign-sell').innerHTML = loading;
-    document.getElementById('am-trust-buy').innerHTML = loading;
-    document.getElementById('am-trust-sell').innerHTML = loading;
-
-    try {
-      const raw = await ghGet('after_market.json');
-      if (!raw) {
-        const empty = '<p style="color:var(--text-3);font-family:var(--mono);font-size:12px;padding:20px 0;">— 尚無資料，盤後 15:05 自動更新 —</p>';
-        ['am-futures','am-foreign-buy','am-foreign-sell','am-trust-buy','am-trust-sell'].forEach(id =>
-          document.getElementById(id).innerHTML = empty);
-        setUpdateMeta('meta-aftermarket', null);
-        return;
-      }
-
-      const d = JSON.parse(b64decode(raw.content));
-      const fetched = d.fetched_at ? new Date(d.fetched_at).toLocaleString('zh-TW') : '';
-      document.getElementById('am-meta').textContent =
-        `資料日期: ${d.date || d.fetched_at?.slice(0,10) || '—'}  ｜  更新: ${fetched}`;
-      setUpdateMeta('meta-aftermarket', d.fetched_at);
-
-      // ── 期貨三大法人 ──
-      const fut = d.taiex_futures || {};
-      const fmtNum = (n) => n == null ? '—' : (n > 0 ? '+' : '') + n.toLocaleString();
-      const fmtCls = (n) => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
-
-      const futCards = ['外資', '投信', '自營商'].map(who => {
-        const f = fut[who] || {};
-        const net = f.oi_net ?? null;
-        const trade = f.net_trade ?? null;
-        return `
-          <div class="am-futures-card">
-            <div class="afc-label">臺指期 · ${who}</div>
-            <div class="afc-row">
-              <span class="afc-key">未平倉淨額</span>
-              <span class="afc-val ${fmtCls(net)}">${fmtNum(net)} 口</span>
-            </div>
-            <div class="afc-row">
-              <span class="afc-key">當日增減</span>
-              <span class="afc-val ${fmtCls(trade)}">${fmtNum(trade)} 口</span>
-            </div>
-            <div class="afc-row">
-              <span class="afc-key">多方 / 空方</span>
-              <span class="afc-val" style="color:var(--text-2);font-size:11px;">
-                ${(f.oi_long||0).toLocaleString()} / ${(f.oi_short||0).toLocaleString()}
-              </span>
-            </div>
-          </div>`;
-      }).join('');
-      document.getElementById('am-futures').innerHTML = futCards;
-
-      // ── 外資/投信買賣超表格 ──
-      function renderTable(rows, isNeg) {
-        if (!rows || !rows.length) return '<p style="color:var(--text-3);font-size:12px;padding:10px 0;">無資料</p>';
-        const fmt = (n) => {
-          const abs = Math.abs(n);
-          const s = abs >= 1000000 ? (abs/1000000).toFixed(1)+'M' : abs >= 1000 ? (abs/1000).toFixed(0)+'K' : abs.toString();
-          return (n < 0 ? '-' : '') + s;
-        };
-        const rows_html = rows.map((r, i) => {
-          const cls = isNeg ? 'neg' : 'pos';
-          return `<tr>
-            <td style="color:var(--text-3);font-family:var(--mono);font-size:10px;">${i+1}</td>
-            <td><span style="color:var(--text-3);font-family:var(--mono);font-size:10px;margin-right:4px;">${r.code}</span>${r.name}</td>
-            <td class="${cls}">${fmt(r.shares)}</td>
-          </tr>`;
-        }).join('');
-        return `<table class="am-table">
-          <thead><tr><th>#</th><th>股票</th><th>股數</th></tr></thead>
-          <tbody>${rows_html}</tbody>
-        </table>`;
-      }
-
-      document.getElementById('am-foreign-buy').innerHTML  = renderTable(d.foreign_buy,  false);
-      document.getElementById('am-foreign-sell').innerHTML = renderTable(d.foreign_sell, true);
-      document.getElementById('am-trust-buy').innerHTML    = renderTable(d.trust_buy,    false);
-      document.getElementById('am-trust-sell').innerHTML   = renderTable(d.trust_sell,   true);
-
-    } catch(e) {
-      document.getElementById('am-futures').innerHTML =
-        `<p style="color:var(--neg);font-family:var(--mono);font-size:12px;">載入失敗: ${e.message}</p>`;
-    }
-  }
-
   // ── 操作筆記 ──────────────────────────────────────────────
   const MYBRAIN_REPO = 'kuangame/MyBrain';
   let opNoteImages = [];
@@ -3101,10 +2915,15 @@
   const _switchTab = switchTab;
   switchTab = function(name, btn) {
     _switchTab(name, btn);
-    if (name === 'report') loadReport();
+    if (name === 'postmarket') loadPostmarket();
     if (name === 'stocks') loadStocks();
     if (name === 'opnotes') { setupOpNotePaste(); loadOpNotes(); }
   };
+  // 分享連結 #postmarket=YYYYMMDD → 直接開盤後快報分頁
+  if (pmHashKey()) {
+    const pmBtn = document.querySelector(`.tab-btn[onclick*="'postmarket'"]`);
+    if (pmBtn) switchTab('postmarket', pmBtn);
+  }
 
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
