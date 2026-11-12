@@ -1,10 +1,9 @@
 {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "items": [
-    "晨報系統穩定運行中，Haiku API 平均 33 秒完成",
-    "名片系統核心功能完成，待真實名片測試與排程自動化",
-    "股票匯集器功能可用，缺自動排程機制需補",
-    "Dashboard 晨報單頁化改版完成，待 push 線上",
-    "Calendar 權限 bug 待確認，明早檢查 discord-morning-error.log"
+    "Discord 晨報 Calendar 權限 bug 待確認，明早檢查 error log",
+    "名片系統核心功能完成，用合成圖測過可行，等真實名片實測",
+    "股票匯集器 Dashboard 上線，目前手動跑 stock_sync.py 缺自動排程",
+    "晨報單頁化改版完成，新增時間戳警示，國內新聞流程需修復"
   ]
 }
