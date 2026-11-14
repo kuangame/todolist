@@ -1,9 +1,10 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-14",
   "items": [
-    "Discord 晨報 Calendar 權限 bug 待確認，明早檢查 error log",
-    "名片系統核心功能完成，用合成圖測過可行，等真實名片實測",
-    "股票匯集器 Dashboard 上線，目前手動跑 stock_sync.py 缺自動排程",
-    "晨報單頁化改版完成，新增時間戳警示，國內新聞流程需修復"
+    "今日無 commit，各專案維持穩定運作中",
+    "晨報系統（Haiku API）穩定 33 秒完成，Discord 早安晨報正常",
+    "名片系統核心功能可用，待真實名片測試與自動排程",
+    "股票匯集器缺自動排程機制，目前手動跑 stock_sync.py",
+    "Discord 晨報 Calendar 權限 debug 待跟進，需確認 TCC 問題"
   ]
 }
