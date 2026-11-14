@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T08:49:54+08:00",
+  "generated_at": "2026-11-14T20:52:06+08:00",
   "date": "2026-11-14",
   "timezone": "Asia/Taipei",
   "is_trading_day": false,
@@ -121,15 +121,15 @@
       "schedule": "10:05",
       "days": "sat",
       "line": true,
-      "status": "pending",
-      "last_run": null,
-      "note": "尚未到排程時間",
+      "status": "ok",
+      "last_run": "2026-11-14T10:15:01+08:00",
+      "note": "已找到當日產出",
       "history": [
         {
           "date": "2026-11-14",
-          "status": "pending",
-          "last_run": null,
-          "note": "尚未到排程時間"
+          "status": "ok",
+          "last_run": "2026-11-14T10:15:01+08:00",
+          "note": "已找到當日產出"
         },
         {
           "date": "2026-11-13",
