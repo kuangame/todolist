@@ -211,6 +211,53 @@
       .sum-grid.sub { grid-template-columns: 1fr 1fr; }
       .sum-value { font-size: 20px; }
     }
+
+    /* ══ v4.1 動態效果 ══════════════════════════ */
+    /* 畫面切換淡入 */
+    .gate:not([hidden]), #screen-view:not([hidden]) { animation: fin-in 220ms ease-out; }
+    @keyframes fin-in { from { opacity: 0; transform: translateY(6px); } }
+
+    /* 隱藏金額切換開關（行為同原本按鈕：切 body.masked） */
+    .mask-switch { gap: 8px; }
+    .mask-switch-track {
+      position: relative; flex: none; width: 30px; height: 17px; border-radius: 999px;
+      background: var(--surface-3); border: 1px solid var(--border);
+      transition: background .2s, border-color .2s;
+    }
+    .mask-switch-thumb {
+      position: absolute; top: 1px; left: 1px; width: 13px; height: 13px; border-radius: 50%;
+      background: var(--text-2);
+      transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), background .2s;
+    }
+    .mask-switch[aria-checked="true"] .mask-switch-track { background: rgba(247,183,49,0.22); border-color: var(--warn); }
+    .mask-switch[aria-checked="true"] .mask-switch-thumb { transform: translateX(13px); background: var(--warn); }
+    .mask-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* 按鈕載入狀態（與 Dashboard 同樣式） */
+    .btn-spin {
+      display: inline-block; width: .95em; height: .95em; margin-right: 6px; vertical-align: -0.15em;
+      border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+      animation: btn-spin .7s linear infinite;
+    }
+    @keyframes btn-spin { to { transform: rotate(360deg); } }
+    button.is-loading, button.is-loading:hover, .btn-primary.is-loading:disabled { cursor: progress; opacity: .72; }
+
+    /* 密碼錯誤搖晃 */
+    .shake { animation: fx-shake 280ms ease; }
+    @keyframes fx-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); } 40% { transform: translateX(5px); }
+      60% { transform: translateX(-4px); } 80% { transform: translateX(2px); }
+    }
+    .gate input[type="password"].field-error { border-color: var(--neg); box-shadow: 0 0 0 3px rgba(245,93,107,0.15); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+      .btn-spin { animation-duration: 1.6s !important; animation-iteration-count: infinite !important; }
+    }
   </style>
 </head>
 <body>
@@ -223,7 +270,10 @@
       <span class="header-ver">ENCRYPTED</span>
     </div>
     <div class="header-actions">
-      <button class="btn" id="btn-mask" type="button" hidden>◐ 隱藏金額</button>
+      <button class="btn mask-switch" id="btn-mask" type="button" role="switch" aria-checked="false" title="只遮住畫面上的數字，不是存取控制" hidden>
+        <span class="mask-switch-track" aria-hidden="true"><span class="mask-switch-thumb"></span></span>
+        <span class="mask-switch-label">隱藏金額</span>
+      </button>
       <button class="btn" id="btn-lock" type="button" hidden>🔒 鎖定</button>
       <button class="btn danger" id="btn-forget" type="button" hidden>✕ 忘記已載入檔案</button>
       <a class="btn" href="index.html">← 回到 Dashboard</a>
@@ -678,6 +728,36 @@
     }
   }
 
+  // ── UI：按鈕載入狀態（小轉圈 + disabled）、欄位搖晃 ─────────
+  function setBtnLoading(btn, on, text) {
+    if (!btn) return;
+    if (on) {
+      if (btn.classList.contains('is-loading')) return;
+      btn.dataset.idleText = btn.textContent;
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+      btn.setAttribute('aria-busy', 'true');
+      btn.replaceChildren(el('span', { class: 'btn-spin', 'aria-hidden': 'true' }), text || btn.dataset.idleText);
+    } else {
+      if (!btn.classList.contains('is-loading')) return;
+      btn.replaceChildren(btn.dataset.idleText || '');
+      btn.disabled = false;
+      btn.classList.remove('is-loading');
+      btn.removeAttribute('aria-busy');
+      delete btn.dataset.idleText;
+    }
+  }
+
+  function shakeEl(node) {
+    if (!node) return;
+    node.classList.remove('shake');
+    void node.offsetWidth;
+    node.classList.add('shake', 'field-error');
+    node.addEventListener('animationend', () => node.classList.remove('shake'), { once: true });
+    clearTimeout(node._fieldErrTimer);
+    node._fieldErrTimer = setTimeout(() => node.classList.remove('shake', 'field-error'), 1200);
+  }
+
   function lock() {
     wipeView();
     passError.textContent = '';
@@ -733,17 +813,20 @@
     passError.textContent = '';
     if (!password) {
       passError.textContent = '請輸入密碼。';
+      shakeEl(passInput);
+      passInput.focus();
       return;
     }
     if (!cachedEnvelope) { show('file'); return; }
-    passSubmit.disabled = true;
-    passSubmit.textContent = '解密中…';
+    setBtnLoading(passSubmit, true, '解密中…');
     try {
       let data;
       try {
         data = await decryptFinance(cachedEnvelope, password);
       } catch (e) {
         passError.textContent = ERR_DECRYPT;
+        shakeEl(passInput);
+        passInput.focus();
         return;
       }
       if (!validateData(data)) {
@@ -762,15 +845,14 @@
       applyMask();
       show('view');
     } finally {
-      passSubmit.disabled = false;
-      passSubmit.textContent = '解鎖';
+      setBtnLoading(passSubmit, false);
     }
   });
 
   function applyMask() {
     document.body.classList.toggle('masked', masked);
     btnMask.classList.toggle('on', masked);
-    btnMask.textContent = masked ? '◑ 顯示金額' : '◐ 隱藏金額';
+    btnMask.setAttribute('aria-checked', String(masked));
     const note = $('mask-note');
     if (note) note.hidden = !masked;
   }
