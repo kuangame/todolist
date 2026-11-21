@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "items": [
-    "今日無新 commit，各專案維持穩定運行中",
-    "晨報系統穩定 33 秒完成，Discord 早安晨報正常",
-    "名片系統核心功能可用，待真實名片實測",
-    "股票匯集器需補自動排程，Dashboard 晨報單頁化待 push",
-    "Calendar 權限 bug 待查證，明天檢查 discord-morning-error.log"
+    "晨報系統穩定運行中，Claude Haiku API 33秒完成",
+    "名片系統核心功能可用，待真實名片實測與自動排程",
+    "股票匯集器缺自動排程，目前手動跑 stock_sync.py",
+    "Discord 晨報 Calendar 權限 bug 待確認，需檢查 error.log",
+    "Dashboard 晨報頁改版完成，本機改檔需推 GitHub"
   ]
 }
