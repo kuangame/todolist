@@ -572,7 +572,7 @@
     .pnl-ledger-body tr.pnl-drow[hidden] { display: none; }
     .pnl-empty { color: var(--text-3); font-family: var(--mono); font-size: 13px; text-align: center; padding: 14px; }
     /* 對帳簿卡片數 = 帳戶數 + 合計（JS 設 --pnl-cols）；表頭不換行，欄多時 table-wrap 橫向捲動 */
-    .pnl-ledger-body .result-cards { grid-template-columns: repeat(var(--pnl-cols, 4), minmax(0, 1fr)); }
+    .pnl-ledger-body .result-cards { grid-template-columns: repeat(var(--pnl-cols, 5), minmax(0, 1fr)); }
     .pnl-ledger-body .card-value { font-size: 16px; }
     .pnl-ledger-body thead th { white-space: nowrap; }
     /* 本月交易量：成交金額不是損益，一般顏色 */
@@ -1625,9 +1625,11 @@
           <input class="cash-input" type="number" id="calc-cash-fubon" placeholder="0" oninput="calcRecalc()" /></label>
         <label class="calc-field"><span>元大現金</span>
           <input class="cash-input" type="number" id="calc-cash-yuanta" placeholder="0" oninput="calcRecalc()" /></label>
+        <label class="calc-field"><span>凱基現金</span>
+          <input class="cash-input" type="number" id="calc-cash-kgi" placeholder="0" oninput="calcRecalc()" /></label>
         <label class="calc-field"><span>預收</span>
           <input class="cash-input" type="number" id="calc-prepaid" placeholder="0" oninput="calcRecalc()" /></label>
-        <!-- 其他現金：接凱基等沒有現金格的 T+1，只有不為 0 時才顯示 -->
+        <!-- 其他現金：尚未獨立現金格的帳戶，只有不為 0 時才顯示 -->
         <label class="calc-field" id="calc-cash-other-field" hidden><span>其他現金</span>
           <input class="cash-input" type="number" id="calc-cash-other" placeholder="0" oninput="calcRecalc()" /></label>
       </div>
@@ -2415,12 +2417,12 @@
 
   // ── 交割計算機 ─────────────────────────────────────────────
   let calcSha = null;
-  // 現金依券商拆開：富邦／元大各一格；凱基（或其他沒有現金格的帳戶）的 T+1 滾進 cashOther
-  const CASH_FIELD = { 富邦: 'cashFubon', 元大: 'cashYuanta' };
+  // 現金依券商拆開：富邦／元大／凱基各一格；沒有現金格的帳戶 T+1 才滾進 cashOther
+  const CASH_FIELD = { 富邦: 'cashFubon', 元大: 'cashYuanta', 凱基: 'cashKGI' };
   const cashFieldOf = acc => CASH_FIELD[acc] || 'cashOther';
 
   function emptyCalcData() {
-    return { cashFubon: '', cashYuanta: '', cashOther: '', prepaid: '',
+    return { cashFubon: '', cashYuanta: '', cashKGI: '', cashOther: '', prepaid: '',
       accounts: { 富邦:{t1:'',t2:''}, 元大:{t1:'',t2:''}, 凱基:{t1:'',t2:''} }, lastDate: null };
   }
   let calcData = emptyCalcData();
@@ -2433,7 +2435,7 @@
       d.cashYuanta = '';
     }
     delete d.cash;
-    ['cashFubon', 'cashYuanta', 'cashOther', 'prepaid'].forEach(k => { if (d[k] == null) d[k] = ''; });
+    ['cashFubon', 'cashYuanta', 'cashKGI', 'cashOther', 'prepaid'].forEach(k => { if (d[k] == null) d[k] = ''; });
     d.accounts = d.accounts || {};
     ACCOUNTS.forEach(acc => { d.accounts[acc] = { t1: '', t2: '', ...(d.accounts[acc] || {}) }; });
     if (d.lastDate === undefined) d.lastDate = null;
@@ -2444,6 +2446,7 @@
     updateCalcDates();
     document.getElementById('calc-cash-fubon').value = calcData.cashFubon || '';
     document.getElementById('calc-cash-yuanta').value = calcData.cashYuanta || '';
+    document.getElementById('calc-cash-kgi').value = calcData.cashKGI || '';
     document.getElementById('calc-cash-other').value = calcData.cashOther || '';
     document.getElementById('calc-cash-other-field').hidden = !(parseFloat(calcData.cashOther) || 0);
     document.getElementById('calc-prepaid').value = calcData.prepaid || '';
@@ -2463,10 +2466,10 @@
     const days = countWorkDaysBetween(last, today);
     if (days <= 0) return;
 
-    // 今天 08:00 同步已把富邦、元大現金寫成券商可用餘額（含當日交割），T+1 不能再加一次
+    // 今天 08:00 同步已把各家現金寫成券商可用餘額（含當日交割），T+1 不能再加一次
     const syncedToday = calcData.cashSyncDate === new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
 
-    // 各帳戶的 T+1 交割進自己的現金格（富邦→富邦現金、元大→元大現金、凱基→其他現金）
+    // 各帳戶的 T+1 交割進自己的現金格（富邦→富邦現金、元大→元大現金、凱基→凱基現金）
     const settleT1 = () => ACCOUNTS.forEach(acc => {
       const t1 = parseFloat(calcData.accounts[acc].t1) || 0;
       if (!t1) return;
@@ -2508,6 +2511,7 @@
     calcData.lastDate = localDateStr(today);
     calcData.cashFubon = document.getElementById('calc-cash-fubon').value;
     calcData.cashYuanta = document.getElementById('calc-cash-yuanta').value;
+    calcData.cashKGI = document.getElementById('calc-cash-kgi').value;
     calcData.cashOther = document.getElementById('calc-cash-other').value;
     calcData.prepaid = document.getElementById('calc-prepaid').value;
     ACCOUNTS.forEach(acc => {
@@ -2517,7 +2521,7 @@
       });
     });
 
-    const cash = calcVal('calc-cash-fubon') + calcVal('calc-cash-yuanta') + calcVal('calc-cash-other');
+    const cash = calcVal('calc-cash-fubon') + calcVal('calc-cash-yuanta') + calcVal('calc-cash-kgi') + calcVal('calc-cash-other');
     const prepaid = calcVal('calc-prepaid');
     let sumT1 = 0, sumT2 = 0;
     ACCOUNTS.forEach(acc => { sumT1 += calcVal(`calc-${acc}-t1`); sumT2 += calcVal(`calc-${acc}-t2`); });
@@ -2555,11 +2559,11 @@
     }
   }
 
-  // ── 對帳簿（pnl.json：{"YYYY-MM-DD": {"富邦": n, "元大": n, "富邦期貨": n, "vol": {"富邦": n, "元大": n}}}）──
+  // ── 對帳簿（pnl.json：{"YYYY-MM-DD": {"富邦": n, "元大": n, "凱基": n, "富邦期貨": n, "vol": {"富邦": n, "元大": n, "凱基": n}}}）──
   // 損益帳戶（顯示順序），要加帳戶只改這裡；舊資料缺的帳戶視為 0、表格顯示 —
-  const PNL_ACCOUNTS = ['富邦', '元大', '富邦期貨'];
+  const PNL_ACCOUNTS = ['富邦', '元大', '凱基', '富邦期貨'];
   // 交易量帳戶（"vol" 欄位，成交金額，不是損益，不進損益合計）
-  const PNL_VOL_ACCOUNTS = ['富邦', '元大'];
+  const PNL_VOL_ACCOUNTS = ['富邦', '元大', '凱基'];
 
   function pnlNum(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
   function pnlFmt(n) {
