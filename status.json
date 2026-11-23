@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T08:25:45+08:00",
+  "generated_at": "2026-11-23T20:28:17+08:00",
   "date": "2026-11-23",
   "timezone": "Asia/Taipei",
   "is_trading_day": true,
@@ -286,15 +286,15 @@
       "schedule": "19:30",
       "days": "trading",
       "line": false,
-      "status": "pending",
-      "last_run": null,
-      "note": "尚未到排程時間",
+      "status": "ok",
+      "last_run": "2026-11-23T19:25:33+08:00",
+      "note": "已找到當日產出",
       "history": [
         {
           "date": "2026-11-23",
-          "status": "pending",
-          "last_run": null,
-          "note": "尚未到排程時間"
+          "status": "ok",
+          "last_run": "2026-11-23T19:25:33+08:00",
+          "note": "已找到當日產出"
         },
         {
           "date": "2026-11-22",
@@ -341,15 +341,15 @@
       "schedule": "20:00",
       "days": "trading",
       "line": true,
-      "status": "pending",
-      "last_run": null,
-      "note": "尚未到排程時間",
+      "status": "late",
+      "last_run": "2026-11-23T20:26:41+08:00",
+      "note": "已產出，但晚於寬限（20:00 + 20 分）",
       "history": [
         {
           "date": "2026-11-23",
-          "status": "pending",
-          "last_run": null,
-          "note": "尚未到排程時間"
+          "status": "late",
+          "last_run": "2026-11-23T20:26:41+08:00",
+          "note": "已產出，但晚於寬限（20:00 + 20 分）"
         },
         {
           "date": "2026-11-22",
@@ -396,15 +396,15 @@
       "schedule": "19:50",
       "days": "trading",
       "line": false,
-      "status": "pending",
-      "last_run": null,
-      "note": "尚未到排程時間",
+      "status": "ok",
+      "last_run": "2026-11-23T20:27:00+08:00",
+      "note": "已找到當日產出",
       "history": [
         {
           "date": "2026-11-23",
-          "status": "pending",
-          "last_run": null,
-          "note": "尚未到排程時間"
+          "status": "ok",
+          "last_run": "2026-11-23T20:27:00+08:00",
+          "note": "已找到當日產出"
         },
         {
           "date": "2026-11-22",
@@ -451,15 +451,15 @@
       "schedule": null,
       "days": "trading",
       "line": false,
-      "status": "unknown",
+      "status": "ok",
       "last_run": null,
-      "note": "無法檢查 GitHub pnl.json",
+      "note": "pnl.json 已有當日鍵（未讀取金額）",
       "history": [
         {
           "date": "2026-11-23",
-          "status": "pending",
+          "status": "ok",
           "last_run": null,
-          "note": "對帳簿當日尚未寫入；確切排程時間未確認"
+          "note": "pnl.json 已有當日鍵（未讀取金額）"
         },
         {
           "date": "2026-11-22",
