@@ -1,0 +1,183 @@
+{
+ "updatedAt": "2026-11-25T23:43:02",
+ "accounts": [
+  {
+   "name": "富邦",
+   "status": "ok",
+   "error": null,
+   "generatedAt": "2026-11-25T23:38:43",
+   "holdings": [
+    {
+     "code": "7686",
+     "name": "捷立康",
+     "type": "現股",
+     "qty": 8300,
+     "avgCost": 706.44,
+     "price": 635.69,
+     "marketValue": 5276227,
+     "costAmt": 5863452,
+     "unrealized": -604776,
+     "returnPct": -10.31,
+     "priceSrc": "興櫃日均價"
+    },
+    {
+     "code": "4573",
+     "name": "高明鐵",
+     "type": "現股",
+     "qty": 5000,
+     "avgCost": 326.78,
+     "price": 361.97,
+     "marketValue": 1809850,
+     "costAmt": 1633900,
+     "unrealized": 169910,
+     "returnPct": 10.4,
+     "priceSrc": "興櫃日均價"
+    },
+    {
+     "code": "7729",
+     "name": "仲恩生醫",
+     "type": "現股",
+     "qty": 4800,
+     "avgCost": 191.43,
+     "price": 191.47,
+     "marketValue": 919056,
+     "costAmt": 918864,
+     "unrealized": -2841,
+     "returnPct": -0.31,
+     "priceSrc": "興櫃日均價"
+    },
+    {
+     "code": "6696",
+     "name": "仁新*",
+     "type": "現股",
+     "qty": 4000,
+     "avgCost": 181.94,
+     "price": 121.99,
+     "marketValue": 487960,
+     "costAmt": 727760,
+     "unrealized": -241428,
+     "returnPct": -33.17,
+     "priceSrc": "興櫃日均價"
+    },
+    {
+     "code": "5271",
+     "name": "紘通",
+     "type": "現股",
+     "qty": 23449,
+     "avgCost": 38.08,
+     "price": 10.04,
+     "marketValue": 235428,
+     "costAmt": 892938,
+     "unrealized": -658254,
+     "returnPct": -73.72,
+     "priceSrc": "興櫃日均價"
+    }
+   ],
+   "totals": {
+    "count": 5,
+    "marketValue": 8728521,
+    "unrealized": -1337389,
+    "costAmt": 10036914,
+    "returnPct": -13.32,
+    "missingMV": 0
+   }
+  },
+  {
+   "name": "元大",
+   "status": "ok",
+   "error": null,
+   "generatedAt": "2026-11-25T23:38:45",
+   "holdings": [],
+   "totals": {
+    "count": 0,
+    "marketValue": 0,
+    "unrealized": 0,
+    "costAmt": 0,
+    "returnPct": null,
+    "missingMV": 0
+   }
+  },
+  {
+   "name": "凱基",
+   "status": "ok",
+   "error": null,
+   "generatedAt": "2026-11-25T23:38:56",
+   "holdings": [
+    {
+     "code": "2360",
+     "name": "致茂",
+     "type": "現股",
+     "qty": 2000,
+     "avgCost": 836.0,
+     "price": 1010.0,
+     "marketValue": 2020000,
+     "costAmt": 1672309,
+     "unrealized": 338753,
+     "returnPct": 20.26,
+     "priceSrc": "broker"
+    },
+    {
+     "code": "0050",
+     "name": "元大台灣50",
+     "type": "現股",
+     "qty": 16000,
+     "avgCost": 89.45,
+     "price": 90.3,
+     "marketValue": 1444800,
+     "costAmt": 1431488,
+     "unrealized": 9816,
+     "returnPct": 0.69,
+     "priceSrc": "broker"
+    },
+    {
+     "code": "7769",
+     "name": "鴻勁",
+     "type": "現股",
+     "qty": 400,
+     "avgCost": 2843.75,
+     "price": 3065.0,
+     "marketValue": 1226000,
+     "costAmt": 1137708,
+     "unrealized": 82872,
+     "returnPct": 7.28,
+     "priceSrc": "broker"
+    },
+    {
+     "code": "3008",
+     "name": "大立光",
+     "type": "現股",
+     "qty": 300,
+     "avgCost": 3627.87,
+     "price": 4025.0,
+     "marketValue": 1207500,
+     "costAmt": 1088559,
+     "unrealized": 113602,
+     "returnPct": 10.44,
+     "priceSrc": "broker"
+    },
+    {
+     "code": "3189",
+     "name": "景碩",
+     "type": "現股",
+     "qty": 2000,
+     "avgCost": 434.0,
+     "price": 495.0,
+     "marketValue": 990000,
+     "costAmt": 868160,
+     "unrealized": 117460,
+     "returnPct": 13.53,
+     "priceSrc": "broker"
+    }
+   ],
+   "totals": {
+    "count": 5,
+    "marketValue": 6888300,
+    "unrealized": 662503,
+    "costAmt": 6198224,
+    "returnPct": 10.69,
+    "missingMV": 0
+   },
+   "branch": "斗六"
+  }
+ ]
+}
