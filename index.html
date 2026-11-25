@@ -578,6 +578,21 @@
     /* 本月交易量：成交金額不是損益，一般顏色 */
     .pnl-vol { margin-top: 14px; }
     .pnl-vol-v { color: var(--text); font-weight: 700; }
+    /* ── 庫存（holdings.json，預設收起；沿用對帳簿樣式）── */
+    .hold-ledger { margin-top: 14px; }
+    .hold-ledger .pnl-ledger-body .table-wrap { max-height: 560px; }
+    .hold-ledger table { min-width: 780px; }
+    .hold-ledger tbody td, .hold-ledger thead th, .hold-ledger tfoot td { padding-left: 10px; padding-right: 10px; white-space: nowrap; }
+    /* 欄多時橫向捲動，代碼名稱欄固定在左邊 */
+    .hold-ledger tbody td:first-child, .hold-ledger thead th:first-child, .hold-ledger tfoot td:first-child { position: sticky; left: 0; z-index: 1; background: #14151f; }
+    .hold-ledger thead th:first-child { z-index: 2; }
+    .hold-ledger tbody tr.pnl-mrow td:first-child { background: #1b1c27; }
+    .hold-ledger tfoot td:first-child { background: #1b1c27; }
+    .hold-ledger tbody tr.pnl-drow td:first-child { font-family: var(--ui); font-weight: 600; color: var(--text); }
+    .hold-code { font-family: var(--mono); color: var(--text-2); margin-right: 6px; }
+    .hold-acct { display: block; font-family: var(--ui); font-weight: 400; font-size: 11px; color: var(--text-3); margin: 2px 0 0 16px; }
+    .hold-err { color: var(--text-3); font-family: var(--ui); font-weight: 400; }
+    .hold-ledger .card-sub .pnl-up, .hold-ledger .card-sub .pnl-down { font-size: 11px; }
     @media (max-width: 600px) {
       .pnl-ledger-body .result-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -1675,6 +1690,16 @@
 
     <button class="btn-reset" onclick="calcReset()">清除全部</button>
 
+    <!-- 庫存（holdings.json，預設收起） -->
+    <div class="pnl-ledger hold-ledger" id="hold-ledger">
+      <button class="pnl-ledger-head" onclick="toggleHoldLedger()">
+        <span>庫存 <span class="pnl-mdays" id="hold-updated"></span></span><span class="arrow">▸</span>
+      </button>
+      <div class="pnl-ledger-body" id="hold-ledger-body">
+        <div class="pnl-empty">尚無庫存資料</div>
+      </div>
+    </div>
+
     <!-- 對帳簿（pnl.json，預設收起） -->
     <div class="pnl-ledger" id="pnl-ledger">
       <button class="pnl-ledger-head" onclick="togglePnlLedger()">
@@ -2043,7 +2068,7 @@
     localStorage.setItem('gh_token', t);
     setBtnLoading(btn, true, '連線中…');
     try {
-      const [ok] = await Promise.all([loadTodos(), loadCalc(), loadPnl()]);
+      const [ok] = await Promise.all([loadTodos(), loadCalc(), loadPnl(), loadHoldings()]);
       if (ok) {
         closeTokenModal();
         showToast('Token 已儲存，已連線 GitHub', 'success');
@@ -2686,6 +2711,112 @@
       renderPnl(JSON.parse(b64decode(data.content)));
     } catch (e) {
       renderPnlEmpty();
+    }
+  }
+
+  // ── 庫存（holdings.json：{"updatedAt", "accounts":[{"name","status","error","generatedAt","branch"?,"holdings":[...],"totals":{...}}]}）──
+  const HOLD_GROUP_KEY = 'holdLedgerGroups';
+  function holdGroupState() { try { return JSON.parse(localStorage.getItem(HOLD_GROUP_KEY)) || {}; } catch (e) { return {}; } }
+  function holdTime(iso) {
+    if (!iso) return '';
+    const m = String(iso).match(/^\d{4}-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    return m ? `${m[1]}/${m[2]} ${m[3]}:${m[4]}` : String(iso);
+  }
+  function holdInt(n) { return n == null ? '<span class="zero">—</span>' : Math.round(n).toLocaleString('en-US'); }
+  function holdPx(n) { return n == null ? '<span class="zero">—</span>' : Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function holdPl(n) { return n == null ? '<span class="zero">—</span>' : pnlFmt(n); }
+  function holdPct(n) {
+    if (n == null) return '<span class="zero">—</span>';
+    const cls = n > 0 ? 'pnl-up' : n < 0 ? 'pnl-down' : 'zero';
+    return `<span class="${cls}">${n > 0 ? '+' : ''}${Number(n).toFixed(2)}%</span>`;
+  }
+  function holdLabel(a) { return a.branch ? `${a.name}（${a.branch}）` : a.name; }
+  function toggleHoldGroup(k) {
+    const head = document.querySelector(`#hold-ledger-body tr.pnl-mrow[data-g="${k}"]`);
+    if (!head) return;
+    const open = !foldIsOpen(head.classList.contains('open'), head);
+    const rows = document.querySelectorAll(`#hold-ledger-body tr.pnl-drow[data-g="${k}"]`);
+    const apply = s => { head.classList.toggle('open', s); rows.forEach(tr => { tr.hidden = !s; }); };
+    const wrap = head.closest('.table-wrap');
+    if (wrap) animateFold(wrap, open, apply, head); else apply(open);
+    const st = holdGroupState(); st[k] = open;
+    try { localStorage.setItem(HOLD_GROUP_KEY, JSON.stringify(st)); } catch (e) {}
+  }
+  window.toggleHoldGroup = toggleHoldGroup;
+  function toggleHoldLedger() {
+    const L = document.getElementById('hold-ledger');
+    const open = !foldIsOpen(L.classList.contains('open'), L);
+    animateFold(L, open, s => L.classList.toggle('open', s));
+  }
+  window.toggleHoldLedger = toggleHoldLedger;
+
+  function renderHoldEmpty() {
+    document.getElementById('hold-ledger-body').innerHTML = '<div class="pnl-empty">尚無庫存資料</div>';
+    document.getElementById('hold-updated').textContent = '';
+  }
+
+  function renderHoldings(h) {
+    const accs = (h && Array.isArray(h.accounts)) ? h.accounts : [];
+    if (!accs.length) { renderHoldEmpty(); return; }
+    document.getElementById('hold-updated').textContent = holdTime(h.updatedAt);
+    const ok = accs.filter(a => a.status === 'ok' && a.totals);
+    const sumMV = ok.reduce((x, a) => x + (a.totals.marketValue || 0), 0);
+    const sumPL = ok.reduce((x, a) => x + (a.totals.unrealized || 0), 0);
+    const sumCost = ok.reduce((x, a) => x + (a.totals.costAmt || 0), 0);
+    const sumCnt = ok.reduce((x, a) => x + (a.totals.count || 0), 0);
+    const st = holdGroupState();
+    const card = a => {
+      if (a.status !== 'ok' || !a.totals) return `
+        <div class="card"><div class="card-label">${holdLabel(a)}</div>
+          <div class="card-value"><span class="zero">查無資料</span></div>
+          <div class="card-sub">${holdTime(a.generatedAt)}</div></div>`;
+      const t = a.totals;
+      return `
+        <div class="card"><div class="card-label">${holdLabel(a)} · ${t.count}檔</div>
+          <div class="card-value">${t.count ? holdInt(t.marketValue) : '<span class="zero">無庫存</span>'}</div>
+          <div class="card-sub">${t.count ? holdPl(t.unrealized) + ' ' + holdPct(t.returnPct) : ''}</div>
+          <div class="card-sub">${holdTime(a.generatedAt)}</div></div>`;
+    };
+    const group = a => {
+      const k = a.name;
+      const open = k in st ? !!st[k] : true;
+      const t = a.totals;
+      const srcs = [...new Set((a.holdings || []).map(x => x.priceSrc).filter(x => x && x !== 'broker'))];
+      const meta = `${holdTime(a.generatedAt)}${srcs.length ? ' · 現價 ' + srcs.join('、') : ''}`;
+      if (a.status !== 'ok' || !t) {
+        return `<tr class="pnl-mrow" data-g="${k}"><td><span class="arrow">▸</span> ${holdLabel(a)} <span class="hold-err">查無資料${a.error ? '（' + String(a.error).replace(/[<>&]/g, '') + '）' : ''}</span></td><td colspan="7"></td></tr>`;
+      }
+      const head = `<tr class="pnl-mrow${open ? ' open' : ''}" data-g="${k}" onclick="toggleHoldGroup('${k}')"><td><span class="arrow">▸</span> ${holdLabel(a)} <span class="pnl-mdays">${t.count}檔</span><span class="hold-acct">${meta}</span></td><td></td><td></td><td></td><td></td><td>${t.count ? holdInt(t.marketValue) : '<span class="zero">無庫存</span>'}</td><td>${t.count ? holdPl(t.unrealized) : ''}</td><td>${t.count ? holdPct(t.returnPct) : ''}</td></tr>`;
+      const rows = (a.holdings || []).map(x => `
+            <tr class="pnl-drow" data-g="${k}"${open ? '' : ' hidden'}><td><span class="hold-code">${x.code}</span>${x.name || ''}</td><td>${x.type || ''}</td><td>${holdInt(x.qty)}</td><td>${holdPx(x.avgCost)}</td><td>${holdPx(x.price)}</td><td>${holdInt(x.marketValue)}</td><td>${holdPl(x.unrealized)}</td><td>${holdPct(x.returnPct)}</td></tr>`).join('');
+      return head + rows;
+    };
+    document.getElementById('hold-ledger-body').innerHTML = `
+      <div class="result-cards" style="--pnl-cols:${accs.length + 1}">
+        ${accs.map(card).join('')}
+        <div class="card"><div class="card-label">合計 · ${sumCnt}檔</div>
+          <div class="card-value">${holdInt(sumMV)}</div>
+          <div class="card-sub">${holdPl(sumPL)} ${holdPct(sumCost ? sumPL / sumCost * 100 : null)}</div>
+          <div class="card-sub">${holdTime(h.updatedAt)}</div></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>代碼 名稱</th><th>類別</th><th>股數</th><th>成本均價</th><th>現價</th><th>市值</th><th>未實現損益</th><th>報酬率</th></tr></thead>
+          <tbody>${accs.map(group).join('')}
+          </tbody>
+          <tfoot><tr><td>合計 ${sumCnt}檔</td><td></td><td></td><td></td><td></td><td>${holdInt(sumMV)}</td><td>${holdPl(sumPL)}</td><td>${holdPct(sumCost ? sumPL / sumCost * 100 : null)}</td></tr></tfoot>
+        </table>
+      </div>`;
+  }
+
+  async function loadHoldings() {
+    if (!getToken()) { renderHoldEmpty(); return; }
+    try {
+      const data = await ghGet('holdings.json');
+      if (!data) { renderHoldEmpty(); return; }
+      renderHoldings(JSON.parse(b64decode(data.content)));
+    } catch (e) {
+      renderHoldEmpty();
     }
   }
 
@@ -3766,7 +3897,7 @@
   // ── 啟動 ──────────────────────────────────────────────────
   buildCalcRows();
   if (getToken()) {
-    Promise.all([loadTodos(), loadCalc(), loadPnl()]);
+    Promise.all([loadTodos(), loadCalc(), loadPnl(), loadHoldings()]);
   } else {
     setSyncStatus('no token — click ⚙ to set');
     render();
