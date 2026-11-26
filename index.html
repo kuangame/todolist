@@ -1845,6 +1845,20 @@
   </div>
 </div>
 
+<!-- 庫存密碼 Modal -->
+<div class="modal-overlay" id="hold-pw-modal">
+  <div class="modal">
+    <h2>解鎖庫存</h2>
+    <p>庫存資料已加密，輸入密碼後才會顯示。關閉分頁就會重新上鎖。</p>
+    <input type="password" id="hold-pw-input" placeholder="密碼" autocomplete="current-password" style="font-family:var(--mono);" />
+    <p id="hold-pw-err" style="color:var(--neg);margin:8px 0 0;min-height:1.2em;"></p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="holdPwCancel()">取消</button>
+      <button class="btn-confirm" onclick="holdPwSubmit()">解鎖</button>
+    </div>
+  </div>
+</div>
+
 <!-- 編輯 Modal -->
 <div class="modal-overlay" id="edit-modal">
   <div class="modal">
@@ -2743,13 +2757,85 @@
     try { localStorage.setItem(HOLD_GROUP_KEY, JSON.stringify(st)); } catch (e) {}
   }
   window.toggleHoldGroup = toggleHoldGroup;
-  function toggleHoldLedger() {
+  // 庫存加密：holdings.enc.json = {v, kdf:'PBKDF2-SHA256', iter, alg:'AES-256-GCM', salt, iv, ct(密文+tag)}，皆 base64
+  // 解鎖前頁面上不放任何庫存數字；解鎖後把推導出的金鑰（綁 salt）存 sessionStorage，關分頁即清除
+  const HOLD_KEY_SS = 'holdKey';
+  let holdEnc = null, holdPlain = null;
+  const b64bytes = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const bytesb64 = u => { let x = ''; new Uint8Array(u).forEach(c => { x += String.fromCharCode(c); }); return btoa(x); };
+  async function holdDeriveKey(pw, enc) {
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64bytes(enc.salt), iterations: Number(enc.iter), hash: 'SHA-256' },
+      base, { name: 'AES-GCM', length: 256 }, true, ['decrypt']);
+  }
+  async function holdDecrypt(key, enc) {
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64bytes(enc.iv) }, key, b64bytes(enc.ct));
+    return JSON.parse(new TextDecoder('utf-8').decode(pt));
+  }
+  async function holdTrySessionKey() {
+    if (!holdEnc) return false;
+    try {
+      const c = JSON.parse(sessionStorage.getItem(HOLD_KEY_SS) || 'null');
+      if (!c || c.salt !== holdEnc.salt) return false;
+      const key = await crypto.subtle.importKey('raw', b64bytes(c.k), { name: 'AES-GCM' }, false, ['decrypt']);
+      holdPlain = await holdDecrypt(key, holdEnc);
+      return true;
+    } catch (e) { return false; }
+  }
+  function holdSetOpen(open) {
     const L = document.getElementById('hold-ledger');
-    const open = !foldIsOpen(L.classList.contains('open'), L);
+    if (open === L.classList.contains('open') && !L.classList.contains('fold-closing')) return;
     animateFold(L, open, s => L.classList.toggle('open', s));
   }
+  async function toggleHoldLedger() {
+    const L = document.getElementById('hold-ledger');
+    const open = !foldIsOpen(L.classList.contains('open'), L);
+    if (!open) { holdSetOpen(false); return; }
+    if (holdEnc && !holdPlain && !(await holdTrySessionKey())) {
+      document.getElementById('hold-pw-input').value = '';
+      document.getElementById('hold-pw-err').textContent = '';
+      openModal('hold-pw-modal');
+      setTimeout(() => document.getElementById('hold-pw-input').focus(), 50);
+      return;
+    }
+    if (holdPlain) renderHoldings(holdPlain);
+    holdSetOpen(true);
+  }
   window.toggleHoldLedger = toggleHoldLedger;
+  function holdPwCancel() { document.getElementById('hold-pw-input').value = ''; closeModal('hold-pw-modal'); }
+  async function holdPwSubmit() {
+    const inp = document.getElementById('hold-pw-input'), err = document.getElementById('hold-pw-err');
+    const btn = document.querySelector('#hold-pw-modal .btn-confirm');
+    const pw = inp.value;
+    if (!pw || !holdEnc) { shakeEl(inp); return; }
+    if (btn.classList.contains('is-loading')) return;
+    setBtnLoading(btn, true, '解密中…'); err.textContent = '';
+    try {
+      const key = await holdDeriveKey(pw, holdEnc);
+      holdPlain = await holdDecrypt(key, holdEnc);
+      try { sessionStorage.setItem(HOLD_KEY_SS, JSON.stringify({ salt: holdEnc.salt, k: bytesb64(await crypto.subtle.exportKey('raw', key)) })); } catch (e) {}
+      inp.value = '';
+      closeModal('hold-pw-modal');
+      renderHoldings(holdPlain);
+      holdSetOpen(true);
+    } catch (e) {
+      holdPlain = null;
+      err.textContent = '密碼錯誤';
+      shakeEl(inp);
+    } finally {
+      setBtnLoading(btn, false);
+    }
+  }
+  window.holdPwCancel = holdPwCancel; window.holdPwSubmit = holdPwSubmit;
+  (() => {
+    const i = document.getElementById('hold-pw-input');
+    if (i) i.addEventListener('keydown', e => { if (e.key === 'Enter') holdPwSubmit(); if (e.key === 'Escape') holdPwCancel(); });
+  })();
 
+  function renderHoldLocked() {
+    document.getElementById('hold-ledger-body').innerHTML = '<div class="pnl-empty">🔒 庫存已加密</div>';
+    document.getElementById('hold-updated').textContent = '';
+  }
   function renderHoldEmpty() {
     document.getElementById('hold-ledger-body').innerHTML = '<div class="pnl-empty">尚無庫存資料</div>';
     document.getElementById('hold-updated').textContent = '';
@@ -2810,11 +2896,17 @@
   }
 
   async function loadHoldings() {
+    holdEnc = null; holdPlain = null;
     if (!getToken()) { renderHoldEmpty(); return; }
     try {
-      const data = await ghGet('holdings.json');
+      const data = await ghGet('holdings.enc.json');
       if (!data) { renderHoldEmpty(); return; }
-      renderHoldings(JSON.parse(b64decode(data.content)));
+      const enc = JSON.parse(b64decode(data.content));
+      if (!enc || !enc.salt || !enc.iv || !enc.ct || !enc.iter) { renderHoldEmpty(); return; }
+      holdEnc = enc;
+      const L = document.getElementById('hold-ledger');
+      if (L.classList.contains('open') && await holdTrySessionKey()) renderHoldings(holdPlain);
+      else { renderHoldLocked(); if (L.classList.contains('open')) holdSetOpen(false); }
     } catch (e) {
       renderHoldEmpty();
     }
